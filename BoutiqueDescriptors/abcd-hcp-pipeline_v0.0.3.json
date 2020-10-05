@@ -1,66 +1,66 @@
 {
-    "name": "abcd-hcp-pipeline",
+    "name": "BIDSAppAbcdHcpPipeline",
     "description": "The Developmental Cognition and Neuroimaging (DCAN) Labs fMRI Pipeline. This BIDS application initiates a functional MRI processing pipeline built upon the Human Connectome Project's minimal processing pipelines. The application requires only a dataset conformed to the BIDS specification, and little-to-no additional configuration on the part of the user. BIDS format and applications are explained in detail at http://bids.neuroimaging.io/",
     "tool-version": "v0.0.3",
     "schema-version": "0.5",
-    "command-line": "[BIDS_DIR] [OUTPUT_DIR] [HELP] [VERSION] [PARTICIPANT_LABEL] [FREESURFER_LICENSE] [ALL_SESSIONS] [NCPUS] [STAGE] [BANDSTOP] [CUSTOM_CLEAN] [ABCD_TASK] [STUDY_TEMPLATE] [IGNORE] [CHECK_OUTPUTS_ONLY] [PRINT_COMMANDS_ONLY] [IGNORE_EXPECTED_OUTPUTS]",
+    "command-line": "[BIDS_DIR] [OUTPUT_DIR] [ANALYSIS_LEVEL] [HELP] [VERSION] [PARTICIPANT_LABEL] [FREESURFER_LICENSE] [ALL_SESSIONS] --ncpus 1 [STAGE] [BANDSTOP] [CUSTOM_CLEAN] [ABCD_TASK] [STUDY_TEMPLATE] [IGNORE] [CHECK_OUTPUTS_ONLY] [PRINT_COMMANDS_ONLY] [IGNORE_EXPECTED_OUTPUTS]",
     "container-image": 
-        {
+    {
         "image": "dcanlabs/abcd-hcp-pipeline:v0.0.3",
-        "index": "docker://dcanlabs/abcd-hcp-pipeline:v0.0.3",
+        "index": "docker://",
         "type": "singularity"
-    	},
+    },
     "groups": [
-	{
-	    "description": "Absolutely required arguments to run abcd-hcp-pipeline.",
-	    "id": "positional_arguments_group",
-	    "members": 
-	    [
-		"bids_dir",
-		"output_dir"
-	    ],
-	    "name": "Positional Arguments"
-	},
-	{
-	    "description": "Optional arguments to run abcd-hcp-pipeline. Some may actually be required where as other change default functionality.",
-	    "id": "optional_arguments_group",
-	    "members": [
-		"help",
-		"version",
-		"participant_label",
-		"freesurfer_license",
-		"all_sessions",
-		"ncpus",
-		"stage",
-		"bandstop"
-	     ],
-	     "name": "Optional Arguments"
-	 },
-	 {
-	     "description": "Special pipeline options which pertain to an alternative pipeline or an extra stage which is not inferred from the inputted BIDS data.",
-	     "id": "special_pipeline_options",
-	     "members": [
-		"custom_clean",
-		"abcd_task",
-		"study_template",
-		"ignore"
-	     ],
-	     "name": "Special Pipeline Options"
-	 },
-	 {
-	     "description": "Runtime options which change runtime behaviors. Debugging features.",
-	     "id": "runtime_options",
-	     "members": [
-		"check_outputs_only",
-		"print_commands_only",
-		"ignore_expected_outputs"
-	     ],
-	     "name": "Runtime Options" 
-	  }	
+    {
+        "description": "Absolutely required arguments to run abcd-hcp-pipeline.",
+        "id": "positional_arguments_group",
+        "members": 
+        [
+            "bids_dir",
+            "output_dir_name",
+            "analysis_level"
+        ],
+        "name": "Positional Arguments"
+    },
+    {
+        "description": "Optional arguments to run abcd-hcp-pipeline. Some may actually be required where as other change default functionality.",
+        "id": "optional_arguments_group",
+        "members": [
+            "help",
+            "version",
+            "participant_label",
+            "freesurfer_license",
+            "all_sessions",
+            "stage",
+            "bandstop"
+        ],
+        "name": "Optional Arguments"
+    },
+    {
+        "description": "Special pipeline options which pertain to an alternative pipeline or an extra stage which is not inferred from the inputted BIDS data.",
+        "id": "special_pipeline_options",
+        "members": [
+            "custom_clean",
+            "abcd_task",
+            "study_template",
+            "ignore"
+        ],
+        "name": "Special Pipeline Options"
+     },
+     {
+        "description": "Runtime options which change runtime behaviors. Debugging features.",
+        "id": "runtime_options",
+        "members": [
+            "check_outputs_only",
+            "print_commands_only",
+            "ignore_expected_outputs"
+         ],
+        "name": "Runtime Options" 
+      } 
     ],
     "inputs": [
         {
-	    "description": "Input BIDS folder",
+            "description": "Input BIDS folder",
             "id": "bids_dir",
             "name": "Input BIDS folder",
             "optional": false,
@@ -68,147 +68,160 @@
             "value-key": "[BIDS_DIR]"
         },
         {
-	    "description": "Output folder",
-            "id": "output_dir",
+            "description": "Output folder",
+            "id": "output_dir_name",
             "name": "Output folder",
             "optional": false,
             "type": "String",
             "value-key": "[OUTPUT_DIR]"
         },
         {
+            "description": "processing stage",
+            "id": "analysis_level",
+            "name": "analysis_level",
+            "optional": false,
+            "type": "String",
+            "value-choices": [
+                "participant", 
+                "group"
+            ],
+            "value-key": "[ANALYSIS_LEVEL]"
+        },
+        {
             "command-line-flag": "--version",
-	    "description": "Print version of abcd-hcp-pipeline",
+            "description": "Print version of abcd-hcp-pipeline",
             "id": "version",
             "name": "abcd-hcp-pipeline version",
             "optional": true,
             "type": "Flag",
-	    "value-key": "[VERSION]"
+            "value-key": "[VERSION]"
         },
-	{
+        {
             "command-line-flag": "--help",
-	    "description": "Print help message of abcd-hcp-pipeline",
+            "description": "Print help message of abcd-hcp-pipeline",
             "id": "help",
             "name": "abcd-hcp-pipeline help",
             "optional": true,
             "type": "Flag",
-	    "value-key": "[HELP]"
-	},
-        {
-            "command-line-flag": "-participant-label",
-	    "description": "Optional list of participant IDs to run. Default is all IDs found under the BIDS input directory. The participant label does not include the 'sub-' prefix.",
-            "id": "participant_label",
-            "name": "abcd-hcp-pipeline participant_label",
-            "optional": true,
-            "type": "Flag",
-	    "value-key": "[PARTICIPANT_LABEL]"
+            "value-key": "[HELP]"
         },
-	{
+        {
+            "command-line-flag": "--participant_label",
+            "description": "A space delimited list of participant identifiers or a single identifier (the sub- prefix can be removed)",
+            "id": "participant_label",
+            "list": true,
+            "name": "participant_label",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PARTICIPANT_LABEL]"
+        },
+        {
             "command-line-flag": "--freesurfer-license",
-	    "description": "To run FreeSurfer a license file must exist and be pointed to. The license can be acquired by filling out this form: https://surfer.nmr.mgh.harvard.edu/registration.html.",
+            "description": "To run FreeSurfer a license file must exist and be pointed to. The license can be acquired by filling out this form: https://surfer.nmr.mgh.harvard.edu/registration.html.",
             "id": "freesurfer_license",
             "name": "abcd-hcp-pipeline freesurfer license",
             "optional": true,
             "type": "Flag",
-	    "value-key": "[FREESURFER_LICENSE]"
-	},
+            "value-key": "[FREESURFER_LICENSE]"
+        },
         {
             "command-line-flag": "--all-sessions",
-	    "description": "Collapses all sessions into one when running a subject, essentially treating data as if it were collected during a single session (per subject).",
+            "description": "Collapses all sessions into one when running a subject, essentially treating data as if it were collected during a single session (per subject).",
             "id": "all_sessions",
             "name": "abcd-hcp-pipeline all sessions",
             "optional": true,
             "type": "Flag",
-	    "value-key": "[ALL_SESSIONS]"
+            "value-key": "[ALL_SESSIONS]"
         },
-	{
-            "command-line-flag": "--ncpus",
-	    "description": "Number of cores to use for concurrent processing and algorithmic speedups.  Warning: causes ANTs and FreeSurfer to produce non-deterministic results.",
-            "id": "ncpus",
-            "name": "abcd-hcp-pipeline number of cpus",
-            "optional": true,
-            "type": "Flag",
-	    "value-key": "[NCPUS]"
-	},
         {
             "command-line-flag": "--stage",
-	    "description": "Specify a subset of stages to run. If a single stage name is given, the pipeline with be started at that stage. If a string with a ':' is given, a stage name before the ':' will tell run.py where to start and a stage name after the ':' will tell it where to stop. If no ':' is found, the pipeline will start with the stage specified and run to the end.",
+            "description": "Specify a subset of stages to run. If a single stage name is given, the pipeline with be started at that stage. If a string with a ':' is given, a stage name before the ':' will tell run.py where to start and a stage name after the ':' will tell it where to stop. If no ':' is found, the pipeline will start with the stage specified and run to the end.",
             "id": "stage",
             "name": "abcd-hcp-pipeline stage",
             "optional": true,
             "type": "Flag",
-	    "value-key": "[STAGE]"
+            "value-key": "[STAGE]"
         },
-	{
+        {
             "command-line-flag": "--bandstop",
-	    "description": "Parameters for motion regressor band-stop filter. It is recommended for the boundaries to match the inter-quartile range for participant group respiratory rate (breaths per minute), or to match bids physio data directly. These parameters are highly recommended for data acquired with a frequency of approx. 1 Hz or more (TR<=1.0). Default is no filter.",
+            "description": "Parameters for motion regressor band-stop filter. It is recommended for the boundaries to match the inter-quartile range for participant group respiratory rate (breaths per minute), or to match bids physio data directly. These parameters are highly recommended for data acquired with a frequency of approx. 1 Hz or more (TR<=1.0). Default is no filter.",
             "id": "bandstop",
             "name": "abcd-hcp-pipeline bandstop filter",
             "optional": true,
             "type": "Flag",
-	    "value-key": "[BANDSTOP]"
-	},
+            "value-key": "[BANDSTOP]"
+        },
         {
             "command-line-flag": "--custom-clean",
-	    "description": "Runs DCAN cleaning script after the pipeline completes successfully to delete pipeline outputs based on the file structure specified in the custom-clean JSON. Required for the custom clean stage.",
+            "description": "Runs DCAN cleaning script after the pipeline completes successfully to delete pipeline outputs based on the file structure specified in the custom-clean JSON. Required for the custom clean stage.",
             "id": "custom_clean",
             "name": "abcd-hcp-pipeline custom clean",
             "optional": true,
             "type": "Flag",
-	    "value-key": "[CUSTOM_CLEAN]"
+            "value-key": "[CUSTOM_CLEAN]"
         },
-	{
+        {
             "command-line-flag": "--abcd-task",
-	    "description": "Runs ABCD task data through task fMRI analysis, adding this stage to the end. Warning: Not written for general use: a general task analysis module will be included in a future release.",
+            "description": "Runs ABCD task data through task fMRI analysis, adding this stage to the end. Warning: Not written for general use: a general task analysis module will be included in a future release.",
             "id": "abcd_task",
             "name": "abcd-hcp-pipeline abcd task",
             "optional": true,
             "type": "Flag",
-	    "value-key": "[ABCD_TASK]"
-	},
+            "value-key": "[ABCD_TASK]"
+        },
         {
             "command-line-flag": "--study-template",
-	    "description": "Template head and brain images for intermediate nonlinear registration and masking, effective where population differs greatly from average adult, e.g. in elderly populations with large ventricles.",
+            "description": "Template head and brain images for intermediate nonlinear registration and masking, effective where population differs greatly from average adult, e.g. in elderly populations with large ventricles.",
             "id": "study_template",
             "name": "abcd-hcp-pipeline study template",
             "optional": true,
             "type": "Flag",
-	    "value-key": "[STUDY_TEMPLATE]"
+            "value-key": "[STUDY_TEMPLATE]"
         },
         {
             "command-line-flag": "--ignore",
-	    "description": "Ignore a modality in processing. Option can be repeated.",
+            "description": "Ignore a modality in processing. Option can be repeated.",
             "id": "ignore",
             "name": "abcd-hcp-pipeline ignore",
             "optional": true,
             "type": "Flag",
-	    "value-key": "[IGNORE]"
+            "value-key": "[IGNORE]"
         },
-	{
+        {
             "command-line-flag": "--check-outputs-only",
-	    "description": "Checks for the existence of outputs for each stage then exit. Useful for debugging.",
+            "description": "Checks for the existence of outputs for each stage then exit. Useful for debugging.",
             "id": "check_outputs_only",
             "name": "abcd-hcp-pipeline check outputs only",
             "optional": true,
             "type": "Flag",
-	    "value-key": "[CHECK_OUTPUTS_ONLY]"
-	},
-	{
+            "value-key": "[CHECK_OUTPUTS_ONLY]"
+        },
+        {
             "command-line-flag": "--print-commands-only",
-	    "description": "Print run commands for each stage to shell then exit.",
+            "description": "Print run commands for each stage to shell then exit.",
             "id": "print_commands_only",
             "name": "abcd-hcp-pipeline print commands only",
             "optional": true,
             "type": "Flag",
-	    "value-key": "[PRINT_COMMANDS_ONLY]"
-	},
-	{
+            "value-key": "[PRINT_COMMANDS_ONLY]"
+        },
+        {
             "command-line-flag": "--ignore-expected-outputs",
-	    "description": "Continues pipeline even if some expected outputs are missing.",
+            "description": "Continues pipeline even if some expected outputs are missing.",
             "id": "ignore_expected_outputs",
             "name": "abcd-hcp-pipeline ignore expected outputs",
             "optional": true,
             "type": "Flag",
-	    "value-key": "[IGNORE_EXPECTED_OUTPUTS]"
-	}
+            "value-key": "[IGNORE_EXPECTED_OUTPUTS]"
+        }
+    ],
+    "output-files" : [
+        {
+            "id" : "output_dir",
+            "name" : "Output Directory",
+            "description" : "This is the directory where the overall outputs are to be stored.",
+            "path-template" : "[OUTPUT_DIR]",
+            "optional" : false
+        }
     ]
 }

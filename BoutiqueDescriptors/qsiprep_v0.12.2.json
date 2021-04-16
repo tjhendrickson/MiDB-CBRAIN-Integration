@@ -1,0 +1,426 @@
+{
+    "name": "qsiprep",
+    "description": "q-Space Image PREProcessing workflows",
+    "author": "University of Pennsylvania Lifespan Informatics and Neuroimaging Center (https://github.com/PennLINC)",
+    "tool-version": "v0.12.2",
+    "shell": "/bin/bash",
+    "schema-version": "0.5",
+    "custom": {
+        "cbrain:readonly-input-files": true, 
+        "cbrain:author": "Timothy Hendrickson <hendr522@umn.edu> and Natacha Beck <natacha.beck@mcgill.ca>"
+     },
+    "command-line": "",
+    "container-image": 
+    {
+        "image": "pennbbl/qsiprep:0.12.2",
+        "index": "docker://",
+        "type": "singularity"
+    },
+    "groups": [
+    {
+        "description": "Absolutely required arguments to run qsiprep.",
+        "id": "positional_arguments_group",
+        "members": 
+        [
+            "bids_dir",
+            "output_dir",
+            "participant"
+        ],
+        "name": "Positional Arguments"
+    },
+    {
+        "description": "Optional arguments to run qsiprep. Some may actually be required where as other change default functionality.",
+        "id": "optional_arguments_group",
+        "members": [
+            "version",
+            "help"
+        ],
+        "name": "Optional Arguments"
+    },
+    {
+        "description": "Options for filtering BIDS queries.",
+        "id": "optional_BIDS_filtering_arguments_group",
+        "members": [
+            "skip_bids_validation",
+            "participant_label",
+            "acquisition_type"
+        ],
+        "name": "Optional BIDS Filtering Arguments"
+    },
+    {
+        "description": "Options for interactive report outputs",
+        "id": "interactive_report_arguments_group",
+        "members": [
+            "interactive_reports_only"
+         ],
+        "name": "Interactive Report Only Arguments" 
+    },
+    {
+        "description": "Options for reconstructing qsiprep outputs",
+        "id": "reconstruction_arguments_group",
+        "members": [
+            "recon_only",
+            "recon_spec",
+            "recon_input"
+         ],
+        "name": "Reconstruction Arguments" 
+    },
+    {
+        "description": "Options to handle performance",
+        "id": "performance_arguments_group",
+        "members": [
+            "nthreads",
+            "omp_nthreads",
+            "mem_mb",
+            "low_mem",
+            "use_plugin",
+            "anat_only",
+            "dwi_only",
+            "infant",
+            "boilerplate",
+            "verbose"
+         ],
+        "name": "Performance Arguments" 
+    },
+    {
+        "description": "Workflow Configuration",
+        "id": "workflow_configuration_arguments_group",
+        "members": [
+            "ignore",
+            "longitudinal",
+            "b0_threshold",
+            "dwi_denoise_window",
+            "unringing_method",
+            "dwi_no_biascorr",
+            "no_b0_harmonization",
+            "denoise_before_combining",
+            "combine_all_dwis",
+            "separate_all_dwis",
+            "distortion_group_merge",
+            "write_local_bvecs",
+            "output_space",
+            "template",
+            "output_resolution"
+         ],
+        "name": "Workflow Configuration Arguments" 
+    },
+    {
+        "description": "Options for dwi-to-T1w Coregistration",
+        "id": "dwi_to_T1w_coregistration_arguments_group",
+        "members": [
+            "b0_to_t1w_transform",
+            "intramodal_template_iters",
+            "intramodal_template_transform",
+            "bo_motion_corr_to",
+            "hmc_transform",
+            "hmc_model",
+            "eddy_config",
+            "shoreline_iters",
+            "impute_slice_threshold"
+         ],
+        "name": "dwi-to-T1w Coregistration Arguments" 
+    },
+    {
+        "description": "Specific options for ANTs registrations",
+        "id": "ANTs_registrations_arguments_group",
+        "members": [
+            "skull_strip_template",
+            "skull_strip_fixed_seed",
+            "force_spatial_normalization",
+            "skip_t1_based_spatial_normalization"
+         ],
+        "name": "ANTs Registrations Arguments" 
+    },
+    {
+        "description": "Specific options for FreeSurfer preprocessing",
+        "id": "FreeSurfer_preprocessing_arguments_group",
+        "members": [
+            "fs_license_file",
+            "do_reconall"
+         ],
+        "name": "FreeSurfer Preprocessing Arguments" 
+    },
+    {
+        "description": "Specific options for handling fieldmaps",
+        "id": "fieldmap_arguments_group",
+        "members": [
+            "prefer_dedicated_fmaps",
+            "fmap_bspline",
+            "fmap_no_demean"
+         ],
+        "name": "Fieldmaps Arguments" 
+    },
+    {
+        "description": "Specific options for SyN distortion correction",
+        "id": "SyN_distortion_correction_arguments_group",
+        "members": [
+            "use_syn_sdc",
+            "force_syn"
+         ],
+        "name": "SyN Distortion Correction Arguments" 
+    },
+    {
+        "description": "Other options",
+        "id": "other_options_arguments_group",
+        "members": [
+            "work_dir",
+            "resource_monitor",
+            "reports_only",
+            "run_uuid",
+            "write_graph",
+            "stop_on_first_crash",
+            "notrack",
+            "sloopy"
+         ],
+        "name": "Other Options Arguments" 
+    }        
+    ],
+    "inputs": [
+        {
+            "description": "Input BIDS folder",
+            "id": "bids_dir",
+            "name": "Input BIDS folder",
+            "optional": false,
+            "type": "File",
+            "value-key": "[BIDS_DIR]"
+        },
+        {
+            "description": "processing stage",
+            "id": "analysis_level",
+            "name": "analysis_level",
+            "optional": false,
+            "type": "String",
+            "value-choices": [
+                "participant" 
+            ],
+            "value-key": "[ANALYSIS_LEVEL]"
+        },
+        {
+            "command-line-flag": "--version",
+            "description": "Print version of qsiprep",
+            "id": "version",
+            "name": "qsiprep version",
+            "optional": true,
+            "type": "Flag",
+            "value-key": "[VERSION]"
+        },
+        {
+            "command-line-flag": "--skip-bids-validation",
+            "description": "Assume the input dataset is BIDS compliant and skip the validation ",
+            "id": "skip_bids_validation",
+            "name": "skip bids validation",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SKIP_BIDS_VALIDATION]"
+        },
+        {
+            "command-line-flag": "--participant-label",
+            "description": "A space delimited list of participant identifiers or a single identifier (the sub- prefix can be removed)",
+            "id": "participant_label",
+            "list": true,
+            "name": "participant label",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PARTICIPANT_LABEL]"
+        },
+        {
+            "command-line-flag": "--acquisition_type",
+            "description": "Select a specific acquisition type to be processed",
+            "id": "acquisition_type",
+            "name": "acquisition type",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ACQUISITION_TYPE]"
+        },
+        {
+            "command-line-flag": "--interactive-reports-only",
+            "description": "Create interactive report json files on already preprocessed data.",
+            "id": "interactive_reports_only",
+            "name": "interactive reports only",
+            "optional": true,
+            "type": "Flag",
+            "value-key": "[INTERACTIVE_REPORTS_ONLY]"
+        },
+        {
+            "command-line-flag": "--recon-only",
+            "description": "Run only reconstruction, assumes preprocessing has already completed. ",
+            "id": "recon_only",
+            "name": "qsiprep recon only",
+            "optional": true,
+            "type": "String",
+            "value-key": "[RECON_ONLY]"
+        },
+        {
+            "command-line-flag": "--recon-spec",
+            "description": "json file specifying a reconstruction pipeline to be run after preprocessing",
+            "id": "recon_spec",
+            "name": "qsiprep recon spec",
+            "optional": true,
+            "type": "String",
+            "value-key": "[RECON_SPEC]"
+        },
+        {
+            "command-line-flag": "--recon-input",
+            "description": "use this directory as inputs to qsirecon. This option skips qsiprep.",
+            "id": "recon_input",
+            "name": "qsiprep recon input",
+            "optional": true,
+            "type": "File",
+            "value-key": "[RECON_INPUT]"
+        },
+        {
+            "command-line-flag": "--nthreads",
+            "description": "maximum number of threads across all processes",
+            "id": "nthreads",
+            "name": "qsiprep number of threads",
+            "optional": true,
+            "type": "Flag",
+            "value-key": "[NTHREADS]"
+        },
+        {
+            "command-line-flag": "--omp-nthreads",
+            "description": "maximum number of threads per-process.",
+            "id": "omp_nthreads",
+            "name": "qsiprep omp number of threads",
+            "optional": true,
+            "type": "Flag",
+            "value-key": "[OMP_NTHREADS]"
+        },
+        {
+            "command-line-flag": "--mem-mb",
+            "description": "upper bound memory limit for qsiprep processes.",
+            "id": "mem_mb",
+            "name": "qsiprep memory limit",
+            "optional": true,
+            "type": "Flag",
+            "value-key": "[MEM_MB]"
+        },
+        {
+            "command-line-flag": "--low-mem",
+            "description": "attempt to reduce memory usage (will increase disk usage in working directory)",
+            "id": "low_mem",
+            "name": "qsiprep low memory usage",
+            "optional": true,
+            "type": "String",
+            "value-key": "[LOW_MEM]"
+        },
+        {
+            "command-line-flag": "--use-plugin",
+            "description": "nipype plugin configuration file",
+            "id": "use_plugin",
+            "name": "qsiprep use plugin",
+            "optional": true,
+            "type": "Flag",
+            "value-key": "[USE_PLUGIN]"
+        },
+        {
+            "command-line-flag": "--anat-only",
+            "description": "run anatomical workflows only",
+            "id": "anat_only",
+            "name": "qsiprep anatomical workflows only",
+            "optional": true,
+            "type": "Flag",
+            "value-key": "[ANAT_ONLY]"
+        },
+        {
+            "command-line-flag": "--dwi-only",
+            "description": "ignore anatomical (T1w/T2w) data and process DWIs only",
+            "id": "dwi_only",
+            "name": "qsiprep dwi only",
+            "optional": true,
+            "type": "Flag",
+            "value-key": "[DWI_ONLY]"
+        },
+        {
+            "command-line-flag": "--infant",
+            "description": "configure pipelines to process infant brains",
+            "id": "infant",
+            "name": "qsiprep infant",
+            "optional": true,
+            "type": "Flag",
+            "value-key": "[INFANT]"
+        },
+        {
+            "command-line-flag": "--boilerplate",
+            "description": "generate boilerplate only",
+            "id": "boilerplate",
+            "name": "qsiprep boilerplate",
+            "optional": true,
+            "type": "Flag",
+            "value-key": "[BOILERPLATE]"
+        },
+        {
+            "command-line-flag": "--verbose",
+            "description": "increases log verbosity for each occurenc, debug level is -vvv",
+            "id": "verbose",
+            "name": "qsiprep verbose output",
+            "optional": true,
+            "type": "Flag",
+            "value-key": "[VERBOSE]"
+        },
+        {
+            "command-line-flag": "--ignore",
+            "description": "ignore selected aspects of the input dataset to disable corresponding parts of the workflow (a space delimited list)",
+            "id": "ignore",
+            "name": "qsiprep ignore",
+            "optional": true,
+            "type": "Flag",
+            "value-key": "[IGNORE]"
+        },
+        {
+            "command-line-flag": "--longitudinal",
+            "description": "treat dataset as longitudinal - may increase runtime",
+            "id": "longitudinal",
+            "name": "qsiprep longitudinal",
+            "optional": true,
+            "type": "Flag",
+            "value-key": "[LONGITUDINAL]"
+        },
+        {
+            "command-line-flag": "--b0-threshold",
+            "description": "any value in the .bval file less than this will be considered a b=0 image. Current default threshold = 100; this threshold can be lowered or increased. Note, setting this too high can result in inaccurate results.",
+            "id": "b0_threshold",
+            "name": "qsiprep b0 threshold",
+            "optional": true,
+            "type": "Flag",
+            "value-key": "[B0_THRESHOLD]"
+        },
+        {
+            "command-line-flag": "--dwi-denoise-window",
+            "description": "window size in voxels for ``dwidenoise``. Must be odd (default: 5). If 0, ``dwidwenoise`` will not be run (default: 5)",
+            "id": "dwi_denoise_window",
+            "name": "qsiprep dwi denoise window",
+            "optional": true,
+            "type": "Flag",
+            "value-key": "[DWI_DENOISE_WINDOW]"
+        },
+        {
+            "command-line-flag": "--unringing-method",
+            "description": "Method for Gibbs-ringing removal. - none: no action - mrdegibbs: use mrdegibbs from mrtrix3",
+            "id": "unringing_method",
+            "name": "qsiprep dwi unringing method",
+            "optional": true,
+            "type": "Flag",
+            "value-key": "[UNRINGING_METHOD]"
+        },
+        {
+            "command-line-flag": "--unringing-method",
+            "description": "Method for Gibbs-ringing removal. - none: no action - mrdegibbs: use mrdegibbs from mrtrix3",
+            "id": "unringing_method",
+            "name": "qsiprep dwi unringing method",
+            "optional": true,
+            "type": "Flag",
+            "value-key": "[UNRINGING_METHOD]"
+        }
+
+    ],
+    "output-files" : [
+        {
+            "id" : "output_dir",
+            "name" : "Output Directory",
+            "description" : "This is the directory where the overall outputs are to be stored.",
+            "path-template" : "[OUTPUT_DIR]",
+            "optional" : false
+        }
+    ]
+}

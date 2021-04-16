@@ -411,7 +411,125 @@
             "optional": true,
             "type": "Flag",
             "value-key": "[UNRINGING_METHOD]"
+        },
+        {
+            "command-line-flag": "--no-b0-harmonization",
+            "description": "skip re-scaling dwi scans to have matching b=0 intensities",
+            "id": "no_b0_harmonization",
+            "name": "qsiprep no b0 harmonization",
+            "optional": true,
+            "type": "Flag",
+            "value-key": "[NO_B0_HARMONIZATION]"
+        },
+        {
+            "command-line-flag": "--denoise-before-combining",
+            "description": "[DEPRECATED] run ``dwidenoise`` before combining dwis. Requires ``--combine-all-dwis``",
+            "id": "denoise_before_combining",
+            "name": "qsiprep denoise before combining",
+            "optional": true,
+            "type": "Flag",
+            "value-key": "[DENOISE_BEFORE_COMBINING]"
+        },
+        {
+            "command-line-flag": "--denoise-after-combining",
+            "description": "run ``dwidenoise`` after combining dwis. Requires ``--combine-all-dwis``",
+            "id": "denoise_after_combining",
+            "name": "qsiprep denoise after combining",
+            "optional": true,
+            "type": "Flag",
+            "value-key": "[DENOISE_AFTER_COMBINING]"
+        },
+        {
+            "command-line-flag": "--combine-all-dwis",
+            "description": "[DEPRECATED] combine dwis from across multiple runs for motion correction and reconstruction.",
+            "id": "combine_all_dwis",
+            "name": "qsiprep combine all dwis",
+            "optional": true,
+            "type": "Flag",
+            "value-key": "[COMBINE_ALL_DWIS]"
+        },
+        {
+            "command-line-flag": "--seperate-all-dwis",
+            "description": "don't attempt to combine dwis from multiple runs. Each will be processed separately.",
+            "id": "separate_all_dwis",
+            "name": "qsiprep separate all dwis",
+            "optional": true,
+            "type": "Flag",
+            "value-key": "[SEPARATE_ALL_DWIS]"
+        },
+        {
+            "command-line-flag": "--distortion-group-merge",
+            "description": "How to combine images across distorted groups. - concatenate: append images in the 4th dimension - average: if a whole sequence was duplicated in both PE directions, average the corrected images of the same q-space coordinate - none: Default. Keep distorted groups separate",
+            "id": "distortion_group_merge",
+            "name": "qsiprep distortion group merge",
+            "optional": true,
+            "type": "Flag",
+            "value-key": "[DISTORTION_GROUP_MERGE]"
+        },
+        {
+            "command-line-flag": "--write-local-bvecs",
+            "description": "write a series of voxelwise bvecs, relevant if writing preprocessed dwis to template space",
+            "id": "write_local_bvecs",
+            "name": "qsiprep write local bvecs",
+            "optional": true,
+            "type": "Flag",
+            "value-key": "[WRITE_LOCAL_BVECS]"
+        },
+        {
+            "command-line-flag": "--output-space",
+            "description": "volume and surface spaces to resample dwis into - T1w: subject anatomical volume - template: deprecated. Will be ignored",
+            "id": "output_space",
+            "name": "qsiprep output space",
+            "optional": true,
+            "type": "Flag",
+            "value-key": "[OUTPUT_SPACE]"
+        },
+        {
+            "command-line-flag": "--template",
+            "description": "volume template space",
+            "id": "template",
+            "name": "qsiprep template",
+            "optional": true,
+            "type": "Flag",
+            "value-key": "[TEMPLATE]"
+        },
+        {
+            "command-line-flag": "--output-resolution",
+            "description": "the isotropic voxel size in mm the data will be resampled to after preprocessing. If set to a lower value than the original voxel size, your data will be upsampled using BSpline interpolation.",
+            "id": "output_resolution",
+            "name": "qsiprep output resolution",
+            "optional": true,
+            "type": "Flag",
+            "value-key": "[OUTPUT_RESOLUTION]"
+        },
+        {
+            "command-line-flag": "--b0-to-t1w-transform",
+            "description": "Degrees of freedom when registering b0 to T1w images. 6 degrees (rotation and translation) are used by default.",
+            "id": "b0_to_t1w_transform",
+            "name": "qsiprep b0 to t1w transform",
+            "optional": true,
+            "type": "Flag",
+            "value-key": "[B0_TO_T1W_TRANSFORM]"
+        },
+        {
+            "command-line-flag": "--intramodal-template-iters",
+            "description": "Number of iterations for finding the midpoint image from the b0 templates from all groups. Has no effect if there is only one group. If 0, all b0 templates are directly registered to the t1w image.",
+            "id": "intramodal_template_iters",
+            "name": "qsiprep intramodal template iters",
+            "optional": true,
+            "type": "Flag",
+            "value-key": "[INTRAMODAL_TEMPLATE_ITERS]"
+        },
+        {
+            "command-line-flag": "--intramodal-template-transform",
+            "description": "Transformation used for building the intramodal template.",
+            "id": "intramodal_template_transform",
+            "name": "qsiprep intramodal template transform",
+            "optional": true,
+            "type": "Flag",
+            "value-key": "[INTRAMODAL_TEMPLATE_TRANSFORM]"
         }
+        
 
     ],
     "output-files" : [

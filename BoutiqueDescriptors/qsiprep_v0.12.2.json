@@ -29,15 +29,6 @@
         "name": "Positional Arguments"
     },
     {
-        "description": "Optional arguments to run qsiprep. Some may actually be required where as other change default functionality.",
-        "id": "optional_arguments_group",
-        "members": [
-            "version",
-            "help"
-        ],
-        "name": "Optional Arguments"
-    },
-    {
         "description": "Options for filtering BIDS queries.",
         "id": "optional_BIDS_filtering_arguments_group",
         "members": [
@@ -166,10 +157,8 @@
             "work_dir",
             "resource_monitor",
             "reports_only",
-            "run_uuid",
             "write_graph",
             "stop_on_first_crash",
-            "notrack",
             "sloopy"
          ],
         "name": "Other Options Arguments" 
@@ -185,7 +174,7 @@
             "value-key": "[BIDS_DIR]"
         },
         {
-            "description": "processing stage",
+            "description": "Processing stage",
             "id": "analysis_level",
             "name": "analysis_level",
             "optional": false,
@@ -196,21 +185,12 @@
             "value-key": "[ANALYSIS_LEVEL]"
         },
         {
-            "command-line-flag": "--version",
-            "description": "Print version of qsiprep",
-            "id": "version",
-            "name": "qsiprep version",
-            "optional": true,
-            "type": "Flag",
-            "value-key": "[VERSION]"
-        },
-        {
             "command-line-flag": "--skip-bids-validation",
             "description": "Assume the input dataset is BIDS compliant and skip the validation ",
             "id": "skip_bids_validation",
             "name": "skip bids validation",
             "optional": true,
-            "type": "String",
+            "type": "Flag",
             "value-key": "[SKIP_BIDS_VALIDATION]"
         },
         {
@@ -247,7 +227,7 @@
             "id": "recon_only",
             "name": "qsiprep recon only",
             "optional": true,
-            "type": "String",
+            "type": "Flag",
             "value-key": "[RECON_ONLY]"
         },
         {
@@ -256,12 +236,12 @@
             "id": "recon_spec",
             "name": "qsiprep recon spec",
             "optional": true,
-            "type": "String",
+            "type": "File",
             "value-key": "[RECON_SPEC]"
         },
         {
             "command-line-flag": "--recon-input",
-            "description": "use this directory as inputs to qsirecon. This option skips qsiprep.",
+            "description": "Use this directory as inputs to qsirecon. This option skips qsiprep.",
             "id": "recon_input",
             "name": "qsiprep recon input",
             "optional": true,
@@ -270,52 +250,52 @@
         },
         {
             "command-line-flag": "--nthreads",
-            "description": "maximum number of threads across all processes",
+            "description": "Maximum number of threads across all processes",
             "id": "nthreads",
             "name": "qsiprep number of threads",
             "optional": true,
-            "type": "Flag",
+            "type": "Number",
             "value-key": "[NTHREADS]"
         },
         {
             "command-line-flag": "--omp-nthreads",
-            "description": "maximum number of threads per-process.",
+            "description": "Maximum number of threads per-process.",
             "id": "omp_nthreads",
             "name": "qsiprep omp number of threads",
             "optional": true,
-            "type": "Flag",
+            "type": "Number",
             "value-key": "[OMP_NTHREADS]"
         },
         {
             "command-line-flag": "--mem-mb",
-            "description": "upper bound memory limit for qsiprep processes.",
+            "description": "Upper bound memory limit for qsiprep processes.",
             "id": "mem_mb",
             "name": "qsiprep memory limit",
             "optional": true,
-            "type": "Flag",
+            "type": "Number",
             "value-key": "[MEM_MB]"
         },
         {
             "command-line-flag": "--low-mem",
-            "description": "attempt to reduce memory usage (will increase disk usage in working directory)",
+            "description": "Attempt to reduce memory usage (will increase disk usage in working directory)",
             "id": "low_mem",
             "name": "qsiprep low memory usage",
             "optional": true,
-            "type": "String",
+            "type": "Number",
             "value-key": "[LOW_MEM]"
         },
         {
             "command-line-flag": "--use-plugin",
-            "description": "nipype plugin configuration file",
+            "description": "Nipype plugin configuration file",
             "id": "use_plugin",
             "name": "qsiprep use plugin",
             "optional": true,
-            "type": "Flag",
+            "type": "File",
             "value-key": "[USE_PLUGIN]"
         },
         {
             "command-line-flag": "--anat-only",
-            "description": "run anatomical workflows only",
+            "description": "Run anatomical workflows only",
             "id": "anat_only",
             "name": "qsiprep anatomical workflows only",
             "optional": true,
@@ -324,7 +304,7 @@
         },
         {
             "command-line-flag": "--dwi-only",
-            "description": "ignore anatomical (T1w/T2w) data and process DWIs only",
+            "description": "Ignore anatomical (T1w/T2w) data and process DWIs only",
             "id": "dwi_only",
             "name": "qsiprep dwi only",
             "optional": true,
@@ -333,7 +313,7 @@
         },
         {
             "command-line-flag": "--infant",
-            "description": "configure pipelines to process infant brains",
+            "description": "Configure pipelines to process infant brains",
             "id": "infant",
             "name": "qsiprep infant",
             "optional": true,
@@ -342,7 +322,7 @@
         },
         {
             "command-line-flag": "--boilerplate",
-            "description": "generate boilerplate only",
+            "description": "Generate boilerplate only",
             "id": "boilerplate",
             "name": "qsiprep boilerplate",
             "optional": true,
@@ -351,7 +331,7 @@
         },
         {
             "command-line-flag": "--verbose",
-            "description": "increases log verbosity for each occurenc, debug level is -vvv",
+            "description": "Increases log verbosity for each occurenc, debug level is -vvv",
             "id": "verbose",
             "name": "qsiprep verbose output",
             "optional": true,
@@ -360,16 +340,20 @@
         },
         {
             "command-line-flag": "--ignore",
-            "description": "ignore selected aspects of the input dataset to disable corresponding parts of the workflow (a space delimited list)",
+            "description": "Ignore selected aspects of the input dataset to disable corresponding parts of the workflow (a space delimited list)",
             "id": "ignore",
             "name": "qsiprep ignore",
             "optional": true,
-            "type": "Flag",
+            "type": "String",
+            "value-choices": [
+                "fieldmaps",
+                "sbref"
+            ],
             "value-key": "[IGNORE]"
         },
         {
             "command-line-flag": "--longitudinal",
-            "description": "treat dataset as longitudinal - may increase runtime",
+            "description": "Treat dataset as longitudinal - may increase runtime",
             "id": "longitudinal",
             "name": "qsiprep longitudinal",
             "optional": true,
@@ -378,20 +362,20 @@
         },
         {
             "command-line-flag": "--b0-threshold",
-            "description": "any value in the .bval file less than this will be considered a b=0 image. Current default threshold = 100; this threshold can be lowered or increased. Note, setting this too high can result in inaccurate results.",
+            "description": "Any value in the .bval file less than this will be considered a b=0 image. Current default threshold = 100; this threshold can be lowered or increased. Note, setting this too high can result in inaccurate results.",
             "id": "b0_threshold",
             "name": "qsiprep b0 threshold",
             "optional": true,
-            "type": "Flag",
+            "type": "Number",
             "value-key": "[B0_THRESHOLD]"
         },
         {
             "command-line-flag": "--dwi-denoise-window",
-            "description": "window size in voxels for ``dwidenoise``. Must be odd (default: 5). If 0, ``dwidwenoise`` will not be run (default: 5)",
+            "description": "Window size in voxels for ``dwidenoise``. Must be odd (default: 5). If 0, ``dwidwenoise`` will not be run (default: 5)",
             "id": "dwi_denoise_window",
             "name": "qsiprep dwi denoise window",
             "optional": true,
-            "type": "Flag",
+            "type": "Number",
             "value-key": "[DWI_DENOISE_WINDOW]"
         },
         {
@@ -400,16 +384,11 @@
             "id": "unringing_method",
             "name": "qsiprep dwi unringing method",
             "optional": true,
-            "type": "Flag",
-            "value-key": "[UNRINGING_METHOD]"
-        },
-        {
-            "command-line-flag": "--unringing-method",
-            "description": "Method for Gibbs-ringing removal. - none: no action - mrdegibbs: use mrdegibbs from mrtrix3",
-            "id": "unringing_method",
-            "name": "qsiprep dwi unringing method",
-            "optional": true,
-            "type": "Flag",
+            "type": "String",
+            "value-choices": [
+                "none",
+                "mrdegibbs"
+            ],
             "value-key": "[UNRINGING_METHOD]"
         },
         {
@@ -423,7 +402,7 @@
         },
         {
             "command-line-flag": "--denoise-before-combining",
-            "description": "[DEPRECATED] run ``dwidenoise`` before combining dwis. Requires ``--combine-all-dwis``",
+            "description": "[DEPRECATED] Run ``dwidenoise`` before combining dwis. Requires ``--combine-all-dwis``",
             "id": "denoise_before_combining",
             "name": "qsiprep denoise before combining",
             "optional": true,
@@ -432,7 +411,7 @@
         },
         {
             "command-line-flag": "--denoise-after-combining",
-            "description": "run ``dwidenoise`` after combining dwis. Requires ``--combine-all-dwis``",
+            "description": "Run ``dwidenoise`` after combining dwis. Requires ``--combine-all-dwis``",
             "id": "denoise_after_combining",
             "name": "qsiprep denoise after combining",
             "optional": true,
@@ -441,7 +420,7 @@
         },
         {
             "command-line-flag": "--combine-all-dwis",
-            "description": "[DEPRECATED] combine dwis from across multiple runs for motion correction and reconstruction.",
+            "description": "[DEPRECATED] Combine dwis from across multiple runs for motion correction and reconstruction.",
             "id": "combine_all_dwis",
             "name": "qsiprep combine all dwis",
             "optional": true,
@@ -450,7 +429,7 @@
         },
         {
             "command-line-flag": "--seperate-all-dwis",
-            "description": "don't attempt to combine dwis from multiple runs. Each will be processed separately.",
+            "description": "Don't attempt to combine dwis from multiple runs. Each will be processed separately.",
             "id": "separate_all_dwis",
             "name": "qsiprep separate all dwis",
             "optional": true,
@@ -463,12 +442,17 @@
             "id": "distortion_group_merge",
             "name": "qsiprep distortion group merge",
             "optional": true,
-            "type": "Flag",
+            "type": "String",
+            "value-choices": [
+                "concat", 
+                "average", 
+                "none"
+            ],
             "value-key": "[DISTORTION_GROUP_MERGE]"
         },
         {
             "command-line-flag": "--write-local-bvecs",
-            "description": "write a series of voxelwise bvecs, relevant if writing preprocessed dwis to template space",
+            "description": "Write a series of voxelwise bvecs, relevant if writing preprocessed dwis to template space",
             "id": "write_local_bvecs",
             "name": "qsiprep write local bvecs",
             "optional": true,
@@ -477,29 +461,36 @@
         },
         {
             "command-line-flag": "--output-space",
-            "description": "volume and surface spaces to resample dwis into - T1w: subject anatomical volume - template: deprecated. Will be ignored",
+            "description": "Volume and surface spaces to resample dwis into - T1w: subject anatomical volume - template: deprecated. Will be ignored",
             "id": "output_space",
             "name": "qsiprep output space",
             "optional": true,
-            "type": "Flag",
+            "type": "String",
+            "value-choices": [
+                "T1w",
+                "template"
+            ],
             "value-key": "[OUTPUT_SPACE]"
         },
         {
             "command-line-flag": "--template",
-            "description": "volume template space",
+            "description": "Volume template space",
             "id": "template",
             "name": "qsiprep template",
             "optional": true,
-            "type": "Flag",
+            "type": "String",
+            "value-choices": [
+                "MNI152NLin2009cAsym"
+            ],
             "value-key": "[TEMPLATE]"
         },
         {
             "command-line-flag": "--output-resolution",
-            "description": "the isotropic voxel size in mm the data will be resampled to after preprocessing. If set to a lower value than the original voxel size, your data will be upsampled using BSpline interpolation.",
+            "description": "The isotropic voxel size in mm the data will be resampled to after preprocessing. If set to a lower value than the original voxel size, your data will be upsampled using BSpline interpolation.",
             "id": "output_resolution",
             "name": "qsiprep output resolution",
             "optional": true,
-            "type": "Flag",
+            "type": "Number",
             "value-key": "[OUTPUT_RESOLUTION]"
         },
         {
@@ -508,7 +499,11 @@
             "id": "b0_to_t1w_transform",
             "name": "qsiprep b0 to t1w transform",
             "optional": true,
-            "type": "Flag",
+            "type": "String",
+            "value-choices": [
+                "Rigid", 
+                "Affine"
+            ],
             "value-key": "[B0_TO_T1W_TRANSFORM]"
         },
         {
@@ -517,7 +512,7 @@
             "id": "intramodal_template_iters",
             "name": "qsiprep intramodal template iters",
             "optional": true,
-            "type": "Flag",
+            "type": "Number",
             "value-key": "[INTRAMODAL_TEMPLATE_ITERS]"
         },
         {
@@ -526,84 +521,98 @@
             "id": "intramodal_template_transform",
             "name": "qsiprep intramodal template transform",
             "optional": true,
-            "type": "Flag",
+            "type": "String",
+            "value-choices": [
+                "Rigid", 
+                "Affine", 
+                "BSplineSyN", 
+                "SyN"
+            ],
             "value-key": "[INTRAMODAL_TEMPLATE_TRANSFORM]"
         },
         {
             "command-line-flag": "--b0-motion-corr-to",
-            "description": "align to the 'first' b0 volume or do an 'iterative' registration of all b0 images to their midpoint image",
+            "description": "Align to the 'first' b0 volume or do an 'iterative' registration of all b0 images to their midpoint image",
             "id": "bo_motion_corr_to",
             "name": "qsiprep b0 motion correction to",
             "optional": true,
-            "type": "Flag",
+            "type": "String",
+            "value-choices": [
+                "iterative",
+                "first"
+            ],
             "value-key": "[B0_MOTION_CORR_TO]"
         },
         {
             "command-line-flag": "--hmc-transform",
-            "description": "transformation to be optimized during head motion correction",
+            "description": "Transformation to be optimized during head motion correction",
             "id": "hmc_transform",
             "name": "qsiprep head motion correction transform",
             "optional": true,
-            "type": "Flag",
+            "type": "String",
+            "value-choices": [
+                "Affine",
+                "Rigid"
+            ],
             "value-key": "[HMC_TRANSFORM]"
         },
         {
             "command-line-flag": "--hmc-model",
-            "description": "model used to generate target images for hmc. If 'none' the non-b0 images will be warped using the same transform as their nearest b0 image. If '3dSHORE', SHORELine will be used. If 'eddy_ingress', the dwis are assumed to have been run through fsls eddy.",
+            "description": "Model used to generate target images for hmc. If 'none' the non-b0 images will be warped using the same transform as their nearest b0 image. If '3dSHORE', SHORELine will be used. If 'eddy_ingress', the dwis are assumed to have been run through fsls eddy.",
             "id": "hmc_model",
             "name": "qsiprep head motion correction model",
             "optional": true,
-            "type": "Flag",
-            "value-key": "[HMC_MODEL]"
-        },
-        {
-            "command-line-flag": "--hmc-model",
-            "description": "model used to generate target images for hmc. If 'none' the non-b0 images will be warped using the same transform as their nearest b0 image. If '3dSHORE', SHORELine will be used. If 'eddy_ingress', the dwis are assumed to have been run through fsls eddy.",
-            "id": "hmc_model",
-            "name": "qsiprep head motion correction model",
-            "optional": true,
-            "type": "Flag",
+            "type": "String",
+            "value-choices":[
+                "none", 
+                "3dSHORE", 
+                "eddy"
+            ],
             "value-key": "[HMC_MODEL]"
         },
         {
             "command-line-flag": "--eddy-config",
-            "description": "path to a json file with settings for the call to eddy. If no json is specified, a default one will be used. The current default json can be found here: https://github.com/PennBBL/qsiprep/blob/master/qsiprep/data/eddy_params.json",
+            "description": "Path to a json file with settings for the call to eddy. If no json is specified, a default one will be used. The current default json can be found here: https://github.com/PennBBL/qsiprep/blob/master/qsiprep/data/eddy_params.json",
             "id": "eddy_config",
             "name": "qsiprep eddy configuration",
             "optional": true,
-            "type": "Flag",
+            "type": "File",
             "value-key": "[EDDY_CONFIG]"
         },
         {
             "command-line-flag": "--shoreline-iters",
-            "description": "number of SHORELine iterations.",
+            "description": "Number of SHORELine iterations.",
             "id": "shoreline_iters",
             "name": "qsiprep SHORELine iterations",
             "optional": true,
-            "type": "Flag",
+            "type": "Number",
             "value-key": "[SHORELINE_ITERS]"
         },
         {
             "command-line-flag": "--impute-slice-threshold",
-            "description": "impute data in slices that are this many SDs from expected. If 0 (default), no slices will be imputed",
+            "description": "Impute data in slices that are this many SDs from expected. If 0 (default), no slices will be imputed",
             "id": "impute_slice_threshold",
             "name": "qsiprep impute slice threshold",
             "optional": true,
-            "type": "Flag",
+            "type": "Number",
             "value-key": "[IMPUTE_SLICE_THRESHOLD]"
         },
         {
             "command-line-flag": "--skull-strip-template",
-            "description": "select ANTs skull-stripping template",
+            "description": "Select ANTs skull-stripping template",
             "id": "skull_strip_template",
             "name": "qsiprep skull strip template",
             "optional": true,
-            "type": "Flag",
+            "type": "String",
+            "value-choices":[
+                "OASIS", 
+                "NKI"
+            ],
             "value-key": "[SKULL_STRIP_TEMPLATE]"
         },
         {
             "command-line-flag": "--skull-strip-fixed-seed",
-            "description": "do not use a random seed for skull-stripping - will ensure run-to-run replicability when used with --omp-nthreads 1",
+            "description": "Do not use a random seed for skull-stripping - will ensure run-to-run replicability when used with --omp-nthreads 1",
             "id": "skull_strip_fixed_seed",
             "name": "qsiprep skull strip fixed seed",
             "optional": true,
@@ -621,7 +630,7 @@
         },
         {
             "command-line-flag": "--skip-t1-based-spatial-normalization",
-            "description": "skip running the t1w-based normalization to template space. Default is to run the normalization.",
+            "description": "Skip running the t1w-based normalization to template space. Default is to run the normalization.",
             "id": "skip_t1_based_spatial_normalization",
             "name": "qsiprep skip t1 based spatial normalization",
             "optional": true,
@@ -634,7 +643,7 @@
             "id": "fs_license_file",
             "name": "qsiprep fs license file",
             "optional": true,
-            "type": "Flag",
+            "type": "File",
             "value-key": "[FS_LICENSE_FILE]"
         },
         {
@@ -648,7 +657,7 @@
         },
         {
             "command-line-flag": "--prefer-dedicated-fmaps",
-            "description": "forces unwarping to use files from the fmap directory instead of using an RPEdir scan from the same session.",
+            "description": "Forces unwarping to use files from the fmap directory instead of using an RPEdir scan from the same session.",
             "id": "prefer_dedicated_fmaps",
             "name": "qsiprep prefer dedicated fmaps",
             "optional": true,
@@ -657,7 +666,7 @@
         },
         {
             "command-line-flag": "--fmap-bspline",
-            "description": "fit a B-Spline field using least-squares (experimental)",
+            "description": "Fit a B-Spline field using least-squares (experimental)",
             "id": "fmap_bspline",
             "name": "qsiprep fmap bspline",
             "optional": true,
@@ -666,7 +675,7 @@
         },
         {
             "command-line-flag": "--fmap-no-demean",
-            "description": "do not remove median (within mask) from fieldmap",
+            "description": "Do not remove median (within mask) from fieldmap",
             "id": "fmap_no_demean",
             "name": "qsiprep fmap no demean",
             "optional": true,
@@ -693,16 +702,16 @@
         },
         {
             "command-line-flag": "--work-dir",
-            "description": "path where intermediate results should be stored",
+            "description": "Path where intermediate results should be stored",
             "id": "work_dir",
             "name": "qsiprep work dir",
             "optional": true,
-            "type": "Flag",
+            "type": "File",
             "value-key": "[WORK_DIR]"
         },
         {
             "command-line-flag": "--resource-monitor",
-            "description": "enable Nipype's resource monitoring to keep track of memory and CPU usage",
+            "description": "Enable Nipype's resource monitoring to keep track of memory and CPU usage",
             "id": "resource_monitor",
             "name": "qsiprep resource monitor",
             "optional": true,
@@ -711,21 +720,12 @@
         },
         {
             "command-line-flag": "--reports-only",
-            "description": "only generate reports, don't run workflows. This will only rerun report aggregation, not reportlet generation for specific nodes.",
+            "description": "Only generate reports, don't run workflows. This will only rerun report aggregation, not reportlet generation for specific nodes.",
             "id": "reports_only",
             "name": "qsiprep reports only",
             "optional": true,
             "type": "Flag",
             "value-key": "[REPORTS_ONLY]"
-        },
-        {
-            "command-line-flag": "--run-uuid",
-            "description": "Specify UUID of previous run, to include error logs in report. No effect without --reports-only.",
-            "id": "run_uuid",
-            "name": "qsiprep run uuid",
-            "optional": true,
-            "type": "Flag",
-            "value-key": "[RUN_UUID]"
         },
         {
             "command-line-flag": "--write-graph",
@@ -744,15 +744,6 @@
             "optional": true,
             "type": "Flag",
             "value-key": "[STOP_ON_FIRST_CRASH]"
-        },
-        {
-            "command-line-flag": "--notrack",
-            "description": "Opt-out of sending tracking information of this run to the qsiprep developers. This information helps to improve qsiprep and provides an indicator of real world usage crucial for obtaining funding.",
-            "id": "notrack",
-            "name": "qsiprep no track",
-            "optional": true,
-            "type": "Flag",
-            "value-key": "[NOTRACK]"
         },
         {
             "command-line-flag": "--SLOPPY",

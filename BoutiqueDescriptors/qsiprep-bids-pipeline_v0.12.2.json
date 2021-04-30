@@ -1,5 +1,5 @@
 {
-    "name": "qsiprep",
+    "name": "BIDSAppqsiprepPipeline",
     "description": "q-Space Image PREProcessing workflows",
     "author": "University of Pennsylvania Lifespan Informatics and Neuroimaging Center (https://github.com/PennLINC)",
     "tool-version": "v0.12.2",
@@ -9,7 +9,7 @@
         "cbrain:readonly-input-files": true, 
         "cbrain:author": "Timothy Hendrickson <hendr522@umn.edu> and Natacha Beck <natacha.beck@mcgill.ca>"
      },
-    "command-line": "",
+    "command-line": "if [ ! -f license.txt ]; then  cp FS_LICENSE_FILE license.txt; fi; export WORK_DIR='work_dir'; qsiprep [BIDS_DIR] [OUTPUT_DIR] [ANALYSIS_LEVEL] [SKIP_BIDS_VALIDATION] [PARTICIPANT_LABEL] -w $WORK_DIR [ACQUISITION_TYPE] [INTERACTIVE_REPORTS_ONLY] [RECON_ONLY] [RECON_SPEC] [RECON_INPUT] [USE_PLUGIN] [ANAT_ONLY] [DWI_ONLY] [INFANT] [BOILERPLATE] [VERBOSE] [IGNORE] [LONGITUDINAL] [B0_THRESHOLD] [DWI_DENOISE_WINDOW] [UNRINGING_METHOD] [NO_B0_HARMONIZATION] [DENOISE_BEFORE_COMBINING] [DENOISE_AFTER_COMBINING] [COMBINE_ALL_DWIS] [SEPARATE_ALL_DWIS] [DISTORTION_GROUP_MERGE] [WRITE_LOCAL_BVECS] [OUTPUT_SPACE] [TEMPLATE] [OUTPUT_RESOLUTION] [B0_TO_T1W_TRANSFORM] [INTRAMODAL_TEMPLATE_ITERS] [INTRAMODAL_TEMPLATE_TRANSFORM] [B0_MOTION_CORR_TO] [HMC_TRANSFORM] [HMC_MODEL] [EDDY_CONFIG] [SHORELINE_ITERS] [IMPUTE_SLICE_THRESHOLD] [SKULL_STRIP_TEMPLATE] [SKULL_STRIP_FIXED_SEED] [FORCE_SPATIAL_NORMALIZATION] [SKIP_T1_BASED_SPATIAL_NORMALIZATION] --fs-license-file [FS_LICENSE_FILE] [DO_RECONALL] [PREFER_DEDICATED_FMAPS] [FMAP_BSPLINE] [FMAP_NO_DEMEAN] [USE_SYN_SDC] [FORCE_SYN] [RESOURCE_MONITOR] [REPORTS_ONLY] [WRITE_GRAPH] [STOP_ON_FIRST_CRASH] [SLOPPY]; rm -rf $WORK_DIR",
     "container-image": 
     {
         "image": "pennbbl/qsiprep:0.12.2",
@@ -17,17 +17,6 @@
         "type": "singularity"
     },
     "groups": [
-    {
-        "description": "Absolutely required arguments to run qsiprep.",
-        "id": "positional_arguments_group",
-        "members": 
-        [
-            "bids_dir",
-            "output_dir",
-            "participant"
-        ],
-        "name": "Positional Arguments"
-    },
     {
         "description": "Options for filtering BIDS queries.",
         "id": "optional_BIDS_filtering_arguments_group",
@@ -60,10 +49,6 @@
         "description": "Options to handle performance",
         "id": "performance_arguments_group",
         "members": [
-            "nthreads",
-            "omp_nthreads",
-            "mem_mb",
-            "low_mem",
             "use_plugin",
             "anat_only",
             "dwi_only",
@@ -82,7 +67,6 @@
             "b0_threshold",
             "dwi_denoise_window",
             "unringing_method",
-            "dwi_no_biascorr",
             "no_b0_harmonization",
             "denoise_before_combining",
             "combine_all_dwis",
@@ -91,7 +75,7 @@
             "write_local_bvecs",
             "output_space",
             "template",
-            "output_resolution"
+            "denoise_after_combining"
          ],
         "name": "Workflow Configuration Arguments" 
     },
@@ -126,7 +110,6 @@
         "description": "Specific options for FreeSurfer preprocessing",
         "id": "FreeSurfer_preprocessing_arguments_group",
         "members": [
-            "fs_license_file",
             "do_reconall"
          ],
         "name": "FreeSurfer Preprocessing Arguments" 
@@ -154,12 +137,11 @@
         "description": "Other options",
         "id": "other_options_arguments_group",
         "members": [
-            "work_dir",
             "resource_monitor",
             "reports_only",
             "write_graph",
             "stop_on_first_crash",
-            "sloopy"
+            "sloppy"
          ],
         "name": "Other Options Arguments" 
     }        
@@ -172,6 +154,14 @@
             "optional": false,
             "type": "File",
             "value-key": "[BIDS_DIR]"
+        },
+        {
+            "description": "Output folder",
+            "id": "output_dir_name",
+            "name": "Output folder",
+            "optional": false,
+            "type": "String",
+            "value-key": "[OUTPUT_DIR]"
         },
         {
             "description": "Processing stage",
@@ -247,42 +237,6 @@
             "optional": true,
             "type": "File",
             "value-key": "[RECON_INPUT]"
-        },
-        {
-            "command-line-flag": "--nthreads",
-            "description": "Maximum number of threads across all processes",
-            "id": "nthreads",
-            "name": "qsiprep number of threads",
-            "optional": true,
-            "type": "Number",
-            "value-key": "[NTHREADS]"
-        },
-        {
-            "command-line-flag": "--omp-nthreads",
-            "description": "Maximum number of threads per-process.",
-            "id": "omp_nthreads",
-            "name": "qsiprep omp number of threads",
-            "optional": true,
-            "type": "Number",
-            "value-key": "[OMP_NTHREADS]"
-        },
-        {
-            "command-line-flag": "--mem-mb",
-            "description": "Upper bound memory limit for qsiprep processes.",
-            "id": "mem_mb",
-            "name": "qsiprep memory limit",
-            "optional": true,
-            "type": "Number",
-            "value-key": "[MEM_MB]"
-        },
-        {
-            "command-line-flag": "--low-mem",
-            "description": "Attempt to reduce memory usage (will increase disk usage in working directory)",
-            "id": "low_mem",
-            "name": "qsiprep low memory usage",
-            "optional": true,
-            "type": "Number",
-            "value-key": "[LOW_MEM]"
         },
         {
             "command-line-flag": "--use-plugin",
@@ -489,7 +443,7 @@
             "description": "The isotropic voxel size in mm the data will be resampled to after preprocessing. If set to a lower value than the original voxel size, your data will be upsampled using BSpline interpolation.",
             "id": "output_resolution",
             "name": "qsiprep output resolution",
-            "optional": true,
+            "optional": false,
             "type": "Number",
             "value-key": "[OUTPUT_RESOLUTION]"
         },
@@ -638,11 +592,10 @@
             "value-key": "[SKIP_T1_BASED_SPATIAL_NORMALIZATION]"
         },
         {
-            "command-line-flag": "--fs-license-file",
             "description": "Path to FreeSurfer license key file. Get it (for free) by registering at https://surfer.nmr.mgh.harvard.edu/registration.html",
             "id": "fs_license_file",
             "name": "qsiprep fs license file",
-            "optional": true,
+            "optional": false,
             "type": "File",
             "value-key": "[FS_LICENSE_FILE]"
         },
@@ -701,15 +654,6 @@
             "value-key": "[FORCE_SYN]"
         },
         {
-            "command-line-flag": "--work-dir",
-            "description": "Path where intermediate results should be stored",
-            "id": "work_dir",
-            "name": "qsiprep work dir",
-            "optional": true,
-            "type": "File",
-            "value-key": "[WORK_DIR]"
-        },
-        {
             "command-line-flag": "--resource-monitor",
             "description": "Enable Nipype's resource monitoring to keep track of memory and CPU usage",
             "id": "resource_monitor",
@@ -746,7 +690,7 @@
             "value-key": "[STOP_ON_FIRST_CRASH]"
         },
         {
-            "command-line-flag": "--SLOPPY",
+            "command-line-flag": "--sloppy",
             "description": "Use low-quality tools for speed - TESTING ONLY",
             "id": "sloppy",
             "name": "qsiprep sloppy",

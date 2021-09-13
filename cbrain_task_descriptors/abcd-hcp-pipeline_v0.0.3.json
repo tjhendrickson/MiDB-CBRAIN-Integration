@@ -76,7 +76,8 @@
             "value-key": "[ALL_SESSIONS]"
         },
         {
-            "command-line-flag": "--stage=",
+            "command-line-flag": "--stage",
+            "command-line-flag-separator": "=",
             "description": "Specify a subset of stages to run. If a single stage name is given, the pipeline with be started at that stage. If a string with a ':' is given, a stage name before the ':' will tell run.py where to start and a stage name after the ':' will tell it where to stop. If no ':' is found, the pipeline will start with the stage specified and run to the end.",
             "id": "stage",
             "name": "abcd-hcp-pipeline stage",

@@ -6,11 +6,11 @@
     "shell": "/bin/bash",
     "schema-version": "0.5",
     "custom": {
-        "cbrain:readonly-input-files": true, 
+        "cbrain:readonly-input-files": true,
         "cbrain:author": "Timothy Hendrickson <hendr522@umn.edu> and Natacha Beck <natacha.beck@mcgill.ca>"
      },
-    "command-line": "mkdir -p opt_freesurfer || exit 2; ln -f -s /opt/freesurfer/* opt_freesurfer/ || exit 2; cp -rL [FREESURFER_LICENSE] opt_freesurfer/license.txt || exit 2; source /app/SetupEnv.sh || exit 2; export FREESURFER_HOME=$PWD/opt_freesurfer; source ${FREESURFER_HOME}/SetUpFreeSurfer.sh || exit 2; bash mk_fake_bids [SUBJECT_DIR] FakeBids && python3 /app/run.py FakeBids $PWD/abcd-results-[SUBJECT_DIR] --freesurfer-license=$PWD/opt_freesurfer/license.txt [ALL_SESSIONS] --ncpus 1 [STAGE] [BANDSTOP] [CUSTOM_CLEAN] [ABCD_TASK] [STUDY_TEMPLATE_HEAD] [STUDY_TEMPLATE_BRAIN] [IGNORE] [CHECK_OUTPUTS_ONLY] [IGNORE_EXPECTED_OUTPUTS]",
-    "container-image": 
+    "command-line": "mkdir -p opt_freesurfer || exit 2; ln -f -s /opt/freesurfer/* opt_freesurfer/ || exit 2; cp -rL [FREESURFER_LICENSE] opt_freesurfer/license.txt || exit 2; source /app/SetupEnv.sh || exit 2; export FREESURFER_HOME=$PWD/opt_freesurfer; source ${FREESURFER_HOME}/SetUpFreeSurfer.sh || exit 2; bash mk_fake_bids [SUBJECT_DIR] FakeBids && python3 /app/run.py FakeBids $PWD/abcd-results-[SUBJECT_DIR] --freesurfer-license=$PWD/opt_freesurfer/license.txt [ALL_SESSIONS] --ncpus 1 [STAGE] [BANDSTOP_LOWER] [BANDSTOP_UPPER] [CUSTOM_CLEAN] [ABCD_TASK] [STUDY_TEMPLATE_HEAD] [STUDY_TEMPLATE_BRAIN] [IGNORE] [CHECK_OUTPUTS_ONLY] [IGNORE_EXPECTED_OUTPUTS]",
+    "container-image":
     {
         "image": "dcanlabs/abcd-hcp-pipeline:v0.0.3",
         "index": "docker://",
@@ -25,7 +25,8 @@
             "stage",
             "study_template_head",
             "study_template_brain",
-            "bandstop"
+            "bandstop_lower",
+            "bandstop_upper"
         ],
         "name": "Optional Arguments"
     },
@@ -46,8 +47,8 @@
             "check_outputs_only",
             "ignore_expected_outputs"
          ],
-        "name": "Runtime Options" 
-      } 
+        "name": "Runtime Options"
+      }
     ],
     "inputs": [
         {
@@ -87,12 +88,22 @@
         },
         {
             "command-line-flag": "--bandstop",
-            "description": "Parameters for motion regressor band-stop filter. It is recommended for the boundaries to match the inter-quartile range for participant group respiratory rate (breaths per minute), or to match bids physio data directly. These parameters are highly recommended for data acquired with a frequency of approx. 1 Hz or more (TR<=1.0). Default is no filter.",
-            "id": "bandstop",
-            "name": "abcd-hcp-pipeline bandstop filter",
+            "description": "Lower parameter for motion regressor band-stop filter. It is recommended for the boundaries to match the inter-quartile range for participant group respiratory rate (breaths per minute), or to match bids physio data directly. These parameters are highly recommended for data acquired with a frequency of approx. 1 Hz or more (TR<=1.0). Default is no filter.",
+            "id": "bandstop_lower",
+            "name": "abcd-hcp-pipeline lower bandstop filter",
             "optional": true,
-            "type": "String",
-            "value-key": "[BANDSTOP]"
+            "type": "Number",
+            "requires-inputs": ["bandstop_upper"],
+            "value-key": "[BANDSTOP_LOWER]"
+        },
+        {
+            "description": "Upper arameter for motion regressor band-stop filter. It is recommended for the boundaries to match the inter-quartile range for participant group respiratory rate (breaths per minute), or to match bids physio data directly. These parameters are highly recommended for data acquired with a frequency of approx. 1 Hz or more (TR<=1.0). Default is no filter.",
+            "id": "bandstop_upper",
+            "name": "abcd-hcp-pipeline upper bandstop filter",
+            "optional": true,
+            "type": "Number",
+            "requires-inputs": ["bandstop_lower"],
+            "value-key": "[BANDSTOP_UPPER]"
         },
         {
             "command-line-flag": "--custom-clean",

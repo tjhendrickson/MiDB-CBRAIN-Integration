@@ -1,16 +1,16 @@
 {
-    "name": "BIDSAppAbcdHcpPipeline",
+    "name": "AbcdHcpPipeline",
     "description": "The Developmental Cognition and Neuroimaging (DCAN) Labs fMRI Pipeline. This BIDS application initiates a functional MRI processing pipeline built upon the Human Connectome Project's minimal processing pipelines. The application requires only a dataset conformed to the BIDS specification, and little-to-no additional configuration on the part of the user. BIDS format and applications are explained in detail at http://bids.neuroimaging.io/",
     "author": "DCAN-Labs (https://github.com/DCAN-Labs)",
     "tool-version": "v0.0.3",
     "shell": "/bin/bash",
     "schema-version": "0.5",
     "custom": {
-        "cbrain:readonly-input-files": true, 
+        "cbrain:readonly-input-files": true,
         "cbrain:author": "Timothy Hendrickson <hendr522@umn.edu> and Natacha Beck <natacha.beck@mcgill.ca>"
      },
-    "command-line": "echo [ANALYSIS_LEVEL]; mkdir -p opt_freesurfer || exit 2; ln -f -s /opt/freesurfer/* opt_freesurfer/ || exit 2; cp -rL [FREESURFER_LICENSE] opt_freesurfer/license.txt || exit 2; source /app/SetupEnv.sh || exit 2; export FREESURFER_HOME=$PWD/opt_freesurfer; source ${FREESURFER_HOME}/SetUpFreeSurfer.sh || exit 2; python3 /app/run.py $PWD/[BIDS_DIR] $PWD/[OUTPUT_DIR] --freesurfer-license=$PWD/opt_freesurfer/license.txt [VERSION] [PARTICIPANT_LABEL] [ALL_SESSIONS] --ncpus 1 [STAGE] [BANDSTOP] [CUSTOM_CLEAN] [ABCD_TASK] [STUDY_TEMPLATE_HEAD] [STUDY_TEMPLATE_BRAIN] [IGNORE] [CHECK_OUTPUTS_ONLY] [PRINT_COMMANDS_ONLY] [IGNORE_EXPECTED_OUTPUTS]",
-    "container-image": 
+    "command-line": "mkdir -p opt_freesurfer || exit 2; ln -f -s /opt/freesurfer/* opt_freesurfer/ || exit 2; cp -rL [FREESURFER_LICENSE] opt_freesurfer/license.txt || exit 2; source /app/SetupEnv.sh || exit 2; export FREESURFER_HOME=$PWD/opt_freesurfer; source ${FREESURFER_HOME}/SetUpFreeSurfer.sh || exit 2; bash mk_fake_bids [SUBJECT_DIR] FakeBids && python3 /app/run.py FakeBids $PWD/abcd-results-[SUBJECT_DIR] --freesurfer-license=$PWD/opt_freesurfer/license.txt [ALL_SESSIONS] --ncpus 1 [STAGE] [BANDSTOP_LOWER] [BANDSTOP_UPPER] [CUSTOM_CLEAN] [ABCD_TASK] [STUDY_TEMPLATE_HEAD] [STUDY_TEMPLATE_BRAIN] [IGNORE] [CHECK_OUTPUTS_ONLY] [IGNORE_EXPECTED_OUTPUTS]",
+    "container-image":
     {
         "image": "dcanlabs/abcd-hcp-pipeline:v0.0.3",
         "index": "docker://",
@@ -18,24 +18,15 @@
     },
     "groups": [
     {
-        "description": "Absolutely required arguments to run abcd-hcp-pipeline.",
-        "id": "positional_arguments_group",
-        "members": 
-        [
-            "bids_dir",
-            "freesurfer_license"
-        ],
-        "name": "Positional Arguments"
-    },
-    {
         "description": "Optional arguments to run abcd-hcp-pipeline. Some may actually be required where as other change default functionality.",
         "id": "optional_arguments_group",
         "members": [
-            "version",
-            "participant_label",
             "all_sessions",
             "stage",
-            "bandstop"
+            "study_template_head",
+            "study_template_brain",
+            "bandstop_lower",
+            "bandstop_upper"
         ],
         "name": "Optional Arguments"
     },
@@ -45,8 +36,6 @@
         "members": [
             "custom_clean",
             "abcd_task",
-            "study_template_head",
-            "study_template_brain",
             "ignore"
         ],
         "name": "Special Pipeline Options"
@@ -56,20 +45,19 @@
         "id": "runtime_options",
         "members": [
             "check_outputs_only",
-            "print_commands_only",
             "ignore_expected_outputs"
          ],
-        "name": "Runtime Options" 
-      } 
+        "name": "Runtime Options"
+      }
     ],
     "inputs": [
         {
-            "description": "Input BIDS folder",
-            "id": "bids_dir",
-            "name": "Input BIDS folder",
+            "description": "Input BIDS subject folder",
+            "id": "bids_subject_dir",
+            "name": "Input BIDS subject folder",
             "optional": false,
             "type": "File",
-            "value-key": "[BIDS_DIR]"
+            "value-key": "[SUBJECT_DIR]"
         },
         {
             "description": "To run FreeSurfer a license file must exist and be pointed to. The license can be acquired by filling out this form: https://surfer.nmr.mgh.harvard.edu/registration.html.",
@@ -78,44 +66,6 @@
             "optional": false,
             "type": "File",
             "value-key": "[FREESURFER_LICENSE]"
-        },
-        {
-            "id": "output_dir_name",
-            "name": "Output directory name",
-            "type": "File",
-            "description": "The directory where the output files should be stored.",
-            "value-key": "[OUTPUT_DIR]",
-            "optional": true
-        },
-        {
-            "description": "processing stage",
-            "id": "analysis_level",
-            "name": "analysis_level",
-            "optional": false,
-            "type": "String",
-            "value-choices": [
-                "participant" 
-            ],
-            "value-key": "[ANALYSIS_LEVEL]"
-        },
-        {
-            "command-line-flag": "--version",
-            "description": "Print version of abcd-hcp-pipeline",
-            "id": "version",
-            "name": "abcd-hcp-pipeline version",
-            "optional": true,
-            "type": "Flag",
-            "value-key": "[VERSION]"
-        },
-        {
-            "command-line-flag": "--participant-label",
-            "description": "A space delimited list of participant identifiers or a single identifier (the sub- prefix can be removed)",
-            "id": "participant_label",
-            "list": true,
-            "name": "participant_label",
-            "optional": true,
-            "type": "String",
-            "value-key": "[PARTICIPANT_LABEL]"
         },
         {
             "command-line-flag": "--all-sessions",
@@ -127,7 +77,8 @@
             "value-key": "[ALL_SESSIONS]"
         },
         {
-            "command-line-flag": "--stage=",
+            "command-line-flag": "--stage",
+            "command-line-flag-separator": "=",
             "description": "Specify a subset of stages to run. If a single stage name is given, the pipeline with be started at that stage. If a string with a ':' is given, a stage name before the ':' will tell run.py where to start and a stage name after the ':' will tell it where to stop. If no ':' is found, the pipeline will start with the stage specified and run to the end.",
             "id": "stage",
             "name": "abcd-hcp-pipeline stage",
@@ -137,12 +88,22 @@
         },
         {
             "command-line-flag": "--bandstop",
-            "description": "Parameters for motion regressor band-stop filter. It is recommended for the boundaries to match the inter-quartile range for participant group respiratory rate (breaths per minute), or to match bids physio data directly. These parameters are highly recommended for data acquired with a frequency of approx. 1 Hz or more (TR<=1.0). Default is no filter.",
-            "id": "bandstop",
-            "name": "abcd-hcp-pipeline bandstop filter",
+            "description": "Lower parameter for motion regressor band-stop filter. It is recommended for the boundaries to match the inter-quartile range for participant group respiratory rate (breaths per minute), or to match bids physio data directly. These parameters are highly recommended for data acquired with a frequency of approx. 1 Hz or more (TR<=1.0). Default is no filter.",
+            "id": "bandstop_lower",
+            "name": "abcd-hcp-pipeline lower bandstop filter",
             "optional": true,
-            "type": "String",
-            "value-key": "[BANDSTOP]"
+            "type": "Number",
+            "requires-inputs": ["bandstop_upper"],
+            "value-key": "[BANDSTOP_LOWER]"
+        },
+        {
+            "description": "Upper arameter for motion regressor band-stop filter. It is recommended for the boundaries to match the inter-quartile range for participant group respiratory rate (breaths per minute), or to match bids physio data directly. These parameters are highly recommended for data acquired with a frequency of approx. 1 Hz or more (TR<=1.0). Default is no filter.",
+            "id": "bandstop_upper",
+            "name": "abcd-hcp-pipeline upper bandstop filter",
+            "optional": true,
+            "type": "Number",
+            "requires-inputs": ["bandstop_lower"],
+            "value-key": "[BANDSTOP_UPPER]"
         },
         {
             "command-line-flag": "--custom-clean",
@@ -200,15 +161,6 @@
             "value-key": "[CHECK_OUTPUTS_ONLY]"
         },
         {
-            "command-line-flag": "--print-commands-only",
-            "description": "Print run commands for each stage to shell then exit.",
-            "id": "print_commands_only",
-            "name": "abcd-hcp-pipeline print commands only",
-            "optional": true,
-            "type": "Flag",
-            "value-key": "[PRINT_COMMANDS_ONLY]"
-        },
-        {
             "command-line-flag": "--ignore-expected-outputs",
             "description": "Continues pipeline even if some expected outputs are missing.",
             "id": "ignore_expected_outputs",
@@ -220,11 +172,9 @@
     ],
     "output-files" : [
         {
-            "id" : "output_dir",
-            "name" : "Output Directory",
-            "description" : "This is the directory where the overall outputs are to be stored.",
-            "path-template" : "[OUTPUT_DIR]",
-            "optional" : false
-        }
-    ]
+        "id" : "output_dir",
+        "name" : "Output Directory",
+        "path-template" : "abcd-results-[SUBJECT_DIR]"
+    }
+  ]
 }

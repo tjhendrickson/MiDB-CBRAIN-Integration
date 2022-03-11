@@ -1,10 +1,11 @@
 {
-    "name": "BIDSAppInfantAbcdHcpPipeline",
+    "name": "InfantAbcdHcpPipeline",
     "description": "The Developmental Cognition and Neuroimaging (DCAN) Labs fMRI Pipeline. This BIDS application initiates a functional MRI processing pipeline built upon the Human Connectome Project's minimal processing pipelines. The application requires only a dataset conformed to the BIDS specification, and little-to-no additional configuration on the part of the user. BIDS format and applications are explained in detail at http://bids.neuroimaging.io/",
     "tool-version": "v0.0.13",
+    "shell": "/bin/bash",
     "schema-version": "0.5",
-    "command-line": "[BIDS_DIR] [OUTPUT_DIR] [ANALYSIS_LEVEL] [ASEG] [ATROPOS_MASK_METHOD] [ATROPOS_RANGE] [BANDSTOP] [DCMETHOD] [FREESURFER_LICENSE] [HYPER_NORMALIZATION_METHOD] [JLF_METHOD] [MAX_CORTICAL_THICKNESS] [MOTION_CONTROL_FRAME] [MULTI_MASKING_DIR] [MULTI_TEMPLATE_DIR] [NO_CROP] [PARTICIPANT_LABEL] [SESSION_ID] [SMOOTHING_ITERATIONS] [SUBCORTICAL_MAP_METHOD] [T1_BRAIN_MASK] [T1_STUDY_TEMPLATE] [T2_STUDY_TEMPLATE] [ANAT_ONLY] [IGNORE_FUNC] [CUSTOM_CLEAN] [FILE_MAPPER_JSON] [CHECK_OUTPUTS_ONLY] [IGNORE_EXPECTED_OUTPUTS] --ncpus 1 [PRINT_COMMANDS_ONLY] [STAGE] [STAGES] [VERSION] [HELP]",
-    "container-image": 
+    "command-line": "mkdir -p opt_freesurfer || exit 2; ln -f -s /opt/freesurfer/* opt_freesurfer/ || exit 2; cp -rL [FREESURFER_LICENSE] opt_freesurfer/license.txt || exit 2; source /SetupEnv.sh || exit 2; export FREESURFER_HOME=$PWD/opt_freesurfer; source ${FREESURFER_HOME}/SetUpFreeSurfer.sh || exit 2; bash mk_fake_bids [SUBJECT_DIR] FakeBids && python3 /app/run.py FakeBids $PWD/infant-abcd-results-[SUBJECT_DIR] --freesurfer-license=$PWD/opt_freesurfer/license.txt [ASEG] [ATROPOS_MASK_METHOD] [ATROPOS_RANGE_LOWER] [ATROPOS_RANGE_UPPER] [BANDSTOP_LOWER] [BANDSTOP_UPPER] [DCMETHOD] [HYPER_NORMALIZATION_METHOD] [JLF_METHOD] [MAX_CORTICAL_THICKNESS] [MOTION_CONTROL_FRAME] [MULTI_MASKING_DIR] [MULTI_TEMPLATE_DIR] [NO_CROP] [SESSION_ID] [SMOOTHING_ITERATIONS] [SUBCORTICAL_MAP_METHOD] [T1_BRAIN_MASK] [T1_STUDY_TEMPLATE_HEAD] [T1_STUDY_TEMPLATE_BRAIN] [T2_STUDY_TEMPLATE_HEAD] [T2_STUDY_TEMPLATE_BRAIN] [ANAT_ONLY] [IGNORE_FUNC] [CUSTOM_CLEAN] [FILE_MAPPER_JSON] [CHECK_OUTPUTS_ONLY] [IGNORE_EXPECTED_OUTPUTS] --ncpus 8 [STAGES]",
+    "container-image":
     {
         "image": "dcanlabs/infant-abcd-bids-pipeline:v0.0.13",
         "index": "docker://",
@@ -12,27 +13,17 @@
     },
     "groups": [
     {
-        "description": "Absolutely required arguments to run infant-abcd-hcp-pipeline.",
-        "id": "positional_arguments_group",
-        "members": 
-        [
-            "bids_dir",
-    		"output_dir_name",
-    		"analysis_level"
-        ],
-        "name": "Positional Arguments"
-    },
-    {
         "description": "Optional arguments to run infant-abcd-hcp-pipeline. Some may actually be required where as others change default functionality. Sorted alphabetically",
         "id": "optional_arguments_group",
-        "members": 
+        "members":
         [
             "aseg",
             "atropos_mask_method",
-            "atropos_range",
-    		"bandstop",
+            "atropos_range_lower",
+            "atropos_range_upper",
+            "bandstop_lower",
+            "bandstop_upper",
     		"dcmethod",
-    		"freesurfer_license",
     		"hyper_normalization_method",
     		"jlf_method",
     		"max_cortical_thickness",
@@ -40,20 +31,21 @@
     		"multi_masking_dir",
     		"multi_template_dir",
     		"no_crop",
-    		"participant_label",
     		"session_id",
     		"smoothing_iterations",
     		"subcortical_map_method",
     		"T1_brain_mask",
-    		"t1_study_template",
-    		"t2_study_template"		
+            "t1_study_template_head",
+            "t1_study_template_brain",
+            "t2_study_template_head",
+            "t2_study_template_brain"
          ],
          "name": "Optional Arguments"
     },
     {
         "description": "Special pipeline options which pertain to an alternative pipeline or an extra stage which is not inferred from the inputted BIDS data.",
         "id": "special_pipeline_options",
-        "members": 
+        "members":
         [
             "anat_only",
     		"ignore_func",
@@ -65,48 +57,32 @@
     {
         "description": "Runtime options which change runtime behaviors. Debugging features.",
         "id": "runtime_options",
-        "members": 
+        "members":
          [
             "check_outputs_only",
             "ignore_expected_outputs",
-            "ncpus",
-    		"print_commands_only",
-    		"stage",
-    		"stages",
-    		"version"
+    		"stages"
     	],
-         "name": "Runtime Options" 
-    }	
+         "name": "Runtime Options"
+    }
     ],
     "inputs": [
         {
-            "description": "Input BIDS folder",
-            "id": "bids_dir",
-            "name": "Input BIDS folder",
+            "description": "Input BIDS subject folder",
+            "id": "bids_subject_dir",
+            "name": "Input BIDS subject folder",
             "optional": false,
-            "type": "String",
-            "value-key": "[BIDS_DIR]"
+            "type": "File",
+            "value-key": "[SUBJECT_DIR]"
         },
         {
-            "description": "Output folder",
-            "id": "output_dir_name",
-            "name": "Output folder",
+    	    "description": "To run FreeSurfer a license file must exist and be pointed to. The license can be acquired by filling out this form: https://surfer.nmr.mgh.harvard.edu/registration.html.",
+            "id": "freesurfer_license",
+            "name": "infant-abcd-hcp-pipeline freesurfer license",
             "optional": false,
-            "type": "String",
-            "value-key": "[OUTPUT_DIR]"
-        },
-        {
-            "description": "processing stage",
-            "id": "analysis_level",
-            "name": "analysis_level",
-            "optional": false,
-            "type": "String",
-            "value-choices": [
-                "participant", 
-                "group"
-            ],
-            "value-key": "[ANALYSIS_LEVEL]"
-        },
+            "type": "File",
+    	    "value-key": "[FREESURFER_LICENSE]"
+    	},
     	{
             "command-line-flag": "--aseg",
     	    "description": "Specify path to the aseg file to be used by FreeSurfer.",
@@ -116,76 +92,108 @@
             "type": "Flag",
     	    "value-key": "[ASEG]"
         },
-    	{
+        {
             "command-line-flag": "--atropos-mask-method",
-    	    "description": "We create a mask (T1w_acpc_brain_mask.nii.gz) near the top of PreFreeSurfer. Later, we refine the mask using atropos. In some cases we just want to use the mask that atropos creates during the refinement step to overwrite the original mask. To do that, set this option to CREATE. Other times, we may want to keep the mask as-is, in which case, use NONE. Tip: for neos, use REFINE; for older babies (8+?) use CREATE. Default: REFINE.",
+            "description": "We create a mask (T1w_acpc_brain_mask.nii.gz) near the top of PreFreeSurfer. Later, we refine the mask using atropos. In some cases we just want to use the mask that atropos creates during the refinement step to overwrite the original mask. To do that, set this option to CREATE. Other times, we may want to keep the mask as-is, in which case, use NONE. Tip: for neos, use REFINE; for older babies (8+?) use CREATE. Default: REFINE.",
             "id": "atropos_mask_method",
             "name": "infant-abcd-hcp-pipeline atropos mask method",
             "optional": true,
-            "type": "Flag",
+            "type": "String",
+            "value-choices": [
+                "REFINE",
+                "CREATE",
+                "NONE"
+            ],
             "value-key": "[ATROPOS_MASK_METHOD]"
         },
-    	{
+        {
             "command-line-flag": "--atropos-range",
-    	    "description": "Range to be used for atropos labeling. Defaults: 4 and 5. ",
-            "id": "atropos_range",
-            "name": "infant-abcd-hcp-pipeline atropos range",
+            "description": "Lower range to be used for atropos labeling. Defaults: 4.",
+            "id": "atropos_range_lower",
+            "name": "infant-abcd-hcp-pipeline atropos lower range",
             "optional": true,
-            "type": "Flag",
-    	    "value-key": "[ATROPOS_RANGE]"
+            "type": "Number",
+            "requires-inputs": ["atropos_range_upper"],
+            "value-key": "[ATROPOS_RANGE_LOWER]"
         },
-    	{
+        {
+            "description": "Upper range to be used for atropos labeling. Defaults: 4.",
+            "id": "atropos_range_upper",
+            "name": "infant-abcd-hcp-pipeline atropos lower range",
+            "optional": true,
+            "type": "Number",
+            "requires-inputs": ["atropos_range_lower"],
+            "value-key": "[ATROPOS_RANGE_UPPER]"
+        },
+        {
             "command-line-flag": "--bandstop",
-    	    "description": "Parameters for motion regressor band-stop filter. It is recommended for the boundaries to match the inter-quartile range for participant group respiratory rate (bpm), or to match bids physio data directly. These parameters are highly recommended for data acquired with a frequency of approx 1 Hz or more (TR<=1.0). Default: no filter",
-            "id": "bandstop",
-            "name": "infant-abcd-hcp-pipeline atropos bandstop",
+            "description": "Parameters for motion regressor band-stop filter. It is recommended for the boundaries to match the inter-quartile range for participant group respiratory rate (bpm), or to match bids physio data directly. These parameters are highly recommended for data acquired with a frequency of approx 1 Hz or more (TR<=1.0). Default: no filter",
+            "id": "bandstop_lower",
+            "name": "infant-abcd-hcp-pipeline atropos lower bandstop",
             "optional": true,
-            "type": "Flag",
-    	    "value-key": "[BANDSTOP]"
+            "type": "Number",
+            "requires-inputs": ["bandstop_upper"],
+            "value-key": "[BANDSTOP_LOWER]"
         },
-    	{
+        {
+            "description": "Parameters for motion regressor band-stop filter. It is recommended for the boundaries to match the inter-quartile range for participant group respiratory rate (bpm), or to match bids physio data directly. These parameters are highly recommended for data acquired with a frequency of approx 1 Hz or more (TR<=1.0). Default: no filter",
+            "id": "bandstop_upper",
+            "name": "infant-abcd-hcp-pipeline atropos upper bandstop",
+            "optional": true,
+            "type": "Number",
+            "requires-inputs": ["bandstop_lower"],
+            "value-key": "[BANDSTOP_UPPER]"
+        },
+        {
             "command-line-flag": "--dcmethod",
-    	    "description": "Specify a distortion correction method. Default: use auto-detection. ",
+            "description": "Specify a distortion correction method. Default: use auto-detection. ",
             "id": "dcmethod",
             "name": "infant-abcd-hcp-pipeline atropos distortion correction method",
             "optional": true,
-            "type": "Flag",
+            "type": "String",
+            "value-choices": [
+                "TOPUP",
+                "FIELDMAP",
+                "T2_DC",
+                "NONE"
+            ],
             "value-key": "[DCMETHOD]"
         },
-    	{
-            "command-line-flag": "--freesurfer-license",
-    	    "description": "To run FreeSurfer a license file must exist and be pointed to. The license can be acquired by filling out this form: https://surfer.nmr.mgh.harvard.edu/registration.html.",
-            "id": "freesurfer_license",
-            "name": "infant-abcd-hcp-pipeline freesurfer license",
-            "optional": true,
-            "type": "Flag",
-    	    "value-key": "[FREESURFER_LICENSE]"
-    	},
-    	{
+        {
             "command-line-flag": "--hyper-normalization-method",
-    	    "description": "Specify the intensity profiles to use the hyper-normalization step in FreeSurfer. ADULT_GM_IP adjusts the entire base image such that the IP of GM in the target rougly matches the IP of GM of the reference (i.e., the adult freesurfer atlas). The the WM in the reference. ROI_IPS adjusts the intensity profiles of each ROI (GM, WM, CSF) separately and reassembles the parts. NONE skips hyper-normalization step. This allows the user to run PreFreeSurfer, apply new, experimental hyper-normalization methods and then restart at FreeSurfer. Default: ADULT_GM_IP.",
+            "description": "Specify the intensity profiles to use the hyper-normalization step in FreeSurfer. ADULT_GM_IP adjusts the entire base image such that the IP of GM in the target rougly matches the IP of GM of the reference (i.e., the adult freesurfer atlas). The the WM in the reference. ROI_IPS adjusts the intensity profiles of each ROI (GM, WM, CSF) separately and reassembles the parts. NONE skips hyper-normalization step. This allows the user to run PreFreeSurfer, apply new, experimental hyper-normalization methods and then restart at FreeSurfer. Default: ADULT_GM_IP.",
             "id": "hyper_normalization_method",
             "name": "infant-abcd-hcp-pipeline hyper normalization method",
             "optional": true,
-            "type": "Flag",
-    	    "value-key": "[HYPER_NORMALIZATION_METHOD]"
-    	},
-    	{
+            "type": "String",
+            "value-choices": [
+                "ADULT_GM_IP",
+                "ROI_IPS",
+                "NONE"
+            ],
+            "value-key": "[HYPER_NORMALIZATION_METHOD]"
+        },
+        {
             "command-line-flag": "--jlf-method",
-    	    "description": "Specify method to use to perform joint label fusion. Default: T1W.",
+            "description": "Specify method to use to perform joint label fusion. Default: T1W.",
             "id": "jlf_method",
             "name": "infant-abcd-hcp-pipeline joint label fusion method",
             "optional": true,
-            "type": "Flag",
+            "type": "String",
+            "value-choices": [
+                "T1W",
+                "T2W",
+                "T1W_ORIG"
+            ],
             "value-key": "[JLF_METHOD]"
-    	},
+        },
     	{
             "command-line-flag": "--max-cortical-thickness",
     	    "description": "Maximum cortical thickness to allow in FreeSurfer. Default: 5mm.",
             "id": "max_cortical_thickness",
             "name": "infant-abcd-hcp-pipeline max cortical thickness",
             "optional": true,
-            "type": "Flag",
+            "type": "Number",
     	    "value-key": "[MAX_CORTICAL_THICKNESS]"
     	},
     	{
@@ -194,7 +202,7 @@
             "id": "motion_control_frame",
             "name": "infant-abcd-hcp-pipeline motion control frame",
             "optional": true,
-            "type": "Flag",
+            "type": "Number",
     	    "value-key": "[MOTION_CONTROL_FRAME]"
     	},
     	{
@@ -203,7 +211,7 @@
             "id": "multi_masking_dir",
             "name": "infant-abcd-hcp-pipeline multi masking dir",
             "optional": true,
-            "type": "Flag",
+            "type": "File",
     	    "value-key": "[MULTI_MASKING_DIR]"
     	},
     	{
@@ -212,7 +220,7 @@
             "id": "multi_template_dir",
             "name": "infant-abcd-hcp-pipeline multi template dir",
             "optional": true,
-            "type": "Flag",
+            "type": "File",
     	    "value-key": "[MULTI_TEMPLATE_DIR]"
     	},
     	{
@@ -224,15 +232,6 @@
             "type": "Flag",
     	    "value-key": "[NO_CROP]"
     	},
-        {
-            "command-line-flag": "--participant-label",
-    	    "description": "Optional list of participant IDs to run. Default is all IDs found under the BIDS input directory. The participant label does not include the 'sub-' prefix.",
-            "id": "participant_label",
-            "name": "infant-abcd-hcp-pipeline participant_label",
-            "optional": true,
-            "type": "String",
-    	    "value-key": "[PARTICIPANT_LABEL]"
-        },
         {
             "command-line-flag": "--session-id",
     	    "description": "Filter input dataset by session id. Default is all ids found under the subject input directory(s). A session id does not include 'ses'.",
@@ -248,45 +247,69 @@
             "id": "smoothing_iterations",
             "name": "infant-abcd-hcp-pipeline smoothing iterations",
             "optional": true,
-            "type": "Flag",
+            "type": "Number",
     	    "value-key": "[SMOOTHING_ITERATIONS]"
     	},
-    	{
+        {
             "command-line-flag": "--subcortical-map-method",
-    	    "description": "Specify method to use to align subcorticals. Default: ROI_MAP. ",
+            "description": "Specify method to use to align subcorticals. Default: ROI_MAP. ",
             "id": "subcortical_map_method",
             "name": "infant-abcd-hcp-pipeline subcortical map method",
             "optional": true,
-            "type": "Flag",
-    	    "value-key": "[SUBCORTICAL_MAP_METHOD]"
-    	},
+            "type": "String",
+            "value-choices": [
+                "ROI_MAP",
+                "MNI_AFFINE"
+            ],
+            "value-key": "[SUBCORTICAL_MAP_METHOD]"
+        },
     	{
             "command-line-flag": "--T1-brain-mask",
     	    "description": "Specify the path to the mask file. The file specified will replace T1w_acpc_brain_mask.nii.gz. Tip: when supplying a brain-mask, you may want to set --atropos-mask-method to NONE. Default: mask generate by PreFreeSurfer. ",
             "id": "T1_brain_mask",
             "name": "infant-abcd-hcp-pipeline subcortical T1 brain mask",
             "optional": true,
-            "type": "Flag",
+            "type": "File",
     	    "value-key": "[T1_BRAIN_MASK]"
     	},
-    	{
+        {
             "command-line-flag": "--t1-study-template",
-    	    "description": "T1w template head and brain images for intermediate nonlinear registration, effective where population differes greatly from average adult, e.g. in elderly populations with large ventricles. ",
-            "id": "t1_study_template",
+            "description": "T1w template head images for intermediate nonlinear registration, effective where population differes greatly from average adult, e.g. in elderly populations with large ventricles. ",
+            "id": "t1_study_template_head",
             "name": "infant-abcd-hcp-pipeline subcortical t1 study template",
             "optional": true,
-            "type": "Flag",
-    	    "value-key": "[T1_STUDY_TEMPLATE]"
-    	},
-    	{
+            "type": "File",
+            "requires-inputs": ["t1_study_template_brain"],
+            "value-key": "[T1_STUDY_TEMPLATE_HEAD]"
+        },
+        {
+            "description": "T1w template brain images for intermediate nonlinear registration, effective where population differes greatly from average adult, e.g. in elderly populations with large ventricles. ",
+            "id": "t1_study_template_brain",
+            "name": "infant-abcd-hcp-pipeline subcortical t1 study template",
+            "optional": true,
+            "type": "File",
+            "requires-inputs": ["t1_study_template_head"],
+            "value-key": "[T1_STUDY_TEMPLATE_BRAIN]"
+        },
+        {
             "command-line-flag": "--t2-study-template",
-    	    "description": "T2w template head and brain images for intermediate nonlinear registration, effective where population differs greatly from average adult, e.g. in elderly populations with large ventricles.",
-            "id": "t2_study_template",
+            "description": "T2w template head images for intermediate nonlinear registration, effective where population differs greatly from average adult, e.g. in elderly populations with large ventricles.",
+            "id": "t2_study_template_head",
             "name": "infant-abcd-hcp-pipeline subcortical t2 study template",
             "optional": true,
-            "type": "Flag",
-    	    "value-key": "[T2_STUDY_TEMPLATE]"
-    	},
+            "type": "File",
+            "requires-inputs": ["t2_study_template_brain"],
+            "value-key": "[T2_STUDY_TEMPLATE_HEAD]"
+        },
+        {
+            "description": "T2w template brain images for intermediate nonlinear registration, effective where population differs greatly from average adult, e.g. in elderly populations with large ventricles.",
+            "id": "t2_study_template_brain",
+            "name": "infant-abcd-hcp-pipeline subcortical t2 study template",
+            "optional": true,
+            "type": "File",
+            "requires-inputs": ["t2_study_template_head"],
+            "value-key": "[T2_STUDY_TEMPLATE_BRAIN]"
+        },
     	{
             "command-line-flag": "--anat-only",
     	    "description": "Ignore functional files (process anatomy files only). This option must be set in order to process subjects for which no functional data was collected.",
@@ -320,7 +343,7 @@
             "id": "file_mapper_json",
             "name": "infant-abcd-hcp-pipeline file mapper json",
             "optional": true,
-            "type": "Flag",
+            "type": "File",
     	    "value-key": "[FILE_MAPPER_JSON]"
         },
     	{
@@ -342,59 +365,20 @@
     	    "value-key": "[IGNORE_EXPECTED_OUTPUTS]"
         },
         {
-            "command-line-flag": "--ncpus",
-    	    "description": "number of cores to use for concurrent processing and algorithmic speedups. Warning: causes ANTs and FreeSurfer to produce non-deterministic results. Default: 1.",
-            "id": "ncpus",
-            "name": "infant-abcd-hcp-pipeline ncpus",
-            "optional": true,
-            "type": "Flag",
-    	    "value-key": "[NCPUS]"
-        },
-    	{
-            "command-line-flag": "--print-commands-only",
-    	    "description": "Print run commands for each stage to shell then exit.",
-            "id": "print_commands_only",
-            "name": "infant-abcd-hcp-pipeline print commands only",
-            "optional": true,
-            "type": "Flag",
-    	    "value-key": "[PRINT_COMMANDS_ONLY]"
-    	},
-        {
             "command-line-flag": "--stage",
-    	    "description": "Specify a subset of stages to run. If a single stage name is given, the pipeline with be started at that stage. If a string with a ':' is given, a stage name before the ':' will tell run.py where to start and a stage name after the ':' will tell it where to stop. If no ':' is found, the pipeline will start with the stage specified and run to the end.",
-            "id": "stage",
-            "name": "infant-abcd-hcp-pipeline stage",
-            "optional": true,
-            "type": "Flag",
-    	    "value-key": "[STAGE]"
-        },	
-        {
-            "command-line-flag": "--stages",
     	    "description": "Specify a subset of stages to run. If a single stage name is given, the pipeline with be started at that stage. If a string with a ':' is given, a stage name before the ':' will tell run.py where to start and a stage name after the ':' will tell it where to stop. If no ':' is found, the pipeline will start with the stage specified and run to the end.",
             "id": "stages",
             "name": "infant-abcd-hcp-pipeline stages",
             "optional": true,
-            "type": "Flag",
+            "type": "String",
     	    "value-key": "[STAGES]"
-        },
-    	{
-            "command-line-flag": "--version",
-    	    "description": "Print version of infant-abcd-hcp-pipeline",
-            "id": "version",
-            "name": "infant-abcd-hcp-pipeline version",
-            "optional": true,
-            "type": "Flag",
-    	    "value-key": "[VERSION]"
         }
     ],
-    "output-files": [
+    "output-files" : [
         {
-            "id": "output_dir",
-            "name": "Output Directory",
-            "description": "This is the directory where the overall outputs are to be stored.",
-            "path-template": "[OUTPUT_DIR]",
-            "optional": false
-        }
-    
-    ]
+        "id" : "output_dir",
+        "name" : "Output Directory",
+        "path-template" : "infant-abcd-results-[SUBJECT_DIR]"
+    }
+  ]
 }

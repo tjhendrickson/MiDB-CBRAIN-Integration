@@ -1,0 +1,253 @@
+{
+    "name": "nibabies",
+    "description": "NiBabies: Preprocessing workflows for infants",
+    "tool-version": "latest",
+    "schema-version": "0.5",
+    "command-line": "echo [bids_dir] [output_dir] [stage] [FLAG1] > [OUTPUT1]",
+    "container-image": {
+        "image": "nipreps/nibabies",
+        "index": "docker://",
+        "type": "singularity"
+    },
+    "custom": {
+        "cbrain:readonly-input-files": true, 
+        "cbrain:author": "Timothy Hendrickson <hendr522@umn.edu> and Natacha Beck <natacha.beck@mcgill.ca>"
+     },
+    "groups": [
+    {
+        "description": "Positional Arguments",
+        "id": "positional_arguments_group",
+        "members": 
+        [
+            "bids_dir",
+            "output_dir",
+            "group"
+        ],
+        "name": "Positional Arguments"
+    },
+    {
+        "description": "optional arguments",
+        "id": "optional_arguments_group",
+        "members": [
+            "version",
+            "help",
+        ],
+        "name": "Optional Arguments"
+    },
+    {
+        "description": "Options for filtering BIDS queries.",
+        "id": "BIDS_filtering_options",
+        "members": [
+            "skip_bids_validation",
+            "participant_label",
+            "task-id",
+            "echo-idx",
+            "bids-filter-file",
+            "anat-derivatives",
+            "bids-database-dir"
+        ],
+        "name": "BIDS Filtering Options"
+    },
+    {
+        "description": "Options to handle performance",
+        "id": "performance_options",
+        "members": [
+            "n_cpus",
+            "omp-nthreads",
+            "memory",
+            "low-memory",
+            "use-plugin",
+            "anat-only",
+            "biolerplate_only"
+            "md-only-biolerplate",
+            "error-on-aroma-warnings",
+            "verbose"    
+         ],
+        "name": "Performance Handling" 
+      },
+	  {
+        "description": "Workflow Configuration Options",
+        "id": "workflow_configuration",
+        "members": [
+            "ignore",
+            "longitudinal",
+            "output-spaces",
+            "me-output-echos",
+            "bold2t1w-init",
+            "bold2t1w-dof",
+            "force-bbr"
+            "force-no-bbr",
+            "medial-surface-nan",
+            "slice-time-ref",
+            "dummy-scans",
+            "random-seed",
+         ],
+        "name": "Workflow Config" 
+      },
+	  {
+        "description": "Specific options for running ICA_AROMA",
+        "id": "ICA_AROMA_options",
+        "members": [
+            "use-aroma",
+            "aroma-melodic-dimensionality"
+         ],
+        "name": "ICA_AROMA options" 
+      },
+	  {
+        "description": "Specific options for estimating confounds",
+        "id": "confound_estimates",
+        "members": [
+            "return-all-components",
+            "fd-spike-threshold",
+            "dvars-spike-threshold"
+         ],
+        "name": "confound options" 
+      },
+	  {
+        "description": "Specific options for ANTs registrations",
+        "id": "ANTs_options",
+        "members": [
+            "skull-strip-template",
+            "skull-strip-fixed-seed",
+            "skull-strip-t1w"
+         ],
+        "name": "ANTs options" 
+      },
+	  {
+        "description": "Specific options for handling fieldmaps",
+        "id": "fieldmap_options",
+        "members": [
+            "fmap-bspline",
+            "fmap-no-demean"
+         ],
+        "name": "fieldmap options" 
+      },
+	  {
+        "description": "Specific options for SyN distortion correction",
+        "id": "SyN_options",
+        "members": [
+            "use-syn-sdc",
+            "force-syn"
+         ],
+        "name": "SyN options" 
+      },
+	  {
+        "description": "Specific options for FreeSurfer preprocessing",
+        "id": "FreeSurfer_options",
+        "members": [
+            "fs-license-file",
+            "fs-subjects-dir"
+         ],
+        "name": "FreeSurfer Options" 
+      },
+	  {
+        "description": "Surface preprocessing options",
+        "id": "Surface_options",
+        "members": [
+            "no-submm-recon",
+            "cifti-output",
+            "fs-no-reconall"
+         ],
+        "name": "Surface Options" 
+      },
+	  {
+        "description": "Other options",
+        "id": "Other_options",
+        "members": [
+            "output-layout",
+            "work-dir",
+            "clean-workdir",
+            "resource-monitor",
+            "reports-only",
+            "config-file",
+            "write-graph",
+            "stop-on-first-crash",
+            "notrack",
+			"debug",
+			"sloppy"
+         ],
+        "name": "Other" 
+      },
+	  {
+        "description": "NiBabies specific options",
+        "id": "NiBabies_options",
+        "members": [
+            "age-months",
+            "segmentation-atlases-dir",
+            "fd-radius",
+            "derivatives",
+            "deriv-filter-file"
+         ],
+        "name": "NiBabies options" 
+      },     
+    ],
+    "inputs": [
+        {
+            "id": "basic_param1",
+            "name": "The first parameter",
+            "optional": true,
+            "type": "File",
+            "value-key": "[PARAM1]"
+        },
+        {
+            "id": "basic_param2",
+            "name": "The second parameter",
+            "optional": false,
+            "type": "String",
+            "value-choices": [
+                "mychoice1.log",
+                "mychoice2.log"
+            ],
+            "value-key": "[PARAM2]"
+        },
+        {
+            "command-line-flag": "-f",
+            "id": "basic_flag1",
+            "name": "The first flag",
+            "optional": true,
+            "type": "Flag",
+            "value-key": "[FLAG1]"
+        }
+    ],
+    "output-files": [
+        {
+            "id": "basic_output1",
+            "name": "The first output",
+            "optional": false,
+            "path-template": "[PARAM2].txt",
+            "path-template-stripped-extensions": [
+                ".log"
+            ],
+            "value-key": "[OUTPUT1]"
+        }
+    ],
+    "groups": [
+        {
+            "all-or-none": true,
+            "id": "group1",
+            "members": [
+                "basic_param1",
+                "basic_flag1"
+            ],
+            "mutually-exclusive": false,
+            "name": "the param group",
+            "one-is-required": false
+        }
+    ],
+    "tags": {
+        "foo": "bar",
+        "purpose": "testing",
+        "status": "example"
+    },
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "error-codes": [
+        {
+            "code": 1,
+            "description": "Crashed"
+        }
+    ]
+}

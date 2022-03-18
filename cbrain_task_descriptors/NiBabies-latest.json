@@ -59,8 +59,8 @@
             "low_memory",
             "use_plugin",
             "anat_only",
-            "biolerplate_only",
-            "md_only_biolerplate",
+            "boilerplate_only",
+            "md_only_boilerplate",
             "error_on_aroma_warnings",
             "verbose"    
          ],
@@ -291,12 +291,12 @@
         },
         {
             "command-line-flag": "--nprocs",
-            "id": "n_processors",
-            "name": "number of processors",
+            "id": "n_cpus",
+            "name": "n_cpus",
             "description": "maximum number of threads across all processes",
             "optional": true,
             "type": "Number",
-            "value-key": "[N_PROCESSORS]"
+            "value-key": "[N_CPUS]"
         },
         {
             "command-line-flag": "--omp-nthreads",
@@ -309,21 +309,21 @@
         },
         {
             "command-line-flag": "--mem",
-            "id": "mem",
-            "name": "memory limit",
+            "id": "memory",
+            "name": "memory",
             "description": "upper bound memory limit for NiBabies processes (mb)",
             "optional": true,
             "type": "Number",
-            "value-key": "[MEM]"
+            "value-key": "[MEMORY]"
         },
         {
             "command-line-flag": "--low-mem",
-            "id": "low-mem",
-            "name": "low memory",
+            "id": "low_memory",
+            "name": "low_memory",
             "description": "attempt to reduce memory usage (will increase disk usage in working directory)",
             "optional": true,
             "type": "Number",
-            "value-key": "[LOW_MEM]"
+            "value-key": "[LOW_MEMORY]"
         },
         {
             "command-line-flag": "--use-plugin",
@@ -346,7 +346,7 @@
         {
             "command-line-flag": "--boilerplate_only",
             "id": "boilerplate_only",
-            "name": "boilerplate only",
+            "name": "boilerplate_only",
             "description": "generate boilerplate only",
             "optional": true,
             "type": "Flag",

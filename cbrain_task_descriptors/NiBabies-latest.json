@@ -322,7 +322,7 @@
             "name": "low_memory",
             "description": "attempt to reduce memory usage (will increase disk usage in working directory)",
             "optional": true,
-            "type": "Number",
+            "type": "Flag",
             "value-key": "[LOW_MEMORY]"
         },
         {

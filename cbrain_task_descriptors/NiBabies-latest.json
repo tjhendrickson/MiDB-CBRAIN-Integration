@@ -206,7 +206,7 @@
             "optional": false,
             "type": "String",
             "value-choices": ["participant"],
-            "value-key": "[ANALYSIS_LEVEL]"
+            "value-key": "[ANALYSIS_LEVEL]",
             "description": "processing stage to be run, only “participant” in the case of NiBabies (see BIDS-Apps specification)."
         },
         {

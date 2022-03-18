@@ -29,7 +29,8 @@
     {
         "description": "optional arguments",
         "id": "optional_arguments_group",
-        "members": [
+        "members": 
+	[
             "version",
             "help",
         ],

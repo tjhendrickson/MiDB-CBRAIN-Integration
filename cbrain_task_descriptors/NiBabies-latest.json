@@ -490,16 +490,7 @@
             "name": "random_seed",
             "description": "Initialize the random seed for the workflow.",
             "optional": true,
-            "type": "Flag",
-            "value-key": "[RANDOM_SEED]"
-        },   
-        {
-            "command-line-flag": "--random-seed",
-            "id": "random_seed",
-            "name": "random_seed",
-            "description": "Initialize the random seed for the workflow.",
-            "optional": true,
-            "type": "Flag",
+            "type": "Number",
             "value-key": "[RANDOM_SEED]"
         },   
         {

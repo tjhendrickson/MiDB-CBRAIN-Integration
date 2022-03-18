@@ -32,7 +32,7 @@
         "members": 
 	[
             "version",
-            "help",
+            "help"
         ],
         "name": "Optional Arguments"
     },

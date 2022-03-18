@@ -371,14 +371,24 @@
             "value-key": "[ERROR_ON_AROMA_WARNINGS]"
         }, 
         {
-            "command-line-flag": "--ignore",
+            "command-line-flag": "--verbose",
+            "default-value": 0,
             "id": "verbose",
             "name": "verbose",
-            "description": "Possible choices: fieldmaps, slicetiming, sbref, t2w, flair. Ignore selected aspects of the input dataset to disable corresponding parts of the workflow (a space delimited list). Default: []",
+            "description": "increases log verbosity for each occurence, debug level is -vvv",
             "optional": true,
             "type": "String",
             "value-key": "[IGNORE]"
         }, 
+        {
+            "command-line-flag": "--ignore",
+            "id": "ignore",
+            "name": "ignore",
+            "description": "Possible choices: fieldmaps, slicetiming, sbref, t2w, flair. Ignore selected aspects of the input dataset to disable corresponding parts of the workflow (a space delimited list). Default: []",
+            "optional": true,
+            "type": "String",
+            "value-key": "[IGNORE]"
+        },
         {
             "command-line-flag": "--longitudinal",
             "id": "longitudinal",

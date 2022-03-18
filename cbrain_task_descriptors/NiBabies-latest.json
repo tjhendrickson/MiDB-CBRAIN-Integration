@@ -29,8 +29,7 @@
     {
         "description": "optional arguments",
         "id": "optional_arguments_group",
-        "members": 
-	[
+        "members": [
             "version",
             "help"
         ],
@@ -67,7 +66,7 @@
          ],
         "name": "Performance Handling" 
       },
-	  {
+      {
         "description": "Workflow Configuration Options",
         "id": "workflow_configuration",
         "members": [
@@ -86,7 +85,7 @@
          ],
         "name": "Workflow Config" 
       },
-	  {
+      {
         "description": "Specific options for running ICA_AROMA",
         "id": "ICA_AROMA_options",
         "members": [
@@ -95,7 +94,7 @@
          ],
         "name": "ICA_AROMA options" 
       },
-	  {
+      {
         "description": "Specific options for estimating confounds",
         "id": "confound_estimates",
         "members": [
@@ -105,7 +104,7 @@
          ],
         "name": "confound options" 
       },
-	  {
+      {
         "description": "Specific options for ANTs registrations",
         "id": "ANTs_options",
         "members": [
@@ -115,7 +114,7 @@
          ],
         "name": "ANTs options" 
       },
-	  {
+      {
         "description": "Specific options for handling fieldmaps",
         "id": "fieldmap_options",
         "members": [
@@ -124,7 +123,7 @@
          ],
         "name": "fieldmap options" 
       },
-	  {
+      {
         "description": "Specific options for SyN distortion correction",
         "id": "SyN_options",
         "members": [
@@ -133,7 +132,7 @@
          ],
         "name": "SyN options" 
       },
-	  {
+      {
         "description": "Specific options for FreeSurfer preprocessing",
         "id": "FreeSurfer_options",
         "members": [
@@ -142,7 +141,7 @@
          ],
         "name": "FreeSurfer Options" 
       },
-	  {
+      {
         "description": "Surface preprocessing options",
         "id": "Surface_options",
         "members": [
@@ -152,7 +151,7 @@
          ],
         "name": "Surface Options" 
       },
-	  {
+      {
         "description": "Other options",
         "id": "Other_options",
         "members": [
@@ -170,7 +169,7 @@
          ],
         "name": "Other" 
       },
-	  {
+      {
         "description": "NiBabies specific options",
         "id": "NiBabies_options",
         "members": [

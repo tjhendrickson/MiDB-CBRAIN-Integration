@@ -188,7 +188,7 @@
             "name": "bids_dir",
             "optional": false,
             "type": "File",
-            "value-key": "[bids_dir]",
+            "value-key": "[BIDS_DIR]",
             "description": "the root folder of a BIDS valid dataset (sub-XXXXX folders should be found at the top level in this folder)."
         },
         {
@@ -196,7 +196,7 @@
             "name": "output_dir",
             "optional": false,
             "type": "File",
-            "value-key": "[output_dir]",
+            "value-key": "[OUTPUT_DIR]",
             "description": "the output path for the outcomes of preprocessing and visual reports"
         },
         {
@@ -205,6 +205,7 @@
             "optional": false,
             "type": "String",
             "value-choices": ["participant"],
+            "value-key": "[ANALYSIS_LEVEL]"
             "description": "processing stage to be run, only “participant” in the case of NiBabies (see BIDS-Apps specification)."
         },
         {
@@ -213,7 +214,7 @@
             "name": "version",
             "optional": true,
             "type": "Flag",
-            "value-choices": "[VERSION]",
+            "value-key": "[VERSION]",
             "description": "show program’s version number and exit"
         },
         {
@@ -222,7 +223,7 @@
             "name": "help",
             "optional": true,
             "type": "Flag",
-            "value-choices": "[HELP]",
+            "value-key": "[HELP]",
             "description": "show program’s help resources and exit"
         },
         {
@@ -450,6 +451,7 @@
             "id": "force_no_bbr",
             "name": "force_no_bbr",
             "description": "Do not use boundary-based registration (no goodness-of-fit checks)",
+            "optional": true,
             "type": "Flag",
             "value-key": "[FORCE_NO_BBR]"
         },        
@@ -607,7 +609,7 @@
             "id": "fs_license_file",
             "name": "fs_license_file",
             "description": "Path to FreeSurfer license key file. Get it (for free) by registering at https://surfer.nmr.mgh.harvard.edu/registration.html",
-            "optional": false,
+            "optional": true,
             "type": "File",
             "value-key": "[FS_LICENSE_FILE]"
         }, 
@@ -638,15 +640,6 @@
             "type": "String",
             "value-choices": ["91k", "170k"]
             "value-key": "[CIFTI_OUTPUT]"
-        }, 
-        {
-            "command-line-flag": "--fs-no-reconall",
-            "id": "fs_no_reconall",
-            "name": "fs_no_reconall",
-            "description": "disable FreeSurfer surface preprocessing.",
-            "optional": true,
-            "type": "Flag",
-            "value-key": "[FS_NO_RECONALL]"
         }, 
         {
             "command-line-flag": "--fs-no-reconall",
@@ -747,7 +740,7 @@
             "description": "Possible choices: compcor, registration, fieldmaps, all. Debug mode(s) to enable. 'all' is alias for all available modes.",
             "optional": true,
             "type": "String",
-            "value-key": "[DEBUG]"
+            "value-key": "[DEBUG]",
             "value-choices": ['compcor','registration','fieldmaps','all']
         }, 
         {
@@ -815,22 +808,9 @@
             "path-template": "[output_dir]"
         }
     ],
-    "groups": [
-        {
-            "all-or-none": true,
-            "id": "group1",
-            "members": [
-                "basic_param1",
-                "basic_flag1"
-            ],
-            "mutually-exclusive": false,
-            "name": "the param group",
-            "one-is-required": false
-        }
-    ],
     "tags": {
         "application-type": ["bids"],
-        "domain": ["neuroinformatics", "fmri"],
+        "domain": ["neuroinformatics", "fmri", "infant"],
         "status": "example"
     },
     "suggested-resources": {

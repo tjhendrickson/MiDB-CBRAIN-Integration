@@ -509,7 +509,7 @@
             "name": "aroma_melodic_dimensionality",
             "description": "Exact or maximum number of MELODIC components to estimate (positive = exact, negative = maximum)",
             "optional": true,
-            "type": "Flag",
+            "type": "Number",
             "value-key": "[AROMA_MELODIC_DIMENSIONALITY]"
         },  
         {

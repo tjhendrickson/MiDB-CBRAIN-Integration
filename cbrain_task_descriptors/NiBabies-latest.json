@@ -507,7 +507,7 @@
             "id": "aroma_melodic_dimensionality",
             "default-value": -200,
             "name": "aroma_melodic_dimensionality",
-            "description": "Include all components estimated in CompCor decomposition in the confounds file instead of only the components sufficient to explain 50 percent of BOLD variance in each CompCor mask.",
+            "description": "Exact or maximum number of MELODIC components to estimate (positive = exact, negative = maximum)",
             "optional": true,
             "type": "Flag",
             "value-key": "[AROMA_MELODIC_DIMENSIONALITY]"
@@ -516,7 +516,7 @@
             "command-line-flag": "--return-all-components",
             "id": "return_all_components",
             "name": "return_all_components",
-            "description": "Exact or maximum number of MELODIC components to estimate (positive = exact, negative = maximum)",
+            "description":"Include all components estimated in CompCor decomposition in the confounds file instead of only the components sufficient to explain 50 percent of BOLD variance in each CompCor mask.",
             "optional": true,
             "type": "Flag",
             "value-key": "[RETURN_ALL_COMPONENTS]"

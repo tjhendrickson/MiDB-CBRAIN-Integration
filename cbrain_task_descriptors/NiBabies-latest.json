@@ -164,8 +164,8 @@
             "write_graph",
             "stop_on_first_crash",
             "notrack",
-			"debug",
-			"sloppy"
+            "debug",
+            "sloppy"
          ],
         "name": "Other" 
       },

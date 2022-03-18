@@ -670,7 +670,7 @@
             "name": "work_dir",
             "description": "path where intermediate results should be stored",
             "optional": true,
-            "type": "String",
+            "type": "File",
             "value-key": "[WORK_DIR]"
         }, 
         {

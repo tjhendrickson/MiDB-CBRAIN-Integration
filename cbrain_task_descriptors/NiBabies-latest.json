@@ -378,7 +378,7 @@
             "description": "increases log verbosity for each occurence, debug level is -vvv",
             "optional": true,
             "type": "String",
-            "value-key": "[IGNORE]"
+            "value-key": "[VERBOSE]"
         }, 
         {
             "command-line-flag": "--ignore",

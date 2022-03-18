@@ -77,7 +77,7 @@
             "me_output_echos",
             "bold2t1w_init",
             "bold2t1w_dof",
-            "force_bbr"
+            "force_bbr",
             "force_no_bbr",
             "medial_surface_nan",
             "slice_time_ref",

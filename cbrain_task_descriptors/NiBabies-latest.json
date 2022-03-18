@@ -580,7 +580,7 @@
         }, 
         {
             "command-line-flag": "--skull-strip-t1w",
-            "default-value": "force"
+            "default-value": "force",
             "id": "skull_strip_t1w",
             "name": "skull_strip_t1w",
             "description": "determiner for T1-weighted skull stripping (‘force’ ensures skull stripping, ‘skip’ ignores skull stripping, and ‘auto’ applies brain extraction based on the outcome of a heuristic to check whether the brain is already masked).",

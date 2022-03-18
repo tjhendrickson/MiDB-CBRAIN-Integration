@@ -3,7 +3,7 @@
     "description": "NiBabies: Preprocessing workflows for infants",
     "tool-version": "latest",
     "schema-version": "0.5",
-    "url": "https://nibabies.readthedocs.io/"
+    "url": "https://nibabies.readthedocs.io/",
     "command-line": "echo [bids_dir] [output_dir] [analysis_level] [FLAG1] > [OUTPUT1]",
     "container-image": {
         "image": "nipreps/nibabies",

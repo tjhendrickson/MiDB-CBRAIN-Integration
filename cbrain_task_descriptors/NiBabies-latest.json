@@ -435,7 +435,7 @@
             "description": "Possible choices: 6, 9, 12. Degrees of freedom when registering BOLD to T1w images. 6 degrees (rotation and translation) are used by default. Default: 6",
             "optional": true,
             "type": "String",
-            "value-choices": [6,9,12]
+            "value-choices": [6,9,12],
             "value-key": "[BOLD2T1W_DOF]"
         },
         {

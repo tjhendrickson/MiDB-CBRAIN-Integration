@@ -742,7 +742,7 @@
             "optional": true,
             "type": "String",
             "value-key": "[DEBUG]",
-            "value-choices": ['compcor','registration','fieldmaps','all']
+            "value-choices": ["compcor","registration","fieldmaps","all"]
         }, 
         {
             "command-line-flag": "--sloppy",

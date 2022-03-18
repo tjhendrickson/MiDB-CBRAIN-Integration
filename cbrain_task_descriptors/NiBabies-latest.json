@@ -579,6 +579,17 @@
             "value-key": "[SKULL_STRIP_FIXED_SEED]"
         }, 
         {
+            "command-line-flag": "--skull-strip-t1w",
+            "default-value": "force"
+            "id": "skull_strip_t1w",
+            "name": "skull_strip_t1w",
+            "description": "determiner for T1-weighted skull stripping (‘force’ ensures skull stripping, ‘skip’ ignores skull stripping, and ‘auto’ applies brain extraction based on the outcome of a heuristic to check whether the brain is already masked).",
+            "optional": true,
+            "type": "String",
+            "value-choices": ["auto", "skip", "force"],
+            "value-key": "[SKULL_STRIP_T1W]"
+        }, 
+        {
             "command-line-flag": "--fmap-bspline",
             "id": "fmap_bspline",
             "name": "fmap_bspline",

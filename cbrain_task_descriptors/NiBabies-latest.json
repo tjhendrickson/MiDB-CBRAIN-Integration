@@ -408,15 +408,6 @@
             "value-key": "[OUTPUT_SPACES]"
         }, 
         {
-            "command-line-flag": "--output-spaces",
-            "id": "output_spaces",
-            "name": "output_spaces",
-            "description": "Standard and non-standard spaces to resample anatomical and functional images to. Standard spaces may be specified by the form <SPACE>[:cohort-<label>][:res-<resolution>][...], where <SPACE> is a keyword designating a spatial reference, and may be followed by optional, colon-separated parameters. Non-standard spaces imply specific orientations and sampling grids. Important to note, the res-* modifier does not define the resolution used for the spatial normalization. To generate no BOLD outputs, use this option without specifying any spatial references. For further details, please check out https://fmriprep.readthedocs.io/en/latest/spaces.html",
-            "optional": true,
-            "type": "String",
-            "value-key": "[OUTPUT_SPACES]"
-        }, 
-        {
             "command-line-flag": "--me-output-echos",
             "id": "me_output_echos",
             "name": "me_output_echos",

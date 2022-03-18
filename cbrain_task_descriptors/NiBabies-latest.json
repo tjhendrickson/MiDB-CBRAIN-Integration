@@ -59,7 +59,7 @@
             "low_memory",
             "use_plugin",
             "anat_only",
-            "biolerplate_only"
+            "biolerplate_only",
             "md_only_biolerplate",
             "error_on_aroma_warnings",
             "verbose"    
@@ -423,7 +423,7 @@
             "description": "Possible choices: register, header. Either 'register' (the default) to initialize volumes at center or 'header' to use the header information when coregistering BOLD to T1w images. Default: 'register'.",
             "optional": true,
             "type": "String",
-            "value-choices": ["register", "header"]
+            "value-choices": ["register", "header"],
             "value-key": "[BOLD2T1W_INIT]"
         }, 
         {
@@ -466,7 +466,7 @@
         },   
         {
             "command-line-flag": "--slice-time-ref",
-            "default-value": 0.5
+            "default-value": 0.5,
             "id": "slice_time_ref",
             "name": "slice_time_ref",
             "description": "The time of the reference slice to correct BOLD values to, as a fraction acquisition time. 0 indicates the start, 0.5 the midpoint, and 1 the end of acquisition. The alias start corresponds to 0, and middle to 0.5. The default value is 0.5.",
@@ -513,7 +513,7 @@
         {
             "command-line-flag": "--aroma-melodic-dimensionality",
             "id": "aroma_melodic_dimensionality",
-            "default-value": -200
+            "default-value": -200,
             "name": "aroma_melodic_dimensionality",
             "description": "Include all components estimated in CompCor decomposition in the confounds file instead of only the components sufficient to explain 50 percent of BOLD variance in each CompCor mask.",
             "optional": true,
@@ -531,7 +531,7 @@
         },  
         {
             "command-line-flag": "--fd-spike-threshold",
-            "default-value": 0.5
+            "default-value": 0.5,
             "id": "fd_spike_threshold",
             "name": "fd_spike_threshold",
             "description": "Threshold for flagging a frame as an outlier on the basis of framewise displacement",
@@ -541,7 +541,7 @@
         },  
         {
             "command-line-flag": "--dvars-spike-threshold",
-            "default-value": 1.5
+            "default-value": 1.5,
             "id": "dvars_spike_threshold",
             "name": "dvars_skipe_threshold",
             "description": "Threshold for flagging a frame as an outlier on the basis of standardised DVARS",
@@ -551,7 +551,7 @@
         }, 
         {
             "command-line-flag": "--skull-strip-template",
-            "default-value": "UNCInfant:cohort-1"
+            "default-value": "UNCInfant:cohort-1",
             "id": "skull_strip_template",
             "name": "skull_strip_template",
             "description": "select a template for skull-stripping with antsBrainExtraction",
@@ -638,7 +638,7 @@
             "description": "output preprocessed BOLD as a CIFTI dense timeseries. Optionally, the number of grayordinate can be specified (default is 91k, which equates to 2mm resolution). Possible choices 91k, 170k.",
             "optional": true,
             "type": "String",
-            "value-choices": ["91k", "170k"]
+            "value-choices": ["91k", "170k"],
             "value-key": "[CIFTI_OUTPUT]"
         }, 
         {
@@ -652,13 +652,13 @@
         }, 
         {
             "command-line-flag": "--output-layout",
-            "default-value": "bids"
+            "default-value": "bids",
             "id": "output_layout",
             "name": "output_layout",
             "description": "Organization of outputs. bids (default) places NiBabies derivatives directly in the output directory, and defaults to placing FreeSurfer derivatives in <output-dir>/sourcedata/freesurfer. legacy creates derivative datasets as subdirectories of outputs.",
             "optional": true,
             "type": "String",
-            "value-choices": ["bids", "legacy"]
+            "value-choices": ["bids", "legacy"],
             "value-key": "[OUTPUT_LAYOUT]"
         }, 
         {
@@ -772,7 +772,7 @@
         }, 
         {
             "command-line-flag": "--fd-radius",
-            "default-value": 45
+            "default-value": 45,
             "id": "fd_radius",
             "name": "fd_radius",
             "description": "Head radius in mm for framewise displacement calculation.",
@@ -804,7 +804,7 @@
             "id": "output_dir",
             "name": "Output Directory",
             "optional": false,
-            "description": "This is the directory where the overall outputs are to be stored."
+            "description": "This is the directory where the overall outputs are to be stored.",
             "path-template": "[output_dir]"
         }
     ],

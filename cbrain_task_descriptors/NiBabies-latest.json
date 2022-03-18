@@ -82,7 +82,7 @@
             "medial_surface_nan",
             "slice_time_ref",
             "dummy_scans",
-            "random_seed",
+            "random_seed"
          ],
         "name": "Workflow Config" 
       },

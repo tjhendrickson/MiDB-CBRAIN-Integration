@@ -1,51 +1,23 @@
 {
     "name": "nibabies",
     "description": "NiBabies: Preprocessing workflows for infants",
-    "tool-version": "latest",
+    "tool-version": "22.0.1",
     "schema-version": "0.5",
     "url": "https://nibabies.readthedocs.io/",
-    "command-line": "[BIDS_DIR] [OUTPUT_DIR] [ANALYSIS_LEVEL] [VERSION] [HELP] [SKIP_BIDS_VALIDATION] [PARTICIPANT_LABEL] [TASK_ID] [ECHO_IDX] [BIDS_FILTER_FILE] [ANAT_DERIVATIVES_PATH] [BIDS_DATABASE_DIR] [N_CPUS] [OMP_NTHREADS] [MEMORY] [LOW_MEMORY] [USE_PLUGIN] [ANAT_ONLY] [BOILERPLATE_ONLY] [MD_ONLY_BOILERPLATE] [ERROR_ON_AROMA_WARNINGS] [VERBOSE] [IGNORE] [LONGITUDINAL] [OUTPUT_SPACES] [ME_OUTPUT_ECHOS] [BOLD2T1W_INIT] [BOLD2T1W_DOF] [FORCE_BBR] [FORCE_NO_BBR] [MEDIAL_SURFACE_NAN] [SLICE_TIME_REF] [DUMMY_SCANS] [RANDOM_SEED] [USE_AROMA] [AROMA_MELODIC_DIMENSIONALITY] [RETURN_ALL_COMPONENTS] [FD_SPIKE_THRESHOLD] [DVARS_SPIKE_THRESHOLD] [SKULL_STRIP_TEMPLATE] [SKULL_STRIP_FIXED_SEED] [SKULL_STRIP_T1W] [FMAP_BSPLINE] [FMAP_NO_DEMEAN] [USE_SYN_SDC] [FORCE_SYN] [FS_LICENSE_FILE] [FS_SUBJECTS_DIR] [NO_SUBMM_RECON] [CIFTI_OUTPUT] [FS_NO_RECONALL] [OUTPUT_LAYOUT] [WORK_DIR] [CLEAN_WORKDIR] [RESOURCE_MONITOR] [REPORTS_ONLY] [CONFIG_FILE] [WRITE_GRAPH] [STOP_ON_FIRST_CRASH] [NOTRACK] [DEBUG] [SLOPPY] [AGE_MONTHS] [SEGMENTATION_ATLASES_DIR] [FD_RADIUS] [DERIVATIVES] [DERIV_FILTER_FILE]",
+    "command-line": "nibabies [SUBJECT_DIR] [OUTPUT_DIR] participant --skip_bids_validation [TASK_ID] [ECHO_IDX] [ANAT_DERIVATIVES_PATH] --nthreads 1 --omp-nthreads 1 --mem_mb 8192 [USE_PLUGIN] [ANAT_ONLY] [BOILERPLATE_ONLY] [MD_ONLY_BOILERPLATE] [ERROR_ON_AROMA_WARNINGS] [VERBOSE] [IGNORE] [LONGITUDINAL] [OUTPUT_SPACES] [ME_OUTPUT_ECHOS] [BOLD2T1W_INIT] [BOLD2T1W_DOF] [FORCE_BBR] [FORCE_NO_BBR] [MEDIAL_SURFACE_NAN] [SLICE_TIME_REF] [DUMMY_SCANS] [RANDOM_SEED] [USE_AROMA] [AROMA_MELODIC_DIMENSIONALITY] [RETURN_ALL_COMPONENTS] [FD_SPIKE_THRESHOLD] [DVARS_SPIKE_THRESHOLD] [SKULL_STRIP_TEMPLATE] [SKULL_STRIP_FIXED_SEED] [SKULL_STRIP_T1W] [FMAP_BSPLINE] [FMAP_NO_DEMEAN] [USE_SYN_SDC] [FORCE_SYN] [FS_LICENSE_FILE] [NO_SUBMM_RECON] [CIFTI_OUTPUT] [FS_NO_RECONALL] [OUTPUT_LAYOUT] --work-dir work [RESOURCE_MONITOR] [REPORTS_ONLY] [CONFIG_FILE] [WRITE_GRAPH] [STOP_ON_FIRST_CRASH] [NOTRACK] [DEBUG] [SLOPPY] [AGE_MONTHS] [SEGMENTATION_ATLASES_DIR] [FD_RADIUS] [DERIVATIVES] [DERIV_FILTER_FILE]",
     "container-image": {
-        "image": "nipreps/nibabies",
+        "image": "nipreps/nibabies:22.0.1",
         "index": "docker://",
         "type": "singularity"
     },
-    "custom": {
-        "cbrain:readonly-input-files": true, 
-        "cbrain:author": "Erik Lee <leex6144@umn.edu>, Timothy Hendrickson <hendr522@umn.edu> and Natacha Beck <natacha.beck@mcgill.ca>"
-     },
     "groups": [
-    {
-        "description": "Positional Arguments",
-        "id": "positional_arguments_group",
-        "members": 
-        [
-            "bids_dir",
-            "output_dir",
-            "analysis_level"
-        ],
-        "name": "Positional Arguments"
-    },
-    {
-        "description": "optional arguments",
-        "id": "optional_arguments_group",
-        "members": [
-            "version",
-            "help"
-        ],
-        "name": "Optional Arguments"
-    },
     {
         "description": "Options for filtering BIDS queries.",
         "id": "BIDS_filtering_options",
         "members": [
-            "skip_bids_validation",
-            "participant_label",
             "task_id",
             "echo_idx",
-            "bids_filter_file",
-            "anat_derivatives",
-            "bids_database_dir"
+            "anat_derivatives"
         ],
         "name": "BIDS Filtering Options"
     },
@@ -53,10 +25,6 @@
         "description": "Options to handle performance",
         "id": "performance_options",
         "members": [
-            "n_cpus",
-            "omp_nthreads",
-            "memory",
-            "low_memory",
             "use_plugin",
             "anat_only",
             "boilerplate_only",
@@ -136,9 +104,7 @@
         "description": "Specific options for FreeSurfer preprocessing",
         "id": "FreeSurfer_options",
         "members": [
-            "fs_license_file",
-            "fs_subjects_dir"
-         ],
+            "fs_license_file"         ],
         "name": "FreeSurfer Options" 
       },
       {
@@ -156,8 +122,6 @@
         "id": "Other_options",
         "members": [
             "output_layout",
-            "work_dir",
-            "clean_workdir",
             "resource_monitor",
             "reports_only",
             "config_file",
@@ -184,71 +148,26 @@
     ],
     "inputs": [
         {
-            "id": "bids_dir",
-            "name": "bids_dir",
+            "description": "Subject folder for BIDS (folders name should be sub-XXXXX).",
+            "id": "subject_dir",
+            "name": "subject_dir",
             "optional": false,
             "type": "File",
-            "value-key": "[BIDS_DIR]",
-            "description": "the root folder of a BIDS valid dataset (sub-XXXXX folders should be found at the top level in this folder)."
-        },
+            "value-key": "[SUBJECT_DIR]"
+          },
         {
-            "id": "output_dir",
-            "name": "output_dir",
-            "optional": false,
-            "type": "File",
-            "value-key": "[OUTPUT_DIR]",
-            "description": "the output path for the outcomes of preprocessing and visual reports"
-        },
-        {
-            "id": "analysis_level",
-            "name": "analysis_level",
+            "description": "The name of the output for the outcomes of preprocessing and visual reports",
+            "id": "output_dir_name",
+            "name": "output_dir_name",
             "optional": false,
             "type": "String",
-            "value-choices": ["participant"],
-            "value-key": "[ANALYSIS_LEVEL]",
-            "description": "processing stage to be run, only “participant” in the case of NiBabies (see BIDS-Apps specification)."
-        },
-        {
-            "command-line-flag": "--version",
-            "id": "version",
-            "name": "version",
-            "optional": true,
-            "type": "Flag",
-            "value-key": "[VERSION]",
-            "description": "show program’s version number and exit"
-        },
-        {
-            "command-line-flag": "-h",
-            "id": "help",
-            "name": "help",
-            "optional": true,
-            "type": "Flag",
-            "value-key": "[HELP]",
-            "description": "show program’s help resources and exit"
-        },
-        {
-            "command-line-flag": "--skip_bids_validation",
-            "description": "assume the input dataset is BIDS compliant and skip the validation",
-            "id": "skip_bids_validation",
-            "name": "skip_bids_validation",
-            "optional": true,
-            "type": "Flag",
-            "value-key": "[SKIP_BIDS_VALIDATION]"
-        },
-        {
-            "command-line-flag": "--participant-label",
-            "id": "participant_label",
-            "name": "participant_label",
-            "description": "a space delimited list of participant identifiers or a single identifier (the sub- prefix can be removed)",
-            "optional": true,
-            "type": "String",
-            "value-key": "[PARTICIPANT_LABEL]"
+            "value-key": "[OUTPUT_DIR]"
         },
         {
             "command-line-flag": "-t",
             "id": "task_id",
             "name": "task_id",
-            "description": "select a specific task to be processed",
+            "description": "Select a specific task to be processed",
             "optional": true,
             "type": "String",
             "value-key": "[TASK_ID]"
@@ -257,19 +176,10 @@
             "command-line-flag": "--echo-idx",
             "id": "echo_idx",
             "name": "echo_idx",
-            "description": "select a specific echo to be processed in a multiecho series",
+            "description": "Select a specific echo to be processed in a multiecho series",
             "optional": true,
             "type": "Number",
             "value-key": "[ECHO_IDX]"
-        },
-        {
-            "command-line-flag": "--bids-filter-file",
-            "id": "bids_filter_file",
-            "name": "bids_filter_file",
-            "description": "a JSON file describing custom BIDS input filters using PyBIDS. For further details, please check out https://fmriprep.readthedocs.io/en/latest/faq.html#how-do-I-select-only-certain-files-to-be-input-to-fMRIPrep",
-            "optional": true,
-            "type": "File",
-            "value-key": "[BIDS_FILTER_FILE]"
         },
         {
             "command-line-flag": "--anat-derivatives",
@@ -281,55 +191,10 @@
             "value-key": "[ANAT_DERIVATIVES_PATH]"
         },
         {
-            "command-line-flag": "--bids-database-dir",
-            "id": "bids_database_dir",
-            "name": "bids_database_dir",
-            "description": "Path to an existing PyBIDS database folder, for faster indexing (especially useful for large datasets).",
-            "optional": true,
-            "type": "File",
-            "value-key": "[BIDS_DATABASE_DIR]"
-        },
-        {
-            "command-line-flag": "--nprocs",
-            "id": "n_cpus",
-            "name": "n_cpus",
-            "description": "maximum number of threads across all processes",
-            "optional": true,
-            "type": "Number",
-            "value-key": "[N_CPUS]"
-        },
-        {
-            "command-line-flag": "--omp-nthreads",
-            "id": "omp_nthreads",
-            "name": "omp nthreads",
-            "description": "maximum number of threads per-process",
-            "optional": true,
-            "type": "Number",
-            "value-key": "[OMP_NTHREADS]"
-        },
-        {
-            "command-line-flag": "--mem",
-            "id": "memory",
-            "name": "memory",
-            "description": "upper bound memory limit for NiBabies processes (mb)",
-            "optional": true,
-            "type": "Number",
-            "value-key": "[MEMORY]"
-        },
-        {
-            "command-line-flag": "--low-mem",
-            "id": "low_memory",
-            "name": "low_memory",
-            "description": "attempt to reduce memory usage (will increase disk usage in working directory)",
-            "optional": true,
-            "type": "Flag",
-            "value-key": "[LOW_MEMORY]"
-        },
-        {
             "command-line-flag": "--use-plugin",
             "id": "use_plugin",
             "name": "nipype plugin file",
-            "description": "nipype plugin configuration file",
+            "description": "Nipype plugin configuration file.",
             "optional": true,
             "type": "File",
             "value-key": "[USE_PLUGIN]"
@@ -338,7 +203,7 @@
             "command-line-flag": "--anat-only",
             "id": "anat_only",
             "name": "anat only",
-            "description": "run anatomical workflows only",
+            "description": "Run anatomical workflows only.",
             "optional": true,
             "type": "Flag",
             "value-key": "[ANAT_ONLY]"
@@ -347,7 +212,7 @@
             "command-line-flag": "--boilerplate_only",
             "id": "boilerplate_only",
             "name": "boilerplate_only",
-            "description": "generate boilerplate only",
+            "description": "Generate boilerplate only.",
             "optional": true,
             "type": "Flag",
             "value-key": "[BOILERPLATE_ONLY]"
@@ -356,7 +221,7 @@
             "command-line-flag": "--md-only-boilerplate",
             "id": "md_only_boilerplate",
             "name": "md_only_boilerplate",
-            "description": "skip generation of HTML and LaTeX formatted citation with pandoc",
+            "description": "Skip generation of HTML and LaTeX formatted citation with pandoc.",
             "optional": true,
             "type": "Flag",
             "value-key": "[MD_ONLY_BOILERPLATE]"
@@ -365,35 +230,41 @@
             "command-line-flag": "--error-on-aroma-warnings",
             "id": "error_on_aroma_warnings",
             "name": "error_on_aroma_warnings",
-            "description": "Raise an error if ICA_AROMA does not produce sensible output (e.g., if all the components are classified as signal or noise)",
+            "description": "Raise an error if ICA_AROMA does not produce sensible output (e.g., if all the components are classified as signal or noise).",
             "optional": true,
             "type": "Flag",
             "value-key": "[ERROR_ON_AROMA_WARNINGS]"
         }, 
         {
-            "command-line-flag": "--verbose",
-            "default-value": 0,
+            "command-line-flag": "-vvv",
             "id": "verbose",
             "name": "verbose",
-            "description": "increases log verbosity for each occurence, debug level is -vvv",
+            "description": "Increases log verbosity for each occurence (-vvv).",
             "optional": true,
-            "type": "String",
+            "type": "Flag",
             "value-key": "[VERBOSE]"
         }, 
         {
             "command-line-flag": "--ignore",
             "id": "ignore",
             "name": "ignore",
-            "description": "Possible choices: fieldmaps, slicetiming, sbref, t2w, flair. Ignore selected aspects of the input dataset to disable corresponding parts of the workflow (a space delimited list). Default: []",
+            "description": "Ignore selected aspects of the input dataset to disable corresponding parts of the workflow (a space delimited list).",
             "optional": true,
             "type": "String",
-            "value-key": "[IGNORE]"
+            "value-key": "[IGNORE]",
+            "value-choices": [
+                "fieldmaps", 
+                "slicetiming", 
+                "sbref", 
+                "t2w", 
+                "flair"
+            ]
         },
         {
             "command-line-flag": "--longitudinal",
             "id": "longitudinal",
             "name": "longitudinal",
-            "description": "treat dataset as longitudinal - may increase runtime",
+            "description": "Treat dataset as longitudinal - may increase runtime.",
             "optional": true,
             "type": "Flag",
             "value-key": "[LONGITUDINAL]"
@@ -402,7 +273,7 @@
             "command-line-flag": "--output-spaces",
             "id": "output_spaces",
             "name": "output_spaces",
-            "description": "Standard and non-standard spaces to resample anatomical and functional images to. Standard spaces may be specified by the form <SPACE>[:cohort-<label>][:res-<resolution>][...], where <SPACE> is a keyword designating a spatial reference, and may be followed by optional, colon-separated parameters. Non-standard spaces imply specific orientations and sampling grids. Important to note, the res-* modifier does not define the resolution used for the spatial normalization. To generate no BOLD outputs, use this option without specifying any spatial references. For further details, please check out https://fmriprep.readthedocs.io/en/latest/spaces.html",
+            "description": "Standard and non-standard spaces to resample anatomical and functional images to.\nStandard spaces may be specified by the form <SPACE>[:cohort-<label>][:res-<resolution>][...], where <SPACE> is a keyword designating a spatial reference, and may be followed by optional, colon-separated parameters.\nNon-standard spaces imply specific orientations and sampling grids.\nImportant to note, the res-* modifier does not define the resolution used for the spatial normalization.\nTo generate no BOLD outputs, use this option without specifying any spatial references.\nFor further details, please check out https://fmriprep.readthedocs.io/en/latest/spaces.html",
             "optional": true,
             "type": "String",
             "value-key": "[OUTPUT_SPACES]"
@@ -411,7 +282,7 @@
             "command-line-flag": "--me-output-echos",
             "id": "me_output_echos",
             "name": "me_output_echos",
-            "description": "Output individual echo time series with slice, motion and susceptibility correction. Useful for further Tedana processing post-NiBabies.",
+            "description": "Output individual echo time series with slice, motion and susceptibility correction.\nUseful for further Tedana processing post-NiBabies.",
             "optional": true,
             "type": "Flag",
             "value-key": "[ME_OUTPUT_ECHOS]"
@@ -421,10 +292,13 @@
             "default-value": "register",
             "id": "bold2t1w_init",
             "name": "bold2t1w_init",
-            "description": "Possible choices: register, header. Either 'register' (the default) to initialize volumes at center or 'header' to use the header information when coregistering BOLD to T1w images. Default: 'register'.",
+            "description": "Either 'register' to initialize volumes at center or 'header' to use the header information when coregistering BOLD to T1w images.",
             "optional": true,
             "type": "String",
-            "value-choices": ["register", "header"],
+            "value-choices": [
+                "register", 
+                "header"
+            ],
             "value-key": "[BOLD2T1W_INIT]"
         }, 
         {
@@ -432,10 +306,14 @@
             "default-value": 6,
             "id": "bold2t1w_dof",
             "name": "bold2t1w_dof",
-            "description": "Possible choices: 6, 9, 12. Degrees of freedom when registering BOLD to T1w images. 6 degrees (rotation and translation) are used by default. Default: 6",
+            "description": "Degrees of freedom when registering BOLD to T1w images.",
             "optional": true,
             "type": "Number",
-            "value-choices": [6,9,12],
+            "value-choices": [
+                6,
+                9,
+                12
+            ],
             "value-key": "[BOLD2T1W_DOF]"
         },
         {
@@ -451,7 +329,7 @@
             "command-line-flag": "--force-no-bbr",
             "id": "force_no_bbr",
             "name": "force_no_bbr",
-            "description": "Do not use boundary-based registration (no goodness-of-fit checks)",
+            "description": "Do not use boundary-based registration (no goodness-of-fit checks).",
             "optional": true,
             "type": "Flag",
             "value-key": "[FORCE_NO_BBR]"
@@ -460,7 +338,7 @@
             "command-line-flag": "--medial-surface-nan",
             "id": "medial_surface_nan",
             "name": "medial_surface_nan",
-            "description": "Replace medial wall values with NaNs on functional GIFTI files. Only performed for GIFTI files mapped to a freesurfer subject (fsaverage or fsnative).",
+            "description": "Replace medial wall values with NaNs on functional GIFTI files.\nOnly performed for GIFTI files mapped to a freesurfer subject (fsaverage or fsnative).",
             "optional": true,
             "type": "Flag",
             "value-key": "[MEDIAL_SURFACE_NAN]"
@@ -470,7 +348,7 @@
             "default-value": 0.5,
             "id": "slice_time_ref",
             "name": "slice_time_ref",
-            "description": "The time of the reference slice to correct BOLD values to, as a fraction acquisition time. 0 indicates the start, 0.5 the midpoint, and 1 the end of acquisition. The alias start corresponds to 0, and middle to 0.5. The default value is 0.5.",
+            "description": "The time of the reference slice to correct BOLD values to, as a fraction acquisition time.\n0 indicates the start, 0.5 the midpoint, and 1 the end of acquisition.\nThe alias start corresponds to 0, and middle to 0.5.",
             "optional": true,
             "type": "Number",
             "value-key": "[SLICE_TIME_REF]"
@@ -497,7 +375,7 @@
             "command-line-flag": "--use-aroma",
             "id": "use_aroma",
             "name": "use_aroma",
-            "description": "add ICA_AROMA to your preprocessing stream",
+            "description": "Add ICA_AROMA to your preprocessing stream.",
             "optional": true,
             "type": "Flag",
             "value-key": "[USE_AROMA]"
@@ -526,7 +404,7 @@
             "default-value": 0.5,
             "id": "fd_spike_threshold",
             "name": "fd_spike_threshold",
-            "description": "Threshold for flagging a frame as an outlier on the basis of framewise displacement",
+            "description": "Threshold for flagging a frame as an outlier on the basis of framewise displacement.",
             "optional": true,
             "type": "Number",
             "value-key": "[FD_SPIKE_THRESHOLD]"
@@ -536,7 +414,7 @@
             "default-value": 1.5,
             "id": "dvars_spike_threshold",
             "name": "dvars_skipe_threshold",
-            "description": "Threshold for flagging a frame as an outlier on the basis of standardised DVARS",
+            "description": "Threshold for flagging a frame as an outlier on the basis of standardised DVARS.",
             "optional": true,
             "type": "Number",
             "value-key": "[DVARS_SPIKE_THRESHOLD]"
@@ -546,16 +424,19 @@
             "default-value": "UNCInfant:cohort-1",
             "id": "skull_strip_template",
             "name": "skull_strip_template",
-            "description": "select a template for skull-stripping with antsBrainExtraction",
+            "description": "Select a template for skull-stripping with antsBrainExtraction.",
             "optional": true,
             "type": "String",
-            "value-key": "[SKULL_STRIP_TEMPLATE]"
+            "value-key": "[SKULL_STRIP_TEMPLATE]", 
+            "value-choices": [
+                "UNCInfant:cohort-1"
+            ]
         }, 
         {
             "command-line-flag": "--skull-strip-fixed-seed",
             "id": "skull_strip_fixed_seed",
             "name": "skull_strip_fixed_seed",
-            "description": "do not use a random seed for skull-stripping - will ensure run-to-run replicability when used with –omp-nthreads 1 and matching –random-seed <int>",
+            "description": "Do not use a random seed for skull-stripping - will ensure run-to-run replicability when used with –omp-nthreads 1 and matching –random-seed <int>",
             "optional": true,
             "type": "Number",
             "value-key": "[SKULL_STRIP_FIXED_SEED]"
@@ -565,17 +446,21 @@
             "default-value": "force",
             "id": "skull_strip_t1w",
             "name": "skull_strip_t1w",
-            "description": "determiner for T1-weighted skull stripping (‘force’ ensures skull stripping, ‘skip’ ignores skull stripping, and ‘auto’ applies brain extraction based on the outcome of a heuristic to check whether the brain is already masked).",
+            "description": "Determiner for T1-weighted skull stripping\n(‘force’ ensures skull stripping, ‘skip’ ignores skull stripping, and ‘auto’ applies brain extraction based on the outcome of a heuristic to check whether the brain is already masked).",
             "optional": true,
             "type": "String",
-            "value-choices": ["auto", "skip", "force"],
+            "value-choices": [
+                "auto", 
+                "skip", 
+                "force"
+            ],
             "value-key": "[SKULL_STRIP_T1W]"
         }, 
         {
             "command-line-flag": "--fmap-bspline",
             "id": "fmap_bspline",
             "name": "fmap_bspline",
-            "description": "fit a B-Spline field using least-squares (experimental)",
+            "description": "Fit a B-Spline field using least-squares (experimental).",
             "optional": true,
             "type": "Flag",
             "value-key": "[FMAP_BSPLINE]"
@@ -584,7 +469,7 @@
             "command-line-flag": "--fmap-no-demean",
             "id": "fmap_no_demean",
             "name": "fmap_no_demean",
-            "description": "do not remove median (within mask) from fieldmap",
+            "description": "Do not remove median (within mask) from fieldmap.",
             "optional": true,
             "type": "Flag",
             "value-key": "[FMAP_NO_DEMEAN]"
@@ -602,7 +487,7 @@
             "command-line-flag": "--force-syn",
             "id": "force_syn",
             "name": "force_syn",
-            "description": "EXPERIMENTAL/TEMPORARY: Use SyN correction in addition to fieldmap correction, if available",
+            "description": "EXPERIMENTAL/TEMPORARY: Use SyN correction in addition to fieldmap correction, if available.",
             "optional": true,
             "type": "Flag",
             "value-key": "[FORCE_SYN]"
@@ -611,25 +496,16 @@
             "command-line-flag": "--fs-license-file",
             "id": "fs_license_file",
             "name": "fs_license_file",
-            "description": "Path to FreeSurfer license key file. Get it (for free) by registering at https://surfer.nmr.mgh.harvard.edu/registration.html",
+            "description": "Path to FreeSurfer license key file.\nGet it (for free) by registering at https://surfer.nmr.mgh.harvard.edu/registration.html",
             "optional": true,
             "type": "File",
             "value-key": "[FS_LICENSE_FILE]"
         }, 
         {
-            "command-line-flag": "--fs-subjects-dir",
-            "id": "fs_subjects_dir",
-            "name": "fs_subjects_dir",
-            "description": "Path to existing FreeSurfer subjects directory to reuse. (default: OUTPUT_DIR/freesurfer)",
-            "optional": true,
-            "type": "File",
-            "value-key": "[FS_SUBJECTS_DIR]"
-        }, 
-        {
             "command-line-flag": "--no-submm-recon",
             "id": "no_submm_recon",
             "name": "no_submm_recon",
-            "description": "disable sub-millimeter (hires) reconstruction",
+            "description": "Disable sub-millimeter (hires) reconstruction",
             "optional": true,
             "type": "Flag",
             "value-key": "[NO_SUBMM_RECON]"
@@ -638,17 +514,20 @@
             "command-line-flag": "--cifti-output",
             "id": "cifti_output",
             "name": "cifti_output",
-            "description": "output preprocessed BOLD as a CIFTI dense timeseries. Optionally, the number of grayordinate can be specified (default is 91k, which equates to 2mm resolution). Possible choices 91k, 170k.",
+            "description": "Output preprocessed BOLD as a CIFTI dense timeseries.\nOptionally, the number of grayordinate can be specified (default is 91k, which equates to 2mm resolution). Possible choices 91k, 170k.",
             "optional": true,
             "type": "String",
-            "value-choices": ["91k", "170k"],
+            "value-choices": [
+                "91k", 
+                "170k"
+            ],
             "value-key": "[CIFTI_OUTPUT]"
         }, 
         {
             "command-line-flag": "--fs-no-reconall",
             "id": "fs_no_reconall",
             "name": "fs_no_reconall",
-            "description": "disable FreeSurfer surface preprocessing.",
+            "description": "Disable FreeSurfer surface preprocessing.",
             "optional": true,
             "type": "Flag",
             "value-key": "[FS_NO_RECONALL]"
@@ -658,35 +537,20 @@
             "default-value": "bids",
             "id": "output_layout",
             "name": "output_layout",
-            "description": "Organization of outputs. bids (default) places NiBabies derivatives directly in the output directory, and defaults to placing FreeSurfer derivatives in <output-dir>/sourcedata/freesurfer. legacy creates derivative datasets as subdirectories of outputs.",
+            "description": "Organization of outputs. bids (default) places NiBabies derivatives directly in the output directory, and defaults to placing FreeSurfer derivatives in <output-dir>/sourcedata/freesurfer.\nlegacy creates derivative datasets as subdirectories of outputs.",
             "optional": true,
             "type": "String",
-            "value-choices": ["bids", "legacy"],
+            "value-choices": [
+                "bids", 
+                "legacy"
+            ],
             "value-key": "[OUTPUT_LAYOUT]"
-        }, 
-        {
-            "command-line-flag": "--work-dir",
-            "id": "work_dir",
-            "name": "work_dir",
-            "description": "path where intermediate results should be stored",
-            "optional": true,
-            "type": "File",
-            "value-key": "[WORK_DIR]"
-        }, 
-        {
-            "command-line-flag": "--clean-workdir",
-            "id": "clean_workdir",
-            "name": "clean_workdir",
-            "description": "Clears working directory of contents. Use of this flag is notrecommended when running concurrent processes of NiBabies.",
-            "optional": true,
-            "type": "Flag",
-            "value-key": "[CLEAN_WORKDIR]"
-        }, 
+        },
         {
             "command-line-flag": "--resource-monitor",
             "id": "resource_monitor",
             "name": "resource_monitor",
-            "description": "enable Nipype’s resource monitoring to keep track of memory and CPU usage",
+            "description": "Enable Nipype’s resource monitoring to keep track of memory and CPU usage.",
             "optional": true,
             "type": "Flag",
             "value-key": "[RESOURCE_MONITOR]"
@@ -695,7 +559,7 @@
             "command-line-flag": "--reports-only",
             "id": "reports_only",
             "name": "reports_only",
-            "description": "only generate reports, don’t run workflows. This will only rerun report aggregation, not reportlet generation for specific nodes.",
+            "description": "Only generate reports, don’t run workflows. This will only rerun report aggregation, not reportlet generation for specific nodes.",
             "optional": true,
             "type": "Flag",
             "value-key": "[REPORTS_ONLY]"
@@ -706,7 +570,7 @@
             "name": "config_file",
             "description": "Use pre-generated configuration file. Values in file will be overridden by command-line arguments.",
             "optional": true,
-            "type": "Path",
+            "type": "File",
             "value-key": "[CONFIG_FILE]"
         }, 
         {
@@ -731,7 +595,7 @@
             "command-line-flag": "--notrack",
             "id": "notrack",
             "name": "notrack",
-            "description": "Opt-out of sending tracking information of this run to the NiBabies developers. This information helps to improve NiBabies and provides an indicator of real world usage crucial for obtaining funding.",
+            "description": "Opt-out of sending tracking information of this run to the NiBabies developers.\nThis information helps to improve NiBabies and provides an indicator of real world usage crucial for obtaining funding.",
             "optional": true,
             "type": "Flag",
             "value-key": "[NOTRACK]"
@@ -740,11 +604,16 @@
             "command-line-flag": "--debug",
             "id": "debug",
             "name": "debug",
-            "description": "Possible choices: compcor, registration, fieldmaps, all. Debug mode(s) to enable. 'all' is alias for all available modes.",
+            "description": "Debug mode(s) to enable. 'all' is alias for all available modes.",
             "optional": true,
             "type": "String",
             "value-key": "[DEBUG]",
-            "value-choices": ["compcor","registration","fieldmaps","all"]
+            "value-choices": [
+                "compcor",
+                "registration",
+                "fieldmaps",
+                "all"
+            ]
         }, 
         {
             "command-line-flag": "--sloppy",
@@ -802,15 +671,13 @@
             "value-key": "[DERIV_FILTER_FILE]"
         }              
     ],
-    "output-files": [
-        {
-            "id": "output_dir",
-            "name": "Output Directory",
-            "optional": false,
-            "description": "This is the directory where the overall outputs are to be stored.",
-            "path-template": "[output_dir]"
-        }
-    ],
+    "output-files" : [{
+        "id" : "output_dir",
+        "name" : "Output Directory",
+        "description" : "This is the directory where the overall outputs are to be stored.",
+        "path-template" : "[OUTPUT_DIR]",
+        "optional" : false
+    }],
     "tags": {
         "application-type": ["bids"],
         "domain": ["neuroinformatics", "fmri", "infant"],
@@ -820,5 +687,23 @@
         "cpu-cores": 4,
         "ram": 4,
         "walltime-estimate": 172000
+    },
+    "custom": {
+        "cbrain:readonly-input-files": true, 
+        "cbrain:author": "Erik Lee <leex6144@umn.edu>, Timothy Hendrickson <hendr522@umn.edu> and Natacha Beck <natacha.beck@mcgill.ca>",
+        "cbrain:integrator_modules": {
+            "BoutiquesFileTypeVerifier": {
+                "subject_dir": [ "BidsSubject" ],
+                "fs_license_file": [ "FreesurferLicense", "TextFile", "SingleFile" ]
+            },
+            "BoutiquesFileNameMatcher": {
+                "subject_dir": "^sub-[a-zA-Z0-9_]+$"
+            },
+            "BoutiquesFreesurferLicenseFinder": "fs_license_file",
+            "BoutiquesOutputFileTypeSetter": {
+                "output_dir": "NibabiesOutput"
+            },
+            "BoutiquesBidsSingleSubjectMaker": "subject_dir"
+        }
     }
 }

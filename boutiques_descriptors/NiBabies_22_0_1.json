@@ -436,7 +436,7 @@
             "command-line-flag": "--skull-strip-fixed-seed",
             "id": "skull_strip_fixed_seed",
             "name": "skull_strip_fixed_seed",
-            "description": "Do not use a random seed for skull-stripping - will ensure run-to-run replicability when used with –omp-nthreads 1 and matching –random-seed <int>",
+            "description": "Do not use a random seed for skull-stripping - will ensure run-to-run replicability when used with -omp-nthreads 1 and matching -random-seed <int>",
             "optional": true,
             "type": "Number",
             "value-key": "[SKULL_STRIP_FIXED_SEED]"
@@ -446,7 +446,7 @@
             "default-value": "force",
             "id": "skull_strip_t1w",
             "name": "skull_strip_t1w",
-            "description": "Determiner for T1-weighted skull stripping\n(‘force’ ensures skull stripping, ‘skip’ ignores skull stripping, and ‘auto’ applies brain extraction based on the outcome of a heuristic to check whether the brain is already masked).",
+            "description": "Determiner for T1-weighted skull stripping\n('force' ensures skull stripping, 'skip' ignores skull stripping, and 'auto' applies brain extraction based on the outcome of a heuristic to check whether the brain is already masked).",
             "optional": true,
             "type": "String",
             "value-choices": [
@@ -550,7 +550,7 @@
             "command-line-flag": "--resource-monitor",
             "id": "resource_monitor",
             "name": "resource_monitor",
-            "description": "Enable Nipype’s resource monitoring to keep track of memory and CPU usage.",
+            "description": "Enable Nipype's resource monitoring to keep track of memory and CPU usage.",
             "optional": true,
             "type": "Flag",
             "value-key": "[RESOURCE_MONITOR]"
@@ -559,7 +559,7 @@
             "command-line-flag": "--reports-only",
             "id": "reports_only",
             "name": "reports_only",
-            "description": "Only generate reports, don’t run workflows. This will only rerun report aggregation, not reportlet generation for specific nodes.",
+            "description": "Only generate reports, don't run workflows. This will only rerun report aggregation, not reportlet generation for specific nodes.",
             "optional": true,
             "type": "Flag",
             "value-key": "[REPORTS_ONLY]"

@@ -1,0 +1,313 @@
+{
+    "name": "XCP-D",
+    "description": "A Robust Postprocessing Pipeline of fMRI data",
+    "tool-version": "0.0.9",
+    "schema-version": "0.5",
+    "command-line": "xcp_d [FMRI_DIR] [OUTPUT_DIR] [CIFTI] [USE_PLUGIN] [VERBOSE] [INPUT_TYPE] [SMOOTHING] [DESPIKE] [NUISSANCE] [CUSTOM_CONF] [DUMMYTIME] [LOWER_BPF] [UPPER_BPF] [BPF_ORDER] [MOTION_FILTER_TYPE] [BAND_STOP_MIN] [BAND_STOP_MAX] [MOTION_FILTER_ORDER] [HEAD_RADIUS] [FD_THRESH] [WORK_DIR] [CLEAN_WORKDIR] [FMRI_DIR] [OUTPUT_DIR]",
+    "container-image": {
+        "image": "pennlinc/xcp_d:0.0.9",
+        "index": "docker://",
+        "type": "singularity"
+    },
+    "inputs": [
+        {
+            "description": "The root folder of a preprocessed fMRI output.",
+            "id": "fmri_dir",
+            "name": "fmri_dir",
+            "optional": false,
+            "type": "File",
+            "value-key": "[FMRI_DIR]"
+        },
+        {
+            "command-line-flag": "--cifti",
+            "id": "cifti",
+            "name": "Postprocess cifti",
+            "description": "Postprocess cifti instead of nifti this is set default for dcan and hpc",
+            "optional": true,
+            "type": "Flag",
+            "value-key": "[CIFTI]"
+        },
+        {
+            "command-line-flag": "--use-plugin",
+            "id": "use_plugin",
+            "name": "Use nipype plugin configuration file",
+            "description": "Nipype plugin configuration file, for more information see https://nipype.readthedocs.io/en/0.11.0/users/plugins.html",
+            "optional": true,
+            "type": "File",
+            "value-key": "[USE_PLUGIN]"
+        },
+        {
+            "command-line-flag": "-vvv",
+            "id": "verbose",
+            "name": "Verbose",
+            "description": "Increases log verbosity",
+            "optional": true,
+            "default-value": false,
+            "type": "Flag",
+            "value-key": "[VERBOSE]"
+        },
+        {
+            "command-line-flag": "--input-type",
+            "id": "input_type",
+            "name": "Input type",
+            "description": "fMRIPprep/nibabies are default structures, DCAN and HCP are optional",
+            "optional": true,
+            "type": "String",
+            "value-key": "[INPUT_TYPE]",
+            "value-choices": [
+                "fmirprep",
+                "dcan", 
+                "hpc"
+            ]
+        },
+        {
+            "command-line-flag": "--smoothing",
+            "id": "smoothing",
+            "name": "Smoothing",
+            "description": "Smoothing the postprocessed output (fwhm)",
+            "optional": true,
+            "default-value": 6,
+            "type": "Number",
+            "value-key": "[SMOOTHING]"
+        },
+        {
+            "command-line-flag": "--despike",
+            "id": "despike",
+            "name": "Despike",
+            "description": "Despike the nifti/cifti before postprocessing",
+            "optional": true,
+            "default-value": false,
+            "type": "Flag",
+            "value-key": "[DESPIKE]"
+        },
+        {
+            "command-line-flag": "--nuissance-regressors",
+            "id": "nuissance_regressors",
+            "name": "Nuissance regressors",
+            "description": "Nuissance parameters to be selected",
+            "optional": true,
+            "default-value": "36P",
+            "type": "String",
+            "value-key": "[NUISSANCE]",
+            "value-choices": [
+                "27P",
+                "36P",
+                "24P",
+                "acompcor",
+                "aroma",
+                "acompcor_gsr",
+                "aroma_gsr"
+            ]
+        },
+        {
+            "command-line-flag": "--custom_conf",
+            "id": "custom_conf",
+            "name": "Custom confound",
+            "description": "Custom confound to be added to nuissance regressors",
+            "optional": true,
+            "type": "File",
+            "value-key": "[CUSTOM_CONF]"
+        },
+        {
+            "command-line-flag": "--dummytime",
+            "id": "dummytime",
+            "name": "Dummy time",
+            "description": "First volume in seconds to be removed or skipped before postprocessing",
+            "optional": true,
+            "default-value": 0,
+            "type": "Number",
+            "value-key": "[DUMMYTIME]"
+        },
+        {
+            "command-line-flag": "--lower-bpf",
+            "id": "lower_bpf",
+            "name": "Lower cut-off frequency",
+            "description": "Lower cut-off frequency (Hz) for the butterworth bandpass filter",
+            "optional": true,
+            "default-value": 0.009,
+            "type": "Number",
+            "value-key": "[LOWER_BPF]"
+        },
+        {
+            "command-line-flag": "--upper-bpf",
+            "id": "upper_bpf",
+            "name": "Upper cut-off frequency",
+            "description": "Upper cut-off frequency (Hz) for the butterworth bandpass filter",
+            "optional": true,
+            "default-value": 0.08,
+            "type": "Number",
+            "value-key": "[UPPER_BPF]"
+        },
+        {
+            "command-line-flag": "--bpf-order",
+            "id": "bpf_order",
+            "name": "Butterworth bandpass filter",
+            "description": "Number of filter coefficients for butterworth bandpass filter",
+            "optional": true,
+            "default-value": 2,
+            "type": "Number",
+            "value-key": "[BPF_ORDER]"
+        },
+        {
+            "command-line-flag": "--motion-filter-type",
+            "id": "motion_filter_type",
+            "name": "Type of band-stop filter",
+            "description": "Type of band-stop filter to use for removing respiratory artifact from motion regressors",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MOTION_FILTER_TYPE]",
+            "value-choices": [
+                "lp",
+                "notch"
+            ]
+        },
+        {
+            "command-line-flag": "--band-stop-min",
+            "id": "band_stop_min",
+            "name": "Lower frequency (bpm)",
+            "description": "Lower frequency (bpm) for the band-stop motion filter",
+            "optional": true,
+            "default-value": 0,
+            "type": "Number",
+            "value-key": "[BAND_STOP_MIN]"
+        },
+        {
+            "command-line-flag": "--band-stop-max",
+            "id": "band_stop_max",
+            "name": "Upper frequency (bpm)",
+            "description": "Upper frequency (bpm) for the band-stop motion filter",
+            "optional": true,
+            "default-value": 0,
+            "type": "Number",
+            "value-key": "[BAND_STOP_MAX]"
+        },
+        {
+            "command-line-flag": "--motion-filter-order",
+            "id": "motion_filter_order",
+            "name": "Filter coeffecients (band-stop filter)",
+            "description": "Number of filter coeffecients for the band-stop filter",
+            "optional": true,
+            "default-value": 4,
+            "type": "Number",
+            "value-key": "[MOTION_FILTER_ORDER]"
+        },
+        {
+            "command-line-flag": "--head_radius",
+            "id": "head_radius",
+            "name": "Head radius",
+            "description": "Head radius for computing FD, default is 50mm, 35mm is recommended for baby",
+            "optional": true,
+            "default-value": 50,
+            "type": "Number",
+            "value-key": "[HEAD_RADIUS]"
+        },
+        {
+            "command-line-flag": "--fd-thresh",
+            "id": "fd_thresh",
+            "name": "Framewise displacement",
+            "description": "Framewise displacement threshold for censoring",
+            "optional": true,
+            "default-value": 0.3,
+            "type": "Number",
+            "value-key": "[FD_THRESH]"
+        }
+    ],
+    "output-files": [
+        {
+            "name":          "Output dir",
+            "id":            "output_dir",
+            "description":   "The output of the command",
+            "optional":      false,
+            "list":          false,
+            "value-key": "[OUTPUT_DIR]",
+            "path-template": "[SUBJECT_DIR]_res"
+        }
+    ],
+    "groups": [
+        {
+            "id": "cifti_opt",
+            "name": "Options for cifti processing",
+            "members": [
+                "cifti"
+            ]
+        },
+        {
+            "id": "resource_management_opt",
+            "name": "Options to for resource management",
+            "members": [
+                "verbose",
+                "use_plugin"
+            ]
+        },
+        {
+            "id": "input_flags_opt",
+            "name": "Input flags",
+            "members": [
+                "input_type"
+            ]
+        },
+        {
+            "id": "postprocessing_opt",
+            "name": "Parameters for postprocessing",
+            "members": [
+                "smoothing",
+                "despike",
+                "custom_conf",
+                "dummytime"
+            ]
+        },
+        {
+            "id": "filtering_parameters_opt",
+            "name": "Filtering parameters and default value",
+            "members": [
+                "lower_bpf",
+                "upper_bpf",
+                "bpf_order",
+                "motion_filter_type",
+                "band_stop_min",
+                "band_stop_max",
+                "motion_filter_order"
+            ]
+        },
+        {
+            "id": "censoring_scrubbing_opt",
+            "name": "Censoring and scrubbing options",
+            "members": [
+                "head_radius",
+                "fd_thresh"
+            ]
+        }
+    ],
+    "tags": {
+        "application-type": [
+            "bids"
+        ],
+        "domain": [
+            "neuroinformatics",
+            "fmri"
+        ]
+    },
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 172000
+    },
+    "custom": {
+        "cbrain:readonly-input-files": true,
+        "cbrain:author": "Natacha Beck <natacha.beck@mcgill.ca>",
+        "cbrain:integrator_modules": {
+            "BoutiquesFileTypeVerifier": {
+                "bids_dir": [ "BidsSubject" ]
+            },
+            "BoutiquesFileNameMatcher": {
+                "bids_dir": "^sub-[a-zA-Z0-9_]+$"
+            },
+            "BoutiquesOutputFileTypeSetter": {
+                "output_dir": "Xcpd_Output"
+            },
+            "BoutiquesPostProcessingCleaner": [
+                "work"
+            ]
+        }
+    }
+}

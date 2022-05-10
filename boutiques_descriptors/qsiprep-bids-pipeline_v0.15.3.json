@@ -5,23 +5,18 @@
     "tool-version": "v0.15.3",
     "shell": "/bin/bash",
     "schema-version": "0.5",
-    "custom": {
-        "cbrain:readonly-input-files": true, 
-        "cbrain:author": "Timothy Hendrickson <hendr522@umn.edu> and Natacha Beck <natacha.beck@mcgill.ca>"
-     },
-    "command-line": "test -f license.txt || cp [FS_LICENSE_FILE] license.txt; work_dir='work_dir'; bash mk_fake_bids [SUBJECT_DIR] FakeBids &&  qsiprep FakeBids qsiprep-results-[SUBJECT_DIR] participant [SKIP_BIDS_VALIDATION] -w $work_dir --fs-license-file [FS_LICENSE_FILE] --nthreads 1 --omp-nthreads 1 --mem_mb 8192 [ACQUISITION_TYPE] [INTERACTIVE_REPORTS_ONLY] [RECON_ONLY] [RECON_SPEC] [RECON_INPUT] [USE_PLUGIN] [ANAT_ONLY] [DWI_ONLY] [INFANT] [BOILERPLATE] [VERBOSE] [IGNORE] [LONGITUDINAL] [B0_THRESHOLD] [DWI_DENOISE_WINDOW] [UNRINGING_METHOD] [NO_B0_HARMONIZATION] [DENOISE_BEFORE_COMBINING] [DENOISE_AFTER_COMBINING] [COMBINE_ALL_DWIS] [SEPARATE_ALL_DWIS] [DISTORTION_GROUP_MERGE] [WRITE_LOCAL_BVECS] [OUTPUT_SPACE] [TEMPLATE] [OUTPUT_RESOLUTION] [B0_TO_T1W_TRANSFORM] [INTRAMODAL_TEMPLATE_ITERS] [INTRAMODAL_TEMPLATE_TRANSFORM] [B0_MOTION_CORR_TO] [HMC_TRANSFORM] [HMC_MODEL] [EDDY_CONFIG] [SHORELINE_ITERS] [IMPUTE_SLICE_THRESHOLD] [SKULL_STRIP_TEMPLATE] [SKULL_STRIP_FIXED_SEED] [FORCE_SPATIAL_NORMALIZATION] [SKIP_T1_BASED_SPATIAL_NORMALIZATION] [DO_RECONALL] [PREFER_DEDICATED_FMAPS] [FMAP_BSPLINE] [FMAP_NO_DEMEAN] [USE_SYN_SDC] [FORCE_SYN] [RESOURCE_MONITOR] [REPORTS_ONLY] [WRITE_GRAPH] [STOP_ON_FIRST_CRASH] [SLOPPY]; status=$?; test $status -eq 0 && rm -rf $work_dir/qsiprep_wf/single_subject_[PARTICIPANT_LABEL]*; bash -c \"exit $status\"",
+    "command-line": "qsiprep [SUBJECT_DIR] [OUTPUT_DIR] participant --skip_bids_validation --work-dir work [FS_LICENSE_FILE] --nthreads 1 --omp-nthreads 1 --mem_mb 8192 [ACQUISITION_TYPE] [INTERACTIVE_REPORTS_ONLY] [RECON_ONLY] [RECON_SPEC] [RECON_INPUT] [USE_PLUGIN] [ANAT_ONLY] [DWI_ONLY] [INFANT] [BOILERPLATE] [VERBOSE] [IGNORE] [LONGITUDINAL] [B0_THRESHOLD] [DWI_DENOISE_WINDOW] [UNRINGING_METHOD] [NO_B0_HARMONIZATION] [DENOISE_BEFORE_COMBINING] [DENOISE_AFTER_COMBINING] [COMBINE_ALL_DWIS] [SEPARATE_ALL_DWIS] [DISTORTION_GROUP_MERGE] [WRITE_LOCAL_BVECS] [OUTPUT_SPACE] [TEMPLATE] [OUTPUT_RESOLUTION] [B0_TO_T1W_TRANSFORM] [INTRAMODAL_TEMPLATE_ITERS] [INTRAMODAL_TEMPLATE_TRANSFORM] [B0_MOTION_CORR_TO] [HMC_TRANSFORM] [HMC_MODEL] [EDDY_CONFIG] [SHORELINE_ITERS] [IMPUTE_SLICE_THRESHOLD] [SKULL_STRIP_TEMPLATE] [SKULL_STRIP_FIXED_SEED] [FORCE_SPATIAL_NORMALIZATION] [SKIP_T1_BASED_SPATIAL_NORMALIZATION] [DO_RECONALL] [PREFER_DEDICATED_FMAPS] [FMAP_BSPLINE] [FMAP_NO_DEMEAN] [USE_SYN_SDC] [FORCE_SYN] [RESOURCE_MONITOR] [REPORTS_ONLY] [WRITE_GRAPH] [STOP_ON_FIRST_CRASH] [SLOPPY]",
     "container-image": 
     {
         "image": "pennbbl/qsiprep:0.15.3",
         "index": "docker://",
-        "type": "singularity"
+        "type":  "singularity"
     },
     "groups": [
     {
         "description": "Options for filtering BIDS queries.",
         "id": "optional_BIDS_filtering_arguments_group",
         "members": [
-            "skip_bids_validation",
             "acquisition_type"
         ],
         "name": "Optional BIDS Filtering Arguments"
@@ -147,21 +142,20 @@
     ],
     "inputs": [
         {
-            "description": "Input BIDS subject folder",
-            "id": "bids_subject_dir",
-            "name": "Input BIDS subject folder",
+            "description": "Subject folder for BIDS (folders name should be sub-XXXXX).",
+            "id": "subject_dir",
+            "name": "subject_dir",
             "optional": false,
             "type": "File",
             "value-key": "[SUBJECT_DIR]"
         },
         {
-            "command-line-flag": "--skip-bids-validation",
-            "description": "Assume the input dataset is BIDS compliant and skip the validation ",
-            "id": "skip_bids_validation",
-            "name": "skip bids validation",
-            "optional": true,
-            "type": "Flag",
-            "value-key": "[SKIP_BIDS_VALIDATION]"
+            "description": "The name of the output for the outcomes of preprocessing and visual reports",
+            "id": "output_dir_name",
+            "name": "output_dir_name",
+            "optional": false,
+            "type": "String",
+            "value-key": "[OUTPUT_DIR]"
         },
         {
             "command-line-flag": "--acquisition_type",
@@ -252,12 +246,12 @@
             "optional": true,
             "type": "Flag",
             "value-key": "[BOILERPLATE]"
-        },
+        }, 
         {
-            "command-line-flag": "--verbose",
-            "description": "Increases log verbosity for each occurenc, debug level is -vvv",
+            "command-line-flag": "-vvv",
             "id": "verbose",
-            "name": "qsiprep verbose output",
+            "name": "verbose",
+            "description": "Increases log verbosity for each occurence (-vvv).",
             "optional": true,
             "type": "Flag",
             "value-key": "[VERBOSE]"
@@ -560,12 +554,13 @@
             "optional": true,
             "type": "Flag",
             "value-key": "[SKIP_T1_BASED_SPATIAL_NORMALIZATION]"
-        },
+        }, 
         {
-            "description": "Path to FreeSurfer license key file. Get it (for free) by registering at https://surfer.nmr.mgh.harvard.edu/registration.html",
+            "command-line-flag": "--fs-license-file",
             "id": "fs_license_file",
-            "name": "qsiprep fs license file",
-            "optional": false,
+            "name": "fs_license_file",
+            "description": "Path to FreeSurfer license key file.\nGet it (for free) by registering at https://surfer.nmr.mgh.harvard.edu/registration.html",
+            "optional": true,
             "type": "File",
             "value-key": "[FS_LICENSE_FILE]"
         },
@@ -669,11 +664,29 @@
             "value-key": "[SLOPPY]"
         }
     ],
-    "output-files" : [
-        {
-            "id" : "output_dir",
-            "name" : "Output Directory",
-            "path-template" : "qsiprep-results-[SUBJECT_DIR]"
+    "output-files" : [{
+        "id" : "output_dir",
+        "name" : "Output Directory",
+        "description" : "This is the directory where the overall outputs are to be stored.",
+        "path-template" : "[OUTPUT_DIR]",
+        "optional" : false
+    }],
+    "custom": {
+        "cbrain:readonly-input-files": true, 
+        "cbrain:author": "Erik Lee <leex6144@umn.edu>, Timothy Hendrickson <hendr522@umn.edu> and Natacha Beck <nbeck@mcin.ca>",
+        "cbrain:integrator_modules": {
+            "BoutiquesFileTypeVerifier": {
+                "subject_dir": [ "BidsSubject" ],
+                "fs_license_file": [ "FreesurferLicense", "TextFile", "SingleFile" ]
+            },
+            "BoutiquesFileNameMatcher": {
+                "subject_dir": "^sub-[a-zA-Z0-9_]+$"
+            },
+            "BoutiquesFreesurferLicenseFinder": "fs_license_file",
+            "BoutiquesOutputFileTypeSetter": {
+                "output_dir": "QsiprepOutput"
+            },
+            "BoutiquesBidsSingleSubjectMaker": "subject_dir"
         }
-    ]
+    }
 }

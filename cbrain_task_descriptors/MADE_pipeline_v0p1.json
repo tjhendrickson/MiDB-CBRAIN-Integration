@@ -1,11 +1,11 @@
 {
     "name": "MADE_EEG_Pipeline",
-    "schema-version": "0.1",
+    "schema-version": "0.5",
     "tool-version": "Latest",
     "author": "Child Development Lab, University of Maryland",
     "url": "https://github.com/ChildDevLab/MADE-EEG-preprocessing-pipeline",
     "command-line": "[BIDS_DIR] [SUB_ID] [SES_ID] [TASK_ID] [FILE_EXTENSION] [JSON_PARAMETERS_FILE] [SAVE_INTERIM] [OUTPUT_DIR]",
-        "description": "The Maryland Analysis of Developmental EEG (MADE) Pipeline is an EEG pipeline that (in this form) takes a BIDS-EEG directory structure with "*.set" files as input.,
+    "description": "The Maryland Analysis of Developmental EEG (MADE) Pipeline is an EEG pipeline that (in this form) takes a BIDS-EEG directory structure with '*.set' files as input.",
     "inputs": [
         {
             "description": "The BIDS directory (which contains all subjects in your dataset).",
@@ -69,7 +69,7 @@
             "type": "Flag",
             "value-key": "[SAVE_INTERIM]"
         }
-      ]
+      ],
     "output-files" : [{
         "id" : "output_dir",
         "name" : "Output Directory",

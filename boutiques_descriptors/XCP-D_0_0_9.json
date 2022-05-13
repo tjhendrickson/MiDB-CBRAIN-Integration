@@ -3,7 +3,7 @@
     "description": "A Robust Postprocessing Pipeline of fMRI data",
     "tool-version": "0.0.9",
     "schema-version": "0.5",
-    "command-line": "xcp_d [FMRI_DIR] [OUTPUT_DIR] [CIFTI] [USE_PLUGIN] [VERBOSE] [INPUT_TYPE] [SMOOTHING] [DESPIKE] [NUISSANCE] [CUSTOM_CONF] [DUMMYTIME] [LOWER_BPF] [UPPER_BPF] [BPF_ORDER] [MOTION_FILTER_TYPE] [BAND_STOP_MIN] [BAND_STOP_MAX] [MOTION_FILTER_ORDER] [HEAD_RADIUS] [FD_THRESH] [WORK_DIR] [CLEAN_WORKDIR] [FMRI_DIR] [OUTPUT_DIR]",
+    "command-line": "xcp_d [FMRI_DIR] [OUTPUT_DIR] [CIFTI] [COMBINERUNS] [USE_PLUGIN] [VERBOSE] [INPUT_TYPE] [SMOOTHING] [DESPIKE] [NUISSANCE] [CUSTOM_CONF] [DUMMYTIME] [LOWER_BPF] [UPPER_BPF] [BPF_ORDER] [MOTION_FILTER_TYPE] [BAND_STOP_MIN] [BAND_STOP_MAX] [MOTION_FILTER_ORDER] [HEAD_RADIUS] [FD_THRESH] -w work",
     "container-image": {
         "image": "pennlinc/xcp_d:0.0.9",
         "index": "docker://",
@@ -26,6 +26,15 @@
             "optional": true,
             "type": "Flag",
             "value-key": "[CIFTI]"
+        },
+        {
+            "command-line-flag": "--combineruns",
+            "id": "combineruns",
+            "name": "Combine runs",
+            "description": "Combines all runs into one file.",
+            "optional": true,
+            "type": "Flag",
+            "value-key": "[COMBINERUNS]"
         },
         {
             "command-line-flag": "--use-plugin",
@@ -220,7 +229,7 @@
             "optional":      false,
             "list":          false,
             "value-key": "[OUTPUT_DIR]",
-            "path-template": "[SUBJECT_DIR]_res"
+            "path-template": "[FMRI_DIR]_res"
         }
     ],
     "groups": [
@@ -296,12 +305,6 @@
         "cbrain:readonly-input-files": true,
         "cbrain:author": "Natacha Beck <natacha.beck@mcgill.ca>",
         "cbrain:integrator_modules": {
-            "BoutiquesFileTypeVerifier": {
-                "bids_dir": [ "BidsSubject" ]
-            },
-            "BoutiquesFileNameMatcher": {
-                "bids_dir": "^sub-[a-zA-Z0-9_]+$"
-            },
             "BoutiquesOutputFileTypeSetter": {
                 "output_dir": "Xcpd_Output"
             },

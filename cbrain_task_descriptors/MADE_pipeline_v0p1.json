@@ -1,6 +1,6 @@
 {
     "name": "MADE_EEG_Pipeline",
-    "schema-version": "1.0.8",
+    "schema-version": "1.0.9",
     "tool-version": "Latest",
     "author": "Child Development Lab, University of Maryland",
     "url": "https://github.com/ChildDevLab/MADE-EEG-preprocessing-pipeline",
@@ -84,7 +84,7 @@
     "container-image": {
         "type": "singularity",
         "index": "docker://",
-        "image": "dcanumn/hbcd-made:1.0.8"
+        "image": "dcanumn/hbcd-made:1.0.9"
     },
     "custom": {
         "cbrain:readonly-input-files": true,

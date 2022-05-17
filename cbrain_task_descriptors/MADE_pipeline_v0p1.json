@@ -1,10 +1,10 @@
 {
     "name": "MADE_EEG_Pipeline",
-    "schema-version": "0.5",
+    "schema-version": "1.0.8",
     "tool-version": "Latest",
     "author": "Child Development Lab, University of Maryland",
     "url": "https://github.com/ChildDevLab/MADE-EEG-preprocessing-pipeline",
-    "command-line": "[BIDS_DIR] [SUB_ID] [SES_ID] [TASK_ID] [FILE_EXTENSION] [JSON_PARAMETERS_FILE] [SAVE_INTERIM] [OUTPUT_DIR]",
+    "command-line": "python3 argparse_v2.py [JSON_PARAMETERS_FILE] [OUTPUT_DIR] [BIDS_DIR] [SUB_ID] [SES_ID] [FILE_EXTENSION] [SKIP_INTERIM]",
     "description": "The Maryland Analysis of Developmental EEG (MADE) Pipeline is an EEG pipeline that (in this form) takes a BIDS-EEG directory structure with '*.set' files as input.",
     "inputs": [
         {
@@ -16,7 +16,6 @@
             "value-key": "[BIDS_DIR]"
         },
         {
-            "command-line-flag": "-s",
             "description": "select a specific subject to be processed",
             "id": "sub_id",
             "name": "sub_id",
@@ -34,15 +33,6 @@
             "value-key": "[SES_ID]"
         },
         {
-            "command-line-flag": "-t",
-            "description": "select a specific task to be processed",
-            "id": "task_id",
-            "name": "task_id",
-            "optional": true,
-            "type": "String",
-            "value-key": "[TASK_ID]"
-        },
-        {
             "command-line-flag": "-ext",
             "description": "The type of eeg to file to be processed (only .set for now)",
             "id": "file_extension",
@@ -52,22 +42,21 @@
             "value-key": "[FILE_EXTENSION]"
         },
         {
-            "command-line-flag": "-json",
             "description": "The json file with settings to configure processing",
             "id": "json_parameters_file",
             "name": "json_parameters_file",
             "optional": false,
-            "type": "String",
+            "type": "File",
             "value-key": "[JSON_PARAMETERS_FILE]"
         },
         {
-            "command-line-flag": "-save-interim",
-            "description": "Save interim results",
-            "id": "save_interim",
-            "name": "save_interim",
+            "command-line-flag": "-skip-interim",
+            "description": "Skip saving interim results",
+            "id": "skip_interim",
+            "name": "skip_interim",
             "optional": true,
             "type": "Flag",
-            "value-key": "[SAVE_INTERIM]"
+            "value-key": "[SKIP_INTERIM]"
         }
       ],
     "output-files" : [{

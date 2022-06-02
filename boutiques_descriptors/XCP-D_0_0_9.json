@@ -305,6 +305,7 @@
         "cbrain:readonly-input-files": true,
         "cbrain:author": "Natacha Beck <natacha.beck@mcgill.ca>",
         "cbrain:integrator_modules": {
+            "BoutiquesAllowedExitCodes": [ 0, 1 ],
             "BoutiquesOutputFileTypeSetter": {
                 "output_dir": "Xcpd_Output"
             },

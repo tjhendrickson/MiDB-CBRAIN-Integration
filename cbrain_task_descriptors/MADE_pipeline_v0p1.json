@@ -1,6 +1,6 @@
 {
     "name": "MADE_EEG_Pipeline",
-    "schema-version": "1.0.9",
+    "schema-version": "0.5",
     "tool-version": "Latest",
     "author": "Child Development Lab, University of Maryland",
     "url": "https://github.com/ChildDevLab/MADE-EEG-preprocessing-pipeline",

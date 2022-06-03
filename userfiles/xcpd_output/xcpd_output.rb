@@ -21,7 +21,7 @@
 #
 
 # A FileCollection to model the output of a XCP-D
-class QcpdOutput < FileCollection
+class XcpdOutput < FileCollection
 
   Revision_info=CbrainFileRevision[__FILE__] #:nodoc:
 

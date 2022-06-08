@@ -1,0 +1,189 @@
+{
+    "name": "MRIQC",
+    "description": "MRIQC extracts no-reference IQMs (image quality metrics) from structural (T1w and T2w) and functional MRI (magnetic resonance imaging) data.",
+    "tool-version": "22.0.1",
+    "schema-version": "0.5",
+    "url": "https://mriqc.readthedocs.io/en/stable/",
+    "command-line": "mriqc [BIDS_DIR] [OUTPUT_DIR] [ANALYSIS_LEVEL] [PARTICIPANT_LABEL] [SESSION_ID] [RUN_ID] [TASK_ID] [MODALITIES] [DRY_RUN] [NO_SUB] [N_CPUS] [MEM_GB] [FLOAT32] [ICA] [FD_THRESH]",
+    "container-image": {
+        "image": "nipreps/mriqc:22.0.1",
+        "index": "docker://",
+        "type": "singularity"
+    },
+    "inputs": [
+        {
+            "description": "The directory with the input dataset formatted according to the BIDS standard.",
+            "id": "bids_dir",
+            "name": "bids_dir",
+            "optional": false,
+            "type": "File",
+            "value-key": "[BIDS_DIR]"
+        },
+        {
+            "description": "Level of the analysis that will be performed. Multiple participant level analyses can be run independently (in parallel) using the same output_dir.",
+            "id": "analysis_level",
+            "name": "analysis_level",
+            "optional": false,
+            "type": "String",
+            "value-key": "[ANALYSIS_LEVEL]",
+            "value-choices": [
+                "participant",
+                "group"
+            ]
+        },
+        {
+            "command-line-flag": "--participant-label",
+            "description": "one or more participant identifiers (the sub- prefix can be removed)",
+            "id": "participant_label",
+            "name": "participant_label",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PARTICIPANT_LABEL]"
+        },
+        {
+            "command-line-flag": "--session-id",
+            "id": "session_id",
+            "name": "session_id",
+            "description": "filter input dataset by session id",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SESSION_ID]"
+        },
+        {
+            "command-line-flag": "--run-id",
+            "id": "run_id",
+            "name": "run_id",
+            "description": "filter input dataset by run id (only integer run ids are valid)",
+            "optional": true,
+            "type": "Flag",
+            "value-key": "[RUN_ID]"
+        },
+        {
+            "command-line-flag": "--task-id",
+            "id": "task_id",
+            "name": "task_id",
+            "description": "filter input dataset by task id",
+            "optional": true,
+            "type": "String",
+            "value-key": "[TASK_ID]"
+        },
+        {
+            "command-line-flag": "--modalities",
+            "id": "modalities",
+            "name": "modalities",
+            "description": "filter input dataset by MRI type",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MODALITIES]"
+        },
+        {
+            "command-line-flag": "--dry-run",
+            "id": "dry_run",
+            "name": "dry_run",
+            "description": "Do not run the workflow.",
+            "optional": true,
+            "type": "Flag",
+            "value-key": "[DRY_RUN]"
+        },
+        {
+            "command-line-flag": "--no-sub",
+            "id": "no_sub",
+            "name": "no_sub",
+            "description": "Turn off submission of anonymized quality metrics to MRIQC's metrics repository",
+            "optional": true,
+            "type": "Flag",
+            "value-key": "[NO_SUB]"
+        },
+        {
+            "command-line-flag": "--n_cpus",
+            "id": "n_cpus",
+            "name": "n_cpus",
+            "description": "number_of_threads",
+            "optional": true,
+            "type": "Number",
+            "value-key": "[N_CPUS]"
+        },
+        {
+            "command-line-flag": "--mem_gb",
+            "id": "mem_gb",
+            "name": "mem_gb",
+            "description": "available total memory",
+            "optional": true,
+            "type": "Number",
+            "value-key": "[MEM_GB]"
+        },
+        {
+            "command-line-flag": "--float32",
+            "id": "float32",
+            "name": "float32",
+            "description": "Cast the input data to float32 if it\u2019s represented in higher precision (saves space and improves perfomance)",
+            "optional": true,
+            "type": "Flag",
+            "value-key": "[FLOAT32]"
+        },
+        {
+            "command-line-flag": "--ica",
+            "id": "ica",
+            "name": "ica",
+            "description": "Run ICA on the raw data and include the componentsin the individual reports (slow but potentially very insightful)",
+            "optional": true,
+            "type": "Flag",
+            "value-key": "[ICA]"
+        },
+        {
+            "command-line-flag": "--fd_thresh",
+            "id": "fd_thresh",
+            "name": "fd_thresh",
+            "description": "motion threshold for framewise displacement computation",
+            "optional": true,
+            "type": "Number",
+            "value-key": "[FD_THRESH]"
+        }
+    ],
+    "output-files": [
+        {
+            "id": "output_dir",
+            "name": "Output Directory",
+            "description": "This is the directory where the overall outputs are to be stored.",
+            "path-template": "[OUTPUT_DIR]",
+            "optional": false
+        }
+    ],
+    "groups": [
+        {
+            "id": "non_standard_params",
+            "name": "Non-standard parameters",
+            "members": [
+                "fd_thresh",
+                "ica",
+                "float32",
+                "mem_gb",
+                "n_cpus",
+                "dry_run",
+                "modalities",
+                "task_id",
+                "run_id"
+            ]
+        }
+    ],
+    "tags": {
+        "application-type": [
+            "bids"
+        ],
+        "domain": [
+            "neuroinformatics",
+            "mri",
+            "fmri",
+            "quality"
+        ]
+    },
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 8,
+        "walltime-estimate": 8000
+    },
+    "custom": {
+        "cbrain:readonly-input-files": true,
+        "cbrain:author": "Erik Lee <leex6144@umn.edu>"
+    }
+}

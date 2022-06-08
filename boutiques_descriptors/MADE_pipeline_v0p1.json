@@ -1,0 +1,93 @@
+{
+    "name": "MADE_EEG_Pipeline",
+    "schema-version": "0.5",
+    "tool-version": "1.0.9",
+    "author": "Child Development Lab, University of Maryland",
+    "url": "https://github.com/ChildDevLab/MADE-EEG-preprocessing-pipeline",
+    "command-line": "python3 argparse_v2.py [JSON_PARAMETERS_FILE] [OUTPUT_DIR] [BIDS_DIR] [SUB_ID] [SES_ID] [FILE_EXTENSION] [SKIP_INTERIM]",
+    "description": "The Maryland Analysis of Developmental EEG (MADE) Pipeline is an EEG pipeline that (in this form) takes a BIDS-EEG directory structure with '*.set' files as input.",
+    "inputs": [
+        {
+            "description": "The BIDS directory (which contains all subjects in your dataset).",
+            "id": "bids_dir",
+            "name": "bids_dir",
+            "optional": false,
+            "type": "File",
+            "value-key": "[BIDS_DIR]"
+        },
+        {
+            "description": "select a specific subject to be processed",
+            "id": "sub_id",
+            "name": "sub_id",
+            "optional": false,
+            "type": "String",
+            "value-key": "[SUB_ID]"
+        },
+        {
+            "command-line-flag": "-ss",
+            "description": "select a specific session to be processed",
+            "id": "ses_id",
+            "name": "ses_id",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SES_ID]"
+        },
+        {
+            "command-line-flag": "-ext",
+            "description": "The type of eeg to file to be processed (only .set for now)",
+            "id": "file_extension",
+            "name": "file_extension",
+            "optional": false,
+            "type": "String",
+            "value-key": "[FILE_EXTENSION]"
+        },
+        {
+            "description": "The json file with settings to configure processing",
+            "id": "json_parameters_file",
+            "name": "json_parameters_file",
+            "optional": false,
+            "type": "File",
+            "value-key": "[JSON_PARAMETERS_FILE]"
+        },
+        {
+            "command-line-flag": "-skip-interim",
+            "description": "Skip saving interim results",
+            "id": "skip_interim",
+            "name": "skip_interim",
+            "optional": true,
+            "type": "Flag",
+            "value-key": "[SKIP_INTERIM]"
+        }
+      ],
+    "output-files" : [{
+        "id" : "output_dir",
+        "name" : "Output Directory",
+        "description" : "This is the directory where the overall outputs are to be stored.",
+        "path-template" : "[OUTPUT_DIR]",
+        "optional" : false
+    }],
+    "suggested-resources": {
+        "cpu-cores":4,
+        "ram": 30,
+        "walltime-estimate": 15000
+    },
+    "tags": {
+        "application-type": [
+            "bids"
+        ],
+        "domain": [
+            "neuroinformatics",
+            "eeg",
+            "developmental"
+        ]
+    },
+    "container-image": {
+        "type": "singularity",
+        "index": "docker://",
+        "image": "dcanumn/hbcd-made:1.0.9"
+    },
+    "custom": {
+        "cbrain:readonly-input-files": true,
+        "cbrain:author": "Erik Lee <leex6144@umn.edu>"
+    }
+}

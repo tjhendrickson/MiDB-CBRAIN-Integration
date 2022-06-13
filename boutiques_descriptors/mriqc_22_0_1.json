@@ -171,10 +171,6 @@
         "walltime-estimate": 8000
     },
     "custom": {
-        "cbrain:readonly-input-files": true,
-        "cbrain:author": "Erik Lee <leex6144@umn.edu>"
-    }
-    "custom": {
         "cbrain:readonly-input-files": true, 
         "cbrain:author": "Erik Lee <leex6144@umn.edu>",
         "cbrain:integrator_modules": {

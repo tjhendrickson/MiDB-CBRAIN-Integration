@@ -4,7 +4,7 @@
     "tool-version": "22.0.1",
     "schema-version": "0.5",
     "url": "https://mriqc.readthedocs.io/en/stable/",
-    "command-line": "mriqc [BIDS_DIR] [OUTPUT_DIR] participant [PARTICIPANT_LABEL] [SESSION_ID] [RUN_ID] [TASK_ID] [MODALITIES] [DRY_RUN] [NO_SUB] [N_CPUS] [MEM_GB] [FLOAT32] [ICA] [FD_THRESH]",
+    "command-line": "mriqc [SUBJECT_DIR] [OUTPUT_DIR] participant [PARTICIPANT_LABEL] [SESSION_ID] [RUN_ID] [TASK_ID] [MODALITIES] [DRY_RUN] [NO_SUB] [N_CPUS] [MEM_GB] [FLOAT32] [ICA] [FD_THRESH]",
     "container-image": {
         "image": "nipreps/mriqc:22.0.1",
         "index": "docker://",
@@ -12,12 +12,12 @@
     },
     "inputs": [
         {
-            "description": "The directory with the input dataset formatted according to the BIDS standard.",
-            "id": "bids_dir",
-            "name": "bids_dir",
+            "description": "Subject folder for BIDS (folders name should be sub-XXXXX).",
+            "id": "subject_dir",
+            "name": "subject_dir",
             "optional": false,
             "type": "File",
-            "value-key": "[BIDS_DIR]"
+            "value-key": "[SUBJECT_DIR]"
         },
         {
             "command-line-flag": "--participant-label",
@@ -174,4 +174,19 @@
         "cbrain:readonly-input-files": true,
         "cbrain:author": "Erik Lee <leex6144@umn.edu>"
     }
+    "custom": {
+        "cbrain:readonly-input-files": true, 
+        "cbrain:author": "Erik Lee <leex6144@umn.edu>",
+        "cbrain:integrator_modules": {
+            "BoutiquesFileTypeVerifier": {
+                "subject_dir": [ "BidsSubject" ],
+            },
+            "BoutiquesFileNameMatcher": {
+                "subject_dir": "^sub-[a-zA-Z0-9_]+$"
+            },
+            "BoutiquesOutputFileTypeSetter": {
+                "output_dir": "MRIQCOutput"
+            },
+            "BoutiquesBidsSingleSubjectMaker": "subject_dir"
+        }
 }

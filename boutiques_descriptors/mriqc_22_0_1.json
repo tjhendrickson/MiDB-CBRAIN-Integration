@@ -166,7 +166,7 @@
         "cbrain:author": "Erik Lee <leex6144@umn.edu>",
         "cbrain:integrator_modules": {
             "BoutiquesFileTypeVerifier": {
-                "subject_dir": [ "BidsSubject" ],
+                "subject_dir": [ "BidsSubject" ]
             },
             "BoutiquesFileNameMatcher": {
                 "subject_dir": "^sub-[a-zA-Z0-9_]+$"

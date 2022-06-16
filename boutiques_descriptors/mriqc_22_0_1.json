@@ -4,7 +4,7 @@
     "tool-version": "22.0.1",
     "schema-version": "0.5",
     "url": "https://mriqc.readthedocs.io/en/stable/",
-    "command-line": "mriqc [SUBJECT_DIR] [OUTPUT_DIR] participant [SESSION_ID] [RUN_ID] [TASK_ID] [MODALITIES] [DRY_RUN] [NO_SUB] [N_CPUS] [MEM_GB] [FLOAT32] [ICA] [FD_THRESH]",
+    "command-line": "mriqc [SUBJECT_DIR] [OUTPUT_DIR] participant --no-sub --n_cpus 1 [SESSION_ID] [RUN_ID] [TASK_ID] [MODALITIES] [DRY_RUN] [N_CPUS] [MEM_GB] [FLOAT32] [ICA] [FD_THRESH]",
     "container-image": {
         "image": "nipreps/mriqc:22.0.1",
         "index": "docker://",
@@ -18,6 +18,14 @@
             "optional": false,
             "type": "File",
             "value-key": "[SUBJECT_DIR]"
+        },
+        {
+            "description": "The name of the output for the outcomes of preprocessing and visual reports",
+            "id": "output_dir_name",
+            "name": "output_dir_name",
+            "optional": false,
+            "type": "String",
+            "value-key": "[OUTPUT_DIR]"
         },
         {
             "command-line-flag": "--session-id",
@@ -65,24 +73,6 @@
             "value-key": "[DRY_RUN]"
         },
         {
-            "command-line-flag": "--no-sub",
-            "id": "no_sub",
-            "name": "no_sub",
-            "description": "Turn off submission of anonymized quality metrics to MRIQC's metrics repository",
-            "optional": true,
-            "type": "Flag",
-            "value-key": "[NO_SUB]"
-        },
-        {
-            "command-line-flag": "--n_cpus",
-            "id": "n_cpus",
-            "name": "n_cpus",
-            "description": "number_of_threads",
-            "optional": true,
-            "type": "Number",
-            "value-key": "[N_CPUS]"
-        },
-        {
             "command-line-flag": "--mem_gb",
             "id": "mem_gb",
             "name": "mem_gb",
@@ -119,15 +109,13 @@
             "value-key": "[FD_THRESH]"
         }
     ],
-    "output-files": [
-        {
-            "id": "output_dir",
-            "name": "Output Directory",
-            "description": "This is the directory where the overall outputs are to be stored.",
-            "path-template": "[OUTPUT_DIR]",
-            "optional": false
-        }
-    ],
+    "output-files" : [{
+        "id" : "output_dir",
+        "name" : "Output Directory",
+        "description" : "This is the directory where the overall outputs are to be stored.",
+        "path-template" : "[OUTPUT_DIR]",
+        "optional" : false
+    }],
     "groups": [
         {
             "id": "non_standard_params",

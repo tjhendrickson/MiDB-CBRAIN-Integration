@@ -125,7 +125,6 @@
                 "ica",
                 "float32",
                 "mem_gb",
-                "n_cpus",
                 "dry_run",
                 "modalities",
                 "task_id",

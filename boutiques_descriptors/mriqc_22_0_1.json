@@ -14,7 +14,7 @@
         {
             "description": "Subject folder for BIDS (folders name should be sub-XXXXX).",
             "id": "subject_dir",
-            "name": "subject_dir",
+            "name": "Subject Directory",
             "optional": false,
             "type": "File",
             "value-key": "[SUBJECT_DIR]"
@@ -22,7 +22,7 @@
         {
             "description": "The name of the output for the outcomes of preprocessing and visual reports",
             "id": "output_dir_name",
-            "name": "output_dir_name",
+            "name": "Output Directory Name",
             "optional": false,
             "type": "String",
             "value-key": "[OUTPUT_DIR]"
@@ -30,7 +30,7 @@
         {
             "command-line-flag": "--session-id",
             "id": "session_id",
-            "name": "session_id",
+            "name": "Session ID",
             "description": "filter input dataset by session id",
             "optional": true,
             "type": "String",
@@ -39,7 +39,7 @@
         {
             "command-line-flag": "--run-id",
             "id": "run_id",
-            "name": "run_id",
+            "name": "Run ID",
             "description": "filter input dataset by run id (only integer run ids are valid)",
             "optional": true,
             "type": "Flag",
@@ -48,7 +48,7 @@
         {
             "command-line-flag": "--task-id",
             "id": "task_id",
-            "name": "task_id",
+            "name": "Task ID",
             "description": "filter input dataset by task id",
             "optional": true,
             "type": "String",
@@ -57,7 +57,7 @@
         {
             "command-line-flag": "--modalities",
             "id": "modalities",
-            "name": "modalities",
+            "name": "Modalities",
             "description": "filter input dataset by MRI type",
             "optional": true,
             "type": "String",
@@ -66,7 +66,7 @@
         {
             "command-line-flag": "--dry-run",
             "id": "dry_run",
-            "name": "dry_run",
+            "name": "Dry Run",
             "description": "Do not run the workflow.",
             "optional": true,
             "type": "Flag",
@@ -75,7 +75,7 @@
         {
             "command-line-flag": "--mem_gb",
             "id": "mem_gb",
-            "name": "mem_gb",
+            "name": "Memory (GB)",
             "description": "available total memory",
             "optional": true,
             "type": "Number",
@@ -84,7 +84,7 @@
         {
             "command-line-flag": "--float32",
             "id": "float32",
-            "name": "float32",
+            "name": "Cast to Float32",
             "description": "Cast the input data to float32 if it\u2019s represented in higher precision (saves space and improves perfomance)",
             "optional": true,
             "type": "Flag",
@@ -93,7 +93,7 @@
         {
             "command-line-flag": "--ica",
             "id": "ica",
-            "name": "ica",
+            "name": "Run ICA",
             "description": "Run ICA on the raw data and include the componentsin the individual reports (slow but potentially very insightful)",
             "optional": true,
             "type": "Flag",
@@ -102,7 +102,7 @@
         {
             "command-line-flag": "--fd_thresh",
             "id": "fd_thresh",
-            "name": "fd_thresh",
+            "name": "Framewise Displacement Threshold",
             "description": "motion threshold for framewise displacement computation",
             "optional": true,
             "type": "Number",

@@ -22,7 +22,7 @@
         {
             "description": "The name of the output for the outcomes of preprocessing and visual reports",
             "id": "output_dir_name",
-            "name": "Output Directory Name",
+            "name": "Output Directory",
             "optional": false,
             "type": "String",
             "value-key": "[OUTPUT_DIR]"

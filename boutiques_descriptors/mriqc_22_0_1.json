@@ -78,6 +78,8 @@
             "name": "Memory (GB)",
             "description": "available total memory",
             "optional": true,
+            "default-value": 7,
+            "maximum" 8,
             "type": "Number",
             "value-key": "[MEM_GB]"
         },
@@ -146,7 +148,7 @@
     "suggested-resources": {
         "cpu-cores": 1,
         "ram": 8,
-        "walltime-estimate": 8000
+        "walltime-estimate": 44000
     },
     "custom": {
         "cbrain:readonly-input-files": true, 

@@ -79,7 +79,7 @@
             "description": "available total memory",
             "optional": true,
             "default-value": 7,
-            "maximum" 8,
+            "maximum": 8,
             "type": "Number",
             "value-key": "[MEM_GB]"
         },

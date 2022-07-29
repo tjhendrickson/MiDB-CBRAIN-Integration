@@ -1,11 +1,11 @@
 {
-    "name": "MADE_EEG_Pipeline",
+    "name": "OSPREY",
     "schema-version": "0.5",
-    "tool-version": "1.1.2",
-    "author": "Child Development Lab, University of Maryland",
-    "url": "https://github.com/ChildDevLab/MADE-EEG-preprocessing-pipeline",
-    "command-line": "run.py [SubjectDirectory] [OutputDirectoryName] participant [JSONSettings] [ParticipantLabel] [SessionLabel] [FileExtension] [SkipInterim]",
-    "description": "The Maryland Analysis of Developmental EEG (MADE) Pipeline is an EEG pipeline that (in this form) takes a BIDS-EEG directory structure with '*.set' files as input.",
+    "tool-version": "1.1",
+    "author": "Georg Oeltzschner, Helge J. Zöllner, Richard A. E. Edden",
+    "url": "https://github.com/schorschinho/osprey",
+    "command-line": "run.py [SubjectDirectory] [OutputDirectoryName] participant [JSONSettings] [ParticipantLabel] [SessionLabel] [SegmentationDirectory]",
+    "description": "Osprey is an all-in-one software suite for state-of-the art processing and quantitative analysis of in-vivo magnetic resonance spectroscopy (MRS) data.",
     "inputs": [
       {
             "description": "The study-wide BIDS directory. In CBRAIN this is also referred to as the subject directory since a new BIDS dir will be made for the selected subject prior to processing.",
@@ -50,35 +50,26 @@
           "value-key": "[SessionLabel]"
       },
       {
-          "command-line-flag": "-ext",
-          "description": "The type of eeg to file to be processed (only .set for now)",
-          "id": "FileExtension",
-          "name": "File Extension",
+          "command-line-flag": "--segmentation-dir",
+          "description": "Path to study-wide directory containing pre-computed native space *_space-orig_desc-aseg_dseg.nii.gz segmentations (i.e. /SegmentationDirectory/sub*/ses*/anat/*_space-orig_desc-aseg_dseg.nii.gz)",
+          "id": "SegmentationDirectory",
+          "name": "Segmentation Directory",
           "optional": true,
-          "type": "String",
-          "value-key": "[FileExtension]"
-      },
-      {
-          "command-line-flag": "-skip-interim",
-          "description": "Dont save interim results",
-          "id": "SkipInterim",
-          "name": "Skip Interim",
-          "optional": true,
-          "type": "Flag",
-          "value-key": "[SkipInterim]"
+          "type": "File",
+          "value-key": "[SegmentationDirectory]"
       }
-      ],
+  ],
     "output-files" : [{
-          "id" : "OutputDirectory",
-          "name" : "Output Directory",
-          "description" : "This is the directory where the overall outputs are to be stored.",
-          "path-template" : "[OutputDirectory]",
-          "optional" : false
-      }],
+        "id" : "OutputDirectory",
+        "name" : "Output Directory",
+        "description": "The output directory to store outcomes of preprocessing and reports",
+        "path-template" : "[OutputDirectory]",
+        "optional" : false
+    }],
     "suggested-resources": {
         "cpu-cores":1,
-        "ram": 12,
-        "walltime-estimate": 25000
+        "ram": 6,
+        "walltime-estimate": 35000
     },
     "tags": {
         "application-type": [
@@ -86,14 +77,14 @@
         ],
         "domain": [
             "neuroinformatics",
-            "eeg",
-            "developmental"
+            "mrs",
+            "spectroscopy"
         ]
     },
     "container-image": {
         "type": "singularity",
         "index": "docker://",
-        "image": "dcanumn/hbcd-made:1.1.2-1"
+        "image": "dcanumn/osprey:1.1-2"
     },
     "custom": {
         "cbrain:readonly-input-files": true,
@@ -106,7 +97,7 @@
                 "SubjectDirectory": "^sub-[a-zA-Z0-9_]+$"
             },
             "BoutiquesOutputFileTypeSetter": {
-                "OutputDirectory": "MADEOutput"
+                "OutputDirectory": "OSPREYOutput"
             },
             "BoutiquesBidsSingleSubjectMaker": "SubjectDirectory"
         }

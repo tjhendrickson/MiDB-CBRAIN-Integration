@@ -8,7 +8,7 @@
     "description": "Osprey is an all-in-one software suite for state-of-the art processing and quantitative analysis of in-vivo magnetic resonance spectroscopy (MRS) data.",
     "inputs": [
       {
-            "description": "The study-wide BIDS directory. In CBRAIN this is also referred to as the subject directory since a new BIDS dir will be made for the selected subject prior to processing.",
+            "description": "The study-wide BIDS directory. In CBRAIN this is also referred to (and used) as the subject directory since a new BIDS dir will be made for the selected subject prior to processing.",
             "id": "SubjectDirectory",
             "name": "Subject Directory",
             "optional": false,

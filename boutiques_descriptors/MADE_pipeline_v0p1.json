@@ -8,7 +8,7 @@
     "description": "The Maryland Analysis of Developmental EEG (MADE) Pipeline is an EEG pipeline that (in this form) takes a BIDS-EEG directory structure with '*.set' files as input.",
     "inputs": [
       {
-            "description": "The study-wide BIDS directory. In CBRAIN this is also referred to as the subject directory since a new BIDS dir will be made for the selected subject prior to processing.",
+            "description": "The study-wide BIDS directory. In CBRAIN this is also referred to (and used) as the subject directory since a new BIDS dir will be made for the selected subject prior to processing.",
             "id": "SubjectDirectory",
             "name": "Subject Directory",
             "optional": false,

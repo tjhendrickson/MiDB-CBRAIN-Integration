@@ -1,8 +1,8 @@
 {
     "name": "OSPREY",
     "schema-version": "0.5",
-    "tool-version": "1.1",
-    "author": "Georg Oeltzschner, Helge J. Zöllner, Richard A. E. Edden",
+    "tool-version": "1.1-5",
+    "author": "Georg Oeltzschner, Helge J. Zöllner, Richard A. E. Edden, Erik G. Lee",
     "url": "https://github.com/schorschinho/osprey",
     "command-line": "osprey [SubjectDirectory] [OutputDirectoryName] participant [JSONSettings] [ParticipantLabel] [SessionLabel] [CabinetOutput]/precomputed",
     "description": "Osprey is an all-in-one software suite for state-of-the art processing and quantitative analysis of in-vivo magnetic resonance spectroscopy (MRS) data.",

@@ -4,7 +4,7 @@
     "tool-version": "1.1",
     "author": "Georg Oeltzschner, Helge J. Zöllner, Richard A. E. Edden",
     "url": "https://github.com/schorschinho/osprey",
-    "command-line": "/code/run.py [SubjectDirectory] [OutputDirectoryName] participant [JSONSettings] [ParticipantLabel] [SessionLabel] [SegmentationDirectory]/precomputed",
+    "command-line": "osprey [SubjectDirectory] [OutputDirectoryName] participant [JSONSettings] [ParticipantLabel] [SessionLabel] [CabinetOutput]/precomputed",
     "description": "Osprey is an all-in-one software suite for state-of-the art processing and quantitative analysis of in-vivo magnetic resonance spectroscopy (MRS) data.",
     "inputs": [
       {
@@ -51,12 +51,12 @@
       },
       {
           "command-line-flag": "--segmentation-dir",
-          "description": "Path to study-wide directory containing pre-computed native space *_space-orig_desc-aseg_dseg.nii.gz segmentations (i.e. /SegmentationDirectory/sub*/ses*/anat/*_space-orig_desc-aseg_dseg.nii.gz)",
-          "id": "SegmentationDirectory",
-          "name": "Segmentation Directory",
+          "description": "CABINET segmentation output for the subject being processed. The pipeline will look for CabinetOutput/precomputed/sub*/ses*/anat/*_space-orig_desc-aseg_dseg.nii.gz)",
+          "id": "CabinetOutput",
+          "name": "CABINET Output",
           "optional": true,
           "type": "File",
-          "value-key": "[SegmentationDirectory]"
+          "value-key": "[CabinetOutput]"
       }
   ],
     "output-files" : [{

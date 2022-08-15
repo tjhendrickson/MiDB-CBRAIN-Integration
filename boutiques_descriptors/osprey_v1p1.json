@@ -51,7 +51,7 @@
       },
       {
           "command-line-flag": "--segmentation-dir",
-          "description": "CABINET segmentation output for the subject being processed. The pipeline will look for CabinetOutput/precomputed/sub*/ses*/anat/*_space-orig_desc-aseg_dseg.nii.gz)",
+          "description": "CABINET output for the subject being processed. The pipeline will look for CabinetOutput/precomputed/sub*/ses*/anat/*_space-orig_desc-aseg_dseg.nii.gz)",
           "id": "CabinetOutput",
           "name": "CABINET Output",
           "optional": true,

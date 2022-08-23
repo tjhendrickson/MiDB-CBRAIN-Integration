@@ -705,7 +705,7 @@
             "BoutiquesForcedOutputBrowsePath" : {
               "nibabies_output_dir": "nibabies",
               "nibabies_html_report": "nibabies",
-              "infant_freesurfer_output_dir": "infant_freesurfer"
+              "infant_freesurfer_output_dir": "infant-freesurfer"
             },
             "BoutiquesBidsSingleSubjectMaker": "subject_dir"
         }

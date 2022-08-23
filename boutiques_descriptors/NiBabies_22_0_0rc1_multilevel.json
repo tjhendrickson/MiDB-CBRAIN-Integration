@@ -702,13 +702,9 @@
             "BoutiquesOutputFileTypeSetter": {
                 "output_dir": "NibabiesOutput"
             },
-            "BoutiquesMultiLevelPathOutput" : {
-              "nibabies_output_dir": "nibabies"
-            },
-            "BoutiquesMultiLevelPathOutput" : {
-              "nibabies_html_report": "nibabies"
-            },
-            "BoutiquesMultiLevelPathOutput" : {
+            "BoutiquesForcedOutputBrowsePath" : {
+              "nibabies_output_dir": "nibabies",
+              "nibabies_html_report": "nibabies",
               "infant_freesurfer_output_dir": "infant_freesurfer"
             },
             "BoutiquesBidsSingleSubjectMaker": "subject_dir"

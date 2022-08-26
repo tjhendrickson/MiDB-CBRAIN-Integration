@@ -701,7 +701,13 @@
             },
             "BoutiquesFreesurferLicenseFinder": "fs_license_file",
             "BoutiquesOutputFileTypeSetter": {
-                "output_dir": "NibabiesOutput"
+                "nibabies_output_dir":  "NibabiesOutput",
+                "nibabies_html_report": "NibabiesOutput"
+            },
+            "BoutiquesOutputFilenameRenamer": {
+                "nibabies_output_dir": ["subject_dir", "output_dir_name"],
+                "nibabies_html_report": ["subject_dir", "output_dir_name"],
+                "infant_freesurfer_output_dir": ["subject_dir", "output_dir_name"]
             },
             "BoutiquesForcedOutputBrowsePath" : {
               "nibabies_output_dir": "nibabies",

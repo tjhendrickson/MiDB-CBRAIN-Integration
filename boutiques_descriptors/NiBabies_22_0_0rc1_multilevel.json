@@ -247,9 +247,10 @@
             "command-line-flag": "--ignore",
             "id": "ignore",
             "name": "ignore",
-            "description": "Ignore selected aspects of the input dataset to disable corresponding parts of the workflow (a space delimited list).",
+            "description": "Ignore selected aspects of the input dataset to disable corresponding parts of the workflow. This will show up on the command line as a space delimited list.",
             "optional": true,
             "type": "String",
+            "list": true,
             "value-key": "[IGNORE]",
             "value-choices": [
                 "fieldmaps",

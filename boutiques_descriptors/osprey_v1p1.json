@@ -4,7 +4,7 @@
     "tool-version": "1.1-5",
     "author": "Georg Oeltzschner, Helge J. Zöllner, Richard A. E. Edden, Erik G. Lee",
     "url": "https://github.com/schorschinho/osprey",
-    "command-line": "osprey [SubjectDirectory] [OutputDirectoryName] participant [JSONSettings] [ParticipantLabel] [SessionLabel] [CabinetInput]/precomputed",
+    "command-line": "osprey [SubjectDirectory] [OSPREYOutputDirectoryName] participant [JSONSettings] [ParticipantLabel] [SessionLabel] [CabinetInput]/precomputed",
     "description": "Osprey is an all-in-one software suite for state-of-the art processing and quantitative analysis of in-vivo magnetic resonance spectroscopy (MRS) data.",
     "inputs": [
       {
@@ -17,11 +17,11 @@
       },
       {
           "description": "The name of the output directory to store outcomes of preprocessing and reports",
-          "id": "OutputDirectoryName",
-          "name": "Output Directory",
+          "id": "OSPREYOutputDirectoryName",
+          "name": "OSPREY Output Directory",
           "optional": false,
           "type": "String",
-          "value-key": "[OutputDirectoryName]"
+          "value-key": "[OSPREYOutputDirectoryName]"
       },
       {
           "description": "The json file with settings to configure processing",
@@ -63,7 +63,7 @@
         "id" : "OutputDirectory",
         "name" : "Output Directory",
         "description": "The output directory to store outcomes of preprocessing and reports",
-        "path-template" : "[OutputDirectory]",
+        "path-template" : "[OSPREYOutputDirectory]/[SubjectDirectory]",
         "optional" : false
     }],
     "suggested-resources": {
@@ -98,6 +98,9 @@
             },
             "BoutiquesOutputFileTypeSetter": {
                 "OutputDirectory": "OSPREYOutput"
+            },
+            "BoutiquesForcedOutputBrowsePath" : {
+              "OutputDirectory": "osprey"
             },
             "BoutiquesBidsSingleSubjectMaker": "SubjectDirectory"
         }

@@ -4,48 +4,97 @@
     "tool-version": "1.5",
     "author": "DCAN Lab, University of Minnesota",
     "url": "https://github.com/DCAN-Labs/CABINET",
-    "command-line": "run.py [BIDS_DIR] [OUTPUT_DIR] participant [SUB_ID] [SES_ID] [PARAMETER_JSON] [AGE_MONTHS] [VERBOSE] [START_KEY] [END_KEY]",
+    "command-line": "/home/cabinet/run.py [SUBJECT_DIR] [CABINET_OUTPUT_DIR] participant -end postbibsnet -jargs /home/cabinet/parameter-file-container.json [PARTICIPANT_LABEL] [AGE_MONTHS] [BRAIN_Z_SIZE] [SES_LABEL] [VERBOSE]",
     "description": "An automated segmentation pipeline for generating freesurfer style aseg volumes on infant/neonatal T1 and T2 weighted MRIs.",
     "inputs": [
         {
-            "description": "The BIDS directory (which contains all subjects in your dataset).",
-            "id": "bids_dir",
-            "name": "bids_dir",
+            "description": "The study-wide BIDS directory. In CBRAIN this is also referred to (and used) as the subject directory since a new BIDS dir will be made for the selected subject prior to processing.",
+            "id": "subject_dir",
+            "name": "subject_dir",
             "optional": false,
             "type": "File",
-            "value-key": "[BIDS_DIR]"
+            "value-key": "[SUBJECT_DIR]"
         },
         {
-            "description": "select a specific subject to be processed",
+            "description": "The CABINET output directory where all child-pipeline derivatives folders will be stored.",
+            "id": "CABINET_OUTPUT_DIR",
+            "name": "CABINET_OUTPUT_DIR",
+            "optional": false,
+            "type": "File",
+            "value-key": "[CABINET_OUTPUT_DIR]"
+        },
+        {
+           "command-line-flag": "-participant",
+            "description": "Subject ID without the sub- prefix (i.e. for sub-01 should be 01)",
             "id": "sub_id",
             "name": "sub_id",
-            "optional": false,
-            "type": "String",
-            "value-key": "[SUB_ID]"
-        },
-        {
-            "command-line-flag": "-ss",
-            "description": "select a specific session to be processed",
-            "id": "ses_id",
-            "name": "ses_id",
             "optional": true,
             "type": "String",
-            "value-key": "[SES_ID]"
+            "value-key": "[PARTICIPANT_LABEL]"
         },
         {
-            "description": "The json file with settings to configure processing",
-            "id": "json_parameters_file",
-            "name": "json_parameters_file",
-            "optional": false,
-            "type": "File",
-            "value-key": "[JSON_PARAMETERS_FILE]"
+           "command-line-flag": "-age",
+            "description": "Integer representing participant's age in months. Include this unless age in months is specified in participants.tsv file.",
+            "id": "age_months",
+            "name": "age months",
+            "optional": true,
+            "type": "String",
+            "value-key": "[AGE_MONTHS]"
+        },
+        {
+           "command-line-flag": "--brain-z-size",
+            "description": "Include this flag to infer participants' brain height (z) using the participants.tsv brain_z_size column. Otherwise, CABINET will estimate the brain height from the participant age and averages of a large sample of infant brain heights.",
+            "id": "brain_z_size",
+            "name": "brain z size",
+            "optional": true,
+            "type": "Flag",
+            "value-key": "[BRAIN_Z_SIZE]"
+        },
+        {
+           "command-line-flag": "-ses",
+            "description": "Session label without ses-* prefix.",
+            "id": "session_label",
+            "name": "session label",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SES_LABEL]"
+        },
+        {
+           "command-line-flag": "--verbose",
+            "description": "Print out extra details during processing.",
+            "id": "verbose",
+            "name": "verbose",
+            "optional": true,
+            "type": "Flag",
+            "value-key": "[VERBOSE]"
         }
       ],
     "output-files" : [{
-        "id" : "output_dir",
-        "name" : "Output Directory",
-        "description" : "This is the directory where the overall outputs are to be stored.",
-        "path-template" : "[OUTPUT_DIR]",
+        "id" : "prebibsnet_output_dir",
+        "name" : "Prebibsnet Output Directory",
+        "description" : "Subject output folder for prebibsnet",
+        "path-template" : "[CABINET_OUTPUT_DIR]/prebibsnet/[SUBJECT_DIR]",
+        "optional" : false
+    },
+    {
+        "id" : "bibsnet_output_dir",
+        "name" : "BIBSNET Output Directory",
+        "description" : "Subject output folder for bibsnet",
+        "path-template" : "[CABINET_OUTPUT_DIR]/bibsnet/[SUBJECT_DIR]",
+        "optional" : false
+    },
+    {
+        "id" : "postbibsnet_output_dir",
+        "name" : "Postbibsnet Output Directory",
+        "description" : "Subject output folder for postbibsnet",
+        "path-template" : "[CABINET_OUTPUT_DIR]/postbibsnet/[SUBJECT_DIR]",
+        "optional" : false
+    },
+    {
+        "id" : "precomputed_output_dir",
+        "name" : "Precomputed Output Directory",
+        "description" : "Subject output folder for precomputed",
+        "path-template" : "[CABINET_OUTPUT_DIR]/precomputed/[SUBJECT_DIR]",
         "optional" : false
     }],
     "suggested-resources": {
@@ -66,7 +115,7 @@
     "container-image": {
         "type": "singularity",
         "index": "docker://",
-        "image": "dcanumn/osprey:1.1"
+        "image": "dcanumn/cabinet:stable"
     },
     "custom": {
         "cbrain:readonly-input-files": true,
@@ -79,9 +128,15 @@
                 "subject_dir": "^sub-[a-zA-Z0-9_]+$"
             },
             "BoutiquesOutputFileTypeSetter": {
-                "output_dir": "OSPREYOutput"
+                "output_dir": "CABINETOutput"
             },
-            "BoutiquesBidsSingleSubjectMaker": "subject_dir"
+            "BoutiquesBidsSingleSubjectMaker": "subject_dir",
+            "BoutiquesForcedOutputBrowsePath" : {
+              "prebibsnet_output_dir": "prebibsnet",
+              "bibsnet_output_dir": "bibsnet",
+              "postbibsnet_output_dir": "postbibsnet",
+              "precomputed_output_dir": "precomputed"
+            }
         }
     }
 }

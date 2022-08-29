@@ -4,7 +4,7 @@
     "tool-version": "22.0.1",
     "schema-version": "0.5",
     "url": "https://mriqc.readthedocs.io/en/stable/",
-    "command-line": "mriqc [SUBJECT_DIR] [OUTPUT_DIR] participant --no-sub --n_cpus 1 [SESSION_ID] [RUN_ID] [TASK_ID] [MODALITIES] [DRY_RUN] [MEM_GB] [FLOAT32] [ICA] [FD_THRESH]",
+    "command-line": "mriqc [SUBJECT_DIR] [MRIQC_OUTPUT_DIR] participant --no-sub --n_cpus 1 [SESSION_ID] [RUN_ID] [TASK_ID] [MODALITIES] [DRY_RUN] [MEM_GB] [FLOAT32] [ICA] [FD_THRESH]",
     "container-image": {
         "image": "nipreps/mriqc:22.0.1",
         "index": "docker://",
@@ -21,11 +21,11 @@
         },
         {
             "description": "The name of the output for the outcomes of preprocessing and visual reports",
-            "id": "output_dir_name",
-            "name": "Output Directory",
+            "id": "mriqc_output_dir",
+            "name": "MRIQC Output Directory",
             "optional": false,
             "type": "String",
-            "value-key": "[OUTPUT_DIR]"
+            "value-key": "[MRIQC_OUTPUT_DIR]"
         },
         {
             "command-line-flag": "--session-id",
@@ -114,8 +114,8 @@
     "output-files" : [{
         "id" : "output_dir",
         "name" : "Output Directory",
-        "description" : "This is the directory where the overall outputs are to be stored.",
-        "path-template" : "[OUTPUT_DIR]",
+        "description" : "This is the output containing the subject directory and html reports.",
+        "path-template" : "[MRIQC_OUTPUT_DIR]/[SUBJECT_DIR]*",
         "optional" : false
     }],
     "groups": [
@@ -151,7 +151,7 @@
         "walltime-estimate": 44000
     },
     "custom": {
-        "cbrain:readonly-input-files": true, 
+        "cbrain:readonly-input-files": true,
         "cbrain:author": "Erik Lee <leex6144@umn.edu>",
         "cbrain:integrator_modules": {
             "BoutiquesFileTypeVerifier": {
@@ -162,6 +162,9 @@
             },
             "BoutiquesOutputFileTypeSetter": {
                 "output_dir": "MRIQCOutput"
+            },
+            "BoutiquesForcedOutputBrowsePath" : {
+              "output_dir": "mriqc"
             },
             "BoutiquesBidsSingleSubjectMaker": "subject_dir"
         }

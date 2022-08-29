@@ -72,7 +72,7 @@
           "id" : "OutputDirectory",
           "name" : "Output Directory",
           "description" : "This is the directory where the overall outputs are to be stored.",
-          "path-template" : "[MADEOutputDirectory]/[SubjectDirectory]",
+          "path-template" : "[MADEOutputDirectoryName]/[SubjectDirectory]",
           "optional" : false
       }],
     "suggested-resources": {
@@ -107,6 +107,9 @@
             },
             "BoutiquesOutputFileTypeSetter": {
                 "OutputDirectory": "MADEOutput"
+            },
+            "BoutiquesForcedOutputBrowsePath" : {
+              "OutputDirectory": "made"
             },
             "BoutiquesBidsSingleSubjectMaker": "SubjectDirectory"
         }

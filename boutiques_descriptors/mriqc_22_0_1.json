@@ -153,6 +153,7 @@
     "custom": {
         "cbrain:readonly-input-files": true,
         "cbrain:author": "Erik Lee <leex6144@umn.edu>",
+        "cbrain:no-run-id-for-outputs": [ "output_dir"],
         "cbrain:integrator_modules": {
             "BoutiquesFileTypeVerifier": {
                 "subject_dir": [ "BidsSubject" ]

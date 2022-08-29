@@ -691,6 +691,7 @@
     "custom": {
         "cbrain:readonly-input-files": true,
         "cbrain:author": "Erik Lee <leex6144@umn.edu>, Timothy Hendrickson <hendr522@umn.edu> and Natacha Beck <natacha.beck@mcgill.ca>",
+        "cbrain:no-run-id-for-outputs": [ "nibabies_output_dir", "nibabies_html_report", "infant_freesurfer_output_dir"],
         "cbrain:integrator_modules": {
             "BoutiquesFileTypeVerifier": {
                 "subject_dir": [ "BidsSubject" ],
@@ -701,7 +702,9 @@
             },
             "BoutiquesFreesurferLicenseFinder": "fs_license_file",
             "BoutiquesOutputFileTypeSetter": {
-                "output_dir": "NibabiesOutput"
+                "nibabies_output_dir":  "NibabiesOutput",
+                "nibabies_html_report": "TextFile",
+                "infant_freesurfer_output_dir": "NibabiesOutput"
             },
             "BoutiquesForcedOutputBrowsePath" : {
               "nibabies_output_dir": "nibabies",

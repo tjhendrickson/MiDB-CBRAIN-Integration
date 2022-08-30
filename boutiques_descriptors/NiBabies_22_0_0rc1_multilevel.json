@@ -704,7 +704,7 @@
             "BoutiquesOutputFileTypeSetter": {
                 "nibabies_output_dir":  "NibabiesOutput",
                 "nibabies_html_report": "TextFile",
-                "infant_freesurfer_output_dir": "NibabiesOutput"
+                "infant_freesurfer_output_dir": "NibabiesInfantFreesurferOutput"
             },
             "BoutiquesForcedOutputBrowsePath" : {
               "nibabies_output_dir": "nibabies",

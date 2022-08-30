@@ -693,6 +693,7 @@
         "cbrain:author": "Erik Lee <leex6144@umn.edu>, Timothy Hendrickson <hendr522@umn.edu> and Natacha Beck <natacha.beck@mcgill.ca>",
         "cbrain:no-run-id-for-outputs": [ "nibabies_output_dir", "nibabies_html_report", "infant_freesurfer_output_dir"],
         "cbrain:integrator_modules": {
+            "BoutiquesAllowedExitCodes": [ 0, 1 ],
             "BoutiquesFileTypeVerifier": {
                 "subject_dir": [ "BidsSubject" ],
                 "fs_license_file": [ "FreesurferLicense", "TextFile", "SingleFile" ]

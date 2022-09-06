@@ -20,7 +20,7 @@
             "id": "CABINET_OUTPUT_DIR",
             "name": "CABINET_OUTPUT_DIR",
             "optional": false,
-            "type": "File",
+            "type": "String",
             "value-key": "[CABINET_OUTPUT_DIR]"
         },
         {

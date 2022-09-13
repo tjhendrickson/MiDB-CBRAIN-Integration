@@ -93,7 +93,7 @@
     "container-image": {
         "type": "singularity",
         "index": "docker://",
-        "image": "dcanumn/hbcd-made:1.1.2-1"
+        "image": "dcanumn/hbcd-made:1.1.3"
     },
     "custom": {
         "cbrain:readonly-input-files": true,

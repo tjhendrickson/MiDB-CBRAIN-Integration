@@ -77,7 +77,7 @@
       }],
     "suggested-resources": {
         "cpu-cores":1,
-        "ram": 12,
+        "ram": 24,
         "walltime-estimate": 25000
     },
     "tags": {

@@ -110,7 +110,7 @@
                 "OutputDirectory": "MADEOutput"
             },
             "BoutiquesForcedOutputBrowsePath" : {
-              "OutputDirectory": "made"
+              "OutputDirectory": "derivatives/made"
             },
             "BoutiquesBidsSingleSubjectMaker": "SubjectDirectory"
         }

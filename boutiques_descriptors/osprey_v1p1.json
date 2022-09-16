@@ -16,7 +16,7 @@
             "value-key": "[SubjectDirectory]"
       },
       {
-          "description": "The name of the output directory to store outcomes of preprocessing and reports",
+          "description": "The name of the output directory to store outcomes of preprocessing and reports. When processing is ran via CBRAIN only subject-specific files/folders will be saved, so the naming of the output folder will not influence the final naming/destination of files/folders.",
           "id": "OSPREYOutputDirectoryName",
           "name": "OSPREY Output Directory",
           "optional": false,

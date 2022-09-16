@@ -20,7 +20,7 @@
             "value-key": "[SUBJECT_DIR]"
         },
         {
-            "description": "The name of the output for the outcomes of preprocessing and visual reports",
+            "description": "The name of the output for the outcomes of preprocessing and visual reports. When processing is ran via CBRAIN only subject-specific files/folders will be saved, so the naming of the output folder will not influence the final naming/destination of files/folders.",
             "id": "mriqc_output_dir",
             "name": "MRIQC Output Directory",
             "optional": false,

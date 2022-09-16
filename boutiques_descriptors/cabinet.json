@@ -16,7 +16,7 @@
             "value-key": "[SUBJECT_DIR]"
         },
         {
-            "description": "The CABINET output directory where all child-pipeline derivatives folders will be stored.",
+            "description": "The CABINET output directory where all child-pipeline derivatives folders will be stored. When processing is ran via CBRAIN only subject-specific files/folders will be saved, so the naming of the output folder will not influence the final naming/destination of files/folders.",
             "id": "CABINET_OUTPUT_DIR",
             "name": "CABINET_OUTPUT_DIR",
             "optional": false,

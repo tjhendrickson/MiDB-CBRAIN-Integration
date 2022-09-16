@@ -128,10 +128,10 @@
             },
             "BoutiquesBidsSingleSubjectMaker": "subject_dir",
             "BoutiquesForcedOutputBrowsePath" : {
-              "prebibsnet_output_dir": "prebibsnet",
-              "bibsnet_output_dir": "bibsnet",
-              "postbibsnet_output_dir": "postbibsnet",
-              "precomputed_output_dir": "precomputed"
+              "prebibsnet_output_dir": "derivatives/prebibsnet",
+              "bibsnet_output_dir": "derivatives/bibsnet",
+              "postbibsnet_output_dir": "derivatives/postbibsnet",
+              "precomputed_output_dir": "derivatives/precomputed"
             }
         }
     }

@@ -68,8 +68,8 @@
     }],
     "suggested-resources": {
         "cpu-cores":1,
-        "ram": 6,
-        "walltime-estimate": 35000
+        "ram": 12,
+        "walltime-estimate": 25000
     },
     "tags": {
         "application-type": [
@@ -84,7 +84,7 @@
     "container-image": {
         "type": "singularity",
         "index": "docker://",
-        "image": "dcanumn/osprey:1.1-2"
+        "image": "dcanumn/osprey:1.1-5"
     },
     "custom": {
         "cbrain:readonly-input-files": true,
@@ -101,7 +101,7 @@
                 "OutputDirectory": "OSPREYOutput"
             },
             "BoutiquesForcedOutputBrowsePath" : {
-              "OutputDirectory": "osprey"
+              "OutputDirectory": "derivatives/osprey"
             },
             "BoutiquesBidsSingleSubjectMaker": "SubjectDirectory"
         }

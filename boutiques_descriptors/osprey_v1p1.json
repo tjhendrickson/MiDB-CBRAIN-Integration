@@ -63,7 +63,7 @@
         "id" : "OutputDirectory",
         "name" : "Output Directory",
         "description": "The output directory to store outcomes of preprocessing and reports",
-        "path-template" : "[OSPREYOutputDirectory]/[SubjectDirectory]",
+        "path-template" : "[OSPREYOutputDirectoryName]/[SubjectDirectory]",
         "optional" : false
     }],
     "suggested-resources": {

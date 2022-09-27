@@ -4,7 +4,7 @@
     "tool-version": "1.1-5",
     "author": "Georg Oeltzschner, Helge J. Zöllner, Richard A. E. Edden, Erik G. Lee",
     "url": "https://github.com/schorschinho/osprey",
-    "command-line": "true [SubjectDirectory] ; rm -f CbrainBidsSingleSubject/[SubjectDirectory] ; cp -p -R [SubjectDirectory] CbrainBidsSingleSubject/[SubjectDirectory] ; osprey CbrainBidsSingleSubject [OSPREYOutputDirectoryName] participant [JSONSettings] [ParticipantLabel] [SessionLabel] [CabinetOutput]",
+    "command-line": "true [SubjectDirectory] ; rm -f CbrainBidsSingleSubject/[SubjectDirectory] ; cp -p -R -L [SubjectDirectory] CbrainBidsSingleSubject/[SubjectDirectory] ; osprey CbrainBidsSingleSubject [OSPREYOutputDirectoryName] participant [JSONSettings] [ParticipantLabel] [SessionLabel] [CabinetOutput]",
     "description": "Osprey is an all-in-one software suite for state-of-the art processing and quantitative analysis of in-vivo magnetic resonance spectroscopy (MRS) data.",
     "inputs": [
       {

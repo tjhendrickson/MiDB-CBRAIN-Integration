@@ -140,7 +140,7 @@
             "age_months",
             "segmentation_atlases_dir",
             "fd_radius",
-            "derivatives",
+            "cabinet_output",
             "deriv_filter_file"
          ],
         "name": "NiBabies options"

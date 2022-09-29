@@ -1,12 +1,12 @@
 {
     "name": "nibabies",
     "description": "NiBabies: Preprocessing workflows for infants",
-    "tool-version": "22.0.0rc1",
+    "tool-version": "22.1.2",
     "schema-version": "0.5",
     "url": "https://nibabies.readthedocs.io/",
-    "command-line": "nibabies [SUBJECT_DIR] [OUTPUT_DIR] participant --skip_bids_validation --output-layout legacy [TASK_ID] [ECHO_IDX] [ANAT_DERIVATIVES_PATH] --nthreads 1 --omp-nthreads 1 --mem_mb 8192 [USE_PLUGIN] [ANAT_ONLY] [BOILERPLATE_ONLY] [MD_ONLY_BOILERPLATE] [ERROR_ON_AROMA_WARNINGS] [VERBOSE] [IGNORE] [LONGITUDINAL] [OUTPUT_SPACES] [ME_OUTPUT_ECHOS] [BOLD2T1W_INIT] [BOLD2T1W_DOF] [FORCE_BBR] [FORCE_NO_BBR] [MEDIAL_SURFACE_NAN] [SLICE_TIME_REF] [DUMMY_SCANS] [RANDOM_SEED] [USE_AROMA] [AROMA_MELODIC_DIMENSIONALITY] [RETURN_ALL_COMPONENTS] [FD_SPIKE_THRESHOLD] [DVARS_SPIKE_THRESHOLD] [SKULL_STRIP_TEMPLATE] [SKULL_STRIP_FIXED_SEED] [SKULL_STRIP_T1W] [FMAP_BSPLINE] [FMAP_NO_DEMEAN] [USE_SYN_SDC] [FORCE_SYN] [FS_LICENSE_FILE] [NO_SUBMM_RECON] [CIFTI_OUTPUT] [FS_NO_RECONALL] --work-dir work [RESOURCE_MONITOR] [REPORTS_ONLY] [CONFIG_FILE] [WRITE_GRAPH] [STOP_ON_FIRST_CRASH] [NOTRACK] [DEBUG] [SLOPPY] [AGE_MONTHS] [SEGMENTATION_ATLASES_DIR] [FD_RADIUS] [DERIVATIVES] [DERIV_FILTER_FILE]",
+    "command-line": "nibabies [SUBJECT_DIR] [OUTPUT_DIR] participant --skip_bids_validation --output-layout legacy [TASK_ID] [ECHO_IDX] [ANAT_DERIVATIVES_PATH] --nthreads 1 --omp-nthreads 1 --mem_mb 8192 [USE_PLUGIN] [ANAT_ONLY] [BOILERPLATE_ONLY] [MD_ONLY_BOILERPLATE] [ERROR_ON_AROMA_WARNINGS] [VERBOSE] [IGNORE] [LONGITUDINAL] [OUTPUT_SPACES] [ME_OUTPUT_ECHOS] [BOLD2T1W_INIT] [BOLD2T1W_DOF] [FORCE_BBR] [FORCE_NO_BBR] [MEDIAL_SURFACE_NAN] [SLICE_TIME_REF] [DUMMY_SCANS] [RANDOM_SEED] [USE_AROMA] [AROMA_MELODIC_DIMENSIONALITY] [RETURN_ALL_COMPONENTS] [FD_SPIKE_THRESHOLD] [DVARS_SPIKE_THRESHOLD] [SKULL_STRIP_TEMPLATE] [SKULL_STRIP_FIXED_SEED] [SKULL_STRIP_T1W] [FMAP_BSPLINE] [FMAP_NO_DEMEAN] [USE_SYN_SDC] [FORCE_SYN] [FS_LICENSE_FILE] [NO_SUBMM_RECON] [CIFTI_OUTPUT] [FS_NO_RECONALL] --work-dir work [RESOURCE_MONITOR] [REPORTS_ONLY] [CONFIG_FILE] [WRITE_GRAPH] [STOP_ON_FIRST_CRASH] [NOTRACK] [DEBUG] [SLOPPY] [AGE_MONTHS] [SEGMENTATION_ATLASES_DIR] [FD_RADIUS] [CABINET_OUTPUT] [DERIV_FILTER_FILE]",
     "container-image": {
-        "image": "nipreps/nibabies:22.0.0rc1",
+        "image": "nipreps/nibabies:22.1.2",
         "index": "docker://",
         "type": "singularity"
     },
@@ -640,12 +640,12 @@
         },
         {
             "command-line-flag": "--derivatives",
-            "id": "derivatives",
-            "name": "derivatives",
-            "description": "One or more directory containing pre-computed derivatives.",
+            "id": "cabinet_output",
+            "name": "cabinet_output",
+            "description": "FileCollection containing CABINET precomputed output.",
             "optional": true,
             "type": "File",
-            "value-key": "[DERIVATIVES]"
+            "value-key": "[CABINET_OUTPUT]"
         },
         {
             "command-line-flag": "--deriv-filter-file",
@@ -712,7 +712,10 @@
               "nibabies_html_report": "nibabies",
               "infant_freesurfer_output_dir": "infant-freesurfer"
             },
-            "BoutiquesBidsSingleSubjectMaker": "subject_dir"
+            "BoutiquesBidsSingleSubjectMaker": "subject_dir",
+            "BoutiquesInputSubdirMaker": {
+              "cabinet_output": ["precomputed", false]
+            }
         }
     }
 }

@@ -53,7 +53,7 @@
           "command-line-flag": "--segmentation-dir",
           "description": "The output folder from a previously computed CABINET run. This will provide OSPREY with a segmentation map to do partial volume correction. The pipeline will look for CabinetOutput/precomputed/sub*/ses*/anat/*_space-orig_desc-aseg_dseg.nii.gz)",
           "id": "CabinetOutput",
-          "name": "CABINET Input",
+          "name": "CABINET Output",
           "optional": true,
           "type": "File",
           "value-key": "[CabinetOutput]"
@@ -103,7 +103,10 @@
             "BoutiquesForcedOutputBrowsePath" : {
               "OutputDirectory": "derivatives/osprey"
             },
-            "BoutiquesBidsSingleSubjectMaker": "SubjectDirectory"
+            "BoutiquesBidsSingleSubjectMaker": "SubjectDirectory",
+            "BoutiquesInputSubdirMaker": {
+              "CabinetOutput": ["precomputed", false]
+            }
         }
     }
 }

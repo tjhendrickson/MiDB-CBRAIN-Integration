@@ -87,7 +87,7 @@
             "command-line-flag": "--float32",
             "id": "float32",
             "name": "Cast to Float32",
-            "description": "Cast the input data to float32 if it\u2019s represented in higher precision (saves space and improves perfomance)",
+            "description": "Cast the input data to float32 if it is represented in higher precision (saves space and improves perfomance)",
             "optional": true,
             "type": "Flag",
             "value-key": "[FLOAT32]"

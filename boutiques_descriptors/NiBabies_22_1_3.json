@@ -718,9 +718,9 @@
                 "infant_freesurfer_output_dir": "NibabiesInfantFreesurferOutput"
             },
             "BoutiquesForcedOutputBrowsePath" : {
-              "nibabies_output_dir": "nibabies",
-              "nibabies_html_report": "nibabies",
-              "infant_freesurfer_output_dir": "infant-freesurfer"
+              "nibabies_output_dir": "derivatives/nibabies",
+              "nibabies_html_report": "derivatives/nibabies",
+              "infant_freesurfer_output_dir": "derivatives/infant-freesurfer"
             },
             "BoutiquesBidsSingleSubjectMaker": "subject_dir",
             "BoutiquesInputSubdirMaker": {

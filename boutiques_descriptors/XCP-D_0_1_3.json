@@ -23,7 +23,7 @@
             "id": "output_dir",
             "name": "output_dir",
             "optional": false,
-            "type": "File",
+            "type": "String",
             "value-key": "[OUTPUT_DIR]"
         },
         {

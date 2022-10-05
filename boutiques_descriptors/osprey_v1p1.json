@@ -57,7 +57,14 @@
           "optional": true,
           "type": "File",
           "value-key": "[CabinetOutput]"
-      }
+      },
+      {
+        "description": "The JSON file that come with the output folder from a previously computed CABINET run.",
+        "id": "CabinetOutputJson",
+        "name": "JSON of CABINET Output",
+        "optional": true,
+        "type": "File"
+    }
   ],
     "output-files" : [{
         "id" : "OutputDirectory",
@@ -81,6 +88,19 @@
             "spectroscopy"
         ]
     },
+    "groups": [
+        {
+            "id": "segmentation_dir",
+            "name": "Segmentation directory content",
+            "description": "File(s) to put in the precomputed folder for --segmentation-dir option",
+            "members": [
+                "CabinetOutput",
+                "CabinetOutputJson"
+            ],
+            "all-or-none": true
+        }
+
+    ],
     "container-image": {
         "type": "singularity",
         "index": "docker://",
@@ -105,7 +125,8 @@
             },
             "BoutiquesBidsSingleSubjectMaker": "SubjectDirectory",
             "BoutiquesInputSubdirMaker": {
-              "CabinetOutput": ["precomputed", false]
+              "CabinetOutput":     ["precomputed", false],
+              "CabinetOutputJson": ["precomputed", false]
             }
         }
     }

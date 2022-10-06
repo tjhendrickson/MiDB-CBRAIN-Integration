@@ -140,10 +140,19 @@
             "age_months",
             "segmentation_atlases_dir",
             "fd_radius",
-            "cabinet_output",
             "deriv_filter_file"
          ],
         "name": "NiBabies options"
+      },
+      {
+        "id": "segmentation_dir",
+        "name": "Segmentation directory content",
+        "description": "File(s) to put in the precomputed folder for --segmentation-dir option",
+        "members": [
+            "cabinet_output",
+            "cabinet_output_json"
+        ],
+        "all-or-none": true
       }
     ],
     "inputs": [
@@ -649,6 +658,13 @@
             "value-key": "[CABINET_OUTPUT]"
         },
         {
+            "id": "cabinet_output_json",
+            "name": "cabinet_output_json",
+            "description": "The data_descriptor.json of the CABINET precomputed output.",
+            "optional": true,
+            "type": "File"
+        },
+        {
             "command-line-flag": "--deriv-filter-file",
             "id": "deriv_filter_file",
             "name": "deriv_filter_file",
@@ -724,7 +740,8 @@
             },
             "BoutiquesBidsSingleSubjectMaker": "subject_dir",
             "BoutiquesInputSubdirMaker": {
-              "cabinet_output": ["precomputed", false]
+              "cabinet_output":      {"dirname": "precomputed",                                         "append_filename": false},
+              "cabinet_output_json": {"dirname": "precomputed", "filename": "dataset_description.json", "append_filename": false}
             }
         }
     }

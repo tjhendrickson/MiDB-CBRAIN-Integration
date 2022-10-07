@@ -59,7 +59,7 @@
           "value-key": "[CabinetOutput]"
       },
       {
-        "description": "The JSON file that come with the output folder from a previously computed CABINET run (should be named: dataset_description.json)",
+        "description": "The JSON file that come with the output folder from a previously computed CABINET run.",
         "id": "CabinetOutputJson",
         "name": "JSON of CABINET Output",
         "optional": true,

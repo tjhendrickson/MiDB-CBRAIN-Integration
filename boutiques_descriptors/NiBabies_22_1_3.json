@@ -660,7 +660,7 @@
         {
             "id": "cabinet_output_json",
             "name": "cabinet_output_json",
-            "description": "The data_descriptor.json of the CABINET precomputed output.",
+            "description": "The json descriptor of the CABINET precomputed output.",
             "optional": true,
             "type": "File"
         },

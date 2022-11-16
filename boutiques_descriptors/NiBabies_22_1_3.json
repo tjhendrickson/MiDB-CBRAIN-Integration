@@ -739,6 +739,10 @@
               "infant_freesurfer_output_dir": "derivatives/infant-freesurfer"
             },
             "BoutiquesBidsSingleSubjectMaker": "subject_dir",
+            "BoutiquesPostProcessingCleaner": [
+              "work",
+              "[OUTPUT_DIR]"
+            ],
             "BoutiquesInputSubdirMaker": {
               "cabinet_output":      {"dirname": "precomputed",                                         "append_filename": false},
               "cabinet_output_json": {"dirname": "precomputed", "filename": "dataset_description.json", "append_filename": false}

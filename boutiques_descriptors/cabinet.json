@@ -52,27 +52,7 @@
             "value-key": "[VERBOSE]"
         }
     ],
-    "output-files" : [{
-        "id" : "prebibsnet_output_dir",
-        "name" : "Prebibsnet Output Directory",
-        "description" : "Subject output folder for prebibsnet",
-        "path-template" : "[CABINET_OUTPUT_DIR]/prebibsnet/[SUBJECT_DIR]",
-        "optional" : false
-    },
-    {
-        "id" : "bibsnet_output_dir",
-        "name" : "BIBSNET Output Directory",
-        "description" : "Subject output folder for bibsnet",
-        "path-template" : "[CABINET_OUTPUT_DIR]/bibsnet/[SUBJECT_DIR]",
-        "optional" : false
-    },
-    {
-        "id" : "postbibsnet_output_dir",
-        "name" : "Postbibsnet Output Directory",
-        "description" : "Subject output folder for postbibsnet",
-        "path-template" : "[CABINET_OUTPUT_DIR]/postbibsnet/[SUBJECT_DIR]",
-        "optional" : false
-    },
+    "output-files" : [
     {
         "id" : "precomputed_output_dir",
         "name" : "Precomputed Output Directory",
@@ -104,10 +84,7 @@
     "custom": {
         "cbrain:readonly-input-files": true,
         "cbrain:author": "Erik Lee <leex6144@umn.edu>",
-        "cbrain:no-run-id-for-outputs": [ "prebibsnet_output_dir",
-        "bibsnet_output_dir",
-        "postbibsnet_output_dir",
-        "precomputed_output_dir"],
+        "cbrain:no-run-id-for-outputs": ["precomputed_output_dir"],
         "cbrain:integrator_modules": {
             "BoutiquesFileTypeVerifier": {
                 "subject_dir": [ "BidsSubject" ]
@@ -121,9 +98,6 @@
             "BoutiquesBidsSingleSubjectMaker": "subject_dir",
             "BoutiquesBidsSubjectSubsetter": { "subject_dir": "input_id_for_bids_subject_subsetter" },
             "BoutiquesForcedOutputBrowsePath" : {
-              "prebibsnet_output_dir": "derivatives/prebibsnet",
-              "bibsnet_output_dir": "derivatives/bibsnet",
-              "postbibsnet_output_dir": "derivatives/postbibsnet",
               "precomputed_output_dir": "derivatives/precomputed"
             }
         }

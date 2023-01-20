@@ -739,6 +739,7 @@
               "infant_freesurfer_output_dir": "derivatives/infant-freesurfer"
             },
             "BoutiquesBidsSingleSubjectMaker": "subject_dir",
+            "BoutiquesBidsSubjectSubsetter": { "subject_dir": "input_id_for_bids_subject_subsetter" },
             "BoutiquesPostProcessingCleaner": [
               "work",
               "[OUTPUT_DIR]"

@@ -167,7 +167,8 @@
             "BoutiquesForcedOutputBrowsePath" : {
               "output_dir": "derivatives/mriqc"
             },
-            "BoutiquesBidsSingleSubjectMaker": "subject_dir"
+            "BoutiquesBidsSingleSubjectMaker": "subject_dir",
+            "BoutiquesBidsSubjectSubsetter": { "subject_dir": "input_id_for_bids_subject_subsetter" }
         }
     }
 }

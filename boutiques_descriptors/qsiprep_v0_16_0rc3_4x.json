@@ -705,6 +705,7 @@
               "qsiprep_html_report": "derivatives/qsiprep"
             },
             "BoutiquesBidsSingleSubjectMaker": "subject_dir",
+            "BoutiquesBidsSubjectSubsetter": { "subject_dir": "input_id_for_bids_subject_subsetter" },
             "BoutiquesInputSubdirMaker": {
               "freesurfer_input": {"dirname": "freesurfer",
                                    "append_filename": false}

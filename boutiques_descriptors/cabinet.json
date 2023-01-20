@@ -4,7 +4,7 @@
     "tool-version": "1.5",
     "author": "DCAN Lab, University of Minnesota",
     "url": "https://github.com/DCAN-Labs/CABINET",
-    "command-line": "mkdir -p [CABINET_OUTPUT_DIR]; cabinet [SUBJECT_DIR] [CABINET_OUTPUT_DIR] participant -end postbibsnet -jargs /home/cabinet/parameter-file-container.json [PARTICIPANT_LABEL] [BRAIN_Z_SIZE] [SES_LABEL] [VERBOSE]",
+    "command-line": "mkdir -p [CABINET_OUTPUT_DIR]; cabinet [SUBJECT_DIR] [CABINET_OUTPUT_DIR] participant -end postbibsnet -jargs /home/cabinet/parameter-file-container.json [BRAIN_Z_SIZE] [SES_LABEL] [VERBOSE]",
     "description": "An automated segmentation pipeline for generating freesurfer style aseg volumes on infant/neonatal T1 and T2 weighted MRIs.",
     "inputs": [
         {
@@ -22,15 +22,7 @@
             "optional": false,
             "type": "String",
             "value-key": "[CABINET_OUTPUT_DIR]"
-        },
-        {
-           "command-line-flag": "-participant",
-            "description": "Subject ID without the sub- prefix (i.e. for sub-01 should be 01)",
-            "id": "sub_id",
-            "name": "sub_id",
-            "optional": true,
-            "type": "String",
-            "value-key": "[PARTICIPANT_LABEL]"
+
         },
         {
            "command-line-flag": "--brain-z-size",
@@ -59,7 +51,7 @@
             "type": "Flag",
             "value-key": "[VERBOSE]"
         }
-      ],
+    ],
     "output-files" : [{
         "id" : "prebibsnet_output_dir",
         "name" : "Prebibsnet Output Directory",
@@ -127,6 +119,7 @@
                 "precomputed_output_dir": "CabinetPrecomputedOutput"
             },
             "BoutiquesBidsSingleSubjectMaker": "subject_dir",
+            "BoutiquesBidsSubjectSubsetter": { "subject_dir": "input_id_for_bids_subject_subsetter" },
             "BoutiquesForcedOutputBrowsePath" : {
               "prebibsnet_output_dir": "derivatives/prebibsnet",
               "bibsnet_output_dir": "derivatives/bibsnet",

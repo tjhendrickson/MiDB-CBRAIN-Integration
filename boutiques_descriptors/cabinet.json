@@ -96,7 +96,7 @@
                 "precomputed_output_dir": "CabinetPrecomputedOutput"
             },
             "BoutiquesBidsSingleSubjectMaker": "subject_dir",
-            "BoutiquesBidsSubjectSubsetter": { "subject_dir": "input_id_for_bids_subject_subsetter" },
+            "BoutiquesBidsSubjectSubsetter": { "subject_dir": "all_to_keep" },
             "BoutiquesForcedOutputBrowsePath" : {
               "precomputed_output_dir": "derivatives/precomputed"
             }

@@ -123,7 +123,7 @@
               "OutputDirectory": "derivatives/osprey"
             },
             "BoutiquesBidsSingleSubjectMaker": "SubjectDirectory",
-            "BoutiquesBidsSubjectSubsetter": { "SubjectDirectory": "input_id_for_bids_subject_subsetter" },
+            "BoutiquesBidsSubjectSubsetter": { "SubjectDirectory": "all_to_keep" },
             "BoutiquesInputSubdirMaker": {
               "CabinetOutput":     {"dirname": "precomputed",                                         "append_filename": false},
               "CabinetOutputJson": {"dirname": "precomputed", "filename": "dataset_description.json", "append_filename": false}

@@ -113,7 +113,7 @@
               "OutputDirectory": "derivatives/made"
             },
             "BoutiquesBidsSingleSubjectMaker": "SubjectDirectory",
-            "BoutiquesBidsSubjectSubsetter": { "SubjectDirectory": "input_id_for_bids_subject_subsetter" }
+            "BoutiquesBidsSubjectSubsetter": { "SubjectDirectory": "all_to_keep" }
         }
     }
 }

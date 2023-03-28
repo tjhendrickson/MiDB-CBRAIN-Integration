@@ -4,7 +4,7 @@
     "tool-version": "22.0.1",
     "schema-version": "0.5",
     "url": "https://mriqc.readthedocs.io/en/stable/",
-    "command-line": "mriqc [SUBJECT_DIR] [MRIQC_OUTPUT_DIR] participant --no-sub --n_cpus 1 [SESSION_ID] [RUN_ID] [TASK_ID] [MODALITIES] [DRY_RUN] [MEM_GB] [FLOAT32] [ICA] [FD_THRESH]",
+    "command-line": "mriqc [SUBJECT_DIR] [MRIQC_OUTPUT_DIR] participant --no-sub --n_cpus 1 -w work/[SUBJECT_DIR] [SESSION_ID] [RUN_ID] [TASK_ID] [MODALITIES] [DRY_RUN] [MEM_GB] [FLOAT32] [ICA] [FD_THRESH]",
     "container-image": {
         "image": "nipreps/mriqc:22.0.1",
         "index": "docker://",
@@ -117,6 +117,13 @@
         "description" : "This is the output containing the subject directory and html reports.",
         "path-template" : "[MRIQC_OUTPUT_DIR]/[SUBJECT_DIR]*",
         "optional" : false
+    },
+    {
+        "id" : "output_work_dir",
+        "name" : "Output Work Directory",
+        "description" : "This is the output containing the work directory for processing (not needed in many cases).",
+        "path-template" : "work/[SUBJECT_DIR]",
+        "optional" : false
     }],
     "groups": [
         {
@@ -162,10 +169,12 @@
                 "subject_dir": "^sub-[a-zA-Z0-9_]+$"
             },
             "BoutiquesOutputFileTypeSetter": {
-                "output_dir": "MRIQCOutput"
+                "output_dir": "MRIQCOutput",
+                "output_work_dir": "MRIQCWorkDir"
             },
             "BoutiquesForcedOutputBrowsePath" : {
-              "output_dir": "derivatives/mriqc"
+              "output_dir": "derivatives/mriqc",
+              "output_work_dir": "processing_work_dirs/mriqc"
             },
             "BoutiquesBidsSingleSubjectMaker": "subject_dir",
             "BoutiquesBidsSubjectSubsetter": { "subject_dir": "all_to_keep" }

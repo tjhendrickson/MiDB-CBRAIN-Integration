@@ -4,7 +4,7 @@
     "tool-version": "22.0.1",
     "schema-version": "0.5",
     "url": "https://mriqc.readthedocs.io/en/stable/",
-    "command-line": "mriqc [SUBJECT_DIR] [MRIQC_OUTPUT_DIR] participant --no-sub --n_cpus 1 -w work/[SUBJECT_DIR] [SESSION_ID] [RUN_ID] [TASK_ID] [MODALITIES] [DRY_RUN] [MEM_GB] [FLOAT32] [ICA] [FD_THRESH]",
+    "command-line": "mriqc [SUBJECT_DIR] [MRIQC_OUTPUT_DIR] participant --no-sub --n_cpus 1 -w work/[SUBJECT_DIR].mriqc_work [SESSION_ID] [RUN_ID] [TASK_ID] [MODALITIES] [DRY_RUN] [MEM_GB] [FLOAT32] [ICA] [FD_THRESH]",
     "container-image": {
         "image": "nipreps/mriqc:22.0.1",
         "index": "docker://",
@@ -122,7 +122,7 @@
         "id" : "output_work_dir",
         "name" : "Output Work Directory",
         "description" : "This is the output containing the work directory for processing (not needed in many cases).",
-        "path-template" : "work/[SUBJECT_DIR]",
+        "path-template" : "work/[SUBJECT_DIR].mriqc_work",
         "optional" : false
     }],
     "groups": [

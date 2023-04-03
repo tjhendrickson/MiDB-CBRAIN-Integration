@@ -93,12 +93,12 @@
                 "subject_dir": "^sub-[a-zA-Z0-9_]+$"
             },
             "BoutiquesOutputFileTypeSetter": {
-                "precomputed_output_dir": "CabinetPrecomputedOutput"
+                "output_dir": "CabinetPrecomputedOutput"
             },
             "BoutiquesBidsSingleSubjectMaker": "subject_dir",
             "BoutiquesBidsSubjectSubsetter": { "subject_dir": "all_to_keep" },
             "BoutiquesForcedOutputBrowsePath" : {
-              "precomputed_output_dir": "derivatives/bibsnet"
+              "output_dir": "derivatives/bibsnet"
             }
         }
     }

@@ -102,7 +102,7 @@
             "value-key": "[ICA]"
         },
         {
-            "command-line-flag": "--fd_thresh",
+            "command-line-flag": "--fd_thres",
             "id": "fd_thresh",
             "name": "Framewise Displacement Threshold",
             "description": "motion threshold for framewise displacement computation",

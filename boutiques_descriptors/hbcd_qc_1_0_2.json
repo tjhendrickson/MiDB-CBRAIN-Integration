@@ -1,0 +1,83 @@
+{
+    "name": "HBCD_QC",
+    "description": "Simple container that makes snapshot images of T1w/T2w niftis for QC purposes.",
+    "tool-version": "1.0.2",
+    "schema-version": "0.5",
+    "url": "https://github.com/erikglee/HBCD_Raw_Anat_QC_Container",
+    "command-line": "hbcd_qc [SUBJECT_DIR] [HBCDQC_OUTPUT_DIR] participant [SESSION_ID]",
+    "container-image": {
+        "image": "dcanumn/hbcd_anat_qc:1.0.2",
+        "index": "docker://",
+        "type": "singularity"
+    },
+    "inputs": [
+        {
+            "description": "Subject folder for BIDS (folders name should be sub-XXXXX).",
+            "id": "subject_dir",
+            "name": "Subject Directory",
+            "optional": false,
+            "type": "File",
+            "value-key": "[SUBJECT_DIR]"
+        },
+        {
+            "description": "The name of the output folder. When processing is ran via CBRAIN only subject-specific files/folders will be saved, so the naming of the output folder will not influence the final naming/destination of files/folders.",
+            "id": "hbcdqc_output_dir",
+            "name": "HBCD QC Output Directory",
+            "optional": false,
+            "type": "String",
+            "value-key": "[HBCDQC_OUTPUT_DIR]"
+        },
+        {
+            "command-line-flag": "--session-id",
+            "id": "session_id",
+            "name": "Session ID",
+            "description": "filter input dataset by session id",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SESSION_ID]"
+        }
+    ],
+    "output-files" : [{
+        "id" : "output_dir",
+        "name" : "Output Directory",
+        "description" : "This is the output containing the subject directory.",
+        "path-template" : "[HBCDQC_OUTPUT_DIR]/[SUBJECT_DIR]",
+        "optional" : false
+    }],
+    "tags": {
+        "application-type": [
+            "bids"
+        ],
+        "domain": [
+            "neuroinformatics",
+            "mri",
+            "quality"
+        ]
+    },
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 16,
+        "walltime-estimate": 44000
+    },
+    "custom": {
+        "cbrain:readonly-input-files": true,
+        "cbrain:author": "Erik Lee <leex6144@umn.edu>",
+        "cbrain:no-run-id-for-outputs": [ "output_dir"],
+        "cbrain:integrator_modules": {
+            "BoutiquesFileTypeVerifier": {
+                "subject_dir": [ "BidsSubject" ]
+            },
+            "BoutiquesFileNameMatcher": {
+                "subject_dir": "^sub-[a-zA-Z0-9_]+$"
+            },
+            "BoutiquesOutputFileTypeSetter": {
+                "output_dir": "HBCDQCOutput"
+            },
+            "BoutiquesForcedOutputBrowsePath" : {
+              "output_dir": "derivatives/hbcd_qc"
+            },
+            "BoutiquesBidsSingleSubjectMaker": "subject_dir",
+            "BoutiquesBidsSubjectSubsetter": { "subject_dir": "all_to_keep" }
+        }
+    }
+}

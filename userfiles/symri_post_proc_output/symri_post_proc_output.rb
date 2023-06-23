@@ -25,7 +25,7 @@ class SymriPostProcOutput < FileCollection
     Revision_info=CbrainFileRevision[__FILE__] #:nodoc:
   
     def self.pretty_type #:nodoc:
-      "SYMRI Post Proc Output"
+      "SyMRI Post Proc Output"
     end
   
   end

@@ -108,7 +108,7 @@
             "BoutiquesBidsSingleSubjectMaker": "SubjectDirectory",
             "BoutiquesBidsSubjectSubsetter": { "SubjectDirectory": "all_to_keep" },
             "BoutiquesInputSubdirMaker": {
-              "CabinetOutput":     {"dirname": "precomputed", "append_filename": false}
+              "CABINET_Directory":     {"dirname": "precomputed", "append_filename": false}
             }
         }
     }

@@ -151,7 +151,7 @@
             "id": "output_dir_name",
             "name": "output_dir_name",
             "optional": false,
-            "type": "File",
+            "type": "String",
             "value-key": "[QSIPREP_OUTPUT_DIR]"
         },
         {

@@ -685,8 +685,10 @@
             "BoutiquesBidsSingleSubjectMaker": "subject_dir",
             "BoutiquesBidsSubjectSubsetter": { "subject_dir": "all_to_keep" },
             "BoutiquesInputSubdirMaker": {
-              "freesurfer_input": {"dirname": "freesurfer",
-                                   "append_filename": false}
+                "freesurfer_input": {"dirname": "freesurfer",
+                                    "append_filename": false},
+                "recon_input": {"dirname": "qsiprep_input",
+                                "append_filename": false}                
             }
         }
     },

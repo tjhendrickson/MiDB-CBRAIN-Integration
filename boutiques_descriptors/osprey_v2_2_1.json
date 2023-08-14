@@ -1,7 +1,7 @@
 {
     "name": "OSPREY",
     "schema-version": "0.5",
-    "tool-version": "2.1.1",
+    "tool-version": "2.2.1",
     "author": "Georg Oeltzschner, Helge J. Zöllner, Richard A. E. Edden, Erik G. Lee",
     "url": "https://github.com/schorschinho/osprey",
     "command-line": "true [SubjectDirectory] ; rm -f CbrainBidsSingleSubject/[SubjectDirectory] ; cp -p -R -L [SubjectDirectory] CbrainBidsSingleSubject/[SubjectDirectory] ; osprey CbrainBidsSingleSubject [OSPREYOutputDirectoryName] participant /python_code/hbcd_pilot_config.json [ParticipantLabel] [SessionLabel] [CabinetOutput] [LocalizerRegistration]",
@@ -104,7 +104,7 @@
     "container-image": {
         "type": "singularity",
         "index": "docker://",
-        "image": "dcanumn/osprey:2.1.1"
+        "image": "dcanumn/osprey:2.2.1"
     },
     "custom": {
         "cbrain:readonly-input-files": true,

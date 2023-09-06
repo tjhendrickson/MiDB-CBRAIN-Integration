@@ -3,7 +3,7 @@
     "schema-version": "0.5",
     "tool-version": "1.0",
     "url": "https://github.com/DCAN-Labs/QSIPREP_HBCD_QC",
-    "command-line": "qsiprep_qc [QSIPREPDirectory] [OutputDirectoryName] participant [ParticipantLabel] [SessionLabel]",
+    "command-line": "qsiprep_qc [QSIPREPDirectory] [OutputDirectoryName] participant [ParticipantLabel] [SessionLabel] [BIDSSubjectDirectory]",
     "description": "Simple pipeline to make summary QC images based on qsiprep outputs.",
     "inputs": [
       {
@@ -21,6 +21,15 @@
         "optional": false,
         "type": "String",
         "value-key": "[OutputDirectoryName]"
+    },
+    {
+        "command-line-flag": "--bids_directory",
+        "description": "BIDS Subject. This is not actually used in any way during processing.",
+        "id": "BIDSSubjectDirectory",
+        "name": "BIDSSubjectDirectory",
+        "optional": true,
+        "type": "File",
+        "value-key": "[BIDSSubjectDirectory]"
     },
     {
         "command-line-flag": "--participant-label",
@@ -74,14 +83,17 @@
         "cbrain:no-run-id-for-outputs": [ "OutputDirectory"],
         "cbrain:integrator_modules": {
             "BoutiquesFileTypeVerifier": {
-                "QSIPREPDirectory": [ "QsiprepOutput"]
+                "QSIPREPDirectory": [ "QsiprepOutput"],
+                "BIDSSubjectDirectory": [ "BidsSubject"]
             },
             "BoutiquesFileNameMatcher": {
-                "QSIPREPDirectory": "^sub-[a-zA-Z0-9_]+$"
+                "QSIPREPDirectory": "^sub-[a-zA-Z0-9_]+$",
+                "BIDSSubjectDirectory": "^sub-[a-zA-Z0-9_]+$"
             },
             "BoutiquesOutputFileTypeSetter": {
                 "OutputDirectory": "QsiprepQcOutput"
             },
+            "BoutiquesBidsSubjectSubsetter": { "BIDSSubjectDirectory": "all_to_keep"},
             "BoutiquesForcedOutputBrowsePath" : {
               "OutputDirectory": "derivatives/qsiprep_qc"
             },

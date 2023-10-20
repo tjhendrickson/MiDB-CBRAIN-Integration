@@ -1,7 +1,7 @@
 {
     "name": "BibsnetPt1",
     "schema-version": "0.5",
-    "tool-version": "3.0.0",
+    "tool-version": "3.0.1",
     "author": "DCAN Lab, University of Minnesota",
     "url": "https://github.com/DCAN-Labs/BIBSnet",
     "command-line": "mkdir -p [BIBSNET_OUTPUT_DIR]; mkdir -p work; bibsnet [SUBJECT_DIR] [BIBSNET_OUTPUT_DIR] participant -start prebibsnet -end bibsnet [BRAIN_Z_SIZE] [SES_LABEL] [VERBOSE] -w work; status=$? ; test $status -eq 0 && rm -rf [SUBJECT_DIR]; test $status -eq 0 && mv work [SUBJECT_DIR]; bash -c \"exit $status\"",
@@ -80,7 +80,7 @@
     "container-image": {
         "type": "singularity",
         "index": "docker://",
-        "image": "dcanumn/bibsnet:release-3.0.0"
+        "image": "dcanumn/bibsnet:release-3.0.1"
     },
     "custom": {
         "cbrain:readonly-input-files": true,

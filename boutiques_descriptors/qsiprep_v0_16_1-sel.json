@@ -653,6 +653,16 @@
             "optional": true,
             "type": "Flag",
             "value-key": "[SLOPPY]"
+        },
+        {
+            "command-line-flag": "NA",
+            "default-value": "derivatives/",
+            "id": "derivatives_prefix",
+            "name": "derivatives_prefix",
+            "description": "Folders to put before the pipeline specific folder. By default this will look like DataProvider/derivatives/PipelineName, where pipeline name is specific to the current pipeline. The provided string must end in /",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DERIVATIVES_PREFIX]"
         }
     ],
     "output-files" : [{
@@ -701,8 +711,8 @@
                 "output_dir": "QsiprepOutput"
             },
             "BoutiquesForcedOutputBrowsePath" : {
-              "output_dir": "derivatives/qsiprep",
-              "qsiprep_html_report": "derivatives/qsiprep"
+              "output_dir": "[DERIVATIVES_PREFIX]qsiprep",
+              "qsiprep_html_report": "[DERIVATIVES_PREFIX]qsiprep"
             },
             "BoutiquesBidsSingleSubjectMaker": "subject_dir",
             "BoutiquesBidsSubjectFileSelector": { "subject_dir": "all_to_keep" },

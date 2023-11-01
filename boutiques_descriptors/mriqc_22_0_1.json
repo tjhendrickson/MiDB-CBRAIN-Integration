@@ -109,6 +109,16 @@
             "optional": true,
             "type": "Number",
             "value-key": "[FD_THRESH]"
+        },
+        {
+            "command-line-flag": "NA",
+            "default-value": "derivatives/",
+            "id": "derivatives_prefix",
+            "name": "derivatives_prefix",
+            "description": "Folders to put before the pipeline specific folder. By default this will look like DataProvider/derivatives/PipelineName, where pipeline name is specific to the current pipeline. The provided string must end in /",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DERIVATIVES_PREFIX]"
         }
     ],
     "output-files" : [{
@@ -173,8 +183,8 @@
                 "output_work_dir": "MRIQCWorkDir"
             },
             "BoutiquesForcedOutputBrowsePath" : {
-              "output_dir": "derivatives/mriqc",
-              "output_work_dir": "processing_work_dirs/mriqc"
+              "output_dir": "[DERIVATIVES_PREFIX]mriqc",
+              "output_work_dir": "[DERIVATIVES_PREFIX]processing_work_dirs/mriqc"
             },
             "BoutiquesBidsSingleSubjectMaker": "subject_dir",
             "BoutiquesBidsSubjectSubsetter": { "subject_dir": "all_to_keep" }

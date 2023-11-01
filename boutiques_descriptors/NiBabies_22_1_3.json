@@ -681,6 +681,16 @@
             "optional": true,
             "type": "Flag",
             "value-key": "[FORCE_RECONALL]"
+        },
+        {
+            "command-line-flag": "NA",
+            "default-value": "derivatives/",
+            "id": "derivatives_prefix",
+            "name": "derivatives_prefix",
+            "description": "Folders to put before the pipeline specific folder. By default this will look like DataProvider/derivatives/PipelineName, where pipeline name is specific to the current pipeline. The provided string must end in /",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DERIVATIVES_PREFIX]"
         }
     ],
     "output-files" : [{
@@ -734,9 +744,9 @@
                 "infant_freesurfer_output_dir": "NibabiesInfantFreesurferOutput"
             },
             "BoutiquesForcedOutputBrowsePath" : {
-              "nibabies_output_dir": "derivatives/nibabies",
-              "nibabies_html_report": "derivatives/nibabies",
-              "infant_freesurfer_output_dir": "derivatives/infant-freesurfer"
+              "nibabies_output_dir": "[DERIVATIVES_PREFIX]nibabies",
+              "nibabies_html_report": "[DERIVATIVES_PREFIX]nibabies",
+              "infant_freesurfer_output_dir": "[DERIVATIVES_PREFIX]infant-freesurfer"
             },
             "BoutiquesBidsSingleSubjectMaker": "subject_dir",
             "BoutiquesBidsSubjectSubsetter": { "subject_dir": "all_to_keep" },

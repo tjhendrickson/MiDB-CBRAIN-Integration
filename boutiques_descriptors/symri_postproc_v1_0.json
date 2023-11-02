@@ -4,7 +4,7 @@
     "tool-version": "1.0",
     "author": "Erik G. Lee",
     "url": "https://github.com/erikglee/HBCD_SYMRI_POSTPROC",
-    "command-line": "hbcd_symri_postproc [SubjectDirectory] [OutputDirectoryName] participant [SyMRIDirectory] [CABINET_Directory] [ParticipantLabel] [SessionLabel]",
+    "command-line": "true [DERIVATIVES_PREFIX]; hbcd_symri_postproc [SubjectDirectory] [OutputDirectoryName] participant [SyMRIDirectory] [CABINET_Directory] [ParticipantLabel] [SessionLabel]",
     "description": "SyMRI Post Proc takes T1/T2/PDmaps generated through the HBCD SyMRI workflow (outside of CBRAIN) and uses these to create other images and imaging derived phenotypes of interest based on the high resolution anatomical data and bibsnet segmentations.",
     "inputs": [
       {

@@ -3,7 +3,7 @@
     "description": "A Robust Postprocessing Pipeline of fMRI data",
     "tool-version": "0.4.0rc2",
     "schema-version": "0.5",
-    "command-line": "xcp_d [SUBJECT_PREPROC_FMRI_DIR] [OUTPUT_DIR] participant [CIFTI] [COMBINERUNS] [VERBOSE] [INPUT_TYPE] [TASK] [SMOOTHING] [DESPIKE] [NUISSANCE] [DUMMY_SCANS] [BPF] [LOWER_BPF] [UPPER_BPF] [BPF_ORDER] [MOTION_FILTER_TYPE] [BAND_STOP_MIN] [BAND_STOP_MAX] [MOTION_FILTER_ORDER] [HEAD_RADIUS] [FD_THRESH] [DCAN_QC] [WARP_SURFACES] [BIDS_FILTER] -w work --notrack",
+    "command-line": "true [DERIVATIVES_PREFIX]; xcp_d [SUBJECT_PREPROC_FMRI_DIR] [OUTPUT_DIR] participant [CIFTI] [COMBINERUNS] [VERBOSE] [INPUT_TYPE] [TASK] [SMOOTHING] [DESPIKE] [NUISSANCE] [DUMMY_SCANS] [BPF] [LOWER_BPF] [UPPER_BPF] [BPF_ORDER] [MOTION_FILTER_TYPE] [BAND_STOP_MIN] [BAND_STOP_MAX] [MOTION_FILTER_ORDER] [HEAD_RADIUS] [FD_THRESH] [DCAN_QC] [WARP_SURFACES] [BIDS_FILTER] -w work --notrack",
     "container-image": {
         "image": "pennlinc/xcp_d:0.4.0rc2",
         "index": "docker://",

@@ -3,7 +3,7 @@
     "schema-version": "0.5",
     "tool-version": "1.0",
     "url": "https://github.com/DCAN-Labs/QSIPREP_HBCD_QC",
-    "command-line": "qsiprep_qc [QSIPREPDirectory] [OutputDirectoryName] participant [ParticipantLabel] [SessionLabel] [BIDSSubjectDirectory]",
+    "command-line": "true [DERIVATIVES_PREFIX]; qsiprep_qc [QSIPREPDirectory] [OutputDirectoryName] participant [ParticipantLabel] [SessionLabel] [BIDSSubjectDirectory]",
     "description": "Simple pipeline to make summary QC images based on qsiprep outputs.",
     "inputs": [
       {

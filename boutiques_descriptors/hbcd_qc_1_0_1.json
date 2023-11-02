@@ -3,7 +3,7 @@
     "description": "Simple container that makes snapshot images of T1w/T2w niftis for QC purposes.",
     "tool-version": "1.0.1",
     "schema-version": "0.5",
-    "command-line": "hbcd_qc [SUBJECT_DIR] [HBCDQC_OUTPUT_DIR] participant [SESSION_ID]",
+    "command-line": "true [DERIVATIVES_PREFIX]; hbcd_qc [SUBJECT_DIR] [HBCDQC_OUTPUT_DIR] participant [SESSION_ID]",
     "container-image": {
         "image": "dcanumn/hbcd_anat_qc:1.0.1",
         "index": "docker://",

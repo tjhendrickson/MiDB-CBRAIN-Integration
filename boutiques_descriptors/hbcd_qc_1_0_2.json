@@ -4,7 +4,7 @@
     "tool-version": "1.0.2",
     "schema-version": "0.5",
     "url": "https://github.com/erikglee/HBCD_Raw_Anat_QC_Container",
-    "command-line": "hbcd_qc [SUBJECT_DIR] [HBCDQC_OUTPUT_DIR] participant [SESSION_ID]",
+    "command-line": "true [DERIVATIVES_PREFIX]; hbcd_qc [SUBJECT_DIR] [HBCDQC_OUTPUT_DIR] participant [SESSION_ID]",
     "container-image": {
         "image": "dcanumn/hbcd_anat_qc:1.0.2",
         "index": "docker://",

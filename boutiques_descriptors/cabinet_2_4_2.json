@@ -4,7 +4,7 @@
     "tool-version": "2.4.2",
     "author": "DCAN Lab, University of Minnesota",
     "url": "https://github.com/DCAN-Labs/CABINET",
-    "command-line": "mkdir -p [CABINET_OUTPUT_DIR]; cabinet [SUBJECT_DIR] [CABINET_OUTPUT_DIR] participant -end postbibsnet -jargs /home/cabinet/parameter-file-container.json [BRAIN_Z_SIZE] [SES_LABEL] [VERBOSE]",
+    "command-line": "true [DERIVATIVES_PREFIX]; mkdir -p [CABINET_OUTPUT_DIR]; cabinet [SUBJECT_DIR] [CABINET_OUTPUT_DIR] participant -end postbibsnet -jargs /home/cabinet/parameter-file-container.json [BRAIN_Z_SIZE] [SES_LABEL] [VERBOSE]",
     "description": "An automated segmentation pipeline for generating freesurfer style aseg volumes on infant/neonatal T1 and T2 weighted MRIs.",
     "inputs": [
         {

@@ -103,7 +103,7 @@
             "BoutiquesOutputFileTypeSetter": {
                 "OutputDirectory": "QsiprepQcOutput"
             },
-            "BoutiquesBidsSubjectSubsetter": { "BIDSSubjectDirectory": "all_to_keep"},
+            "BoutiquesBidsSubjectFileSelector": { "BIDSSubjectDirectory": "all_to_keep"},
             "BoutiquesForcedOutputBrowsePath" : {
               "OutputDirectory": "[DERIVATIVES_PREFIX]qsiprep_qc"
             },

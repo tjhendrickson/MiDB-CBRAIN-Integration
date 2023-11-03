@@ -52,7 +52,6 @@
             "value-key": "[VERBOSE]"
         },
         {
-            "command-line-flag": "NA",
             "default-value": "derivatives/",
             "id": "derivatives_prefix",
             "name": "derivatives_prefix",
@@ -95,6 +94,7 @@
     "custom": {
         "cbrain:readonly-input-files": true,
         "cbrain:author": "Erik Lee <leex6144@umn.edu>",
+        "cbrain:allow_empty_strings": ["derivatives_prefix"],
         "cbrain:no-run-id-for-outputs": ["working_dir"],
         "cbrain:integrator_modules": {
             "BoutiquesFileTypeVerifier": {

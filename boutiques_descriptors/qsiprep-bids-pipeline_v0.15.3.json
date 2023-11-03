@@ -664,7 +664,6 @@
             "value-key": "[SLOPPY]"
         },
         {
-            "command-line-flag": "NA",
             "default-value": "derivatives/",
             "id": "derivatives_prefix",
             "name": "derivatives_prefix",
@@ -684,6 +683,7 @@
     "custom": {
         "cbrain:readonly-input-files": true,
         "cbrain:author": "Erik Lee <leex6144@umn.edu>, Timothy Hendrickson <hendr522@umn.edu> and Natacha Beck <nbeck@mcin.ca>",
+        "cbrain:allow_empty_strings": ["derivatives_prefix"],
         "cbrain:integrator_modules": {
             "BoutiquesFileTypeVerifier": {
                 "subject_dir": [ "BidsSubject" ],

@@ -187,7 +187,7 @@
               "output_work_dir": "[DERIVATIVES_PREFIX]processing_work_dirs/mriqc"
             },
             "BoutiquesBidsSingleSubjectMaker": "subject_dir",
-            "BoutiquesBidsSubjectSubsetter": { "subject_dir": "all_to_keep" }
+            "BoutiquesBidsSubjectFileSelector": { "subject_dir": "all_to_keep" }
         }
     }
 }

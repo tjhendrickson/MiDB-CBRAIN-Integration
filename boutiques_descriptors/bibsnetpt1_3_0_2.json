@@ -107,7 +107,7 @@
                 "working_dir": "BibsnetWork"
             },
             "BoutiquesBidsSingleSubjectMaker": "subject_dir",
-            "BoutiquesBidsSubjectSubsetter": { "subject_dir": "all_to_keep" },
+            "BoutiquesBidsSubjectFileSelector": { "subject_dir": "all_to_keep" },
             "BoutiquesForcedOutputBrowsePath" : {
               "working_dir": "[DERIVATIVES_PREFIX]bibsnet_work"
             }

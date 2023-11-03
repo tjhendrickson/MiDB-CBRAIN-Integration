@@ -106,7 +106,7 @@
                 "output_dir": "CabinetPrecomputedOutput"
             },
             "BoutiquesBidsSingleSubjectMaker": "subject_dir",
-            "BoutiquesBidsSubjectSubsetter": { "subject_dir": "all_to_keep" },
+            "BoutiquesBidsSubjectFileSelector": { "subject_dir": "all_to_keep" },
             "BoutiquesForcedOutputBrowsePath" : {
               "output_dir": "[DERIVATIVES_PREFIX]bibsnet"
             }

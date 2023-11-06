@@ -4,7 +4,7 @@
     "tool-version": "3.0.2",
     "author": "DCAN Lab, University of Minnesota",
     "url": "https://github.com/DCAN-Labs/BIBSnet",
-    "command-line": "mkdir -p [BIBSNET_OUTPUT_DIR]; mkdir -p work; bibsnet [SUBJECT_DIR] [BIBSNET_OUTPUT_DIR] participant -start prebibsnet -end postbibsnet [BRAIN_Z_SIZE] [SES_LABEL] [VERBOSE] -w work",
+    "command-line": "true [DERIVATIVES_PREFIX]; mkdir -p [BIBSNET_OUTPUT_DIR]; mkdir -p work; bibsnet [SUBJECT_DIR] [BIBSNET_OUTPUT_DIR] participant -start prebibsnet -end postbibsnet [BRAIN_Z_SIZE] [SES_LABEL] [VERBOSE] -w work",
     "description": "An automated segmentation pipeline for generating freesurfer style aseg volumes on infant/neonatal T1 and T2 weighted MRIs.",
     "inputs": [
         {
@@ -50,6 +50,15 @@
             "optional": true,
             "type": "Flag",
             "value-key": "[VERBOSE]"
+        },
+        {
+            "default-value": "derivatives/",
+            "id": "derivatives_prefix",
+            "name": "derivatives_prefix",
+            "description": "Folders to put before the pipeline specific folder. By default this will look like DataProvider/derivatives/PipelineName, where pipeline name is specific to the current pipeline. The provided string must end in /",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DERIVATIVES_PREFIX]"
         }
     ],
     "output-files" : [

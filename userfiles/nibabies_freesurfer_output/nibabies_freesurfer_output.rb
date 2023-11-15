@@ -26,7 +26,7 @@ class NibabiesFreesurferOutput < FileCollection
     Revision_info=CbrainFileRevision[__FILE__] #:nodoc:
 
     def self.pretty_type #:nodoc:
-      "NiBabies Infant Freesurfer Output"
+      "NiBabies Freesurfer Output"
     end
 
   end

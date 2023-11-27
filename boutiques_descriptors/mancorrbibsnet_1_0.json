@@ -4,7 +4,7 @@
     "tool-version": "1.0",
     "author": "Lucille Moore, Erik Lee",
     "url": "https://github.com/DCAN-Labs/mancorr-postbibsnet",
-    "command-line": "true [DERIVATIVES_PREFIX]; /code/mancorr_postbibsnet [BibsnetWorkManEditsDir] [OutputDirectoryName] participant [ParticipantLabel] -w work",
+    "command-line": "true [SUBJECT_DIR]; true [DERIVATIVES_PREFIX]; /code/mancorr_postbibsnet [BibsnetWorkManEditsDir] [OutputDirectoryName] participant [ParticipantLabel] -w work",
     "description": "Tool that recreates bibsnet derivatives based on a bibsnet working directory structure that has been manually edited. Assumes that the original derivatives folder is also under the working directory (with unedited images)",
     "inputs": [
       {
@@ -15,6 +15,14 @@
         "type": "String",
         "value-key": "[OutputDirectoryName]"
     },
+    {
+        "description": "Subject folder for BIDS (folders name should be sub-XXXXX). This folder is not used under the current implementation but is present for ease of processing workflows.",
+        "id": "subject_dir",
+        "name": "subject_dir",
+        "optional": false,
+        "type": "File",
+        "value-key": "[SUBJECT_DIR]"
+      },
       {
         "description": "The working directory that has the modified contents of bibsnet work following manual corrections to the segmentations.",
         "id": "BibsnetWorkManEditsDir",
@@ -76,10 +84,12 @@
         "cbrain:no-run-id-for-outputs": [ "OutputDirectory"],
         "cbrain:integrator_modules": {
             "BoutiquesFileTypeVerifier": {
-                "BibsnetWorkManEditsDir": ["BibsnetWorkManEdits"]
+                "BibsnetWorkManEditsDir": ["BibsnetWorkManEdits"],
+                "subject_dir": [ "BidsSubject" ]
             },
             "BoutiquesFileNameMatcher": {
-                "BibsnetWorkManEditsDir": "^sub-[a-zA-Z0-9_]+$"
+                "BibsnetWorkManEditsDir": "^sub-[a-zA-Z0-9_]+$",
+                "subject_dir": "^sub-[a-zA-Z0-9_]+$"
             },
             "BoutiquesOutputFileTypeSetter": {
                 "OutputDirectory": "BibsnetOutput"

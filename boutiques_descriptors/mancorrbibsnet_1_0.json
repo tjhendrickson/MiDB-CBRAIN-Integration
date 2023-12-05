@@ -96,9 +96,6 @@
             },
             "BoutiquesForcedOutputBrowsePath" : {
               "OutputDirectory": "[DERIVATIVES_PREFIX]bibsnet"
-            },
-            "BoutiquesInputSubdirMaker": {
-              "BibsnetWorkManEditsDir":     {"dirname": "bibsnetworkmanedits", "append_filename": false}
             }
         }
     }

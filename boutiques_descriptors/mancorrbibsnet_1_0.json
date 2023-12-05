@@ -4,7 +4,7 @@
     "tool-version": "1.0",
     "author": "Lucille Moore, Erik Lee",
     "url": "https://github.com/DCAN-Labs/mancorr-postbibsnet",
-    "command-line": "true [SUBJECT_DIR]; true [DERIVATIVES_PREFIX]; /code/mancorr_postbibsnet [BibsnetWorkManEditsDir] [OutputDirectoryName] [ParticipantLabel] -w work",
+    "command-line": "true [SUBJECT_DIR]; true [DERIVATIVES_PREFIX]; /code/mancorr_postbibsnet BibsnetWorkManEdits/[BibsnetWorkManEditsDir] [OutputDirectoryName] [ParticipantLabel] -w work",
     "description": "Tool that recreates bibsnet derivatives based on a bibsnet working directory structure that has been manually edited. Assumes that the original derivatives folder is also under the working directory (with unedited images)",
     "inputs": [
       {
@@ -95,6 +95,9 @@
             },
             "BoutiquesOutputFileTypeSetter": {
                 "OutputDirectory": "BibsnetOutput"
+            },
+            "BoutiquesInputSubdirMaker": {
+                "BibsnetWorkManEditsDir": {"dirname": "BibsnetWorkManEdits", "append_filename": false}
             },
             "BoutiquesForcedOutputBrowsePath" : {
               "OutputDirectory": "[DERIVATIVES_PREFIX]bibsnet"

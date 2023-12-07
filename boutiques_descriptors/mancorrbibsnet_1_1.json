@@ -54,7 +54,7 @@
         "id" : "OutputDirectory",
         "name" : "Output Directory",
         "description": "The output directory to store outcomes of preprocessing and reports",
-        "path-template" : "[OutputDirectoryName]/bibsnet/[BibsnetWorkManEditsDir]",
+        "path-template" : "[OutputDirectoryName]/bibsnet/[SUBJECT_DIR]",
         "optional" : false
     }],
     "suggested-resources": {

@@ -132,7 +132,7 @@
         "cbrain:integrator_modules": {
             "BoutiquesFileTypeVerifier": {
                 "SubjectDirectory": [ "BidsSubject" ],
-                "CabinetOutput": ["CabinetPrecomputedOutput"]
+                "CabinetOutput": ["CabinetPrecomputedOutput", "BibsnetOutput"]
             },
             "BoutiquesFileNameMatcher": {
                 "SubjectDirectory": "^sub-[a-zA-Z0-9_]+$"

@@ -25,7 +25,7 @@ class BibsnetOutput < FileCollection
   Revision_info=CbrainFileRevision[__FILE__] #:nodoc:
 
   def self.pretty_type #:nodoc:
-    "BIBSNET Work Directory"
+    "BIBSNET Output"
   end
 
 end

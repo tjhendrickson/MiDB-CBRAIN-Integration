@@ -752,7 +752,7 @@
         "cbrain:allow_empty_strings": ["derivatives_prefix"],
         "cbrain:no-run-id-for-outputs": [ "nibabies_output_dir", "nibabies_html_report", "freesurfer_output_dir"],
         "cbrain:integrator_modules": {
-            "BoutiquesAllowedExitCodes": [ 0, 1 ],
+            "BoutiquesAllowedExitCodes": [0],
             "BoutiquesFileTypeVerifier": {
                 "subject_dir": [ "BidsSubject" ],
                 "fs_license_file": [ "FreesurferLicense", "TextFile", "SingleFile" ]

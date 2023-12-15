@@ -84,6 +84,7 @@
         "description": "One or more terms, seperated by spaces, that have to be absent for a file to be considered an anatomical scan. Mainly useful for avoiding confusion between primary anat and localizer scans.",
         "optional": true,
         "type": "String",
+        "list": true,
         "value-key": "[TermsNotAllowedInAnat]"
     },
     {

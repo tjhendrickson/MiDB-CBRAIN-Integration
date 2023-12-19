@@ -116,6 +116,14 @@
             "BoutiquesFileNameMatcher": {
                 "SubjectDirectory": "^sub-[a-zA-Z0-9_]+$"
             },
+            "BoutiquesTaskLogsCopier": {
+                "stdout":     "[MADEOutputDirectoryName]/[SubjectDirectory]/.cbrain/stdout.log",
+                "stderr":     "[MADEOutputDirectoryName]/[SubjectDirectory]/.cbrain/stderr.log",
+                "runtime":    "[MADEOutputDirectoryName]/[SubjectDirectory]/.cbrain/runtime_info.properties",
+                "descriptor": "[MADEOutputDirectoryName]/[SubjectDirectory]/.cbrain/boutiques_descriptor.json",
+                "invoke":     "[MADEOutputDirectoryName]/[SubjectDirectory]/.cbrain/boutiques_invoke.json",
+                "jobscript":  "[MADEOutputDirectoryName]/[SubjectDirectory]/.cbrain/job_script.sh"
+            },
             "BoutiquesOutputFileTypeSetter": {
                 "OutputDirectory": "MADEOutput"
             },

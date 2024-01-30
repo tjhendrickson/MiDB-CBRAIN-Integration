@@ -277,14 +277,15 @@
         },
         {
             "command-line-flag": "--unringing-method",
-            "description": "Method for Gibbs-ringing removal. - none: no action - mrdegibbs: use mrdegibbs from mrtrix3",
+            "description": "Method for Gibbs-ringing removal. - none: no action - mrdegibbs: use mrdegibbs from mrtrix3. rpg: Gibbs from TORTOISE, suggested for partial Fourier acquisitions (default: none).",
             "id": "unringing_method",
             "name": "qsiprep dwi unringing method",
             "optional": true,
             "type": "String",
             "value-choices": [
                 "none",
-                "mrdegibbs"
+                "mrdegibbs",
+                "rpg"
             ],
             "value-key": "[UNRINGING_METHOD]"
         },

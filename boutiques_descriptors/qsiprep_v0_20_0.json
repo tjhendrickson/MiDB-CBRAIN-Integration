@@ -85,8 +85,7 @@
         "id": "ANTs_registrations_arguments_group",
         "members": [
             "skull_strip_template",
-            "skull_strip_fixed_seed",
-            "skip_t1_based_spatial_normalization"
+            "skull_strip_fixed_seed"
          ],
         "name": "ANTs Registrations Arguments"
     },

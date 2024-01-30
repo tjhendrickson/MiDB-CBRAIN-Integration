@@ -14,14 +14,6 @@
     },
     "groups": [
     {
-        "description": "Options for filtering BIDS queries.",
-        "id": "optional_BIDS_filtering_arguments_group",
-        "members": [
-            "acquisition_type"
-        ],
-        "name": "Optional BIDS Filtering Arguments"
-    },
-    {
         "description": "Options for interactive report outputs",
         "id": "interactive_report_arguments_group",
         "members": [
@@ -62,7 +54,6 @@
             "dwi_denoise_window",
             "unringing_method",
             "no_b0_harmonization",
-            "denoise_before_combining",
             "combine_all_dwis",
             "separate_all_dwis",
             "distortion_group_merge",
@@ -95,7 +86,6 @@
         "members": [
             "skull_strip_template",
             "skull_strip_fixed_seed",
-            "force_spatial_normalization",
             "skip_t1_based_spatial_normalization"
          ],
         "name": "ANTs Registrations Arguments"

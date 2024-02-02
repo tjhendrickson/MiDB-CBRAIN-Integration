@@ -19,13 +19,11 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-# A FileCollection to model the output of a MADE
-class SymriQCOutput < FileCollection
+# A FileCollection to model the output of SyMRI QC
+class SymriQcOutput < FileCollection
 
     Revision_info=CbrainFileRevision[__FILE__] #:nodoc:
-  
     def self.pretty_type #:nodoc:
       "SyMRI QC Output"
     end
-  
-  end
+end

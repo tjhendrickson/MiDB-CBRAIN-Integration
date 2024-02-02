@@ -101,7 +101,7 @@
                 "SyMRIDirectory": ["SymriOutput"]
             },
             "BoutiquesOutputFileTypeSetter": {
-                "OutputDirectory": "SymriQCOutput"
+                "OutputDirectory": "SymriQcOutput"
             },
             "BoutiquesInputSubdirMaker": {
                 "SyMRIDirectory":     {"dirname": "symri_input", "append_filename": false}

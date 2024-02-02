@@ -23,6 +23,7 @@
 class SymriQcOutput < FileCollection
 
     Revision_info=CbrainFileRevision[__FILE__] #:nodoc:
+    
     def self.pretty_type #:nodoc:
       "SyMRI QC Output"
     end

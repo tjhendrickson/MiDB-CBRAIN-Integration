@@ -225,7 +225,7 @@
             "description": "Head radius for computing FD, default is 50mm, 35mm is recommended for baby",
             "optional": true,
             "default-value": 50,
-            "type": "Number",
+            "type": "String",
             "value-key": "[HEAD_RADIUS]"
         },
         {

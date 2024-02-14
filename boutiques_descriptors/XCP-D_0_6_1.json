@@ -372,7 +372,6 @@
         "cbrain:allow_empty_strings": ["derivatives_prefix"],
         "cbrain:no-run-id-for-outputs": [ "xcpd_output_dir", "xcpd_ses_summary_html_report", "xcpd_sub_summary_html_report"],
         "cbrain:integrator_modules": {
-            "BoutiquesAllowedExitCodes": [ 0, 1 ],
             "BoutiquesOutputFileTypeSetter": {
                 "xcpd_output_dir":  "XcpdOutput",
                 "xcpd_ses_summary_html_report": "TextFile",
@@ -391,8 +390,12 @@
                 "invoke":     "[OUTPUT_DIR]/[SUBJECT_PREPROC_FMRI_DIR]/.cbrain/boutiques_invoke.json",
                 "jobscript":  "[OUTPUT_DIR]/[SUBJECT_PREPROC_FMRI_DIR]/.cbrain/job_script.sh"
             },
-            "BoutiquesBidsSingleSubjectMaker": "preproc_fmri_dir",
-            "BoutiquesPostProcessingCleaner": ["work"]
+            "BoutiquesBidsSingleSubjectMaker": "subject_dir",
+            "BoutiquesBidsSubjectFileSelector": { "subject_dir": "all_to_keep" },
+            "BoutiquesPostProcessingCleaner": ["work"],
+            "BoutiquesInputSubdirMaker": {
+                "preproc_fmri_dir":     {"dirname": "fmri", "append_filename": false}
+              }
         }
     }
 }

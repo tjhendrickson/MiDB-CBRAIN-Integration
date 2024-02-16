@@ -726,6 +726,14 @@
             },
             "BoutiquesBidsSingleSubjectMaker": "subject_dir",
             "BoutiquesBidsSubjectFileSelector": { "subject_dir": "all_to_keep" },
+            "BoutiquesTaskLogsCopier": {
+                "stdout":     "[QSIPREP_OUTPUT_DIR]/qsiprep/[SUBJECT_DIR]/.cbrain/stdout.log",
+                "stderr":     "[QSIPREP_OUTPUT_DIR]/qsiprep/[SUBJECT_DIR]/.cbrain/stderr.log",
+                "runtime":    "[QSIPREP_OUTPUT_DIR]/qsiprep/[SUBJECT_DIR]/.cbrain/runtime_info.properties",
+                "descriptor": "[QSIPREP_OUTPUT_DIR]/qsiprep/[SUBJECT_DIR]/.cbrain/boutiques_descriptor.json",
+                "invoke":     "[QSIPREP_OUTPUT_DIR]/qsiprep/[SUBJECT_DIR]/.cbrain/boutiques_invoke.json",
+                "jobscript":  "[QSIPREP_OUTPUT_DIR]/qsiprep/[SUBJECT_DIR]/.cbrain/job_script.sh"
+            },
             "BoutiquesInputSubdirMaker": {
               "freesurfer_input": {"dirname": "freesurfer",
                                    "append_filename": false}

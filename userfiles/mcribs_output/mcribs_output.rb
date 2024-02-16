@@ -20,7 +20,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-# A FileCollection to model the output of a Nibabies
+# A FileCollection to model the output of a Nibabies/Mcribs
 class McribsOutput < FileCollection
 
   Revision_info=CbrainFileRevision[__FILE__] #:nodoc:

@@ -390,12 +390,12 @@
               "xcpd_sub_summary_html_report": "[DERIVATIVES_PREFIX]xcpd"
             },
             "BoutiquesTaskLogsCopier": {
-                "stdout":     "[OUTPUT_DIR]/[SUBJECT_PREPROC_FMRI_DIR]/.cbrain/stdout.log",
-                "stderr":     "[OUTPUT_DIR]/[SUBJECT_PREPROC_FMRI_DIR]/.cbrain/stderr.log",
-                "runtime":    "[OUTPUT_DIR]/[SUBJECT_PREPROC_FMRI_DIR]/.cbrain/runtime_info.properties",
-                "descriptor": "[OUTPUT_DIR]/[SUBJECT_PREPROC_FMRI_DIR]/.cbrain/boutiques_descriptor.json",
-                "invoke":     "[OUTPUT_DIR]/[SUBJECT_PREPROC_FMRI_DIR]/.cbrain/boutiques_invoke.json",
-                "jobscript":  "[OUTPUT_DIR]/[SUBJECT_PREPROC_FMRI_DIR]/.cbrain/job_script.sh"
+                "stdout":     "[OUTPUT_DIR]/xcp_d/[SUBJECT_PREPROC_FMRI_DIR]/.cbrain/stdout.log",
+                "stderr":     "[OUTPUT_DIR]/xcp_d/[SUBJECT_PREPROC_FMRI_DIR]/.cbrain/stderr.log",
+                "runtime":    "[OUTPUT_DIR]/xcp_d/[SUBJECT_PREPROC_FMRI_DIR]/.cbrain/runtime_info.properties",
+                "descriptor": "[OUTPUT_DIR]/xcp_d/[SUBJECT_PREPROC_FMRI_DIR]/.cbrain/boutiques_descriptor.json",
+                "invoke":     "[OUTPUT_DIR]/xcp_d/[SUBJECT_PREPROC_FMRI_DIR]/.cbrain/boutiques_invoke.json",
+                "jobscript":  "[OUTPUT_DIR]/xcp_d/[SUBJECT_PREPROC_FMRI_DIR]/.cbrain/job_script.sh"
             },
             "BoutiquesBidsSingleSubjectMaker": "subject_dir",
             "BoutiquesBidsSubjectFileSelector": { "subject_dir": "all_to_keep" },

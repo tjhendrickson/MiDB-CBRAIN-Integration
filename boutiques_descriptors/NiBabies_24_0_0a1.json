@@ -772,12 +772,12 @@
               "freesurfer_output_dir": "[DERIVATIVES_PREFIX]freesurfer"
             },
             "BoutiquesTaskLogsCopier": {
-                "stdout":     "[OUTPUT_DIR]/[SUBJECT_DIR]/.cbrain/stdout.log",
-                "stderr":     "[OUTPUT_DIR]/[SUBJECT_DIR]/.cbrain/stderr.log",
-                "runtime":    "[OUTPUT_DIR]/[SUBJECT_DIR]/.cbrain/runtime_info.properties",
-                "descriptor": "[OUTPUT_DIR]/[SUBJECT_DIR]/.cbrain/boutiques_descriptor.json",
-                "invoke":     "[OUTPUT_DIR]/[SUBJECT_DIR]/.cbrain/boutiques_invoke.json",
-                "jobscript":  "[OUTPUT_DIR]/[SUBJECT_DIR]/.cbrain/job_script.sh"
+                "stdout":     "[OUTPUT_DIR]/nibabies/[SUBJECT_DIR]/.cbrain/stdout.log",
+                "stderr":     "[OUTPUT_DIR]/nibabies/[SUBJECT_DIR]/.cbrain/stderr.log",
+                "runtime":    "[OUTPUT_DIR]/nibabies/[SUBJECT_DIR]/.cbrain/runtime_info.properties",
+                "descriptor": "[OUTPUT_DIR]/nibabies/[SUBJECT_DIR]/.cbrain/boutiques_descriptor.json",
+                "invoke":     "[OUTPUT_DIR]/nibabies/[SUBJECT_DIR]/.cbrain/boutiques_invoke.json",
+                "jobscript":  "[OUTPUT_DIR]/nibabies/[SUBJECT_DIR]/.cbrain/job_script.sh"
             },
             "BoutiquesBidsSingleSubjectMaker": "subject_dir",
             "BoutiquesBidsSubjectFileSelector": { "subject_dir": "all_to_keep" },

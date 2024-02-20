@@ -757,7 +757,7 @@
         "cbrain:readonly-input-files": true,
         "cbrain:author": "Erik Lee <leex6144@umn.edu>, Timothy Hendrickson <hendr522@umn.edu> and Natacha Beck <natacha.beck@mcgill.ca>",
         "cbrain:allow_empty_strings": ["derivatives_prefix"],
-        "cbrain:no-run-id-for-outputs": [ "nibabies_output_dir", "nibabies_html_report", "freesurfer_output_dir"],
+        "cbrain:no-run-id-for-outputs": [ "nibabies_output_dir", "nibabies_html_report", "freesurfer_output_dir", "mcribs_output_dir"],
         "cbrain:integrator_modules": {
             "BoutiquesAllowedExitCodes": [0],
             "BoutiquesFileTypeVerifier": {

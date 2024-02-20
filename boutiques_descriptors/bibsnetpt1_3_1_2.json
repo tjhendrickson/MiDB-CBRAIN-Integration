@@ -124,6 +124,14 @@
             },
             "BoutiquesBidsSingleSubjectMaker": "subject_dir",
             "BoutiquesBidsSubjectFileSelector": { "subject_dir": "all_to_keep" },
+            "BoutiquesTaskLogsCopier": {
+                "stdout":     "[SUBJECT_DIR]/.cbrain/stdout.log",
+                "stderr":     "[SUBJECT_DIR]/.cbrain/stderr.log",
+                "runtime":    "[SUBJECT_DIR]/.cbrain/runtime_info.properties",
+                "descriptor": "[SUBJECT_DIR]/.cbrain/boutiques_descriptor.json",
+                "invoke":     "[SUBJECT_DIR]/.cbrain/boutiques_invoke.json",
+                "jobscript":  "[SUBJECT_DIR]/.cbrain/job_script.sh"
+            },
             "BoutiquesForcedOutputBrowsePath" : {
               "working_dir": "[DERIVATIVES_PREFIX]bibsnet_work"
             }

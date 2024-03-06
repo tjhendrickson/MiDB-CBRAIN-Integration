@@ -417,6 +417,7 @@
                 "xcpd_ses_summary_html_report": "TextFile",
                 "xcpd_sub_summary_html_report": "TextFile"
             },
+            "BoutiquesAllowedExitCodes": [0],
             "BoutiquesForcedOutputBrowsePath" : {
               "xcpd_output_dir": "[DERIVATIVES_PREFIX]xcpd",
               "xcpd_ses_summary_html_report": "[DERIVATIVES_PREFIX]xcpd",

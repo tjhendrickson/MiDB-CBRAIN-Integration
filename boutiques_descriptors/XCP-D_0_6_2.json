@@ -417,9 +417,9 @@
                 "xcpd_sub_summary_html_report": "TextFile"
             },
             "BoutiquesForcedOutputBrowsePath" : {
-              "xcpd_output_dir": "[DERIVATIVES_PREFIX]xcpd",
-              "xcpd_ses_summary_html_report": "[DERIVATIVES_PREFIX]xcpd",
-              "xcpd_sub_summary_html_report": "[DERIVATIVES_PREFIX]xcpd"
+              "xcpd_output_dir": "[DERIVATIVES_PREFIX]xcp_d",
+              "xcpd_ses_summary_html_report": "[DERIVATIVES_PREFIX]xcp_d",
+              "xcpd_sub_summary_html_report": "[DERIVATIVES_PREFIX]xcp_d"
             },
             "BoutiquesAllowedExitCodes": [0],
             "BoutiquesTaskLogsCopier": {

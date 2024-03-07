@@ -419,9 +419,9 @@
             },
             "BoutiquesAllowedExitCodes": [0],
             "BoutiquesForcedOutputBrowsePath" : {
-              "xcpd_output_dir": "[DERIVATIVES_PREFIX]xcpd",
-              "xcpd_ses_summary_html_report": "[DERIVATIVES_PREFIX]xcpd",
-              "xcpd_sub_summary_html_report": "[DERIVATIVES_PREFIX]xcpd"
+              "xcpd_output_dir": "[DERIVATIVES_PREFIX]xcp_d",
+              "xcpd_ses_summary_html_report": "[DERIVATIVES_PREFIX]xcp_d",
+              "xcpd_sub_summary_html_report": "[DERIVATIVES_PREFIX]xcp_d"
             },
             "BoutiquesTaskLogsCopier": {
                 "stdout":     "[OUTPUT_DIR]/xcp_d/[SUBJECT_DIR]/.cbrain/stdout.log",

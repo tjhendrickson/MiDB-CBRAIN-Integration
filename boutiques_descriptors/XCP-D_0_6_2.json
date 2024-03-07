@@ -407,7 +407,6 @@
     },
     "custom": {
         "cbrain:readonly-input-files": true,
-        "BoutiquesAllowedExitCodes": [0],
         "cbrain:author": "Natacha Beck <natacha.beck@mcgill.ca>, Erik Lee <leex6144@umn.edu>",
         "cbrain:allow_empty_strings": ["derivatives_prefix"],
         "cbrain:no-run-id-for-outputs": [ "xcpd_output_dir", "xcpd_ses_summary_html_report", "xcpd_sub_summary_html_report"],
@@ -422,6 +421,7 @@
               "xcpd_ses_summary_html_report": "[DERIVATIVES_PREFIX]xcpd",
               "xcpd_sub_summary_html_report": "[DERIVATIVES_PREFIX]xcpd"
             },
+            "BoutiquesAllowedExitCodes": [0],
             "BoutiquesTaskLogsCopier": {
                 "stdout":     "[OUTPUT_DIR]/xcp_d/[SUBJECT_DIR]/.cbrain/stdout.log",
                 "stderr":     "[OUTPUT_DIR]/xcp_d/[SUBJECT_DIR]/.cbrain/stderr.log",

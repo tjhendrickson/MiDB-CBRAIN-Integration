@@ -205,7 +205,6 @@
             "name": "qsiprep dwi only",
             "optional": true,
             "type": "Flag",
-            "default-value": false,
             "value-key": "[DWI_ONLY]"
         },
         {

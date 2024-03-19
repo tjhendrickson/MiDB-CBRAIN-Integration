@@ -171,6 +171,14 @@
             "BoutiquesForcedOutputBrowsePath" : {
               "OutputDirectory": "[DERIVATIVES_PREFIX]osprey"
             },
+            "BoutiquesTaskLogsCopier": {
+                "stdout":     "[OSPREYOutputDirectoryName]/[SubjectDirectory]/.cbrain/stdout.log",
+                "stderr":     "[OSPREYOutputDirectoryName]/[SubjectDirectory]/.cbrain/stderr.log",
+                "runtime":    "[OSPREYOutputDirectoryName]/[SubjectDirectory]/.cbrain/runtime_info.properties",
+                "descriptor": "[OSPREYOutputDirectoryName]/[SubjectDirectory]/.cbrain/boutiques_descriptor.json",
+                "invoke":     "[OSPREYOutputDirectoryName]/[SubjectDirectory]/.cbrain/boutiques_invoke.json",
+                "jobscript":  "[OSPREYOutputDirectoryName]/[SubjectDirectory]/.cbrain/job_script.sh"
+            },
             "BoutiquesBidsSingleSubjectMaker": "SubjectDirectory",
             "BoutiquesBidsSubjectFileSelector": { "SubjectDirectory": "all_to_keep" },
             "BoutiquesInputSubdirMaker": {

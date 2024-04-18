@@ -428,7 +428,9 @@
                 "runtime":    "[OUTPUT_DIR]/xcp_d/[SUBJECT_DIR]/.cbrain/runtime_info.properties",
                 "descriptor": "[OUTPUT_DIR]/xcp_d/[SUBJECT_DIR]/.cbrain/boutiques_descriptor.json",
                 "invoke":     "[OUTPUT_DIR]/xcp_d/[SUBJECT_DIR]/.cbrain/boutiques_invoke.json",
-                "jobscript":  "[OUTPUT_DIR]/xcp_d/[SUBJECT_DIR]/.cbrain/job_script.sh"
+                "jobscript":  "[OUTPUT_DIR]/xcp_d/[SUBJECT_DIR]/.cbrain/job_script.sh",
+                "cbrain_params": "[OUTPUT_DIR]/xcp_d/[SUBJECT_DIR]/.cbrain/cbrain_params.json"
+                
             },
             "BoutiquesBidsSingleSubjectMaker": "subject_dir",
             "BoutiquesBidsSubjectFileSelector": { "subject_dir": "all_to_keep" },

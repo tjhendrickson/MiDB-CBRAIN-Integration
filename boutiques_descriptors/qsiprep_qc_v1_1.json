@@ -109,7 +109,8 @@
                 "runtime":    "[OutputDirectoryName]/[BIDSSubjectDirectory]/.cbrain/runtime_info.properties",
                 "descriptor": "[OutputDirectoryName]/[BIDSSubjectDirectory]/.cbrain/boutiques_descriptor.json",
                 "invoke":     "[OutputDirectoryName]/[BIDSSubjectDirectory]/.cbrain/boutiques_invoke.json",
-                "jobscript":  "[OutputDirectoryName]/[BIDSSubjectDirectory]/.cbrain/job_script.sh"
+                "jobscript":  "[OutputDirectoryName]/[BIDSSubjectDirectory]/.cbrain/job_script.sh",
+                "cbrain_params": "[OutputDirectoryName]/[BIDSSubjectDirectory]/.cbrain/cbrain_params.json"
             },
             "BoutiquesBidsSubjectFileSelector": { "BIDSSubjectDirectory": "all_to_keep"},
             "BoutiquesForcedOutputBrowsePath" : {

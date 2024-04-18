@@ -96,6 +96,15 @@
             "BoutiquesOutputFileTypeSetter": {
                 "OutputDirectory": "BibsnetOutput"
             },
+            "BoutiquesTaskLogsCopier": {
+                "stdout":     "[OutputDirectoryName]/bibsnet/[SUBJECT_DIR]/.cbrain/stdout.log",
+                "stderr":     "[OutputDirectoryName]/bibsnet/[SUBJECT_DIR]/.cbrain/stderr.log",
+                "runtime":    "[OutputDirectoryName]/bibsnet/[SUBJECT_DIR]/.cbrain/runtime_info.properties",
+                "descriptor": "[OutputDirectoryName]/bibsnet/[SUBJECT_DIR]/.cbrain/boutiques_descriptor.json",
+                "invoke":     "[OutputDirectoryName]/bibsnet/[SUBJECT_DIR]/.cbrain/boutiques_invoke.json",
+                "jobscript":  "[OutputDirectoryName]/bibsnet/[SUBJECT_DIR]/.cbrain/job_script.sh",
+                "cbrain_params": "[OutputDirectoryName]/bibsnet/[SUBJECT_DIR]/.cbrain/cbrain_params.json"
+            },
             "BoutiquesInputSubdirMaker": {
                 "BibsnetWorkManEditsDir": {"dirname": "BibsnetWorkManEdits", "append_filename": false}
             },

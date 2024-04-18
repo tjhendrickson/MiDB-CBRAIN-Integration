@@ -130,7 +130,8 @@
                 "runtime":    "[SUBJECT_DIR]/.cbrain/runtime_info.properties",
                 "descriptor": "[SUBJECT_DIR]/.cbrain/boutiques_descriptor.json",
                 "invoke":     "[SUBJECT_DIR]/.cbrain/boutiques_invoke.json",
-                "jobscript":  "[SUBJECT_DIR]/.cbrain/job_script.sh"
+                "jobscript":  "[SUBJECT_DIR]/.cbrain/job_script.sh",
+                "cbrain_params": "[SUBJECT_DIR]/.cbrain/cbrain_params.json"
             },
             "BoutiquesForcedOutputBrowsePath" : {
               "working_dir": "[DERIVATIVES_PREFIX]bibsnet_work"

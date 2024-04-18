@@ -126,13 +126,6 @@
         "description" : "This is the output containing the subject directory and html reports.",
         "path-template" : "[MRIQC_OUTPUT_DIR]/[SUBJECT_DIR]*",
         "optional" : false
-    },
-    {
-        "id" : "output_work_dir",
-        "name" : "Output Work Directory",
-        "description" : "This is the output containing the work directory for processing (not needed in many cases).",
-        "path-template" : "work/[SUBJECT_DIR].mriqc_work",
-        "optional" : false
     }],
     "groups": [
         {
@@ -185,6 +178,15 @@
             "BoutiquesForcedOutputBrowsePath" : {
               "output_dir": "[DERIVATIVES_PREFIX]mriqc",
               "output_work_dir": "[DERIVATIVES_PREFIX]processing_work_dirs/mriqc"
+            },
+            "BoutiquesTaskLogsCopier": {
+                "stdout":     "[MRIQC_OUTPUT_DIR]/mriqc/[SUBJECT_DIR]/.cbrain/stdout.log",
+                "stderr":     "[MRIQC_OUTPUT_DIR]/mriqc/[SUBJECT_DIR]/.cbrain/stderr.log",
+                "runtime":    "[MRIQC_OUTPUT_DIR]/mriqc/[SUBJECT_DIR]/.cbrain/runtime_info.properties",
+                "descriptor": "[MRIQC_OUTPUT_DIR]/mriqc/[SUBJECT_DIR]/.cbrain/boutiques_descriptor.json",
+                "invoke":     "[MRIQC_OUTPUT_DIR]/mriqc/[SUBJECT_DIR]/.cbrain/boutiques_invoke.json",
+                "jobscript":  "[MRIQC_OUTPUT_DIR]/mriqc/[SUBJECT_DIR]/.cbrain/job_script.sh",
+                "cbrain_params": "[MRIQC_OUTPUT_DIR]/mriqc/[SUBJECT_DIR]/.cbrain/cbrain_params.json"
             },
             "BoutiquesBidsSingleSubjectMaker": "subject_dir",
             "BoutiquesBidsSubjectFileSelector": { "subject_dir": "all_to_keep" }

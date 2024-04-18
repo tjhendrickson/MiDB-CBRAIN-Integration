@@ -122,7 +122,8 @@
                 "runtime":    "[MADEOutputDirectoryName]/[SubjectDirectory]/.cbrain/runtime_info.properties",
                 "descriptor": "[MADEOutputDirectoryName]/[SubjectDirectory]/.cbrain/boutiques_descriptor.json",
                 "invoke":     "[MADEOutputDirectoryName]/[SubjectDirectory]/.cbrain/boutiques_invoke.json",
-                "jobscript":  "[MADEOutputDirectoryName]/[SubjectDirectory]/.cbrain/job_script.sh"
+                "jobscript":  "[MADEOutputDirectoryName]/[SubjectDirectory]/.cbrain/job_script.sh",
+                "cbrain_params": "[MADEOutputDirectoryName]/[SubjectDirectory]/.cbrain/cbrain_params.json"
             },
             "BoutiquesOutputFileTypeSetter": {
                 "OutputDirectory": "MADEOutput"

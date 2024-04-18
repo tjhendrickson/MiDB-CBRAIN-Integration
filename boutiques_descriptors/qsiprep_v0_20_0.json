@@ -731,7 +731,8 @@
                 "runtime":    "[QSIPREP_OUTPUT_DIR]/qsiprep/[SUBJECT_DIR]/.cbrain/runtime_info.properties",
                 "descriptor": "[QSIPREP_OUTPUT_DIR]/qsiprep/[SUBJECT_DIR]/.cbrain/boutiques_descriptor.json",
                 "invoke":     "[QSIPREP_OUTPUT_DIR]/qsiprep/[SUBJECT_DIR]/.cbrain/boutiques_invoke.json",
-                "jobscript":  "[QSIPREP_OUTPUT_DIR]/qsiprep/[SUBJECT_DIR]/.cbrain/job_script.sh"
+                "jobscript":  "[QSIPREP_OUTPUT_DIR]/qsiprep/[SUBJECT_DIR]/.cbrain/job_script.sh",
+                "cbrain_params": "[QSIPREP_OUTPUT_DIR]/qsiprep/[SUBJECT_DIR]/.cbrain/cbrain_params.json"
             },
             "BoutiquesInputSubdirMaker": {
               "freesurfer_input": {"dirname": "freesurfer",

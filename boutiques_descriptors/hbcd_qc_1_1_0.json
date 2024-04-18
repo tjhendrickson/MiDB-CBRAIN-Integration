@@ -89,7 +89,8 @@
                 "runtime":    "[HBCDQC_OUTPUT_DIR]/[SUBJECT_DIR]/.cbrain/runtime_info.properties",
                 "descriptor": "[HBCDQC_OUTPUT_DIR]/[SUBJECT_DIR]/.cbrain/boutiques_descriptor.json",
                 "invoke":     "[HBCDQC_OUTPUT_DIR]/[SUBJECT_DIR]/.cbrain/boutiques_invoke.json",
-                "jobscript":  "[HBCDQC_OUTPUT_DIR]/[SUBJECT_DIR]/.cbrain/job_script.sh"
+                "jobscript":  "[HBCDQC_OUTPUT_DIR]/[SUBJECT_DIR]/.cbrain/job_script.sh",
+                "cbrain_params": "[HBCDQC_OUTPUT_DIR]/[SUBJECT_DIR]/.cbrain/cbrain_params.json"
             },
             "BoutiquesForcedOutputBrowsePath" : {
               "output_dir": "[DERIVATIVES_PREFIX]hbcd_qc"

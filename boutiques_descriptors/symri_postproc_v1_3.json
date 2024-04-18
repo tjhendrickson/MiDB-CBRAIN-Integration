@@ -121,7 +121,8 @@
                 "runtime":    "[OutputDirectoryName]/[SubjectDirectory]/.cbrain/runtime_info.properties",
                 "descriptor": "[OutputDirectoryName]/[SubjectDirectory]/.cbrain/boutiques_descriptor.json",
                 "invoke":     "[OutputDirectoryName]/[SubjectDirectory]/.cbrain/boutiques_invoke.json",
-                "jobscript":  "[OutputDirectoryName]/[SubjectDirectory]/.cbrain/job_script.sh"
+                "jobscript":  "[OutputDirectoryName]/[SubjectDirectory]/.cbrain/job_script.sh",
+                "cbrain_params": "[OutputDirectoryName]/[SubjectDirectory]/.cbrain/cbrain_params.json"
             },
             "BoutiquesFileNameMatcher": {
                 "SubjectDirectory": "^sub-[a-zA-Z0-9_]+$"

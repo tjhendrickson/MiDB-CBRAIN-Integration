@@ -3,7 +3,7 @@
     "description": "A Robust Postprocessing Pipeline of fMRI data",
     "tool-version": "0.7.1",
     "schema-version": "0.5",
-    "command-line": "true [SUBJECT_DIR]; true [MCRIBS_DIR]; true [FREESURFER_DIR]; true [TEMPLATES_FSLR_DIR]; true [DERIVATIVES_PREFIX]; mkdir -p work; export FS_LICENSE=$PWD/[FS_LICENSE_FILE]; xcp_d [SUBJECT_PREPROC_FMRI_DIR] [OUTPUT_DIR] participant --omp-nthreads 3 [CIFTI] [COMBINERUNS] [VERBOSE] [INPUT_TYPE] [TASK] [SMOOTHING] [DESPIKE] [NUISSANCE] --fs-license-file [FS_LICENSE_FILE] [DUMMY_SCANS] [BPF] [LOWER_BPF] [UPPER_BPF] [BPF_ORDER] [MOTION_FILTER_TYPE] [BAND_STOP_MIN] [BAND_STOP_MAX] [MOTION_FILTER_ORDER] [HEAD_RADIUS] [FD_THRESH] [WARP_SURFACES] [BIDS_FILTER] -w work --notrack",
+    "command-line": "true [SUBJECT_DIR]; true [MCRIBS_DIR]; true [FREESURFER_DIR]; true [TEMPLATES_FSLR_DIR]; true [DERIVATIVES_PREFIX]; mkdir -p work; export FS_LICENSE=$PWD/[FS_LICENSE_FILE]; xcp_d [SUBJECT_PREPROC_FMRI_DIR] [OUTPUT_DIR] participant --omp-nthreads 3 [CIFTI] [COMBINERUNS] [VERBOSE] [INPUT_TYPE] [TASK] [SMOOTHING] [DESPIKE] [MIN_TIME] [NUISSANCE] --fs-license-file [FS_LICENSE_FILE] [DUMMY_SCANS] [BPF] [LOWER_BPF] [UPPER_BPF] [BPF_ORDER] [MOTION_FILTER_TYPE] [BAND_STOP_MIN] [BAND_STOP_MAX] [MOTION_FILTER_ORDER] [HEAD_RADIUS] [FD_THRESH] [WARP_SURFACES] [BIDS_FILTER] -w work --notrack",
     "container-image": {
         "image": "pennlinc/xcp_d:0.7.1",
         "index": "docker://",
@@ -120,6 +120,15 @@
             "default-value": 6,
             "type": "Number",
             "value-key": "[SMOOTHING]"
+        },
+        {
+            "command-line-flag": "--min-time",
+            "id": "min_time",
+            "name": "min_time",
+            "description": "Minimum amount of time (in seconds) that a run must have following censoring for it to be processed.",
+            "optional": true,
+            "type": "Number",
+            "value-key": "[MIN_TIME]"
         },
         {
             "command-line-flag": "--despike",

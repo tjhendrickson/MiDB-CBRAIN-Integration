@@ -168,7 +168,7 @@
             "id": "recon_spec",
             "name": "qsiprep recon spec",
             "optional": true,
-            "type": "File",
+            "type": "String",
             "value-key": "[RECON_SPEC]"
         },
         {

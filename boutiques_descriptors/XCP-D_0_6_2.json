@@ -407,7 +407,7 @@
     },
     "custom": {
         "cbrain:readonly-input-files": true,
-        "cbrain:author": "Natacha Beck <natacha.beck@mcgill.ca>, Erik Lee <leex6144@umn.edu>",
+        "cbrain:author": "Natacha Beck <nbeck@mcin.ca>, Erik Lee <leex6144@umn.edu>",
         "cbrain:allow_empty_strings": ["derivatives_prefix"],
         "cbrain:no-run-id-for-outputs": [ "xcpd_output_dir", "xcpd_ses_summary_html_report", "xcpd_sub_summary_html_report"],
         "cbrain:integrator_modules": {

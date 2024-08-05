@@ -705,7 +705,7 @@
     "suggested-resources": {
         "cpu-cores": 4,
         "ram": 60,
-        "walltime-estimate": 200000
+        "walltime-estimate": 72000
     },
     "custom": {
         "cbrain:readonly-input-files": true,

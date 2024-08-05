@@ -21,7 +21,7 @@
 #
 
 # A FileCollection to model the output of a XCP-D
-class XcpdOutputHtml < FileCollection
+class XcpdOutputHtml < TextFile
 
     Revision_info=CbrainFileRevision[__FILE__] #:nodoc:
   

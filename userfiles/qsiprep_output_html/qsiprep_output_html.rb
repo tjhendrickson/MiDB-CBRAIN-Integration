@@ -21,7 +21,7 @@
 #
 
 # A FileCollection to model the output of a QSIprep
-class QsiprepOutputHtml < FileCollection
+class QsiprepOutputHtml < TextFile
 
     Revision_info=CbrainFileRevision[__FILE__] #:nodoc:
   

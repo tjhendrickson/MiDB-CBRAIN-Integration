@@ -21,7 +21,7 @@
 #
 
 # A FileCollection to model the output of a Nibabies
-class NibabiesOutputHtml < FileCollection
+class NibabiesOutputHtml < TextFile
 
     Revision_info=CbrainFileRevision[__FILE__] #:nodoc:
   

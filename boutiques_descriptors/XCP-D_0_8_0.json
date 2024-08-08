@@ -120,9 +120,9 @@
         },
         {
             "command-line-flag": "--nuisance-regressors",
-            "id": "nuissance_regressors",
-            "name": "Nuissance regressors",
-            "description": "Nuissance parameters to be selected",
+            "id": "nuisance_regressors",
+            "name": "Nuisance regressors",
+            "description": "Nuisance parameters to be selected",
             "optional": true,
             "type": "String",
             "value-key": "[NUISANCE]",

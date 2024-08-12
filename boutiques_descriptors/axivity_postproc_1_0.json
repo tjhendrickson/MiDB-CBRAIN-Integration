@@ -3,7 +3,7 @@
     "description": "A container to run accelerometry analyses on BIDS formatted data for HBCD.",
     "tool-version": "1.0",
     "schema-version": "0.5",
-    "url": "https://github.com/erikglee/HBCD_Raw_Anat_QC_Container",
+    "url": "https://github.com/Infant-Neuromotor-Control-Lab/HBCD_movement_sensor",
     "command-line": "true [DERIVATIVES_PREFIX]; axivity_postproc [SUBJECT_DIR] [POSTRPOC_OUTPUT_DIR] participant [SESSION_ID] [INTERVAL] [PA_MEASURE] [PA_SIDE] [ENTROPY_TYPE] [ENTROPY_MEASURE]",
     "container-image": {
         "image": "dcanumn/axivity_postproc:1.0",

@@ -748,8 +748,8 @@
               "nibabies_html_report": "[DERIVATIVES_PREFIX]nibabies",
               "infant_freesurfer_output_dir": "[DERIVATIVES_PREFIX]infant-freesurfer"
             },
-            "BoutiquesBidsSingleSubjectMaker": "subject_dir",
             "BoutiquesBidsSubjectFileSelector": { "subject_dir": "all_to_keep" },
+            "BoutiquesBidsSingleSubjectMaker": "subject_dir",
             "BoutiquesPostProcessingCleaner": [
               "work",
               "[OUTPUT_DIR]"

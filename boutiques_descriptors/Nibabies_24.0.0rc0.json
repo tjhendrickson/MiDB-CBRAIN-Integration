@@ -4,7 +4,7 @@
     "tool-version": "24.0.0rc0",
     "schema-version": "0.5",
     "url": "https://nibabies.readthedocs.io/",
-    "command-line": "true [DERIVATIVES_PREFIX]; nibabies [SUBJECT_DIR] [OUTPUT_DIR] participant --skip_bids_validation [TASK_ID] [ECHO_IDX] [ANAT_DERIVATIVES_PATH] --nthreads 4 --omp-nthreads 4 --mem_mb 30000 [USE_PLUGIN] [ANAT_ONLY] [BOILERPLATE_ONLY] [MD_ONLY_BOILERPLATE] [VERBOSE] [IGNORE] [LONGITUDINAL] [OUTPUT_SPACES] [ME_OUTPUT_ECHOS] [BOLD2ANAT_INIT] [BOLD2ANAT_DOF] [FORCE_BBR] [FORCE_NO_BBR] [MEDIAL_SURFACE_NAN] [SLICE_TIME_REF] [DUMMY_SCANS] [RANDOM_SEED] [RETURN_ALL_COMPONENTS] [FD_SPIKE_THRESHOLD] [DVARS_SPIKE_THRESHOLD] [SKULL_STRIP_TEMPLATE] [SKULL_STRIP_FIXED_SEED] [SKULL_STRIP_ANAT] [FMAP_BSPLINE] [FMAP_NO_DEMEAN] [USE_SYN_SDC] [FORCE_SYN] [FS_LICENSE_FILE] [NO_SUBMM_RECON] [CIFTI_OUTPUT] [FS_NO_RECONALL] --work-dir work [RESOURCE_MONITOR] [REPORTS_ONLY] [CONFIG_FILE] [WRITE_GRAPH] [STOP_ON_FIRST_CRASH] [NOTRACK] [DEBUG] [SLOPPY] [AGE_MONTHS] [SEGMENTATION_ATLASES_DIR] [FD_RADIUS] [CABINET_OUTPUT] [DERIV_FILTER_FILE] [FORCE_RECONALL] [PROJECT_GOODVOXELS] [SURFACE_RECON_METHOD]",
+    "command-line": "true [DERIVATIVES_PREFIX]; nibabies [SUBJECT_DIR] [OUTPUT_DIR] participant --skip_bids_validation [TASK_ID] [SESSION_ID] [ECHO_IDX] [ANAT_DERIVATIVES_PATH] --nthreads 4 --omp-nthreads 4 --mem_mb 30000 [USE_PLUGIN] [ANAT_ONLY] [BOILERPLATE_ONLY] [MD_ONLY_BOILERPLATE] [VERBOSE] [IGNORE] [LONGITUDINAL] [OUTPUT_SPACES] [ME_OUTPUT_ECHOS] [BOLD2ANAT_INIT] [BOLD2ANAT_DOF] [FORCE_BBR] [FORCE_NO_BBR] [MEDIAL_SURFACE_NAN] [SLICE_TIME_REF] [DUMMY_SCANS] [RANDOM_SEED] [RETURN_ALL_COMPONENTS] [FD_SPIKE_THRESHOLD] [DVARS_SPIKE_THRESHOLD] [SKULL_STRIP_TEMPLATE] [SKULL_STRIP_FIXED_SEED] [SKULL_STRIP_ANAT] [FMAP_BSPLINE] [FMAP_NO_DEMEAN] [USE_SYN_SDC] [FORCE_SYN] [FS_LICENSE_FILE] [NO_SUBMM_RECON] [CIFTI_OUTPUT] [FS_NO_RECONALL] --work-dir work [RESOURCE_MONITOR] [REPORTS_ONLY] [CONFIG_FILE] [WRITE_GRAPH] [STOP_ON_FIRST_CRASH] [NOTRACK] [DEBUG] [SLOPPY] [AGE_MONTHS] [SEGMENTATION_ATLASES_DIR] [FD_RADIUS] [CABINET_OUTPUT] [DERIV_FILTER_FILE] [FORCE_RECONALL] [PROJECT_GOODVOXELS] [SURFACE_RECON_METHOD]",
     "container-image": {
         "image": "nipreps/nibabies:24.0.0rc0",
         "index": "docker://",
@@ -170,6 +170,15 @@
             "optional": true,
             "type": "String",
             "value-key": "[TASK_ID]"
+        },
+        {
+            "command-line-flag": "--session-id",
+            "id": "session_id",
+            "name": "session_id",
+            "description": "a space delimited list of session identifiers or a single identifier",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SESSION_ID]"
         },
         {
             "command-line-flag": "--echo-idx",

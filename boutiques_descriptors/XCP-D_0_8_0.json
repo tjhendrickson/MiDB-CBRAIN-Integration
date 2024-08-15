@@ -427,8 +427,8 @@
             "BoutiquesBidsSubjectFileSelector": { "subject_dir": "all_to_keep" },
             "BoutiquesPostProcessingCleaner": ["work"],
             "BoutiquesInputSubdirMaker": {
-                "preproc_fmri_dir":     {"dirname": "fmri", "append_filename": false},
-                "preproc_output_json":  {"dirname": "fmri", "filename": "dataset_description.json", "append_filename": false}
+                "preproc_fmri_dir":     {"dirname": "fmri", "append_filename": false, "physical_copy": true},
+                "preproc_output_json":  {"dirname": "fmri", "filename": "dataset_description.json", "append_filename": false, "physical_copy": true}
               }
         }
     }

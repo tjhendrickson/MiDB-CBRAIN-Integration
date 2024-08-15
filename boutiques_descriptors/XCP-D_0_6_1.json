@@ -435,11 +435,11 @@
             "BoutiquesBidsSubjectFileSelector": { "subject_dir": "all_to_keep" },
             "BoutiquesPostProcessingCleaner": ["work"],
             "BoutiquesInputSubdirMaker": {
-                "preproc_fmri_dir":     {"dirname": "fmri", "append_filename": false},
-                "preproc_output_json":  {"dirname": "fmri", "filename": "dataset_description.json", "append_filename": false},
-                "freesurfer_dir":       {"dirname": "fmri/sourcedata/freesurfer", "append_filename": false},
-                "mcribs_dir":           {"dirname": "fmri/sourcedata/mcribs", "append_filename": false},
-                "templates_fslr_dir":   {"dirname": "fmri/sourcedata/mcribs", "append_filename": false}
+                "preproc_fmri_dir":     {"dirname": "fmri", "append_filename": false, "physical_copy": true},
+                "preproc_output_json":  {"dirname": "fmri", "filename": "dataset_description.json", "append_filename": false, "physical_copy": true},
+                "freesurfer_dir":       {"dirname": "fmri/sourcedata/freesurfer", "append_filename": false, "physical_copy": true},
+                "mcribs_dir":           {"dirname": "fmri/sourcedata/mcribs", "append_filename": false, "physical_copy": true},
+                "templates_fslr_dir":   {"dirname": "fmri/sourcedata/mcribs", "append_filename": false, "physical_copy": true}
 
               }
         }

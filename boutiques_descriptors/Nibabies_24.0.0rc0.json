@@ -689,14 +689,14 @@
         "id" : "freesurfer_output_dir",
         "name" : "FreeSurfer Output Directory",
         "description" : "This is the directory where the freesurfer-like outputs are to be stored.",
-        "path-template" : "[OUTPUT_DIR]/freesurfer/[SUBJECT_DIR]",
+        "path-template" : "[OUTPUT_DIR]/sourcedata/freesurfer/[SUBJECT_DIR]*",
         "optional" : false
     },
     {
         "id" : "mcribs_output_dir",
         "name" : "MCRIBS Output Directory",
         "description" : "This is the directory where the mcribs outputs are to be stored.",
-        "path-template" : "[OUTPUT_DIR]/mcribs/[SUBJECT_DIR]",
+        "path-template" : "[OUTPUT_DIR]/sourcedata/mcribs/[SUBJECT_DIR]*",
         "optional" : false
     },
     {

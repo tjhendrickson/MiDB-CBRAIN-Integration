@@ -432,8 +432,8 @@
                 "cbrain_params": "[OUTPUT_DIR]/xcp_d/[SUBJECT_DIR]/.cbrain/cbrain_params.json"
                 
             },
-            "BoutiquesBidsSingleSubjectMaker": "subject_dir",
             "BoutiquesBidsSubjectFileSelector": { "subject_dir": "all_to_keep" },
+            "BoutiquesBidsSingleSubjectMaker": "subject_dir",
             "BoutiquesPostProcessingCleaner": ["work"],
             "BoutiquesInputSubdirMaker": {
                 "preproc_fmri_dir":     {"dirname": "fmri", "append_filename": false, "physical_copy": true},

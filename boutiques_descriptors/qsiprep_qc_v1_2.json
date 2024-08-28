@@ -113,6 +113,7 @@
                 "cbrain_params": "[OutputDirectoryName]/[BIDSSubjectDirectory]/.cbrain/cbrain_params.json"
             },
             "BoutiquesBidsSubjectFileSelector": { "BIDSSubjectDirectory": "all_to_keep"},
+            "BoutiquesBidsSingleSubjectMaker": "BIDSSubjectDirectory",
             "BoutiquesForcedOutputBrowsePath" : {
               "OutputDirectory": "[DERIVATIVES_PREFIX]qsiprep_qc"
             },

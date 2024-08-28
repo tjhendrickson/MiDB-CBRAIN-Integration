@@ -311,7 +311,9 @@
             },
             "BoutiquesPostProcessingCleaner": [
                 "work"
-            ]
+            ],
+            "BoutiquesBidsSubjectFileSelector": { "dummy": "all_to_keep" },
+            "BoutiquesBidsSingleSubjectMaker": "dummy"
         }
     }
 }

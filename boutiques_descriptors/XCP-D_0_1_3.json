@@ -346,6 +346,7 @@
               "xcpd_ses_summary_html_report": "[DERIVATIVES_PREFIX]xcpd",
               "xcpd_sub_summary_html_report": "[DERIVATIVES_PREFIX]xcpd"
             },
+            "BoutiquesBidsSubjectFileSelector": { "dummy": "all_to_keep" },
             "BoutiquesBidsSingleSubjectMaker": "preproc_fmri_dir",
             "BoutiquesPostProcessingCleaner": ["work"]
         }

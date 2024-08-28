@@ -131,8 +131,8 @@
             "BoutiquesForcedOutputBrowsePath" : {
               "OutputDirectory": "[DERIVATIVES_PREFIX]made"
             },
-            "BoutiquesBidsSingleSubjectMaker": "SubjectDirectory",
-            "BoutiquesBidsSubjectFileSelector": { "SubjectDirectory": "all_to_keep" }
+            "BoutiquesBidsSubjectFileSelector": { "SubjectDirectory": "all_to_keep" },
+            "BoutiquesBidsSingleSubjectMaker": "SubjectDirectory"
         }
     }
 }

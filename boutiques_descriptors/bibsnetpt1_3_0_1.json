@@ -106,8 +106,8 @@
             "BoutiquesOutputFileTypeSetter": {
                 "working_dir": "BibsnetWork"
             },
-            "BoutiquesBidsSingleSubjectMaker": "subject_dir",
             "BoutiquesBidsSubjectFileSelector": { "subject_dir": "all_to_keep" },
+            "BoutiquesBidsSingleSubjectMaker": "subject_dir",
             "BoutiquesForcedOutputBrowsePath" : {
               "working_dir": "[DERIVATIVES_PREFIX]bibsnet_work"
             }

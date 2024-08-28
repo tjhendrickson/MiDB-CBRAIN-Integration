@@ -143,8 +143,8 @@
             "BoutiquesForcedOutputBrowsePath" : {
               "OutputDirectory": "[DERIVATIVES_PREFIX]osprey"
             },
-            "BoutiquesBidsSingleSubjectMaker": "SubjectDirectory",
             "BoutiquesBidsSubjectFileSelector": { "SubjectDirectory": "all_to_keep" },
+            "BoutiquesBidsSingleSubjectMaker": "SubjectDirectory",
             "BoutiquesInputSubdirMaker": {
               "CabinetOutput":     {"dirname": "precomputed",                                         "append_filename": false},
               "CabinetOutputJson": {"dirname": "precomputed", "filename": "dataset_description.json", "append_filename": false}

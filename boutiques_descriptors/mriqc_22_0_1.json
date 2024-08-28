@@ -186,8 +186,8 @@
                 "jobscript":  "[MRIQC_OUTPUT_DIR]/mriqc/[SUBJECT_DIR]/.cbrain/job_script.sh",
                 "cbrain_params": "[MRIQC_OUTPUT_DIR]/mriqc/[SUBJECT_DIR]/.cbrain/cbrain_params.json"
             },
-            "BoutiquesBidsSingleSubjectMaker": "subject_dir",
-            "BoutiquesBidsSubjectFileSelector": { "subject_dir": "all_to_keep" }
+            "BoutiquesBidsSubjectFileSelector": { "subject_dir": "all_to_keep" },
+            "BoutiquesBidsSingleSubjectMaker": "subject_dir"
         }
     }
 }

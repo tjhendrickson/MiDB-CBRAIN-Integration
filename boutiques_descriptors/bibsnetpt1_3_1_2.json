@@ -122,8 +122,8 @@
             "BoutiquesOutputFileTypeSetter": {
                 "working_dir": "BibsnetWork"
             },
-            "BoutiquesBidsSingleSubjectMaker": "subject_dir",
             "BoutiquesBidsSubjectFileSelector": { "subject_dir": "all_to_keep" },
+            "BoutiquesBidsSingleSubjectMaker": "subject_dir",
             "BoutiquesTaskLogsCopier": {
                 "stdout":     "[SUBJECT_DIR]/.cbrain/stdout.log",
                 "stderr":     "[SUBJECT_DIR]/.cbrain/stderr.log",

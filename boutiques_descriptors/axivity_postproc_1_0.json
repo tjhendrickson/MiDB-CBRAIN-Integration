@@ -140,8 +140,8 @@
             "BoutiquesForcedOutputBrowsePath" : {
               "output_dir": "[DERIVATIVES_PREFIX]axivity_postproc"
             },
-            "BoutiquesBidsSingleSubjectMaker": "subject_dir",
-            "BoutiquesBidsSubjectFileSelector": { "subject_dir": "all_to_keep" }
+            "BoutiquesBidsSubjectFileSelector": { "subject_dir": "all_to_keep" },
+            "BoutiquesBidsSingleSubjectMaker": "subject_dir"
         }
     }
 }

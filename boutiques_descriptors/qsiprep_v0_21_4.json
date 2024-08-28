@@ -774,8 +774,8 @@
               "recon_dir_tortoise_mapmri": "[DERIVATIVES_PREFIX]qsirecon-TORTOISE_model-MAPMRI",
               "recon_dir_tortoise_tensor": "[DERIVATIVES_PREFIX]qsirecon-TORTOISE_model-tensor"
             },
-            "BoutiquesBidsSingleSubjectMaker": "subject_dir",
             "BoutiquesBidsSubjectFileSelector": { "subject_dir": "all_to_keep" },
+            "BoutiquesBidsSingleSubjectMaker": "subject_dir",
             "BoutiquesTaskLogsCopier": {
                 "stdout":     "[QSIPREP_OUTPUT_DIR]/qsiprep/[SUBJECT_DIR]/.cbrain/stdout.log",
                 "stderr":     "[QSIPREP_OUTPUT_DIR]/qsiprep/[SUBJECT_DIR]/.cbrain/stderr.log",

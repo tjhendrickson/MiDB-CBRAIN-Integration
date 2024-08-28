@@ -123,8 +123,8 @@
             "BoutiquesForcedOutputBrowsePath" : {
               "OutputDirectory": "[DERIVATIVES_PREFIX]symri_postproc"
             },
-            "BoutiquesBidsSingleSubjectMaker": "SubjectDirectory",
             "BoutiquesBidsSubjectFileSelector": { "SubjectDirectory": "all_to_keep" },
+            "BoutiquesBidsSingleSubjectMaker": "SubjectDirectory",
             "BoutiquesInputSubdirMaker": {
               "BIBSNET_Directory":     {"dirname": "precomputed", "append_filename": false},
               "SyMRIDirectory":     {"dirname": "symri_input", "append_filename": false}

@@ -83,8 +83,8 @@
         "cbrain:allow_empty_strings": ["derivatives_prefix"],
         "cbrain:no-run-id-for-outputs": [ "OutputDirectory"],
         "cbrain:integrator_modules": {
-            "BoutiquesBidsSingleSubjectMaker": "subject_dir",
             "BoutiquesBidsSubjectFileSelector": { "subject_dir": "all_to_keep" },
+            "BoutiquesBidsSingleSubjectMaker": "subject_dir",
             "BoutiquesFileTypeVerifier": {
                 "BibsnetWorkManEditsDir": ["BibsnetWorkManEdits"],
                 "subject_dir": [ "BidsSubject" ]

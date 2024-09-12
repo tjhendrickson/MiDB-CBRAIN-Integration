@@ -1,0 +1,138 @@
+{
+    "name": "MADE_EEG_Pipeline",
+    "schema-version": "0.5",
+    "tool-version": "1.4.4",
+    "author": "Child Development Lab, University of Maryland",
+    "url": "https://github.com/ChildDevLab/MADE-EEG-preprocessing-pipeline",
+    "command-line": "true [DERIVATIVES_PREFIX]; made [SubjectDirectory] [MADEOutputDirectoryName] participant [JSONSettings] [ParticipantLabel] [SessionLabel] [FileExtension] [SkipInterim]",
+    "description": "The Maryland Analysis of Developmental EEG (MADE) Pipeline is an EEG pipeline that (in this form) takes a BIDS-EEG directory structure with '*.set' files as input.",
+    "inputs": [
+      {
+            "description": "The study-wide BIDS directory. In CBRAIN this is also referred to (and used) as the subject directory since a new BIDS dir will be made for the selected subject prior to processing.",
+            "id": "SubjectDirectory",
+            "name": "Subject Directory",
+            "optional": false,
+            "type": "File",
+            "value-key": "[SubjectDirectory]"
+      },
+      {
+          "description": "The name of the output directory to store outcomes of preprocessing and reports. When processing is ran via CBRAIN only subject-specific files/folders will be saved, so the naming of the output folder will not influence the final naming/destination of files/folders.",
+          "id": "MADEOutputDirectoryName",
+          "name": "MADE Output Directory",
+          "optional": false,
+          "type": "String",
+          "value-key": "[MADEOutputDirectoryName]"
+      },
+      {
+          "description": "The json file with settings to configure processing",
+          "id": "JSONSettings",
+          "name": "JSON Settings",
+          "optional": false,
+          "type": "File",
+          "value-key": "[JSONSettings]"
+      },
+      {
+          "command-line-flag": "--participant-label",
+          "description": "Space delimited list of subjects to be processed (with or without sub- prefix)",
+          "id": "ParticipantLabel",
+          "name": "Participant Label",
+          "optional": true,
+          "type": "String",
+          "value-key": "[ParticipantLabel]"
+      },
+      {
+          "command-line-flag": "--session-id",
+          "description": "select a specific session to be processed (with or without ses- prefix)",
+          "id": "SessionLabel",
+          "name": "Session Label",
+          "optional": true,
+          "type": "String",
+          "value-key": "[SessionLabel]"
+      },
+      {
+          "command-line-flag": "-ext",
+          "description": "The type of eeg to file to be processed (only .set for now)",
+          "id": "FileExtension",
+          "name": "File Extension",
+          "optional": true,
+          "type": "String",
+          "value-key": "[FileExtension]"
+      },
+      {
+          "command-line-flag": "-skip-interim",
+          "description": "Dont save interim results",
+          "id": "SkipInterim",
+          "name": "Skip Interim",
+          "optional": true,
+          "type": "Flag",
+          "value-key": "[SkipInterim]"
+      },
+      {
+          "default-value": "derivatives/",
+          "id": "derivatives_prefix",
+          "name": "derivatives_prefix",
+          "description": "Folders to put before the pipeline specific folder. By default this will look like DataProvider/derivatives/PipelineName, where pipeline name is specific to the current pipeline. The provided string must end in /",
+          "optional": true,
+          "type": "String",
+          "value-key": "[DERIVATIVES_PREFIX]"
+      }
+      ],
+    "output-files" : [{
+          "id" : "OutputDirectory",
+          "name" : "Output Directory",
+          "description" : "This is the directory where the overall outputs are to be stored.",
+          "path-template" : "[MADEOutputDirectoryName]/[SubjectDirectory]",
+          "optional" : false
+      }],
+    "suggested-resources": {
+        "cpu-cores":1,
+        "ram": 24,
+        "walltime-estimate": 25000
+    },
+    "tags": {
+        "application-type": [
+            "bids"
+        ],
+        "domain": [
+            "neuroinformatics",
+            "eeg",
+            "developmental"
+        ]
+    },
+    "container-image": {
+        "type": "singularity",
+        "index": "docker://",
+        "image": "dcanumn/hbcd-made:1.4.4"
+    },
+    "custom": {
+        "cbrain:readonly-input-files": true,
+        "cbrain:author": "Erik Lee <leex6144@umn.edu>",
+        "cbrain:allow_empty_strings": ["derivatives_prefix"],
+        "cbrain:no-run-id-for-outputs": [ "OutputDirectory"],
+        "cbrain:integrator_modules": {
+            "BoutiquesFileTypeVerifier": {
+                "SubjectDirectory": [ "BidsSubject" ]
+            },
+            "BoutiquesFileNameMatcher": {
+                "SubjectDirectory": "^sub-[a-zA-Z0-9_]+$"
+            },
+            "BoutiquesTaskLogsCopier": {
+                "stdout":     "[MADEOutputDirectoryName]/[SubjectDirectory]/.cbrain/stdout.log",
+                "stderr":     "[MADEOutputDirectoryName]/[SubjectDirectory]/.cbrain/stderr.log",
+                "runtime":    "[MADEOutputDirectoryName]/[SubjectDirectory]/.cbrain/runtime_info.properties",
+                "descriptor": "[MADEOutputDirectoryName]/[SubjectDirectory]/.cbrain/boutiques_descriptor.json",
+                "invoke":     "[MADEOutputDirectoryName]/[SubjectDirectory]/.cbrain/boutiques_invoke.json",
+                "jobscript":  "[MADEOutputDirectoryName]/[SubjectDirectory]/.cbrain/job_script.sh",
+                "cbrain_params": "[MADEOutputDirectoryName]/[SubjectDirectory]/.cbrain/cbrain_params.json"
+            },
+            "BoutiquesOutputFileTypeSetter": {
+                "OutputDirectory": "MADEOutput"
+            },
+            "BoutiquesForcedOutputBrowsePath" : {
+              "OutputDirectory": "[DERIVATIVES_PREFIX]made"
+            },
+            "BoutiquesBidsSubjectFileSelector": { "SubjectDirectory": "all_to_keep" },
+            "BoutiquesBidsSingleSubjectMaker": "SubjectDirectory"
+        }
+    }
+}

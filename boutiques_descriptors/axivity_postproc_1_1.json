@@ -4,7 +4,7 @@
     "tool-version": "1.1",
     "schema-version": "0.5",
     "url": "https://github.com/Infant-Neuromotor-Control-Lab/HBCD_movement_sensor",
-    "command-line": "true [DERIVATIVES_PREFIX]; axivity_postproc [SUBJECT_DIR] [POSTRPOC_OUTPUT_DIR] participant [SESSION_ID] [INTERVAL] [PA_MEASURE] [PA_SIDE] [ENTROPY_TYPE] [ENTROPY_MEASURE]",
+    "command-line": "true [DERIVATIVES_PREFIX]; axivity_postproc [SUBJECT_DIR] [POSTRPOC_OUTPUT_DIR] participant [SESSION_ID] [INTERVAL] [PA_MEASURE] [PA_SIDE] [ENTROPY_TYPE] [ENTROPY_MEASURE] [STOP_ON_ERROR]",
     "container-image": {
         "image": "dcanumn/axivity_postproc:1.1",
         "index": "docker://",
@@ -80,6 +80,15 @@
             "optional": true,
             "type": "String",
             "value-key": "[ENTROPY_MEASURE]"
+        },
+        {
+            "command-line-flag": "--stop_on_error",
+            "id": "stop_on_error",
+            "name": "Stop on error",
+            "description": "Try to return a non-zero exit status when an error occurs.",
+            "optional": true,
+            "type": "Flag",
+            "value-key": "[STOP_ON_ERROR]"
         },
         {
             "default-value": "derivatives/",

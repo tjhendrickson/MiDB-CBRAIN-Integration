@@ -134,6 +134,7 @@
           "jobscript": "[OutputDirectoryName]/bibsnet/[SUBJECT_DIR]/.cbrain/job_script.sh",
           "cbrain_params": "[OutputDirectoryName]/bibsnet/[SUBJECT_DIR]/.cbrain/cbrain_params.json"
         },
+        "BoutiquesInputSubdirMaker": {},
         "BoutiquesForcedOutputBrowsePath": {
           "OutputDirectory": "[DERIVATIVES_PREFIX]bibsnet"
         }

@@ -1,0 +1,142 @@
+{
+    "name":                "ManCorrBibsnet",
+    "tool-version":        "3.4.1",
+    "description":         "Tool that recreates bibsnet derivatives based on a bibsnet working directory structure that has been manually edited. Assumes that the original derivatives folder is also under the working directory (with unedited images)",
+    "url":                 "https://github.com/DCAN-Labs/BIBSnet",
+    "command-line":        "true [DERIVATIVES_PREFIX]; mkdir -p [OutputDirectoryName]; bibsnet [SUBJECT_DIR] [OutputDirectoryName] participant -w [BibsnetWorkManEditsDir] -start postbibsnet -end postbibsnet [SES_LABEL] [VERBOSE] [ParticipantLabel]",
+    "schema-version":      "0.5",
+    "container-image":     {
+      "type":  "singularity",
+      "index": "docker://",
+      "image": "dcanumn/bibsnet:release-3.4.1"
+    },
+    "inputs":              [
+      {
+        "id":          "OutputDirectoryName",
+        "name":        "Output Directory",
+        "description": "The name of the output directory to store outcomes of preprocessing. When processing is ran via CBRAIN only subject-specific files/folders will be saved, so the naming of the output folder will not influence the final naming/destination of files/folders.",
+        "type":        "String",
+        "optional":    false,
+        "value-key":   "[OutputDirectoryName]"
+      },
+      {
+        "id":          "subject_dir",
+        "name":        "subject_dir",
+        "description": "Subject folder for BIDS (folders name should be sub-XXXXX). This folder is not used under the current implementation but is present for ease of processing workflows.",
+        "type":        "File",
+        "optional":    false,
+        "value-key":   "[SUBJECT_DIR]"
+      },
+      {
+        "id":          "BibsnetWorkManEditsDir",
+        "name":        "Bibsnet Work Manual Edits Directory",
+        "description": "The working directory that has the modified contents of bibsnet work following manual corrections to the segmentations.",
+        "type":        "File",
+        "optional":    false,
+        "value-key":   "[BibsnetWorkManEditsDir]"
+      },
+      {
+        "id":                "ParticipantLabel",
+        "name":              "Participant Label",
+        "description":       "Space delimited list of subjects to be processed (with or without sub- prefix)",
+        "type":              "String",
+        "optional":          true,
+        "command-line-flag": "--participant-label",
+        "value-key":         "[ParticipantLabel]"
+      },
+      {
+        "id":                "session_label",
+        "name":              "session label",
+        "description":       "Session label without ses-* prefix.",
+        "type":              "String",
+        "optional":          true,
+        "command-line-flag": "-ses",
+        "value-key":         "[SES_LABEL]"
+      },
+      {
+        "id":                "verbose",
+        "name":              "verbose",
+        "description":       "Print out extra details during processing.",
+        "type":              "Flag",
+        "optional":          true,
+        "command-line-flag": "--verbose",
+        "value-key":         "[VERBOSE]"
+      },
+      {
+        "id":            "derivatives_prefix",
+        "name":          "derivatives_prefix",
+        "description":   "Folders to put before the pipeline specific folder. By default this will look like DataProvider/derivatives/PipelineName, where pipeline name is specific to the current pipeline. The provided string must end in /",
+        "type":          "String",
+        "optional":      true,
+        "default-value": "derivatives/",
+        "value-key":     "[DERIVATIVES_PREFIX]"
+      }
+    ],
+    "output-files":        [
+      {
+        "id":            "OutputDirectory",
+        "name":          "Output Directory",
+        "description":   "The output directory to store outcomes of preprocessing and reports",
+        "optional":      false,
+        "path-template": "[OutputDirectoryName]/bibsnet/[SUBJECT_DIR]"
+      }
+    ],
+    "suggested-resources": {
+      "cpu-cores": 1,
+      "ram": 24,
+      "walltime-estimate": 25000
+    },
+    "tags":                {
+      "application-type": [
+        "bids"
+      ],
+      "domain": [
+        "neuroinformatics",
+        "mri",
+        "segmentations"
+      ]
+    },
+    "custom":              {
+      "cbrain:readonly-input-files":  true,
+      "cbrain:author":                "Erik Lee <leex6144@umn.edu>",
+      "cbrain:allow_empty_strings":   [
+        "derivatives_prefix"
+      ],
+      "cbrain:no-run-id-for-outputs": [
+        "OutputDirectory"
+      ],
+      "cbrain:integrator_modules":    {
+        "BoutiquesBidsSubjectFileSelector": {
+          "subject_dir": "all_to_keep"
+        },
+        "BoutiquesBidsSingleSubjectMaker": "subject_dir",
+        "BoutiquesFileTypeVerifier": {
+          "BibsnetWorkManEditsDir": [
+            "BibsnetWorkManEdits"
+          ],
+          "subject_dir": [
+            "BidsSubject"
+          ]
+        },
+        "BoutiquesFileNameMatcher": {
+          "BibsnetWorkManEditsDir": "^sub-[a-zA-Z0-9_]+$",
+          "subject_dir": "^sub-[a-zA-Z0-9_]+$"
+        },
+        "BoutiquesOutputFileTypeSetter": {
+          "OutputDirectory": "BibsnetOutput"
+        },
+        "BoutiquesTaskLogsCopier": {
+          "stdout": "[OutputDirectoryName]/bibsnet/[SUBJECT_DIR]/.cbrain/stdout.log",
+          "stderr": "[OutputDirectoryName]/bibsnet/[SUBJECT_DIR]/.cbrain/stderr.log",
+          "runtime": "[OutputDirectoryName]/bibsnet/[SUBJECT_DIR]/.cbrain/runtime_info.properties",
+          "descriptor": "[OutputDirectoryName]/bibsnet/[SUBJECT_DIR]/.cbrain/boutiques_descriptor.json",
+          "invoke": "[OutputDirectoryName]/bibsnet/[SUBJECT_DIR]/.cbrain/boutiques_invoke.json",
+          "jobscript": "[OutputDirectoryName]/bibsnet/[SUBJECT_DIR]/.cbrain/job_script.sh",
+          "cbrain_params": "[OutputDirectoryName]/bibsnet/[SUBJECT_DIR]/.cbrain/cbrain_params.json"
+        },
+        "BoutiquesForcedOutputBrowsePath": {
+          "OutputDirectory": "[DERIVATIVES_PREFIX]bibsnet"
+        }
+      }
+    }
+  }

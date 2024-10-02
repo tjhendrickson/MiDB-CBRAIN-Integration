@@ -135,7 +135,7 @@
           "cbrain_params": "[OutputDirectoryName]/bibsnet/[SUBJECT_DIR]/.cbrain/cbrain_params.json"
         },
         "BoutiquesInputSubdirMaker": {
-            "subject_dir": {"dirname": "subject_dir", "append_filename": false}
+          "BibsnetWorkManEditsDir": {"dirname": "BibsnetWorkManEdits", "append_filename": true}
         },
         "BoutiquesForcedOutputBrowsePath": {
           "OutputDirectory": "[DERIVATIVES_PREFIX]bibsnet"

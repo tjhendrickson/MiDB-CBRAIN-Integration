@@ -273,7 +273,7 @@
             "command-line-flag": "--output-spaces",
             "id": "output_spaces",
             "name": "output_spaces",
-            "description": "Standard and non-standard spaces to resample anatomical and functional images to.\nStandard spaces may be specified by the form <SPACE>[:cohort-<label>][:res-<resolution>][...], where <SPACE> is a keyword designating a spatial reference, and may be followed by optional, colon-separated parameters.\nNon-standard spaces imply specific orientations and sampling grids.\nImportant to note, the res-* modifier does not define the resolution used for the spatial normalization.\nTo generate no BOLD outputs, use this option without specifying any spatial references.\nFor further details, please check out https://fmriprep.readthedocs.io/en/latest/spaces.html",
+            "description": "Standard and non-standard spaces to resample anatomical and functional images to. Standard spaces may be specified by the form <SPACE>[:cohort-<label>][:res-<resolution>][...], where <SPACE> is a keyword designating a spatial reference, and may be followed by optional, colon-separated parameters. Non-standard spaces imply specific orientations and sampling grids. Important to note, the res-* modifier does not define the resolution used for the spatial normalization. To generate no BOLD outputs, use this option without specifying any spatial references For further details, please check out https://fmriprep.readthedocs.io/en/latest/spaces.html",
             "optional": true,
             "type": "String",
             "value-key": "[OUTPUT_SPACES]"
@@ -282,7 +282,7 @@
             "command-line-flag": "--me-output-echos",
             "id": "me_output_echos",
             "name": "me_output_echos",
-            "description": "Output individual echo time series with slice, motion and susceptibility correction.\nUseful for further Tedana processing post-NiBabies.",
+            "description": "Output individual echo time series with slice, motion and susceptibility correction. Useful for further Tedana processing post-NiBabies.",
             "optional": true,
             "type": "Flag",
             "value-key": "[ME_OUTPUT_ECHOS]"
@@ -336,7 +336,7 @@
             "command-line-flag": "--medial-surface-nan",
             "id": "medial_surface_nan",
             "name": "medial_surface_nan",
-            "description": "Replace medial wall values with NaNs on functional GIFTI files.\nOnly performed for GIFTI files mapped to a freesurfer subject (fsaverage or fsnative).",
+            "description": "Replace medial wall values with NaNs on functional GIFTI files. Only performed for GIFTI files mapped to a freesurfer subject (fsaverage or fsnative).",
             "optional": true,
             "type": "Flag",
             "value-key": "[MEDIAL_SURFACE_NAN]"
@@ -345,7 +345,7 @@
             "command-line-flag": "--slice-time-ref",
             "id": "slice_time_ref",
             "name": "slice_time_ref",
-            "description": "The time of the reference slice to correct BOLD values to, as a fraction acquisition time.\n0 indicates the start, 0.5 the midpoint, and 1 the end of acquisition.\nThe alias start corresponds to 0, and middle to 0.5.",
+            "description": "The time of the reference slice to correct BOLD values to, as a fraction acquisition time. 0 indicates the start, 0.5 the midpoint, and 1 the end of acquisition. The alias start corresponds to 0, and middle to 0.5.",
             "optional": true,
             "type": "Number",
             "value-key": "[SLICE_TIME_REF]"
@@ -420,7 +420,7 @@
             "command-line-flag": "--skull-strip-anat",
             "id": "skull_strip_anat",
             "name": "skull_strip_anat",
-            "description": "Determiner for anatomical skull stripping\n('force' ensures skull stripping, 'skip' ignores skull stripping, and 'auto' applies brain extraction based on the outcome of a heuristic to check whether the brain is already masked).",
+            "description": "Determiner for anatomical skull stripping ('force' ensures skull stripping, 'skip' ignores skull stripping, and 'auto' applies brain extraction based on the outcome of a heuristic to check whether the brain is already masked).",
             "optional": true,
             "type": "String",
             "value-choices": [
@@ -470,7 +470,7 @@
             "command-line-flag": "--fs-license-file",
             "id": "fs_license_file",
             "name": "fs_license_file",
-            "description": "Path to FreeSurfer license key file.\nGet it (for free) by registering at https://surfer.nmr.mgh.harvard.edu/registration.html",
+            "description": "Path to FreeSurfer license key file. Get it (for free) by registering at https://surfer.nmr.mgh.harvard.edu/registration.html",
             "optional": true,
             "type": "File",
             "value-key": "[FS_LICENSE_FILE]"
@@ -488,7 +488,7 @@
             "command-line-flag": "--cifti-output",
             "id": "cifti_output",
             "name": "cifti_output",
-            "description": "Output preprocessed BOLD as a CIFTI dense timeseries.\nOptionally, the number of grayordinate can be specified (default is 91k, which equates to 2mm resolution). Possible choices 91k, 170k.",
+            "description": "Output preprocessed BOLD as a CIFTI dense timeseries. Optionally, the number of grayordinate can be specified (default is 91k, which equates to 2mm resolution). Possible choices 91k, 170k.",
             "optional": true,
             "type": "String",
             "value-choices": [
@@ -555,7 +555,7 @@
             "command-line-flag": "--notrack",
             "id": "notrack",
             "name": "notrack",
-            "description": "Opt-out of sending tracking information of this run to the NiBabies developers.\nThis information helps to improve NiBabies and provides an indicator of real world usage crucial for obtaining funding.",
+            "description": "Opt-out of sending tracking information of this run to the NiBabies developers. This information helps to improve NiBabies and provides an indicator of real world usage crucial for obtaining funding.",
             "optional": true,
             "type": "Flag",
             "value-key": "[NOTRACK]"

@@ -568,7 +568,7 @@
             "command-line-flag": "--fs-license-file",
             "id": "fs_license_file",
             "name": "fs_license_file",
-            "description": "Path to FreeSurfer license key file.\nGet it (for free) by registering at https://surfer.nmr.mgh.harvard.edu/registration.html",
+            "description": "Path to FreeSurfer license key file. Get it (for free) by registering at https://surfer.nmr.mgh.harvard.edu/registration.html",
             "optional": false,
             "type": "File",
             "value-key": "[FS_LICENSE_FILE]"

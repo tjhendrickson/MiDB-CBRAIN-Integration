@@ -1,6 +1,6 @@
 {
     "name": "nibabies",
-    "description": "NiBabies: Preprocessing workflows for infants",
+    "description": "NiBabies is an open-source software pipeline designed to process anatomical and functional magnetic resonance imaging data.",
     "tool-version": "24.0.0rc0",
     "schema-version": "0.5",
     "url": "https://nibabies.readthedocs.io/",

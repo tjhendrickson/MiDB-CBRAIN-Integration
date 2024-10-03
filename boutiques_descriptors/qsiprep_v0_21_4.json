@@ -2,6 +2,7 @@
     "name": "qsiprep",
     "description": "q-Space Image PREProcessing workflows",
     "author": "University of Pennsylvania Lifespan Informatics and Neuroimaging Center (https://github.com/PennLINC)",
+    "url": "https://qsiprep.readthedocs.io/en/latest/index.html",
     "tool-version": "v0.21.4",
     "shell": "/bin/bash",
     "schema-version": "0.5",

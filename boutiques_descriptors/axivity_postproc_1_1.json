@@ -1,6 +1,6 @@
 {
     "name": "Axivity_Postproc",
-    "description": "A container to run accelerometry analyses on BIDS formatted data for HBCD.",
+    "description": "A tool to run accelerometry analyses on BIDS formatted HBCD data.",
     "tool-version": "1.1",
     "schema-version": "0.5",
     "url": "https://github.com/Infant-Neuromotor-Control-Lab/HBCD_movement_sensor",

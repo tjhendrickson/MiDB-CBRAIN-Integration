@@ -23,7 +23,7 @@
       {
         "id":          "bibnset_output_dir",
         "name":        "bibnset_output_dir",
-        "description": "For the current pipeline this will not be used. Instead the working directory will be renamed to have the subject id, and that will be saved.",
+        "description": "Bibsnet output directory.",
         "type":        "String",
         "optional":    false,
         "value-key":   "[BIBSNET_OUTPUT_DIR]"
@@ -31,7 +31,7 @@
       {
         "id":                "end_stage",
         "name":              "end_stage",
-        "description":       "The stage to end BIBSNET processing at. No matter what, only the working directory will be saved.",
+        "description":       "The stage to end BIBSNET processing at.",
         "type":              "String",
         "optional":          true,
         "default-value":     "postbibsnet",
@@ -122,13 +122,13 @@
         },
         "BoutiquesBidsSingleSubjectMaker": "subject_dir",
         "BoutiquesTaskLogsCopier": {
-          "stdout": "[SUBJECT_DIR]/ses-[SES_LABEL]/.cbrain/stdout.log",
-          "stderr": "[SUBJECT_DIR]/ses-[SES_LABEL]/.cbrain/stderr.log",
-          "runtime": "[SUBJECT_DIR]/ses-[SES_LABEL]/.cbrain/runtime_info.properties",
-          "descriptor": "[SUBJECT_DIR]/ses-[SES_LABEL]/.cbrain/boutiques_descriptor.json",
-          "invoke": "[SUBJECT_DIR]/ses-[SES_LABEL]/.cbrain/boutiques_invoke.json",
-          "jobscript": "[SUBJECT_DIR]/ses-[SES_LABEL]/.cbrain/job_script.sh",
-          "cbrain_params": "[SUBJECT_DIR]/ses-[SES_LABEL]/.cbrain/cbrain_params.json"
+          "stdout": "[BIBSNET_OUTPUT_DIR]/[SUBJECT_DIR]/ses-[SES_LABEL]/.cbrain/stdout.log",
+          "stderr": "[BIBSNET_OUTPUT_DIR]/[SUBJECT_DIR]/ses-[SES_LABEL]/.cbrain/stderr.log",
+          "runtime": "[BIBSNET_OUTPUT_DIR]/[SUBJECT_DIR]/ses-[SES_LABEL]/.cbrain/runtime_info.properties",
+          "descriptor": "[BIBSNET_OUTPUT_DIR]/[SUBJECT_DIR]/ses-[SES_LABEL]/.cbrain/boutiques_descriptor.json",
+          "invoke": "[BIBSNET_OUTPUT_DIR]/[SUBJECT_DIR]/ses-[SES_LABEL]/.cbrain/boutiques_invoke.json",
+          "jobscript": "[BIBSNET_OUTPUT_DIR]/[SUBJECT_DIR]/ses-[SES_LABEL]/.cbrain/job_script.sh",
+          "cbrain_params": "[BIBSNET_OUTPUT_DIR]/[SUBJECT_DIR]/ses-[SES_LABEL]/.cbrain/cbrain_params.json"
         },
         "BoutiquesForcedOutputBrowsePath": {
           "output_dir": "[DERIVATIVES_PREFIX]bibsnet"

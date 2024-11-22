@@ -1,0 +1,138 @@
+{
+    "name":                "BibsnetFull",
+    "tool-version":        "3.4.1",
+    "author":              "DCAN Lab, University of Minnesota",
+    "description":         "An automated segmentation pipeline for generating freesurfer style aseg volumes on infant/neonatal T1 and T2 weighted MRIs.",
+    "url":                 "https://bibsnet.readthedocs.io/en/stable/",
+    "command-line":        "true [DERIVATIVES_PREFIX]; mkdir -p [BIBSNET_OUTPUT_DIR]; mkdir -p work; bibsnet [SUBJECT_DIR] [BIBSNET_OUTPUT_DIR] participant -start prebibsnet [END_STAGE] [SES_LABEL] [VERBOSE] -w work",
+    "schema-version":      "0.5",
+    "container-image":     {
+      "type":  "singularity",
+      "index": "docker://",
+      "image": "dcanumn/bibsnet:release-3.4.1"
+    },
+    "inputs":              [
+      {
+        "id":          "subject_dir",
+        "name":        "subject_dir",
+        "description": "The study-wide BIDS directory. In CBRAIN this is also referred to (and used) as the subject directory since a new BIDS dir will be made for the selected subject prior to processing.",
+        "type":        "File",
+        "optional":    false,
+        "value-key":   "[SUBJECT_DIR]"
+      },
+      {
+        "id":          "bibnset_output_dir",
+        "name":        "bibnset_output_dir",
+        "description": "For the current pipeline this will not be used. Instead the working directory will be renamed to have the subject id, and that will be saved.",
+        "type":        "String",
+        "optional":    false,
+        "value-key":   "[BIBSNET_OUTPUT_DIR]"
+      },
+      {
+        "id":                "end_stage",
+        "name":              "end_stage",
+        "description":       "The stage to end BIBSNET processing at. No matter what, only the working directory will be saved.",
+        "type":              "String",
+        "optional":          true,
+        "default-value":     "postbibsnet",
+        "command-line-flag": "-end",
+        "value-key":         "[END_STAGE]",
+        "value-choices":     [
+          "prebibsnet",
+          "bibsnet",
+          "postbibsnet"
+        ]
+      },
+      {
+        "id":                "session_label",
+        "name":              "session label",
+        "description":       "Session label without ses-* prefix.",
+        "type":              "String",
+        "optional":          false,
+        "command-line-flag": "-ses",
+        "value-key":         "[SES_LABEL]"
+      },
+      {
+        "id":                "verbose",
+        "name":              "verbose",
+        "description":       "Print out extra details during processing.",
+        "type":              "Flag",
+        "optional":          true,
+        "command-line-flag": "--verbose",
+        "value-key":         "[VERBOSE]"
+      },
+      {
+        "id":            "derivatives_prefix",
+        "name":          "derivatives_prefix",
+        "description":   "Folders to put before the pipeline specific folder. By default this will look like DataProvider/derivatives/PipelineName, where pipeline name is specific to the current pipeline. The provided string must end in /",
+        "type":          "String",
+        "optional":      true,
+        "default-value": "derivatives/",
+        "value-key":     "[DERIVATIVES_PREFIX]"
+      }
+    ],
+    "output-files":        [
+      {
+        "id":            "output_dir",
+        "name":          "Output Directory",
+        "description":   "Bibsnet output directory.",
+        "optional":      false,
+        "path-template": "[BIBSNET_OUTPUT_DIR]/[SUBJECT_DIR]"
+      }
+    ],
+    "suggested-resources": {
+      "cpu-cores": 4,
+      "ram": 30,
+      "walltime-estimate": 15000
+    },
+    "tags":                {
+      "application-type": [
+        "bids"
+      ],
+      "domain": [
+        "neuroinformatics",
+        "mri",
+        "segmentation",
+        "developmental"
+      ]
+    },
+    "custom":              {
+      "cbrain:readonly-input-files":  true,
+      "cbrain:author":                "Erik Lee <leex6144@umn.edu>",
+      "cbrain:allow_empty_strings":   [
+        "derivatives_prefix"
+      ],
+      "cbrain:no-run-id-for-outputs": [
+        "output_dir"
+      ],
+      "cbrain:integrator_modules":    {
+        "BoutiquesFileTypeVerifier": {
+          "subject_dir": [
+            "BidsSubject"
+          ]
+        },
+        "BoutiquesFileNameMatcher": {
+          "subject_dir": "^sub-[a-zA-Z0-9_]+$"
+        },
+        "BoutiquesOutputFileTypeSetter": {
+          "output_dir": "BibsnetOutput"
+        },
+        "BoutiquesBidsSubjectFileSelector": {
+          "subject_dir": "all_to_keep"
+        },
+        "BoutiquesBidsSingleSubjectMaker": "subject_dir",
+        "BoutiquesTaskLogsCopier": {
+          "stdout": "[SUBJECT_DIR]/ses-[SES_LABEL]/.cbrain/stdout.log",
+          "stderr": "[SUBJECT_DIR]/ses-[SES_LABEL]/.cbrain/stderr.log",
+          "runtime": "[SUBJECT_DIR]/ses-[SES_LABEL]/.cbrain/runtime_info.properties",
+          "descriptor": "[SUBJECT_DIR]/ses-[SES_LABEL]/.cbrain/boutiques_descriptor.json",
+          "invoke": "[SUBJECT_DIR]/ses-[SES_LABEL]/.cbrain/boutiques_invoke.json",
+          "jobscript": "[SUBJECT_DIR]/ses-[SES_LABEL]/.cbrain/job_script.sh",
+          "cbrain_params": "[SUBJECT_DIR]/ses-[SES_LABEL]/.cbrain/cbrain_params.json"
+        },
+        "BoutiquesForcedOutputBrowsePath": {
+          "output_dir": "[DERIVATIVES_PREFIX]bibsnet"
+        }
+      }
+    }
+  }

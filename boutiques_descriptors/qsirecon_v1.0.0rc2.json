@@ -1,0 +1,290 @@
+{
+    "name": "qsirecon",
+    "description": "q-Space Image PREProcessing workflows",
+    "author": "University of Pennsylvania Lifespan Informatics and Neuroimaging Center (https://github.com/PennLINC)",
+    "url": "https://qsiprep.readthedocs.io/en/latest/index.html",
+    "tool-version": "1.0.0rc2",
+    "shell": "/bin/bash",
+    "schema-version": "0.5",
+    "command-line": "true [SUBJECT_DIR]; true [DERIVATIVES_PREFIX]; qsirecon [QSIPREP_DIR] [QSIRECON_OUTPUT_DIR] participant --skip-bids-validation --work-dir \"$PWD\"/work [SESSION_ID] [FS_LICENSE_FILE] [BIDS_FILTER_FILE] [RECON_SPEC] --omp-nthreads 8 --n-cpus 8 --stop-on-first-crash --eddy-config \"$PWD\"/[EDDY_CONFIG] [SUBJECT_ANAT_REFERENCE] [SKIP_ANAT_BASED_SPATIAL_NORM] [ANAT_MODALITY] [SEPARATE_ALL_DWIS] [PEPOLAR_METHOD] [USE_PLUGIN] [ANAT_ONLY] [DWI_ONLY] [B1_BIAS_CORRECT] [INFANT] [BOILERPLATE] [VERBOSE] [IGNORE] [LONGITUDINAL] [B0_THRESHOLD] [DWI_DENOISE_WINDOW] [UNRINGING_METHOD] [NO_B0_HARMONIZATION] [DENOISE_AFTER_COMBINING] [DENOISE_METHOD] [DISTORTION_GROUP_MERGE] [WRITE_LOCAL_BVECS] [TEMPLATE] [OUTPUT_RESOLUTION] [B0_TO_T1W_TRANSFORM] [INTRAMODAL_TEMPLATE_ITERS] [INTRAMODAL_TEMPLATE_TRANSFORM] [B0_MOTION_CORR_TO] [HMC_TRANSFORM] [HMC_MODEL] [SHORELINE_ITERS] [FMAP_BSPLINE] [FMAP_NO_DEMEAN] [USE_SYN_SDC] [FORCE_SYN] [REPORTS_ONLY] [WRITE_GRAPH] [SLOPPY]",
+    "container-image":
+    {
+        "image": "pennlinc/qsirecon:1.0.0rc2",
+        "index": "docker://",
+        "type":  "singularity"
+    },
+    "inputs": [
+        {
+            "description": "Subject folder for BIDS (folders name should be sub-XXXXX).",
+            "id": "subject_dir",
+            "name": "subject_dir",
+            "optional": false,
+            "type": "File",
+            "value-key": "[SUBJECT_DIR]"
+        },
+        {
+            "description": "Subject folder for previous QSIPREP Outputs (folders name should be sub-XXXXX).",
+            "id": "subject_dir",
+            "name": "subject_dir",
+            "optional": false,
+            "type": "File",
+            "value-key": "[QSIPREP_DIR]"
+        },
+        {
+            "description": "The name of the output for the outcomes of preprocessing and visual reports",
+            "id": "output_dir_name",
+            "name": "output_dir_name",
+            "optional": false,
+            "type": "String",
+            "value-key": "[QSIRECON_OUTPUT_DIR]"
+        },
+        {
+            "command-line-flag": "--session-id",
+            "description": "A space delimited list of session identifiers or a single identifier (the ses- prefix can be removed)",
+            "id": "session_id",
+            "name": "Session ID",
+            "optional": false,
+            "type": "String",
+            "value-key": "[SESSION_ID]"
+        },
+        {
+            "command-line-flag": "--bids-filter-file",
+            "description": "A JSON file describing custom BIDS input filters using PyBIDS. For further details, please check out https://fmriprep.readthedocs.io/en/latest/faq.html#how-do-I-select-only-certain-files-to-be-input-to-fMRIPrep",
+            "id": "bids_filter_file",
+            "name": "BIDS Filter File",
+            "optional": true,
+            "type": "File",
+            "value-key": "[BIDS_FILTER_FILE]"
+        },
+        {
+            "command-line-flag": "--recon-spec",
+            "description": "JSON file specifying a reconstruction pipeline to be run after preprocessing",
+            "id": "recon_spec",
+            "name": "Recon Specification",
+            "optional": true,
+            "type": "File",
+            "value-key": "[RECON_SPEC]"
+        },
+        {
+            "command-line-flag": "--fs-subjects-dir",
+            "description": "Directory containing Freesurfer outputs to be integrated into recon. Freesurfer must already be run. QSIRecon will not run Freesurfer.",
+            "id": "fs_subjects_dir",
+            "name": "FreeSurfer Subjects Directory",
+            "optional": true,
+            "type": "File",
+            "value-key": "[fs_subjects_dir]"
+        },
+        {
+            "command-line-flag": "--use-plugin",
+            "description": "Nipype plugin configuration file",
+            "id": "use_plugin",
+            "name": "qsiprep use plugin",
+            "optional": true,
+            "type": "File",
+            "value-key": "[USE_PLUGIN]"
+        },
+        {
+            "command-line-flag": "--infant",
+            "description": "Configure pipelines to process infant brains",
+            "id": "infant",
+            "name": "qsiprep infant",
+            "optional": true,
+            "type": "Flag",
+            "value-key": "[INFANT]"
+        },
+        {
+            "command-line-flag": "--boilerplate",
+            "description": "Generate boilerplate only",
+            "id": "boilerplate",
+            "name": "qsiprep boilerplate",
+            "optional": true,
+            "type": "Flag",
+            "value-key": "[BOILERPLATE]"
+        },
+        {
+            "command-line-flag": "--report-output-level",
+            "description": "Where should the html reports be written? By default root will write them to the –output-dir. Other options will write them into their subject or session directory.",
+            "id": "report_output_level",
+            "name": "Report Output Level",
+            "optional": true,
+            "type": "String",
+            "value-key": "[report_output_level]",
+            "value-choices": ["subject", "session", "root"]
+        },
+        {
+            "command-line-flag": "-v",
+            "id": "verbose",
+            "name": "verbose",
+            "description": "Increases log verbosity for each occurence (-vvv).",
+            "optional": true,
+            "type": "Flag",
+            "value-key": "[VERBOSE]"
+        },
+        {
+            "command-line-flag": "--b0-threshold",
+            "description": "Any value in the .bval file less than this will be considered a b=0 image. Current default threshold = 100; this threshold can be lowered or increased. Note, setting this too high can result in inaccurate results.",
+            "id": "b0_threshold",
+            "name": "qsiprep b0 threshold",
+            "optional": true,
+            "type": "Number",
+            "value-key": "[B0_THRESHOLD]"
+        },
+        {
+            "command-line-flag": "--output-resolution",
+            "description": "The isotropic voxel size in mm the data will be resampled to after preprocessing. If set to a lower value than the original voxel size, your data will be upsampled using BSpline interpolation.",
+            "id": "output_resolution",
+            "name": "qsiprep output resolution",
+            "optional": false,
+            "type": "Number",
+            "default-value": 2,
+            "value-key": "[OUTPUT_RESOLUTION]"
+        },
+        {
+            "command-line-flag": "--fs-license-file",
+            "id": "fs_license_file",
+            "name": "fs_license_file",
+            "description": "Path to FreeSurfer license key file. Get it (for free) by registering at https://surfer.nmr.mgh.harvard.edu/registration.html",
+            "optional": false,
+            "type": "File",
+            "value-key": "[FS_LICENSE_FILE]"
+        },
+        {
+            "command-line-flag": "--reports-only",
+            "description": "Only generate reports, don't run workflows. This will only rerun report aggregation, not reportlet generation for specific nodes.",
+            "id": "reports_only",
+            "name": "qsiprep reports only",
+            "optional": true,
+            "type": "Flag",
+            "value-key": "[REPORTS_ONLY]"
+        },
+        {
+            "command-line-flag": "--write-graph",
+            "description": "Write workflow graph.",
+            "id": "write_graph",
+            "name": "qsiprep write graph",
+            "optional": true,
+            "type": "Flag",
+            "value-key": "[WRITE_GRAPH]"
+        },
+        {
+            "command-line-flag": "--sloppy",
+            "description": "Use low-quality tools for speed - TESTING ONLY",
+            "id": "sloppy",
+            "name": "qsiprep sloppy",
+            "optional": true,
+            "type": "Flag",
+            "value-key": "[SLOPPY]"
+        },
+        {
+            "default-value": "derivatives/",
+            "id": "derivatives_prefix",
+            "name": "derivatives_prefix",
+            "description": "Folders to put before the pipeline specific folder. By default this will look like DataProvider/derivatives/PipelineName, where pipeline name is specific to the current pipeline. The provided string must end in /",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DERIVATIVES_PREFIX]"
+        }
+    ],
+    "output-files" : [
+    {
+        "id" : "recon_dir",
+        "name" : "QSIPREP Recon Directory",
+        "description" : "This is the directory where the QSIPREP RECON outputs are to be stored.",
+        "path-template" : "[QSIRECON_OUTPUT_DIR]/qsirecon/[SUBJECT_DIR]",
+        "optional" : false
+        },
+    {
+        "id" : "qsirecon_html_report",
+        "name" : "qsirecon html report",
+        "description" : "This is the html report generated by qsirecon.",
+        "path-template" : "[QSIRECON_OUTPUT_DIR]/qsirecon/[SUBJECT_DIR].html",
+        "optional" : false
+    },
+    {
+        "id" : "recon_dir_dipydki",
+        "name" : "QSIPREP Recon DIPYKI Directory",
+        "description" : "This is the directory where the QSIPREP RECON DIPYKI outputs are to be stored.",
+        "path-template" : "[QSIRECON_OUTPUT_DIR]/qsirecon-DIPYDKI/[SUBJECT_DIR]",
+        "optional" : false
+    },
+    {
+        "id" : "recon_dir_dsistudio",
+        "name" : "QSIPREP Recon DSIStudio Directory",
+        "description" : "This is the directory where the QSIPREP RECON DSIStudio outputs are to be stored.",
+        "path-template" : "[QSIRECON_OUTPUT_DIR]/qsirecon-DSIStudio/[SUBJECT_DIR]",
+        "optional" : false
+    },
+    {
+        "id" : "recon_dir_noddi",
+        "name" : "QSIPREP Recon NODDI Directory",
+        "description" : "This is the directory where the QSIPREP RECON NODDI outputs are to be stored.",
+        "path-template" : "[QSIRECON_OUTPUT_DIR]/qsirecon-NODDI/[SUBJECT_DIR]",
+        "optional" : false
+    },
+    {
+        "id" : "recon_dir_tortoise_mapmri",
+        "name" : "QSIPREP Recon Tortoise-MAPMRI Directory",
+        "description" : "This is the directory where the QSIPREP RECON TORTOISE MAPMRI outputs are to be stored.",
+        "path-template" : "[QSIRECON_OUTPUT_DIR]/qsirecon-TORTOISE_model-MAPMRI/[SUBJECT_DIR]",
+        "optional" : false
+    },
+    {
+        "id" : "recon_dir_tortoise_tensor",
+        "name" : "QSIPREP Recon Tortoise-Tensor Directory",
+        "description" : "This is the directory where the QSIPREP RECON TORTOISE Tensor outputs are to be stored.",
+        "path-template" : "[QSIRECON_OUTPUT_DIR]/qsirecon-TORTOISE_model-tensor/[SUBJECT_DIR]",
+        "optional" : false
+    }
+    ],
+    "custom": {
+        "cbrain:readonly-input-files": true,
+        "cbrain:author": "Erik Lee <leex6144@umn.edu>, Timothy Hendrickson <hendr522@umn.edu> and Natacha Beck <nbeck@mcin.ca>",
+        "cbrain:allow_empty_strings": ["derivatives_prefix"],
+        "cbrain:no-run-id-for-outputs": ["recon_dir", "qsirecon_html_report",
+                                        "recon_dir_dipydki", "recon_dir_dsistudio", "recon_dir_noddi", "recon_dir_tortoise_mapmri",
+                                        "recon_dir_tortoise_tensor"],
+        "cbrain:integrator_modules": {
+            "BoutiquesFileTypeVerifier": {
+                "subject_dir": [ "BidsSubject" ],
+                "fs_license_file": [ "FreesurferLicense", "TextFile", "SingleFile" ]
+            },
+            "BoutiquesFileNameMatcher": {
+                "subject_dir": "^sub-[a-zA-Z0-9_]+$"
+            },
+            "BoutiquesFreesurferLicenseFinder": "fs_license_file",
+            "BoutiquesOutputFileTypeSetter": {
+                "recon_dir": "QsireconOutput",
+                "qsirecon_html_report": "QsireconOutputHtml",
+                "recon_dir_dipydki": "QsireconOutput",
+                "recon_dir_dsistudio": "QsireconOutput",
+                "recon_dir_noddi": "QsireconOutput",
+                "recon_dir_tortoise_mapmri": "QsireconOutput",
+                "recon_dir_tortoise_tensor": "QsireconOutput"
+            },
+            "BoutiquesForcedOutputBrowsePath" : {
+                "recon_dir": "[DERIVATIVES_PREFIX]qsirecon",
+                "qsirecon_html_report": "[DERIVATIVES_PREFIX]qsirecon",
+                "recon_dir_dipydki": "[DERIVATIVES_PREFIX]qsirecon-DIPYDKI",
+                "recon_dir_dsistudio": "[DERIVATIVES_PREFIX]qsirecon-DSIStudio",
+                "recon_dir_noddi": "[DERIVATIVES_PREFIX]qsirecon-NODDI",
+                "recon_dir_tortoise_mapmri": "[DERIVATIVES_PREFIX]qsirecon-TORTOISE_model-MAPMRI",
+                "recon_dir_tortoise_tensor": "[DERIVATIVES_PREFIX]qsirecon-TORTOISE_model-tensor"
+              },
+            "BoutiquesBidsSubjectFileSelector": { "subject_dir": "all_to_keep" },
+            "BoutiquesBidsSingleSubjectMaker": "subject_dir",
+            "BoutiquesTaskLogsCopier": {
+                "stdout":     "[QSIRECON_OUTPUT_DIR]/qsirecon/[SUBJECT_DIR]/[SESSION_ID]/.cbrain/stdout.log",
+                "stderr":     "[QSIRECON_OUTPUT_DIR]/qsirecon/[SUBJECT_DIR]/[SESSION_ID]/.cbrain/stderr.log",
+                "runtime":    "[QSIRECON_OUTPUT_DIR]/qsirecon/[SUBJECT_DIR]/[SESSION_ID]/.cbrain/runtime_info.properties",
+                "descriptor": "[QSIRECON_OUTPUT_DIR]/qsirecon/[SUBJECT_DIR]/[SESSION_ID]/.cbrain/boutiques_descriptor.json",
+                "invoke":     "[QSIRECON_OUTPUT_DIR]/qsirecon/[SUBJECT_DIR]/[SESSION_ID]/.cbrain/boutiques_invoke.json",
+                "jobscript":  "[QSIRECON_OUTPUT_DIR]/qsirecon/[SUBJECT_DIR]/[SESSION_ID]/.cbrain/job_script.sh",
+                "cbrain_params": "[QSIRECON_OUTPUT_DIR]/qsirecon/[SUBJECT_DIR]/[SESSION_ID]/.cbrain/cbrain_params.json"
+            },
+            "BoutiquesInputSubdirMaker": {
+              "freesurfer_input": {"dirname": "freesurfer",
+                                   "append_filename": false}
+            }
+        }
+    }
+}

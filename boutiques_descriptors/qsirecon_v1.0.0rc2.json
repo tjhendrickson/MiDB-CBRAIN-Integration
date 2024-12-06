@@ -1,12 +1,12 @@
 {
     "name": "qsirecon",
-    "description": "q-Space Image PREProcessing workflows",
+    "description": "QSIRecon builds post-processing workflows that produce many of the biologically-interesting dMRI derivatives used for hypothesis testing. The main goal of QSIRecon is to make the state-of-the-art methods available in Dipy, MRTrix, DSI Studio, PyAFQ and other software packages easy to apply on preprocessed dMRI data. QSIRecon is companion software for XCP-D, doing for dMRI what XCP-D does for BOLD.",
     "author": "University of Pennsylvania Lifespan Informatics and Neuroimaging Center (https://github.com/PennLINC)",
-    "url": "https://qsiprep.readthedocs.io/en/latest/index.html",
+    "url": "https://qsirecon.readthedocs.io/en/latest/",
     "tool-version": "1.0.0rc2",
     "shell": "/bin/bash",
     "schema-version": "0.5",
-    "command-line": "true [SUBJECT_DIR]; true [DERIVATIVES_PREFIX]; qsirecon [QSIPREP_DIR] [QSIRECON_OUTPUT_DIR] participant --skip-bids-validation --work-dir \"$PWD\"/work [SESSION_ID] [FS_LICENSE_FILE] [BIDS_FILTER_FILE] [RECON_SPEC] --omp-nthreads 8 --n-cpus 8 --stop-on-first-crash --eddy-config \"$PWD\"/[EDDY_CONFIG] [SUBJECT_ANAT_REFERENCE] [SKIP_ANAT_BASED_SPATIAL_NORM] [ANAT_MODALITY] [SEPARATE_ALL_DWIS] [PEPOLAR_METHOD] [USE_PLUGIN] [ANAT_ONLY] [DWI_ONLY] [B1_BIAS_CORRECT] [INFANT] [BOILERPLATE] [VERBOSE] [IGNORE] [LONGITUDINAL] [B0_THRESHOLD] [DWI_DENOISE_WINDOW] [UNRINGING_METHOD] [NO_B0_HARMONIZATION] [DENOISE_AFTER_COMBINING] [DENOISE_METHOD] [DISTORTION_GROUP_MERGE] [WRITE_LOCAL_BVECS] [TEMPLATE] [OUTPUT_RESOLUTION] [B0_TO_T1W_TRANSFORM] [INTRAMODAL_TEMPLATE_ITERS] [INTRAMODAL_TEMPLATE_TRANSFORM] [B0_MOTION_CORR_TO] [HMC_TRANSFORM] [HMC_MODEL] [SHORELINE_ITERS] [FMAP_BSPLINE] [FMAP_NO_DEMEAN] [USE_SYN_SDC] [FORCE_SYN] [REPORTS_ONLY] [WRITE_GRAPH] [SLOPPY]",
+    "command-line": "true [SUBJECT_DIR]; true [DERIVATIVES_PREFIX]; qsirecon [QSIPREP_DIR] [QSIRECON_OUTPUT_DIR] participant --work-dir \"$PWD\"/work [SESSION_ID] [FS_LICENSE_FILE] [BIDS_FILTER_FILE] [RECON_SPEC] [fs_subjects_dir] [report_output_level] --omp-nthreads 8 --n-cpus 8 --stop-on-first-crash [USE_PLUGIN] [INFANT] [BOILERPLATE] [VERBOSE] [B0_THRESHOLD] [OUTPUT_RESOLUTION] [REPORTS_ONLY] [WRITE_GRAPH] [SLOPPY]",
     "container-image":
     {
         "image": "pennlinc/qsirecon:1.0.0rc2",
@@ -24,8 +24,8 @@
         },
         {
             "description": "Subject folder for previous QSIPREP Outputs (folders name should be sub-XXXXX).",
-            "id": "subject_dir",
-            "name": "subject_dir",
+            "id": "qsiprep_subject_dir",
+            "name": "qsiprep_subject_dir",
             "optional": false,
             "type": "File",
             "value-key": "[QSIPREP_DIR]"
@@ -176,6 +176,13 @@
             "value-key": "[SLOPPY]"
         },
         {
+            "id": "preproc_output_json",
+            "name": "preproc_output_json",
+            "description": "The json descriptor of the original qsiprep preprocessing derivatives.",
+            "optional": false,
+            "type": "File"
+        },
+        {
             "default-value": "derivatives/",
             "id": "derivatives_prefix",
             "name": "derivatives_prefix",
@@ -246,6 +253,7 @@
         "cbrain:integrator_modules": {
             "BoutiquesFileTypeVerifier": {
                 "subject_dir": [ "BidsSubject" ],
+                "qsiprep_subject_dir": [ "QsiprepOutput" ],
                 "fs_license_file": [ "FreesurferLicense", "TextFile", "SingleFile" ]
             },
             "BoutiquesFileNameMatcher": {
@@ -283,7 +291,9 @@
             },
             "BoutiquesInputSubdirMaker": {
               "freesurfer_input": {"dirname": "freesurfer",
-                                   "append_filename": false}
+                                   "append_filename": false},
+              "qsiprep_subject_dir":     {"dirname": "qsiprep_input", "append_filename": false, "physical_copy": true},
+              "qsiprep_json":  {"dirname": "qsiprep_input", "filename": "dataset_description.json", "append_filename": false, "physical_copy": true}
             }
         }
     }

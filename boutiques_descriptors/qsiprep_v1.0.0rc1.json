@@ -526,10 +526,7 @@
                 "jobscript":  "[QSIPREP_OUTPUT_DIR]/qsiprep/[SUBJECT_DIR]/[SESSION_ID]/.cbrain/job_script.sh",
                 "cbrain_params": "[QSIPREP_OUTPUT_DIR]/qsiprep/[SUBJECT_DIR]/[SESSION_ID]/.cbrain/cbrain_params.json"
             },
-            "BoutiquesInputSubdirMaker": {
-              "freesurfer_input": {"dirname": "freesurfer",
-                                   "append_filename": false}
-            }
+            "BoutiquesInputSubdirMaker": {}
         }
     }
 }

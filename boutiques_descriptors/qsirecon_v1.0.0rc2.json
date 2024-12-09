@@ -176,8 +176,8 @@
             "value-key": "[SLOPPY]"
         },
         {
-            "id": "preproc_output_json",
-            "name": "preproc_output_json",
+            "id": "qsiprep_json",
+            "name": "qsiprep_json",
             "description": "The json descriptor of the original qsiprep preprocessing derivatives.",
             "optional": false,
             "type": "File"

@@ -62,7 +62,7 @@
             "id": "recon_spec",
             "name": "Recon Specification",
             "optional": true,
-            "type": "File",
+            "type": "String",
             "value-key": "[RECON_SPEC]"
         },
         {

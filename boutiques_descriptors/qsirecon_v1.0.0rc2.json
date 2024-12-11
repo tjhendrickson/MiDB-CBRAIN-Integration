@@ -212,7 +212,7 @@
         "name" : "QSIPREP Recon DIPYKI HTML",
         "description" : "This is the directory where the QSIRECON DIPYKI outputs are to be stored.",
         "path-template" : "[QSIRECON_OUTPUT_DIR]/derivatives/qsirecon-DIPYDKI/[SUBJECT_DIR]*html",
-        "optional" : false
+        "optional" : true
     },
     {
         "id" : "recon_dir_dsistudio",
@@ -226,7 +226,7 @@
         "name" : "QSIPREP Recon DSIStudio HTML",
         "description" : "This is the directory where the QSIRECON DSIStudio outputs are to be stored.",
         "path-template" : "[QSIRECON_OUTPUT_DIR]/derivatives/qsirecon-DSIStudio/[SUBJECT_DIR]*html",
-        "optional" : false
+        "optional" : true
     },
     {
         "id" : "recon_dir_tortoise_mapmri",
@@ -240,7 +240,7 @@
         "name" : "QSIPREP Recon Tortoise-MAPMRI HTML",
         "description" : "This is the directory where the QSIRECON TORTOISE MAPMRI outputs are to be stored.",
         "path-template" : "[QSIRECON_OUTPUT_DIR]/derivatives/qsirecon-TORTOISE_model-MAPMRI/[SUBJECT_DIR]*html",
-        "optional" : false
+        "optional" : true
     },
     {
         "id" : "recon_dir_tortoise_tensor",
@@ -254,7 +254,7 @@
         "name" : "QSIPREP Recon Tortoise-Tensor HTML",
         "description" : "This is the directory where the QSIRECON TORTOISE Tensor outputs are to be stored.",
         "path-template" : "[QSIRECON_OUTPUT_DIR]/derivatives/qsirecon-TORTOISE_model-tensor/[SUBJECT_DIR]*html",
-        "optional" : false
+        "optional" : true
     }
     ],
     "custom": {

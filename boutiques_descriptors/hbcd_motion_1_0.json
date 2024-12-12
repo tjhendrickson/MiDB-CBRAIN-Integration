@@ -1,12 +1,12 @@
 {
-    "name": "Axivity_Postproc",
-    "description": "A tool to run accelerometry analyses on BIDS formatted HBCD data.",
-    "tool-version": "1.1",
+    "name": "hbcd_motion",
+    "description": "A container to run accelerometry analyses on BIDS formatted data for HBCD.",
+    "tool-version": "1.0",
     "schema-version": "0.5",
     "url": "https://github.com/Infant-Neuromotor-Control-Lab/HBCD_movement_sensor",
-    "command-line": "true [DERIVATIVES_PREFIX]; axivity_postproc [SUBJECT_DIR] [POSTRPOC_OUTPUT_DIR] participant [SESSION_ID] [INTERVAL] [PA_MEASURE] [PA_SIDE] [ENTROPY_TYPE] [ENTROPY_MEASURE] [STOP_ON_ERROR]",
+    "command-line": "true [DERIVATIVES_PREFIX]; axivity_postproc [SUBJECT_DIR] [POSTRPOC_OUTPUT_DIR] participant [SESSION_ID] [INTERVAL] [PA_MEASURE] [PA_SIDE] [ENTROPY_TYPE] [ENTROPY_MEASURE]",
     "container-image": {
-        "image": "dcanumn/axivity_postproc:1.1",
+        "image": "dcanumn/axivity_postproc:1.0",
         "index": "docker://",
         "type": "singularity"
     },
@@ -82,15 +82,6 @@
             "value-key": "[ENTROPY_MEASURE]"
         },
         {
-            "command-line-flag": "--stop_on_error",
-            "id": "stop_on_error",
-            "name": "Stop on error",
-            "description": "Try to return a non-zero exit status when an error occurs.",
-            "optional": true,
-            "type": "Flag",
-            "value-key": "[STOP_ON_ERROR]"
-        },
-        {
             "default-value": "derivatives/",
             "id": "derivatives_prefix",
             "name": "derivatives_prefix",
@@ -135,19 +126,19 @@
                 "subject_dir": "^sub-[a-zA-Z0-9_]+$"
             },
             "BoutiquesOutputFileTypeSetter": {
-                "output_dir": "AxivityPostprocOutput"
+                "output_dir": "HbcdMotionOutput"
             },
             "BoutiquesTaskLogsCopier": {
-                "stdout":     "[POSTRPOC_OUTPUT_DIR]/[SUBJECT_DIR]/.cbrain/stdout.log",
-                "stderr":     "[POSTRPOC_OUTPUT_DIR]/[SUBJECT_DIR]/.cbrain/stderr.log",
-                "runtime":    "[POSTRPOC_OUTPUT_DIR]/[SUBJECT_DIR]/.cbrain/runtime_info.properties",
-                "descriptor": "[POSTRPOC_OUTPUT_DIR]/[SUBJECT_DIR]/.cbrain/boutiques_descriptor.json",
-                "invoke":     "[POSTRPOC_OUTPUT_DIR]/[SUBJECT_DIR]/.cbrain/boutiques_invoke.json",
-                "jobscript":  "[POSTRPOC_OUTPUT_DIR]/[SUBJECT_DIR]/.cbrain/job_script.sh",
+                "stdout":     "[POSTRPOC_OUTPUT_DIR]/[SUBJECT_DIR]/ses-[SESSION_ID]/.cbrain/stdout.log",
+                "stderr":     "[POSTRPOC_OUTPUT_DIR]/[SUBJECT_DIR]/ses-[SESSION_ID]/.cbrain/stderr.log",
+                "runtime":    "[POSTRPOC_OUTPUT_DIR]/[SUBJECT_DIR]/ses-[SESSION_ID]/.cbrain/runtime_info.properties",
+                "descriptor": "[POSTRPOC_OUTPUT_DIR]/[SUBJECT_DIR]/ses-[SESSION_ID]/.cbrain/boutiques_descriptor.json",
+                "invoke":     "[POSTRPOC_OUTPUT_DIR]/[SUBJECT_DIR]/ses-[SESSION_ID]/.cbrain/boutiques_invoke.json",
+                "jobscript":  "[POSTRPOC_OUTPUT_DIR]/[SUBJECT_DIR]/ses-[SESSION_ID]/.cbrain/job_script.sh",
                 "cbrain_params": "[POSTRPOC_OUTPUT_DIR]/[SUBJECT_DIR]/.cbrain/cbrain_params.json"
             },
             "BoutiquesForcedOutputBrowsePath" : {
-              "output_dir": "[DERIVATIVES_PREFIX]axivity_postproc"
+              "output_dir": "[DERIVATIVES_PREFIX]hbcd_motion"
             },
             "BoutiquesBidsSubjectFileSelector": { "subject_dir": "all_to_keep" },
             "BoutiquesBidsSingleSubjectMaker": "subject_dir"

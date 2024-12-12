@@ -20,13 +20,13 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-# A FileCollection to model the output of a Axivity Postproc job.
-class AxivityPostprocOutput < FileCollection
+# A FileCollection to model the output of a hbcd_motion job.
+class HbcdMotionOutput < FileCollection
 
   Revision_info=CbrainFileRevision[__FILE__] #:nodoc:
 
   def self.pretty_type #:nodoc:
-    "Axivity Postproc Output"
+    "HBCD Motion Output"
   end
 
 end

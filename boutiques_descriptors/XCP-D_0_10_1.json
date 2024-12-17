@@ -4,7 +4,7 @@
     "tool-version": "0.10.1",
     "schema-version": "0.5",
     "url": "https://xcp-d.readthedocs.io/en/latest/index.html",
-    "command-line": "true [SUBJECT_DIR]; true [DERIVATIVES_PREFIX]; mkdir -p work; export FS_LICENSE=$PWD/[FS_LICENSE_FILE]; xcp_d [SUBJECT_PREPROC_FMRI_DIR] [OUTPUT_DIR] participant --omp-nthreads 2 [MODE] [COMBINERUNS] [VERBOSE] [INPUT_TYPE] [TASK] [SMOOTHING] [DESPIKE] [LINC_QC] [MIN_TIME] [NUISANCE] --fs-license-file [FS_LICENSE_FILE] [DUMMY_SCANS] [BPF] [LOWER_BPF] [UPPER_BPF] [BPF_ORDER] [MOTION_FILTER_TYPE] [BAND_STOP_MIN] [BAND_STOP_MAX] [MOTION_FILTER_ORDER] [HEAD_RADIUS] [FD_THRESH] [WARP_SURFACES] [BIDS_FILTER] -w work --notrack",
+    "command-line": "true [SESSION_ID]; true [SUBJECT_DIR]; true [DERIVATIVES_PREFIX]; mkdir -p work; export FS_LICENSE=$PWD/[FS_LICENSE_FILE]; xcp_d [SUBJECT_PREPROC_FMRI_DIR] [OUTPUT_DIR] participant --omp-nthreads 2 [MODE] [COMBINERUNS] [VERBOSE] [INPUT_TYPE] [TASK] [SMOOTHING] [DESPIKE] [LINC_QC] [MIN_TIME] [NUISANCE] --fs-license-file [FS_LICENSE_FILE] [DUMMY_SCANS] [BPF] [LOWER_BPF] [UPPER_BPF] [BPF_ORDER] [MOTION_FILTER_TYPE] [BAND_STOP_MIN] [BAND_STOP_MAX] [MOTION_FILTER_ORDER] [HEAD_RADIUS] [FD_THRESH] [WARP_SURFACES] [BIDS_FILTER] -w work --notrack",
     "container-image": {
         "image": "pennlinc/xcp_d:0.10.1",
         "index": "docker://",
@@ -34,6 +34,15 @@
             "optional": false,
             "type": "File",
             "value-key": "[SUBJECT_DIR]"
+        },
+        {
+            "command-line-flag": "--session-id",
+            "id": "session_id",
+            "name": "session_id",
+            "description": "This flag is only used behind the scenes in CBRAIN, not in XCP-D.",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SESSION_ID]"
         },
         {
             "command-line-flag": "--combine-runs",
@@ -415,13 +424,13 @@
             },
             "BoutiquesAllowedExitCodes": [0],
             "BoutiquesTaskLogsCopier": {
-                "stdout":     "[OUTPUT_DIR]/[SUBJECT_DIR]/.cbrain/stdout.log",
-                "stderr":     "[OUTPUT_DIR]/[SUBJECT_DIR]/.cbrain/stderr.log",
-                "runtime":    "[OUTPUT_DIR]/[SUBJECT_DIR]/.cbrain/runtime_info.properties",
-                "descriptor": "[OUTPUT_DIR]/[SUBJECT_DIR]/.cbrain/boutiques_descriptor.json",
-                "invoke":     "[OUTPUT_DIR]/[SUBJECT_DIR]/.cbrain/boutiques_invoke.json",
-                "jobscript":  "[OUTPUT_DIR]/[SUBJECT_DIR]/.cbrain/job_script.sh",
-                "cbrain_params": "[OUTPUT_DIR]/[SUBJECT_DIR]/.cbrain/cbrain_params.json"
+                "stdout":     "[OUTPUT_DIR]/[SUBJECT_DIR]/ses-[SESSION_ID]/.cbrain/stdout.log",
+                "stderr":     "[OUTPUT_DIR]/[SUBJECT_DIR]/ses-[SESSION_ID]/.cbrain/stderr.log",
+                "runtime":    "[OUTPUT_DIR]/[SUBJECT_DIR]/ses-[SESSION_ID]/.cbrain/runtime_info.properties",
+                "descriptor": "[OUTPUT_DIR]/[SUBJECT_DIR]/ses-[SESSION_ID]/.cbrain/boutiques_descriptor.json",
+                "invoke":     "[OUTPUT_DIR]/[SUBJECT_DIR]/ses-[SESSION_ID]/.cbrain/boutiques_invoke.json",
+                "jobscript":  "[OUTPUT_DIR]/[SUBJECT_DIR]/ses-[SESSION_ID]/.cbrain/job_script.sh",
+                "cbrain_params": "[OUTPUT_DIR]/[SUBJECT_DIR]/ses-[SESSION_ID]/.cbrain/cbrain_params.json"
                 
             },
             "BoutiquesBidsSubjectFileSelector": { "subject_dir": "all_to_keep" },

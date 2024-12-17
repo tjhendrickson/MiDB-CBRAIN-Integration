@@ -117,13 +117,13 @@
                 "SubjectDirectory": "^sub-[a-zA-Z0-9_]+$"
             },
             "BoutiquesTaskLogsCopier": {
-                "stdout":     "[MADEOutputDirectoryName]/[SubjectDirectory]/.cbrain/stdout.log",
-                "stderr":     "[MADEOutputDirectoryName]/[SubjectDirectory]/.cbrain/stderr.log",
-                "runtime":    "[MADEOutputDirectoryName]/[SubjectDirectory]/.cbrain/runtime_info.properties",
-                "descriptor": "[MADEOutputDirectoryName]/[SubjectDirectory]/.cbrain/boutiques_descriptor.json",
-                "invoke":     "[MADEOutputDirectoryName]/[SubjectDirectory]/.cbrain/boutiques_invoke.json",
-                "jobscript":  "[MADEOutputDirectoryName]/[SubjectDirectory]/.cbrain/job_script.sh",
-                "cbrain_params": "[MADEOutputDirectoryName]/[SubjectDirectory]/.cbrain/cbrain_params.json"
+                "stdout":     "[MADEOutputDirectoryName]/[SubjectDirectory]/ses-[SessionLabel]/.cbrain/stdout.log",
+                "stderr":     "[MADEOutputDirectoryName]/[SubjectDirectory]/ses-[SessionLabel]/.cbrain/stderr.log",
+                "runtime":    "[MADEOutputDirectoryName]/[SubjectDirectory]/ses-[SessionLabel]/.cbrain/runtime_info.properties",
+                "descriptor": "[MADEOutputDirectoryName]/[SubjectDirectory]/ses-[SessionLabel]/.cbrain/boutiques_descriptor.json",
+                "invoke":     "[MADEOutputDirectoryName]/[SubjectDirectory]/ses-[SessionLabel]/.cbrain/boutiques_invoke.json",
+                "jobscript":  "[MADEOutputDirectoryName]/[SubjectDirectory]/ses-[SessionLabel]/.cbrain/job_script.sh",
+                "cbrain_params": "[MADEOutputDirectoryName]/[SubjectDirectory]/ses-[SessionLabel]/.cbrain/cbrain_params.json"
             },
             "BoutiquesOutputFileTypeSetter": {
                 "OutputDirectory": "MADEOutput"

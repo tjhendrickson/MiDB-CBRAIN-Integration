@@ -126,13 +126,13 @@
                 "BIBSNET_Directory": ["CabinetPrecomputedOutput", "BibsnetOutput"]
             },
             "BoutiquesTaskLogsCopier": {
-                "stdout":     "[OutputDirectoryName]/[SubjectDirectory]/.cbrain/stdout.log",
-                "stderr":     "[OutputDirectoryName]/[SubjectDirectory]/.cbrain/stderr.log",
-                "runtime":    "[OutputDirectoryName]/[SubjectDirectory]/.cbrain/runtime_info.properties",
-                "descriptor": "[OutputDirectoryName]/[SubjectDirectory]/.cbrain/boutiques_descriptor.json",
-                "invoke":     "[OutputDirectoryName]/[SubjectDirectory]/.cbrain/boutiques_invoke.json",
-                "jobscript":  "[OutputDirectoryName]/[SubjectDirectory]/.cbrain/job_script.sh",
-                "cbrain_params": "[OutputDirectoryName]/[SubjectDirectory]/.cbrain/cbrain_params.json"
+                "stdout":     "[OutputDirectoryName]/[SubjectDirectory]/ses-[SessionLabel]/.cbrain/stdout.log",
+                "stderr":     "[OutputDirectoryName]/[SubjectDirectory]/ses-[SessionLabel]/.cbrain/stderr.log",
+                "runtime":    "[OutputDirectoryName]/[SubjectDirectory]/ses-[SessionLabel]/.cbrain/runtime_info.properties",
+                "descriptor": "[OutputDirectoryName]/[SubjectDirectory]/ses-[SessionLabel]/.cbrain/boutiques_descriptor.json",
+                "invoke":     "[OutputDirectoryName]/[SubjectDirectory]/ses-[SessionLabel]/.cbrain/boutiques_invoke.json",
+                "jobscript":  "[OutputDirectoryName]/[SubjectDirectory]/ses-[SessionLabel]/.cbrain/job_script.sh",
+                "cbrain_params": "[OutputDirectoryName]/[SubjectDirectory]/ses-[SessionLabel]/.cbrain/cbrain_params.json"
             },
             "BoutiquesFileNameMatcher": {
                 "SubjectDirectory": "^sub-[a-zA-Z0-9_]+$"

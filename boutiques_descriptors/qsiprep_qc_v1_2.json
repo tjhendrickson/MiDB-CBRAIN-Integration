@@ -104,13 +104,13 @@
                 "OutputDirectory": "QsiprepQcOutput"
             },
             "BoutiquesTaskLogsCopier": {
-                "stdout":     "[OutputDirectoryName]/[BIDSSubjectDirectory]/.cbrain/stdout.log",
-                "stderr":     "[OutputDirectoryName]/[BIDSSubjectDirectory]/.cbrain/stderr.log",
-                "runtime":    "[OutputDirectoryName]/[BIDSSubjectDirectory]/.cbrain/runtime_info.properties",
-                "descriptor": "[OutputDirectoryName]/[BIDSSubjectDirectory]/.cbrain/boutiques_descriptor.json",
-                "invoke":     "[OutputDirectoryName]/[BIDSSubjectDirectory]/.cbrain/boutiques_invoke.json",
-                "jobscript":  "[OutputDirectoryName]/[BIDSSubjectDirectory]/.cbrain/job_script.sh",
-                "cbrain_params": "[OutputDirectoryName]/[BIDSSubjectDirectory]/.cbrain/cbrain_params.json"
+                "stdout":     "[OutputDirectoryName]/[BIDSSubjectDirectory]/ses-[SessionLabel]/.cbrain/stdout.log",
+                "stderr":     "[OutputDirectoryName]/[BIDSSubjectDirectory]/ses-[SessionLabel]/.cbrain/stderr.log",
+                "runtime":    "[OutputDirectoryName]/[BIDSSubjectDirectory]/ses-[SessionLabel]/.cbrain/runtime_info.properties",
+                "descriptor": "[OutputDirectoryName]/[BIDSSubjectDirectory]/ses-[SessionLabel]/.cbrain/boutiques_descriptor.json",
+                "invoke":     "[OutputDirectoryName]/[BIDSSubjectDirectory]/ses-[SessionLabel]/.cbrain/boutiques_invoke.json",
+                "jobscript":  "[OutputDirectoryName]/[BIDSSubjectDirectory]/ses-[SessionLabel]/.cbrain/job_script.sh",
+                "cbrain_params": "[OutputDirectoryName]/[BIDSSubjectDirectory]/ses-[SessionLabel]/.cbrain/cbrain_params.json"
             },
             "BoutiquesBidsSubjectFileSelector": { "BIDSSubjectDirectory": "all_to_keep"},
             "BoutiquesBidsSingleSubjectMaker": "BIDSSubjectDirectory",

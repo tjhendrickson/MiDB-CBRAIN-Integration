@@ -191,13 +191,13 @@
           "OutputDirectory": "[DERIVATIVES_PREFIX]osprey"
         },
         "BoutiquesTaskLogsCopier": {
-          "stdout": "[OSPREYOutputDirectoryName]/[SubjectDirectory]/.cbrain/stdout.log",
-          "stderr": "[OSPREYOutputDirectoryName]/[SubjectDirectory]/.cbrain/stderr.log",
-          "runtime": "[OSPREYOutputDirectoryName]/[SubjectDirectory]/.cbrain/runtime_info.properties",
-          "descriptor": "[OSPREYOutputDirectoryName]/[SubjectDirectory]/.cbrain/boutiques_descriptor.json",
-          "invoke": "[OSPREYOutputDirectoryName]/[SubjectDirectory]/.cbrain/boutiques_invoke.json",
-          "jobscript": "[OSPREYOutputDirectoryName]/[SubjectDirectory]/.cbrain/job_script.sh",
-          "cbrain_params": "[OSPREYOutputDirectoryName]/[SubjectDirectory]/.cbrain/cbrain_params.json"
+          "stdout": "[OSPREYOutputDirectoryName]/[SubjectDirectory]/ses-[SessionLabel]/.cbrain/stdout.log",
+          "stderr": "[OSPREYOutputDirectoryName]/[SubjectDirectory]/ses-[SessionLabel]/.cbrain/stderr.log",
+          "runtime": "[OSPREYOutputDirectoryName]/[SubjectDirectory]/ses-[SessionLabel]/.cbrain/runtime_info.properties",
+          "descriptor": "[OSPREYOutputDirectoryName]/[SubjectDirectory]/ses-[SessionLabel]/.cbrain/boutiques_descriptor.json",
+          "invoke": "[OSPREYOutputDirectoryName]/[SubjectDirectory]/ses-[SessionLabel]/.cbrain/boutiques_invoke.json",
+          "jobscript": "[OSPREYOutputDirectoryName]/[SubjectDirectory]/ses-[SessionLabel]/.cbrain/job_script.sh",
+          "cbrain_params": "[OSPREYOutputDirectoryName]/[SubjectDirectory]/ses-[SessionLabel]/.cbrain/cbrain_params.json"
         },
         "BoutiquesBidsSubjectFileSelector": {
           "SubjectDirectory": "all_to_keep"

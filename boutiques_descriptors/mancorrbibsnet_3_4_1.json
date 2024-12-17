@@ -126,13 +126,13 @@
           "OutputDirectory": "BibsnetOutput"
         },
         "BoutiquesTaskLogsCopier": {
-          "stdout": "[OutputDirectoryName]/bibsnet/[SUBJECT_DIR]/.cbrain/stdout.log",
-          "stderr": "[OutputDirectoryName]/bibsnet/[SUBJECT_DIR]/.cbrain/stderr.log",
-          "runtime": "[OutputDirectoryName]/bibsnet/[SUBJECT_DIR]/.cbrain/runtime_info.properties",
-          "descriptor": "[OutputDirectoryName]/bibsnet/[SUBJECT_DIR]/.cbrain/boutiques_descriptor.json",
-          "invoke": "[OutputDirectoryName]/bibsnet/[SUBJECT_DIR]/.cbrain/boutiques_invoke.json",
-          "jobscript": "[OutputDirectoryName]/bibsnet/[SUBJECT_DIR]/.cbrain/job_script.sh",
-          "cbrain_params": "[OutputDirectoryName]/bibsnet/[SUBJECT_DIR]/.cbrain/cbrain_params.json"
+          "stdout": "[OutputDirectoryName]/bibsnet/[SUBJECT_DIR]/ses-[SES_LABEL]/.cbrain/stdout.log",
+          "stderr": "[OutputDirectoryName]/bibsnet/[SUBJECT_DIR]/ses-[SES_LABEL]/.cbrain/stderr.log",
+          "runtime": "[OutputDirectoryName]/bibsnet/[SUBJECT_DIR]/ses-[SES_LABEL]/.cbrain/runtime_info.properties",
+          "descriptor": "[OutputDirectoryName]/bibsnet/[SUBJECT_DIR]/ses-[SES_LABEL]/.cbrain/boutiques_descriptor.json",
+          "invoke": "[OutputDirectoryName]/bibsnet/[SUBJECT_DIR]/ses-[SES_LABEL]/.cbrain/boutiques_invoke.json",
+          "jobscript": "[OutputDirectoryName]/bibsnet/[SUBJECT_DIR]/ses-[SES_LABEL]/.cbrain/job_script.sh",
+          "cbrain_params": "[OutputDirectoryName]/bibsnet/[SUBJECT_DIR]/ses-[SES_LABEL]/.cbrain/cbrain_params.json"
         },
         "BoutiquesInputSubdirMaker": {
           "BibsnetWorkManEditsDir": {"dirname": "BibsnetWorkManEdits", "append_filename": true}

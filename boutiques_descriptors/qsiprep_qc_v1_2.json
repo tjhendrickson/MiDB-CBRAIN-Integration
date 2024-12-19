@@ -3,7 +3,7 @@
     "schema-version": "0.5",
     "tool-version": "1.2",
     "url": "https://github.com/DCAN-Labs/QSIPREP_HBCD_QC",
-    "command-line": "true [BIDSSubjectDirectory]; true [DERIVATIVES_PREFIX]; qsiprep_qc [QSIPREPDirectory] [OutputDirectoryName] participant [ParticipantLabel] [SessionLabel]",
+    "command-line": "true [BIDSSubjectDirectory]; true [DERIVATIVES_PREFIX]; true [SessionLabel]; qsiprep_qc [QSIPREPDirectory] [OutputDirectoryName] participant [ParticipantLabel]",
     "description": "Simple pipeline to make summary QC images based on qsiprep outputs.",
     "inputs": [
       {
@@ -40,7 +40,6 @@
         "value-key": "[ParticipantLabel]"
     },
     {
-        "command-line-flag": "--session-id",
         "description": "select a specific session to be processed (with or without ses- prefix)",
         "id": "SessionLabel",
         "name": "Session Label",

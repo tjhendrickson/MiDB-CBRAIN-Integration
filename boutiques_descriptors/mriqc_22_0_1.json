@@ -178,13 +178,13 @@
               "output_dir": "[DERIVATIVES_PREFIX]mriqc"
             },
             "BoutiquesTaskLogsCopier": {
-                "stdout":     "[MRIQC_OUTPUT_DIR]/mriqc/[SUBJECT_DIR]/ses-[SESSION_ID]/.cbrain/stdout.log",
-                "stderr":     "[MRIQC_OUTPUT_DIR]/mriqc/[SUBJECT_DIR]/ses-[SESSION_ID]/.cbrain/stderr.log",
-                "runtime":    "[MRIQC_OUTPUT_DIR]/mriqc/[SUBJECT_DIR]/ses-[SESSION_ID]/.cbrain/runtime_info.properties",
-                "descriptor": "[MRIQC_OUTPUT_DIR]/mriqc/[SUBJECT_DIR]/ses-[SESSION_ID]/.cbrain/boutiques_descriptor.json",
-                "invoke":     "[MRIQC_OUTPUT_DIR]/mriqc/[SUBJECT_DIR]/ses-[SESSION_ID]/.cbrain/boutiques_invoke.json",
-                "jobscript":  "[MRIQC_OUTPUT_DIR]/mriqc/[SUBJECT_DIR]/ses-[SESSION_ID]/.cbrain/job_script.sh",
-                "cbrain_params": "[MRIQC_OUTPUT_DIR]/mriqc/[SUBJECT_DIR]/ses-[SESSION_ID]/.cbrain/cbrain_params.json"
+                "stdout":     "[MRIQC_OUTPUT_DIR]/[SUBJECT_DIR]/ses-[SESSION_ID]/.cbrain/stdout.log",
+                "stderr":     "[MRIQC_OUTPUT_DIR]/[SUBJECT_DIR]/ses-[SESSION_ID]/.cbrain/stderr.log",
+                "runtime":    "[MRIQC_OUTPUT_DIR]/[SUBJECT_DIR]/ses-[SESSION_ID]/.cbrain/runtime_info.properties",
+                "descriptor": "[MRIQC_OUTPUT_DIR]/[SUBJECT_DIR]/ses-[SESSION_ID]/.cbrain/boutiques_descriptor.json",
+                "invoke":     "[MRIQC_OUTPUT_DIR]/[SUBJECT_DIR]/ses-[SESSION_ID]/.cbrain/boutiques_invoke.json",
+                "jobscript":  "[MRIQC_OUTPUT_DIR]/[SUBJECT_DIR]/ses-[SESSION_ID]/.cbrain/job_script.sh",
+                "cbrain_params": "[MRIQC_OUTPUT_DIR]/[SUBJECT_DIR]/ses-[SESSION_ID]/.cbrain/cbrain_params.json"
             },
             "BoutiquesBidsSubjectFileSelector": { "subject_dir": "all_to_keep" },
             "BoutiquesBidsSingleSubjectMaker": "subject_dir"

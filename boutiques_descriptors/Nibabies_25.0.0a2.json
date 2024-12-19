@@ -4,7 +4,7 @@
     "tool-version": "25.0.0a2",
     "schema-version": "0.5",
     "url": "https://nibabies.readthedocs.io/",
-    "command-line": "true [DERIVATIVES_PREFIX]; nibabies [SUBJECT_DIR] [OUTPUT_DIR] participant --skip_bids_validation [TASK_ID] [SESSION_ID] [ECHO_IDX] [ANAT_DERIVATIVES_PATH] --nthreads 4 --omp-nthreads 4 --mem_mb 30000 [USE_PLUGIN] [ANAT_ONLY] [BOILERPLATE_ONLY] [MD_ONLY_BOILERPLATE] [VERBOSE] [IGNORE] [LONGITUDINAL] [OUTPUT_SPACES] [ME_OUTPUT_ECHOS] [BOLD2ANAT_INIT] [BOLD2ANAT_DOF] [FORCE_BBR] [FORCE_NO_BBR] [MEDIAL_SURFACE_NAN] [SLICE_TIME_REF] [DUMMY_SCANS] [RANDOM_SEED] [RETURN_ALL_COMPONENTS] [FD_SPIKE_THRESHOLD] [DVARS_SPIKE_THRESHOLD] [SKULL_STRIP_TEMPLATE] [SKULL_STRIP_FIXED_SEED] [SKULL_STRIP_ANAT] [FMAP_BSPLINE] [FMAP_NO_DEMEAN] [USE_SYN_SDC] [FORCE_SYN] [FS_LICENSE_FILE] [NO_SUBMM_RECON] [CIFTI_OUTPUT] [FS_NO_RECONALL] --work-dir work [RESOURCE_MONITOR] [REPORTS_ONLY] [CONFIG_FILE] [WRITE_GRAPH] [STOP_ON_FIRST_CRASH] [NOTRACK] [DEBUG] [SLOPPY] [AGE_MONTHS] [SEGMENTATION_ATLASES_DIR] [FD_RADIUS] [CABINET_OUTPUT] [DERIV_FILTER_FILE] [FORCE_RECONALL] [PROJECT_GOODVOXELS] [SURFACE_RECON_METHOD] [NORM_CSF] [MULTI_STEP_REG]",
+    "command-line": "true [DERIVATIVES_PREFIX]; nibabies [SUBJECT_DIR] [OUTPUT_DIR] participant --skip_bids_validation [TASK_ID] [SESSION_ID] [ECHO_IDX] [ANAT_DERIVATIVES_PATH] --nthreads 4 --omp-nthreads 4 --mem_mb 30000 [USE_PLUGIN] [ANAT_ONLY] [BOILERPLATE_ONLY] [MD_ONLY_BOILERPLATE] [VERBOSE] [IGNORE] [LONGITUDINAL] [OUTPUT_SPACES] [ME_OUTPUT_ECHOS] [BOLD2ANAT_INIT] [BOLD2ANAT_DOF] [FORCE_BBR] [FORCE_NO_BBR] [MEDIAL_SURFACE_NAN] [SLICE_TIME_REF] [DUMMY_SCANS] [RANDOM_SEED] [RETURN_ALL_COMPONENTS] [FD_SPIKE_THRESHOLD] [DVARS_SPIKE_THRESHOLD] [SKULL_STRIP_TEMPLATE] [SKULL_STRIP_FIXED_SEED] [SKULL_STRIP_ANAT] [FMAP_BSPLINE] [FMAP_NO_DEMEAN] [USE_SYN_SDC] [FORCE_SYN] [FS_LICENSE_FILE] [NO_SUBMM_RECON] [CIFTI_OUTPUT] [FS_NO_RECONALL] --work-dir work [RESOURCE_MONITOR] [REPORTS_ONLY] [CONFIG_FILE] [WRITE_GRAPH] [STOP_ON_FIRST_CRASH] [NOTRACK] [DEBUG] [SLOPPY] [AGE_MONTHS] [SEGMENTATION_ATLASES_DIR] [FD_RADIUS] [CABINET_OUTPUT] [DERIV_FILTER_FILE] [FORCE_RECONALL] [PROJECT_GOODVOXELS] [SURFACE_RECON_METHOD] [COPY_DERIVATIVES] [NORM_CSF] [MULTI_STEP_REG]",
     "container-image": {
         "image": "nipreps/nibabies:25.0.0a2",
         "index": "docker://",
@@ -667,6 +667,15 @@
                 "freesurfer",
                 "mcribs"
             ]
+        },
+        {
+            "command-line-flag": "--copy-derivatives",
+            "id": "copy_derivatives",
+            "name": "copy_derivatives",
+            "description": "Copy any found derivatives into output directory.",
+            "optional": true,
+            "type": "Flag",
+            "value-key": "[COPY_DERIVATIVES]"
         },
         {
             "command-line-flag": "--norm-csf",

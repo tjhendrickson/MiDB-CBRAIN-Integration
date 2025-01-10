@@ -4,7 +4,7 @@
     "tool-version": "0.10.1",
     "schema-version": "0.5",
     "url": "https://xcp-d.readthedocs.io/en/latest/index.html",
-    "command-line": "true [SESSION_ID]; true [SUBJECT_DIR]; true [DERIVATIVES_PREFIX]; mkdir -p work; export FS_LICENSE=$PWD/[FS_LICENSE_FILE]; xcp_d [SUBJECT_PREPROC_FMRI_DIR] [OUTPUT_DIR] participant --omp-nthreads 2 [MODE] [COMBINERUNS] [VERBOSE] [INPUT_TYPE] [TASK] [SMOOTHING] [DESPIKE] [LINC_QC] [MIN_TIME] [NUISANCE] --fs-license-file [FS_LICENSE_FILE] [DUMMY_SCANS] [BPF] [LOWER_BPF] [UPPER_BPF] [BPF_ORDER] [MOTION_FILTER_TYPE] [BAND_STOP_MIN] [BAND_STOP_MAX] [MOTION_FILTER_ORDER] [HEAD_RADIUS] [FD_THRESH] [WARP_SURFACES] [BIDS_FILTER] -w work --notrack",
+    "command-line": "true [SESSION_ID]; true [SUBJECT_DIR]; true [DERIVATIVES_PREFIX]; mkdir -p work; export FS_LICENSE=$PWD/[FS_LICENSE_FILE]; xcp_d [SUBJECT_PREPROC_FMRI_DIR] [OUTPUT_DIR] participant --omp-nthreads 2 [MODE] [COMBINERUNS] [VERBOSE] [INPUT_TYPE] [TASK] [SMOOTHING] [DESPIKE] [LINC_QC] [MIN_TIME] [NUISANCE] --fs-license-file [FS_LICENSE_FILE] [DUMMY_SCANS] [BPF] [LOWER_BPF] [UPPER_BPF] [BPF_ORDER] [MOTION_FILTER_TYPE] [BAND_STOP_MIN] [BAND_STOP_MAX] [MOTION_FILTER_ORDER] [HEAD_RADIUS] [FD_THRESH] [WARP_SURFACES] [BIDS_FILTER] [CREATE_MATRICES] -w work --notrack",
     "container-image": {
         "image": "pennlinc/xcp_d:0.10.1",
         "index": "docker://",
@@ -273,6 +273,15 @@
             "optional": true,
             "type": "Number",
             "value-key": "[FD_THRESH]"
+        },
+        {
+            "command-line-flag": "--create-matrices",
+            "id": "create_matrices",
+            "name": "Create Matrices",
+            "description": "If used, this parameter will produce correlation matrices limited to each requested amount of time. If there is more than the required amount of low-motion data, then volumes will be randomly selected to produce denoised outputs with the exact amounts of time requested. If there is less than the required amount of ‘good’ data, then the corresponding correlation matrix will not be produced. Use 'all' for all available data.",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CREATE_MATRICES]"
         },
         {
             "command-line-flag": "--warp-surfaces-native2std",

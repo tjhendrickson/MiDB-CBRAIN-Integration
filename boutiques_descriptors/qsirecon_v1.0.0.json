@@ -6,7 +6,7 @@
     "tool-version": "1.0.0",
     "shell": "/bin/bash",
     "schema-version": "0.5",
-    "command-line": "true [SUBJECT_DIR]; true [DERIVATIVES_PREFIX]; qsirecon [QSIPREP_DIR] [QSIRECON_OUTPUT_DIR] participant --work-dir \"$PWD\"/work [SESSION_ID] [FS_LICENSE_FILE] [BIDS_FILTER_FILE] [RECON_SPEC] [fs_subjects_dir] [report_output_level] --omp-nthreads 8 --n-cpus 8 --stop-on-first-crash [USE_PLUGIN] [INFANT] [BOILERPLATE] [VERBOSE] [B0_THRESHOLD] [OUTPUT_RESOLUTION] [REPORTS_ONLY] [WRITE_GRAPH] [SLOPPY]",
+    "command-line": "true [SUBJECT_DIR]; true [DERIVATIVES_PREFIX]; qsirecon [QSIPREP_DIR] [QSIRECON_OUTPUT_DIR] participant -v --work-dir \"$PWD\"/work [SESSION_ID] [FS_LICENSE_FILE] [BIDS_FILTER_FILE] [RECON_SPEC] [fs_subjects_dir] [report_output_level] --omp-nthreads 8 --n-cpus 8 --stop-on-first-crash [USE_PLUGIN] [INFANT] [BOILERPLATE] [VERBOSE] [B0_THRESHOLD] [OUTPUT_RESOLUTION] [REPORTS_ONLY] [WRITE_GRAPH] [SLOPPY]",
     "container-image":
     {
         "image": "pennlinc/qsirecon:1.0.0",

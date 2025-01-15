@@ -1,0 +1,523 @@
+{
+    "name": "qsiprep",
+    "description": "q-Space Image PREProcessing workflows",
+    "author": "University of Pennsylvania Lifespan Informatics and Neuroimaging Center (https://github.com/PennLINC)",
+    "url": "https://qsiprep.readthedocs.io/en/latest/index.html",
+    "tool-version": "1.0.0",
+    "shell": "/bin/bash",
+    "schema-version": "0.5",
+    "command-line": "true [DERIVATIVES_PREFIX]; qsiprep [SUBJECT_DIR] [QSIPREP_OUTPUT_DIR] participant --skip-bids-validation --work-dir \"$PWD\"/work [SESSION_ID] [FS_LICENSE_FILE] [BIDS_FILTER_FILE] --omp-nthreads 8 --n-cpus 8 --stop-on-first-crash --eddy-config \"$PWD\"/[EDDY_CONFIG] [SUBJECT_ANAT_REFERENCE] [SKIP_ANAT_BASED_SPATIAL_NORM] [ANAT_MODALITY] [SEPARATE_ALL_DWIS] [PEPOLAR_METHOD] [USE_PLUGIN] [ANAT_ONLY] [DWI_ONLY] [B1_BIAS_CORRECT] [INFANT] [BOILERPLATE] [VERBOSE] [IGNORE] [LONGITUDINAL] [B0_THRESHOLD] [DWI_DENOISE_WINDOW] [UNRINGING_METHOD] [NO_B0_HARMONIZATION] [DENOISE_AFTER_COMBINING] [DENOISE_METHOD] [DISTORTION_GROUP_MERGE] [TEMPLATE] [OUTPUT_RESOLUTION] [B0_TO_T1W_TRANSFORM] [INTRAMODAL_TEMPLATE_ITERS] [INTRAMODAL_TEMPLATE_TRANSFORM] [B0_MOTION_CORR_TO] [HMC_TRANSFORM] [HMC_MODEL] [SHORELINE_ITERS] [FMAP_BSPLINE] [FMAP_NO_DEMEAN] [USE_SYN_SDC] [FORCE_SYN] [REPORTS_ONLY] [WRITE_GRAPH] [SLOPPY]",
+    "container-image":
+    {
+        "image": "pennlinc/qsiprep:1.0.0",
+        "index": "docker://",
+        "type":  "singularity"
+    },
+    "inputs": [
+        {
+            "description": "Subject folder for BIDS (folders name should be sub-XXXXX).",
+            "id": "subject_dir",
+            "name": "subject_dir",
+            "optional": false,
+            "type": "File",
+            "value-key": "[SUBJECT_DIR]"
+        },
+        {
+            "description": "The name of the output for the outcomes of preprocessing and visual reports",
+            "id": "output_dir_name",
+            "name": "output_dir_name",
+            "optional": false,
+            "type": "String",
+            "value-key": "[QSIPREP_OUTPUT_DIR]"
+        },
+        {
+            "command-line-flag": "--session-id",
+            "description": "A space delimited list of session identifiers or a single identifier (the ses- prefix can be removed)",
+            "id": "session_id",
+            "name": "Session ID",
+            "optional": false,
+            "type": "String",
+            "value-key": "[SESSION_ID]"
+        },
+        {
+            "command-line-flag": "--bids-filter-file",
+            "description": "A JSON file describing custom BIDS input filters using PyBIDS. For further details, please check out https://fmriprep.readthedocs.io/en/latest/faq.html#how-do-I-select-only-certain-files-to-be-input-to-fMRIPrep",
+            "id": "bids_filter_file",
+            "name": "BIDS Filter File",
+            "optional": true,
+            "type": "File",
+            "value-key": "[BIDS_FILTER_FILE]"
+        },
+        {
+            "command-line-flag": "--subject-anatomical-reference",
+            "description": "How to define subject-specific anatomical space. sessionwise will produce one anatomical space per session. The others combine anatomical data across sessions to define one anatomical space per subject.",
+            "id": "subject_anat_reference",
+            "name": "Subject Anatomical Reference",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SUBJECT_ANAT_REFERENCE]",
+            "value-choices": [
+                "first-alphabetically",
+                "unbiased",
+                "sessionwise"
+            ]
+        },
+        {
+            "command-line-flag": "--skip-anat-based-spatial-normalization",
+            "description": "skip running the anat-based normalization to template space. Default is to run the normalization.",
+            "id": "skip_anat_based_spatial_norm",
+            "name": "Skip Anat Based Spatial Normalization",
+            "optional": true,
+            "type": "Flag",
+            "value-key": "[SKIP_ANAT_BASED_SPATIAL_NORM]"
+        },
+        {
+            "command-line-flag": "--use-plugin",
+            "description": "Nipype plugin configuration file",
+            "id": "use_plugin",
+            "name": "qsiprep use plugin",
+            "optional": true,
+            "type": "File",
+            "value-key": "[USE_PLUGIN]"
+        },
+        {
+            "command-line-flag": "--anat-only",
+            "description": "Run anatomical workflows only",
+            "id": "anat_only",
+            "name": "qsiprep anatomical workflows only",
+            "optional": true,
+            "type": "Flag",
+            "value-key": "[ANAT_ONLY]"
+        },
+        {
+            "command-line-flag": "--dwi-only",
+            "description": "Ignore anatomical (T1w/T2w) data and process DWIs only",
+            "id": "dwi_only",
+            "name": "qsiprep dwi only",
+            "optional": true,
+            "type": "Flag",
+            "value-key": "[DWI_ONLY]"
+        },
+        {
+            "command-line-flag": "--infant",
+            "description": "Configure pipelines to process infant brains",
+            "id": "infant",
+            "name": "qsiprep infant",
+            "optional": true,
+            "type": "Flag",
+            "value-key": "[INFANT]"
+        },
+        {
+            "command-line-flag": "--boilerplate",
+            "description": "Generate boilerplate only",
+            "id": "boilerplate",
+            "name": "qsiprep boilerplate",
+            "optional": true,
+            "type": "Flag",
+            "value-key": "[BOILERPLATE]"
+        },
+        {
+            "command-line-flag": "-v",
+            "id": "verbose",
+            "name": "verbose",
+            "description": "Increases log verbosity for each occurence (-vvv).",
+            "optional": true,
+            "type": "Flag",
+            "value-key": "[VERBOSE]"
+        },
+        {
+            "command-line-flag": "--ignore",
+            "description": "Ignore selected aspects of the input dataset to disable corresponding parts of the workflow (a space delimited list)",
+            "id": "ignore",
+            "name": "qsiprep ignore",
+            "optional": true,
+            "type": "String",
+            "value-choices": [
+                "fieldmaps",
+                "sbref",
+                "t2w",
+                "flair",
+                "fmap-jacobian",
+                "phase"
+            ],
+            "value-key": "[IGNORE]"
+        },
+        {
+            "command-line-flag": "--longitudinal",
+            "description": "Treat dataset as longitudinal - may increase runtime",
+            "id": "longitudinal",
+            "name": "qsiprep longitudinal",
+            "optional": true,
+            "type": "Flag",
+            "value-key": "[LONGITUDINAL]"
+        },
+        {
+            "command-line-flag": "--b0-threshold",
+            "description": "Any value in the .bval file less than this will be considered a b=0 image. Current default threshold = 100; this threshold can be lowered or increased. Note, setting this too high can result in inaccurate results.",
+            "id": "b0_threshold",
+            "name": "qsiprep b0 threshold",
+            "optional": true,
+            "type": "Number",
+            "value-key": "[B0_THRESHOLD]"
+        },
+        {
+            "command-line-flag": "--dwi-denoise-window",
+            "description": "Window size in voxels for ``dwidenoise``. Must be odd (default: 5). If 0, ``dwidwenoise`` will not be run (default: 5)",
+            "id": "dwi_denoise_window",
+            "name": "qsiprep dwi denoise window",
+            "optional": true,
+            "type": "Number",
+            "value-key": "[DWI_DENOISE_WINDOW]"
+        },
+        {
+            "command-line-flag": "--unringing-method",
+            "description": "Method for Gibbs-ringing removal. - none: no action - mrdegibbs: use mrdegibbs from mrtrix3. rpg: Gibbs from TORTOISE, suggested for partial Fourier acquisitions (default: none).",
+            "id": "unringing_method",
+            "name": "qsiprep dwi unringing method",
+            "optional": true,
+            "type": "String",
+            "value-choices": [
+                "none",
+                "mrdegibbs",
+                "rpg"
+            ],
+            "value-key": "[UNRINGING_METHOD]"
+        },
+        {
+            "command-line-flag": "--no-b0-harmonization",
+            "description": "skip re-scaling dwi scans to have matching b=0 intensities",
+            "id": "no_b0_harmonization",
+            "name": "qsiprep no b0 harmonization",
+            "optional": true,
+            "type": "Flag",
+            "value-key": "[NO_B0_HARMONIZATION]"
+        },
+        {
+            "command-line-flag": "--denoise-after-combining",
+            "description": "Run 'dwidenoise' after combining dwis. Requires ''--combine-all-dwis'. This option could have adverse side-effects in cases where there is motion that occurs between scans.",
+            "id": "denoise_after_combining",
+            "name": "qsiprep denoise after combining",
+            "optional": true,
+            "type": "Flag",
+            "value-key": "[DENOISE_AFTER_COMBINING]"
+        },
+        {
+            "command-line-flag": "--separate_all_dwis",
+            "description": "Don't attempt to combine dwis from multiple runs. Each will be processed separately.",
+            "id": "separate_all_dwis",
+            "name": "qsiprep separate all dwis",
+            "optional": true,
+            "type": "Flag",
+            "value-key": "[SEPARATE_ALL_DWIS]"
+        },
+        {
+            "command-line-flag": "--distortion-group-merge",
+            "description": "How to combine images across distorted groups. - concatenate: append images in the 4th dimension - average: if a whole sequence was duplicated in both PE directions, average the corrected images of the same q-space coordinate - none: Default. Keep distorted groups separate",
+            "id": "distortion_group_merge",
+            "name": "qsiprep distortion group merge",
+            "optional": true,
+            "type": "String",
+            "value-choices": [
+                "concat",
+                "average",
+                "none"
+            ],
+            "value-key": "[DISTORTION_GROUP_MERGE]"
+        },
+        {
+            "command-line-flag": "--denoise-method",
+            "description": "Image-based denoising method. Either “dwidenoise” (MRtrix), “patch2self” (DIPY) or none. (default: dwidenoise)",
+            "id": "DENOISE_METHOD",
+            "name": "Denoising Method",
+            "optional": true,
+            "type": "String",
+            "value-choices": [
+                "dwidenoise",
+                "patch2self",
+                "none"
+            ],
+            "value-key": "[DENOISE_METHOD]"
+        },
+        {
+            "command-line-flag": "--pepolar-method",
+            "description": "Possible choices: TOPUP, DRBUDDI, TOPUP+DRBUDDI. Select which SDC method to use for PEPOLAR fieldmaps (default: TOPUP)",
+            "id": "PEPOLAR_METHOD",
+            "name": "Pepolar Method",
+            "optional": true,
+            "type": "String",
+            "value-choices": [
+                "TOPUP",
+                "DRBUDDI",
+                "TOPUP+DRBUDDI"
+            ],
+            "value-key": "[PEPOLAR_METHOD]"
+        },
+        {
+            "command-line-flag": "--b1-biascorrect-stage",
+            "description": "Which stage to apply B1 bias correction. The default ‘final’ will apply it after all the data has been resampled to its final space. ‘none’ will skip B1 bias correction and ‘legacy’ will behave consistent with qsiprep < 0.17.",
+            "id": "B1_BIAS_CORRECT",
+            "name": "B1 Bias Correction Stage",
+            "optional": true,
+            "type": "String",
+            "value-choices": [
+                "final",
+                "legacy",
+                "none"
+            ],
+            "value-key": "[B1_BIAS_CORRECT]"
+        },
+        {
+            "command-line-flag": "--anatomical-template",
+            "description": "Volume template space",
+            "id": "template",
+            "name": "qsiprep template",
+            "optional": true,
+            "type": "String",
+            "value-choices": [
+                "MNI152NLin2009cAsym"
+            ],
+            "value-key": "[TEMPLATE]"
+        },
+        {
+            "command-line-flag": "--anat-modality",
+            "description": "Possible choices: T1w, T2w, none. Modality to use as the anatomical reference. Images of this contrast will be skull stripped and segmented for use in the visual reports and reconstruction. If –infant, T2w is forced.",
+            "id": "AnatModality",
+            "name": "Anatomical Modality",
+            "optional": true,
+            "type": "String",
+            "value-choices": [
+                "T1w",
+                "T2w",
+                "none"
+            ],
+            "value-key": "[ANAT_MODALITY]"
+        },
+        {
+            "command-line-flag": "--output-resolution",
+            "description": "The isotropic voxel size in mm the data will be resampled to after preprocessing. If set to a lower value than the original voxel size, your data will be upsampled using BSpline interpolation.",
+            "id": "output_resolution",
+            "name": "qsiprep output resolution",
+            "optional": false,
+            "type": "Number",
+            "default-value": 2,
+            "value-key": "[OUTPUT_RESOLUTION]"
+        },
+        {
+            "command-line-flag": "--b0-to-t1w-transform",
+            "description": "Degrees of freedom when registering b0 to T1w images. 6 degrees (rotation and translation) are used by default.",
+            "id": "b0_to_t1w_transform",
+            "name": "qsiprep b0 to t1w transform",
+            "optional": true,
+            "type": "String",
+            "value-choices": [
+                "Rigid",
+                "Affine"
+            ],
+            "value-key": "[B0_TO_T1W_TRANSFORM]"
+        },
+        {
+            "command-line-flag": "--intramodal-template-iters",
+            "description": "Number of iterations for finding the midpoint image from the b0 templates from all groups. Has no effect if there is only one group. If 0, all b0 templates are directly registered to the t1w image.",
+            "id": "intramodal_template_iters",
+            "name": "qsiprep intramodal template iters",
+            "optional": true,
+            "type": "Number",
+            "value-key": "[INTRAMODAL_TEMPLATE_ITERS]"
+        },
+        {
+            "command-line-flag": "--intramodal-template-transform",
+            "description": "Transformation used for building the intramodal template.",
+            "id": "intramodal_template_transform",
+            "name": "qsiprep intramodal template transform",
+            "optional": true,
+            "type": "String",
+            "value-choices": [
+                "Rigid",
+                "Affine",
+                "BSplineSyN",
+                "SyN"
+            ],
+            "value-key": "[INTRAMODAL_TEMPLATE_TRANSFORM]"
+        },
+        {
+            "command-line-flag": "--b0-motion-corr-to",
+            "description": "Align to the 'first' b0 volume or do an 'iterative' registration of all b0 images to their midpoint image",
+            "id": "bo_motion_corr_to",
+            "name": "qsiprep b0 motion correction to",
+            "optional": true,
+            "type": "String",
+            "value-choices": [
+                "iterative",
+                "first"
+            ],
+            "value-key": "[B0_MOTION_CORR_TO]"
+        },
+        {
+            "command-line-flag": "--hmc-transform",
+            "description": "Transformation to be optimized during head motion correction",
+            "id": "hmc_transform",
+            "name": "qsiprep head motion correction transform",
+            "optional": true,
+            "type": "String",
+            "value-choices": [
+                "Affine",
+                "Rigid"
+            ],
+            "value-key": "[HMC_TRANSFORM]"
+        },
+        {
+            "command-line-flag": "--hmc-model",
+            "description": "Model used to generate target images for hmc. If 'none' the non-b0 images will be warped using the same transform as their nearest b0 image. If '3dSHORE', SHORELine will be used. If 'eddy_ingress', the dwis are assumed to have been run through fsls eddy.",
+            "id": "hmc_model",
+            "name": "qsiprep head motion correction model",
+            "optional": true,
+            "type": "String",
+            "value-choices":[
+                "none",
+                "3dSHORE",
+                "eddy"
+            ],
+            "value-key": "[HMC_MODEL]"
+        },
+        {
+            "description": "Path to a json file with settings for the call to eddy. If no json is specified, a default one will be used. The current default json can be found here: https://github.com/PennBBL/qsiprep/blob/master/qsiprep/data/eddy_params.json",
+            "id": "eddy_config",
+            "name": "qsiprep eddy configuration",
+            "optional": false,
+            "type": "File",
+            "value-key": "[EDDY_CONFIG]"
+        },
+        {
+            "command-line-flag": "--shoreline-iters",
+            "description": "Number of SHORELine iterations.",
+            "id": "shoreline_iters",
+            "name": "qsiprep SHORELine iterations",
+            "optional": true,
+            "type": "Number",
+            "value-key": "[SHORELINE_ITERS]"
+        },
+        {
+            "command-line-flag": "--fs-license-file",
+            "id": "fs_license_file",
+            "name": "fs_license_file",
+            "description": "Path to FreeSurfer license key file. Get it (for free) by registering at https://surfer.nmr.mgh.harvard.edu/registration.html",
+            "optional": false,
+            "type": "File",
+            "value-key": "[FS_LICENSE_FILE]"
+        },
+        {
+            "command-line-flag": "--fmap-bspline",
+            "description": "Fit a B-Spline field using least-squares (experimental)",
+            "id": "fmap_bspline",
+            "name": "qsiprep fmap bspline",
+            "optional": true,
+            "type": "Flag",
+            "value-key": "[FMAP_BSPLINE]"
+        },
+        {
+            "command-line-flag": "--fmap-no-demean",
+            "description": "Do not remove median (within mask) from fieldmap",
+            "id": "fmap_no_demean",
+            "name": "qsiprep fmap no demean",
+            "optional": true,
+            "type": "Flag",
+            "value-key": "[FMAP_NO_DEMEAN]"
+        },
+        {
+            "command-line-flag": "--use-syn-sdc",
+            "description": "EXPERIMENTAL: Use fieldmap-free distortion correction. To use this option, 'template' must be passed to --output-space",
+            "id": "use_syn_sdc",
+            "name": "qsiprep use syn sdc",
+            "optional": true,
+            "type": "Flag",
+            "value-key": "[USE_SYN_SDC]"
+        },
+        {
+            "command-line-flag": "--force-syn",
+            "description": "EXPERIMENTAL: Use fieldmap-free distortion correction. To use this option, 'template' must be passed to --output-space",
+            "id": "force_syn",
+            "name": "qsiprep force syn",
+            "optional": true,
+            "type": "Flag",
+            "value-key": "[FORCE_SYN]"
+        },
+        {
+            "command-line-flag": "--reports-only",
+            "description": "Only generate reports, don't run workflows. This will only rerun report aggregation, not reportlet generation for specific nodes.",
+            "id": "reports_only",
+            "name": "qsiprep reports only",
+            "optional": true,
+            "type": "Flag",
+            "value-key": "[REPORTS_ONLY]"
+        },
+        {
+            "command-line-flag": "--write-graph",
+            "description": "Write workflow graph.",
+            "id": "write_graph",
+            "name": "qsiprep write graph",
+            "optional": true,
+            "type": "Flag",
+            "value-key": "[WRITE_GRAPH]"
+        },
+        {
+            "command-line-flag": "--sloppy",
+            "description": "Use low-quality tools for speed - TESTING ONLY",
+            "id": "sloppy",
+            "name": "qsiprep sloppy",
+            "optional": true,
+            "type": "Flag",
+            "value-key": "[SLOPPY]"
+        },
+        {
+            "default-value": "derivatives/",
+            "id": "derivatives_prefix",
+            "name": "derivatives_prefix",
+            "description": "Folders to put before the pipeline specific folder. By default this will look like DataProvider/derivatives/PipelineName, where pipeline name is specific to the current pipeline. The provided string must end in /",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DERIVATIVES_PREFIX]"
+        }
+    ],
+    "output-files" : [{
+            "id" : "output_dir",
+            "name" : "Output Directory",
+            "description" : "This is the directory where the QSIPREP Preproc outputs are to be stored.",
+            "path-template" : "[QSIPREP_OUTPUT_DIR]/[SUBJECT_DIR]",
+            "optional" : false
+        }
+    ],
+    "custom": {
+        "cbrain:readonly-input-files": true,
+        "cbrain:author": "Erik Lee <leex6144@umn.edu>, Timothy Hendrickson <hendr522@umn.edu> and Natacha Beck <nbeck@mcin.ca>",
+        "cbrain:allow_empty_strings": ["derivatives_prefix"],
+        "cbrain:no-run-id-for-outputs": [ "output_dir"],
+        "cbrain:integrator_modules": {
+            "BoutiquesFileTypeVerifier": {
+                "subject_dir": [ "BidsSubject" ],
+                "fs_license_file": [ "FreesurferLicense", "TextFile", "SingleFile" ]
+            },
+            "BoutiquesFileNameMatcher": {
+                "subject_dir": "^sub-[a-zA-Z0-9_]+$"
+            },
+            "BoutiquesFreesurferLicenseFinder": "fs_license_file",
+            "BoutiquesOutputFileTypeSetter": {
+                "output_dir": "QsiprepOutput"
+            },
+            "BoutiquesForcedOutputBrowsePath" : {
+              "output_dir": "[DERIVATIVES_PREFIX]qsiprep"
+            },
+            "BoutiquesBidsSubjectFileSelector": { "subject_dir": "all_to_keep" },
+            "BoutiquesBidsSingleSubjectMaker": "subject_dir",
+            "BoutiquesTaskLogsCopier": {
+                "stdout":     "[QSIPREP_OUTPUT_DIR]/[SUBJECT_DIR]/ses-[SESSION_ID]/.cbrain/stdout.log",
+                "stderr":     "[QSIPREP_OUTPUT_DIR]/[SUBJECT_DIR]/ses-[SESSION_ID]/.cbrain/stderr.log",
+                "runtime":    "[QSIPREP_OUTPUT_DIR]/[SUBJECT_DIR]/ses-[SESSION_ID]/.cbrain/runtime_info.properties",
+                "descriptor": "[QSIPREP_OUTPUT_DIR]/[SUBJECT_DIR]/ses-[SESSION_ID]/.cbrain/boutiques_descriptor.json",
+                "invoke":     "[QSIPREP_OUTPUT_DIR]/[SUBJECT_DIR]/ses-[SESSION_ID]/.cbrain/boutiques_invoke.json",
+                "jobscript":  "[QSIPREP_OUTPUT_DIR]/[SUBJECT_DIR]/ses-[SESSION_ID]/.cbrain/job_script.sh",
+                "cbrain_params": "[QSIPREP_OUTPUT_DIR]/[SUBJECT_DIR]/ses-[SESSION_ID]/.cbrain/cbrain_params.json"
+            },
+            "BoutiquesInputSubdirMaker": {}
+        }
+    }
+}

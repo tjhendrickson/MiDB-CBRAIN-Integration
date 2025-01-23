@@ -1,0 +1,454 @@
+{
+    "name": "XCP-D",
+    "description": "A Robust Postprocessing Pipeline of fMRI data",
+    "tool-version": "0.10.4",
+    "schema-version": "0.5",
+    "url": "https://xcp-d.readthedocs.io/en/latest/index.html",
+    "command-line": "true [SESSION_ID]; true [SUBJECT_DIR]; true [DERIVATIVES_PREFIX]; mkdir -p work; export FS_LICENSE=$PWD/[FS_LICENSE_FILE]; xcp_d [SUBJECT_PREPROC_FMRI_DIR] [OUTPUT_DIR] participant --omp-nthreads 2 [MODE] [COMBINERUNS] [VERBOSE] [INPUT_TYPE] [TASK] [SMOOTHING] [DESPIKE] [LINC_QC] [MIN_TIME] [NUISANCE] --fs-license-file [FS_LICENSE_FILE] [DUMMY_SCANS] [BPF] [LOWER_BPF] [UPPER_BPF] [BPF_ORDER] [MOTION_FILTER_TYPE] [BAND_STOP_MIN] [BAND_STOP_MAX] [MOTION_FILTER_ORDER] [HEAD_RADIUS] [FD_THRESH] [WARP_SURFACES] [BIDS_FILTER] [CREATE_MATRICES] -w work --notrack",
+    "container-image": {
+        "image": "pennlinc/xcp_d:0.10.4",
+        "index": "docker://",
+        "type": "singularity"
+    },
+    "inputs": [
+        {
+            "description": "The root folder of a preprocessed fMRI output from Nibabies, fMRIPREP, or DCAN/HCP outputs that are formed as BIDS derivatives.",
+            "id": "preproc_fmri_dir",
+            "name": "preproc_fmri_dir",
+            "optional": false,
+            "type": "File",
+            "value-key": "[SUBJECT_PREPROC_FMRI_DIR]"
+        },
+        {
+            "description": "The folder to store outputs of XCPD processing.",
+            "id": "output_dir",
+            "name": "output_dir",
+            "optional": false,
+            "type": "String",
+            "value-key": "[OUTPUT_DIR]"
+        },
+        {
+            "description": "Subject folder for BIDS (folders name should be sub-XXXXX). This folder is not used under the current implementation but is present for ease of processing workflows.",
+            "id": "subject_dir",
+            "name": "subject_dir",
+            "optional": false,
+            "type": "File",
+            "value-key": "[SUBJECT_DIR]"
+        },
+        {
+            "command-line-flag": "--session-id",
+            "id": "session_id",
+            "name": "session_id",
+            "description": "This flag is only used behind the scenes in CBRAIN, not in XCP-D.",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SESSION_ID]"
+        },
+        {
+            "command-line-flag": "--combine-runs",
+            "id": "combineruns",
+            "name": "Combine runs",
+            "description": "Combines all runs into one file.",
+            "optional": true,
+            "type": "String",
+            "value-key": "[COMBINERUNS]",
+            "value-choices": [
+                "y",
+                "n",
+                "auto"
+            ]
+        },
+        {
+            "command-line-flag": "-vvv",
+            "id": "verbose",
+            "name": "Verbose",
+            "description": "Increases log verbosity",
+            "optional": true,
+            "type": "Flag",
+            "value-key": "[VERBOSE]"
+        },
+        {
+            "command-line-flag": "--input-type",
+            "id": "input_type",
+            "name": "Input type",
+            "description": "fMRIPprep/nibabies are default structures, DCAN and HCP are optional",
+            "optional": true,
+            "type": "String",
+            "value-key": "[INPUT_TYPE]",
+            "value-choices": [
+                "fmirprep",
+                "dcan",
+                "hcp",
+                "nibabies",
+                "ukb"
+            ]
+        },
+        {
+            "command-line-flag": "--mode",
+            "id": "mode",
+            "name": "mode",
+            "description": "The mode of operation for XCP-D. The mode sets several parameters, with values specific to different pipelines. For more information, see the documentation at https://xcp-d.readthedocs.io/en/latest/workflows.html#modes",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MODE]",
+            "value-choices": [
+                "abcd",
+                "hbcd",
+                "linc"
+            ]
+        },
+        {
+            "command-line-flag": "--task-id",
+            "id": "task_id",
+            "name": "Task ID",
+            "description": "select a specific task to be selected for the postprocessing",
+            "optional": true,
+            "type": "String",
+            "value-key": "[TASK]"
+        },
+        {
+            "command-line-flag": "--smoothing",
+            "id": "smoothing",
+            "name": "Smoothing",
+            "description": "Smoothing the postprocessed output (fwhm)",
+            "optional": true,
+            "type": "Number",
+            "value-key": "[SMOOTHING]"
+        },
+        {
+            "command-line-flag": "--min-time",
+            "id": "min_time",
+            "name": "min_time",
+            "description": "Minimum amount of time (in seconds) that a run must have following censoring for it to be processed.",
+            "optional": true,
+            "type": "Number",
+            "value-key": "[MIN_TIME]"
+        },
+        {
+            "command-line-flag": "--despike",
+            "id": "despike",
+            "name": "Despike",
+            "description": "Despike the nifti/cifti before postprocessing",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DESPIKE]",
+            "value-choices": [
+                "y",
+                "n",
+                "auto"
+            ]
+        },
+        {
+            "command-line-flag": "--linc-qc",
+            "id": "linc_qc",
+            "name": "LINC QC",
+            "description": "Add LINC QC to the output",
+            "optional": true,
+            "type": "String",
+            "value-key": "[LINC_QC]",
+            "value-choices": [
+                "y",
+                "n",
+                "auto"
+            ]
+        },
+        {
+            "command-line-flag": "--nuisance-regressors",
+            "id": "nuisance_regressors",
+            "name": "Nuisance regressors",
+            "description": "Nuisance parameters to be selected",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NUISANCE]",
+            "value-choices": [
+                "27P",
+                "36P",
+                "24P",
+                "acompcor",
+                "aroma",
+                "acompcor_gsr",
+                "aroma_gsr"
+            ]
+        },
+        {
+            "command-line-flag": "--dummy-scans",
+            "id": "dummy_scans",
+            "name": "Dummy time",
+            "description": "Number of volumes to remove from the beginning of each run. If set to auto, xcp_d will extract non-steady-state volume indices from the preprocessing derivatives’ confounds file.",
+            "optional": true,
+            "type": "Number",
+            "value-key": "[DUMMY_SCANS]"
+        },
+        {
+            "command-line-flag": "--disable-bandpass-filter",
+            "id": "bpf",
+            "name": "Disable Bandpass Filter",
+            "description": "Disable bandpass filtering. If bandpass filtering is disabled, then ALFF derivatives will not be calculated.",
+            "optional": true,
+            "type": "Flag",
+            "value-key": "[BPF]"
+        },
+        {
+            "command-line-flag": "--lower-bpf",
+            "id": "lower_bpf",
+            "name": "Lower cut-off frequency",
+            "description": "Lower cut-off frequency (Hz) for the butterworth bandpass filter",
+            "optional": true,
+            "type": "Number",
+            "value-key": "[LOWER_BPF]"
+        },
+        {
+            "command-line-flag": "--upper-bpf",
+            "id": "upper_bpf",
+            "name": "Upper cut-off frequency",
+            "description": "Upper cut-off frequency (Hz) for the butterworth bandpass filter",
+            "optional": true,
+            "type": "Number",
+            "value-key": "[UPPER_BPF]"
+        },
+        {
+            "command-line-flag": "--bpf-order",
+            "id": "bpf_order",
+            "name": "Butterworth bandpass filter",
+            "description": "Number of filter coefficients for butterworth bandpass filter",
+            "optional": true,
+            "type": "Number",
+            "value-key": "[BPF_ORDER]"
+        },
+        {
+            "command-line-flag": "--motion-filter-type",
+            "id": "motion_filter_type",
+            "name": "Type of band-stop filter",
+            "description": "Type of band-stop filter to use for removing respiratory artifact from motion regressors",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MOTION_FILTER_TYPE]",
+            "value-choices": [
+                "lp",
+                "notch",
+                "none"
+            ]
+        },
+        {
+            "command-line-flag": "--band-stop-min",
+            "id": "band_stop_min",
+            "name": "Lower frequency (bpm)",
+            "description": "Lower frequency (bpm) for the band-stop motion filter",
+            "optional": true,
+            "type": "Number",
+            "value-key": "[BAND_STOP_MIN]"
+        },
+        {
+            "command-line-flag": "--band-stop-max",
+            "id": "band_stop_max",
+            "name": "Upper frequency (bpm)",
+            "description": "Upper frequency (bpm) for the band-stop motion filter",
+            "optional": true,
+            "type": "Number",
+            "value-key": "[BAND_STOP_MAX]"
+        },
+        {
+            "command-line-flag": "--motion-filter-order",
+            "id": "motion_filter_order",
+            "name": "Filter coeffecients (band-stop filter)",
+            "description": "Number of filter coeffecients for the band-stop filter",
+            "optional": true,
+            "type": "Number",
+            "value-key": "[MOTION_FILTER_ORDER]"
+        },
+        {
+            "command-line-flag": "--head_radius",
+            "id": "head_radius",
+            "name": "Head radius",
+            "description": "Head radius for computing FD, default is 50mm, 35mm is recommended for baby",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HEAD_RADIUS]"
+        },
+        {
+            "command-line-flag": "--fd-thresh",
+            "id": "fd_thresh",
+            "name": "Framewise displacement",
+            "description": "Framewise displacement threshold for censoring",
+            "optional": true,
+            "type": "Number",
+            "value-key": "[FD_THRESH]"
+        },
+        {
+            "command-line-flag": "--create-matrices",
+            "id": "create_matrices",
+            "name": "Create Matrices",
+            "description": "If used, this parameter will produce correlation matrices limited to each requested amount of time. If there is more than the required amount of low-motion data, then volumes will be randomly selected to produce denoised outputs with the exact amounts of time requested. If there is less than the required amount of ‘good’ data, then the corresponding correlation matrix will not be produced. Use 'all' for all available data.",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CREATE_MATRICES]"
+        },
+        {
+            "command-line-flag": "--warp-surfaces-native2std",
+            "id": "warp_surfaces",
+            "name": "Warp surfaces",
+            "description": "If used, a workflow will be run to warp native-space (fsnative) reconstructed cortical surfaces (surf.gii files) produced by Freesurfer into standard (fsLR) space. These surface files are primarily used for visual quality assessment. By default, this workflow is disabled. IMPORTANT: This parameter can only be run if the –cifti flag is also enabled.",
+            "optional": true,
+            "type": "String",
+            "value-key": "[WARP_SURFACES]",
+            "value-choices": [
+                "y",
+                "n",
+                "auto"
+            ]
+        },
+        {
+            "command-line-flag": "--bids-filter-file",
+            "id": "bids_filter_file",
+            "name": "BIDS Filter File",
+            "description": "A JSON file defining BIDS input filters using PyBIDS.",
+            "optional": true,
+            "type": "File",
+            "value-key": "[BIDS_FILTER]"
+        },
+        {
+            "id": "fs_license_file",
+            "name": "fs_license_file",
+            "description": "Path to FreeSurfer license key file. Get it (for free) by registering at https://surfer.nmr.mgh.harvard.edu/registration.html",
+            "optional": false,
+            "type": "File",
+            "value-key": "[FS_LICENSE_FILE]"
+        },
+        {
+            "id": "preproc_output_json",
+            "name": "preproc_output_json",
+            "description": "The json descriptor of the original fmri preprocessing derivatives.",
+            "optional": true,
+            "type": "File"
+        },
+        {
+            "default-value": "derivatives/",
+            "id": "derivatives_prefix",
+            "name": "derivatives_prefix",
+            "description": "Folders to put before the pipeline specific folder. By default this will look like DataProvider/derivatives/PipelineName, where pipeline name is specific to the current pipeline. The provided string must end in /",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DERIVATIVES_PREFIX]"
+        }
+    ],
+    "output-files": [
+        {
+            "name":          "XCPD Subject Output Directory",
+            "id":            "xcpd_output_dir",
+            "description":   "Subject level output for XCP-D",
+            "optional":      false,
+            "path-template": "[OUTPUT_DIR]/[SUBJECT_DIR]"
+        },
+        {
+            "id" : "xcpd_ses_summary_html_report",
+            "name" : "xcpd session summary html report",
+            "description" : "This is the subject level html report generated by XCPD.",
+            "path-template" : "[OUTPUT_DIR]/[SUBJECT_DIR]_ses*_executive_summary.html",
+            "optional" : false
+        },
+        {
+            "id" : "xcpd_sub_summary_html_report",
+            "name" : "xcpd subject summary html report",
+            "description" : "This is the session level html report generated by XCPD.",
+            "path-template" : "[OUTPUT_DIR]/[SUBJECT_DIR].html",
+            "optional" : false
+        }
+    ],
+    "groups": [
+        {
+            "id": "resource_management_opt",
+            "name": "Options to for resource management",
+            "members": [
+                "verbose"
+            ]
+        },
+        {
+            "id": "input_flags_opt",
+            "name": "Input flags",
+            "members": [
+                "input_type",
+                "task_id"
+            ]
+        },
+        {
+            "id": "postprocessing_opt",
+            "name": "Parameters for postprocessing",
+            "members": [
+                "smoothing",
+                "despike",
+                "dummy_scans"
+            ]
+        },
+        {
+            "id": "filtering_parameters_opt",
+            "name": "Filtering parameters and default value",
+            "members": [
+                "lower_bpf",
+                "upper_bpf",
+                "bpf_order",
+                "motion_filter_type",
+                "band_stop_min",
+                "band_stop_max",
+                "motion_filter_order"
+            ]
+        },
+        {
+            "id": "censoring_scrubbing_opt",
+            "name": "Censoring and scrubbing options",
+            "members": [
+                "head_radius",
+                "fd_thresh"
+            ]
+        }
+    ],
+    "tags": {
+        "application-type": [
+            "bids"
+        ],
+        "domain": [
+            "neuroinformatics",
+            "fmri"
+        ]
+    },
+    "suggested-resources": {
+        "cpu-cores": 2,
+        "ram": 40,
+        "walltime-estimate": 30000
+    },
+    "custom": {
+        "cbrain:readonly-input-files": true,
+        "cbrain:author": "Natacha Beck <nbeck@mcin.ca>, Erik Lee <leex6144@umn.edu>",
+        "cbrain:allow_empty_strings": ["derivatives_prefix"],
+        "cbrain:no-run-id-for-outputs": [ "xcpd_output_dir", "xcpd_ses_summary_html_report", "xcpd_sub_summary_html_report"],
+        "cbrain:integrator_modules": {
+            "BoutiquesOutputFileTypeSetter": {
+                "xcpd_output_dir":  "XcpdOutput",
+                "xcpd_ses_summary_html_report": "XcpdOutputHtml",
+                "xcpd_sub_summary_html_report": "XcpdOutputHtml"
+            },
+            "BoutiquesForcedOutputBrowsePath" : {
+              "xcpd_output_dir": "[DERIVATIVES_PREFIX]xcp_d",
+              "xcpd_ses_summary_html_report": "[DERIVATIVES_PREFIX]xcp_d",
+              "xcpd_sub_summary_html_report": "[DERIVATIVES_PREFIX]xcp_d"
+            },
+            "BoutiquesAllowedExitCodes": [0],
+            "BoutiquesTaskLogsCopier": {
+                "stdout":     "[OUTPUT_DIR]/[SUBJECT_DIR]/ses-[SESSION_ID]/.cbrain/stdout.log",
+                "stderr":     "[OUTPUT_DIR]/[SUBJECT_DIR]/ses-[SESSION_ID]/.cbrain/stderr.log",
+                "runtime":    "[OUTPUT_DIR]/[SUBJECT_DIR]/ses-[SESSION_ID]/.cbrain/runtime_info.properties",
+                "descriptor": "[OUTPUT_DIR]/[SUBJECT_DIR]/ses-[SESSION_ID]/.cbrain/boutiques_descriptor.json",
+                "invoke":     "[OUTPUT_DIR]/[SUBJECT_DIR]/ses-[SESSION_ID]/.cbrain/boutiques_invoke.json",
+                "jobscript":  "[OUTPUT_DIR]/[SUBJECT_DIR]/ses-[SESSION_ID]/.cbrain/job_script.sh",
+                "cbrain_params": "[OUTPUT_DIR]/[SUBJECT_DIR]/ses-[SESSION_ID]/.cbrain/cbrain_params.json"
+                
+            },
+            "BoutiquesBidsSubjectFileSelector": { "subject_dir": "all_to_keep" },
+            "BoutiquesBidsSingleSubjectMaker": "subject_dir",
+            "BoutiquesPostProcessingCleaner": ["work"],
+            "BoutiquesInputSubdirMaker": {
+                "preproc_fmri_dir":     {"dirname": "fmri", "append_filename": false, "physical_copy": true},
+                "preproc_output_json":  {"dirname": "fmri", "filename": "dataset_description.json", "append_filename": false, "physical_copy": true}
+              }
+        }
+    }
+}

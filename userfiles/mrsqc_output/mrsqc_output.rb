@@ -20,7 +20,7 @@
 #
 
 # A FileCollection to model the output of a MRSQC
-class MRSQCOutput < FileCollection
+class MrsqcOutput < FileCollection
 
   Revision_info=CbrainFileRevision[__FILE__] #:nodoc:
 

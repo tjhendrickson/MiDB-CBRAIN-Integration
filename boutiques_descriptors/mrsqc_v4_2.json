@@ -107,7 +107,7 @@
         "SubjectDirectory": "^sub-[a-zA-Z0-9_]+$"
       },
       "BoutiquesOutputFileTypeSetter": {
-        "OutputDirectory": "MRSQCOutput"
+        "OutputDirectory": "MrsqcOutput"
       },
       "BoutiquesForcedOutputBrowsePath": {
         "OutputDirectory": "[DERIVATIVES_PREFIX]mrsqc"

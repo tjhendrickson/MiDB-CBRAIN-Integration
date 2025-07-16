@@ -1,0 +1,130 @@
+{
+  "name":                "MRSQC",
+  "tool-version":        "4.2.1",
+  "author":              "Georg Oeltzschner, Helge J. Zöllner, Richard A. E. Edden, Erik G. Lee",
+  "description":         "Osprey is an all-in-one software suite for state-of-the art processing and quantitative analysis of in-vivo magnetic resonance spectroscopy (MRS) data.",
+  "url":                 "https://osprey-bids.readthedocs.io/en/latest/",
+  "command-line":        "true [DERIVATIVES_PREFIX]; true [SubjectDirectory] ; rm -f CbrainBidsSingleSubject/[SubjectDirectory] ; cp -p -R -L [SubjectDirectory] CbrainBidsSingleSubject/[SubjectDirectory] ; osprey CbrainBidsSingleSubject [OSPREYOutputDirectoryName] participant [JSONConfig] --preferred_anat_modality none [ParticipantLabel] [SessionLabel]",
+  "schema-version":      "0.5",
+  "container-image":     {
+    "type":  "singularity",
+    "index": "docker://",
+    "image": "dcanumn/osprey-bids:v4.2.1"
+  },
+  "inputs":              [
+    {
+      "id":          "SubjectDirectory",
+      "name":        "Subject Directory",
+      "description": "The study-wide BIDS directory. In CBRAIN this is also referred to (and used) as the subject directory since a new BIDS dir will be made for the selected subject prior to processing.",
+      "type":        "File",
+      "optional":    false,
+      "value-key":   "[SubjectDirectory]"
+    },
+    {
+      "id":          "OSPREYOutputDirectoryName",
+      "name":        "OSPREY Output Directory",
+      "description": "The name of the output directory to store outcomes of preprocessing and reports. When processing is ran via CBRAIN only subject-specific files/folders will be saved, so the naming of the output folder will not influence the final naming/destination of files/folders.",
+      "type":        "String",
+      "optional":    false,
+      "value-key":   "[OSPREYOutputDirectoryName]"
+    },
+    {
+      "id":          "JSONConfig",
+      "name":        "JSON Config File",
+      "description": "The JSON file used to configure OSPREY processing.",
+      "type":        "File",
+      "optional":    false,
+      "value-key":   "[JSONConfig]"
+    },
+    {
+      "id":                "ParticipantLabel",
+      "name":              "Participant Label",
+      "description":       "Space delimited list of subjects to be processed (with or without sub- prefix)",
+      "type":              "String",
+      "optional":          true,
+      "command-line-flag": "--participant-label",
+      "value-key":         "[ParticipantLabel]"
+    },
+    {
+      "id":                "SessionLabel",
+      "name":              "Session Label",
+      "description":       "select a specific session to be processed (with or without ses- prefix)",
+      "type":              "String",
+      "optional":          true,
+      "command-line-flag": "--session-id",
+      "value-key":         "[SessionLabel]"
+    },
+    {
+      "id":            "derivatives_prefix",
+      "name":          "derivatives_prefix",
+      "description":   "Folders to put before the pipeline specific folder. By default this will look like DataProvider/derivatives/PipelineName, where pipeline name is specific to the current pipeline. The provided string must end in /",
+      "type":          "String",
+      "optional":      true,
+      "default-value": "derivatives/",
+      "value-key":     "[DERIVATIVES_PREFIX]"
+    }
+  ],
+  "output-files":        [
+    {
+      "id":            "OutputDirectory",
+      "name":          "Output Directory",
+      "description":   "The output directory to store outcomes of preprocessing and reports",
+      "optional":      false,
+      "path-template": "[OSPREYOutputDirectoryName]/[SubjectDirectory]"
+    }
+  ],
+  "suggested-resources": {
+    "cpu-cores": 1,
+    "ram": 24,
+    "walltime-estimate": 25000
+  },
+  "tags":                {
+    "application-type": [
+      "bids"
+    ],
+    "domain": [
+      "neuroinformatics",
+      "mrs",
+      "spectroscopy"
+    ]
+  },
+  "custom":              {
+    "cbrain:readonly-input-files":  true,
+    "cbrain:author":                "Erik Lee <leex6144@umn.edu>",
+    "cbrain:allow_empty_strings":   [
+      "derivatives_prefix"
+    ],
+    "cbrain:no-run-id-for-outputs": [
+      "OutputDirectory"
+    ],
+    "cbrain:integrator_modules":    {
+      "BoutiquesFileTypeVerifier": {
+        "SubjectDirectory": [
+          "BidsSubject"
+        ]
+      },
+      "BoutiquesFileNameMatcher": {
+        "SubjectDirectory": "^sub-[a-zA-Z0-9_]+$"
+      },
+      "BoutiquesOutputFileTypeSetter": {
+        "OutputDirectory": "MrsqcOutput"
+      },
+      "BoutiquesForcedOutputBrowsePath": {
+        "OutputDirectory": "[DERIVATIVES_PREFIX]mrsqc"
+      },
+      "BoutiquesTaskLogsCopier": {
+        "stdout": "[OSPREYOutputDirectoryName]/[SubjectDirectory]/ses-[SessionLabel]/.cbrain/stdout.log",
+        "stderr": "[OSPREYOutputDirectoryName]/[SubjectDirectory]/ses-[SessionLabel]/.cbrain/stderr.log",
+        "runtime": "[OSPREYOutputDirectoryName]/[SubjectDirectory]/ses-[SessionLabel]/.cbrain/runtime_info.properties",
+        "descriptor": "[OSPREYOutputDirectoryName]/[SubjectDirectory]/ses-[SessionLabel]/.cbrain/boutiques_descriptor.json",
+        "invoke": "[OSPREYOutputDirectoryName]/[SubjectDirectory]/ses-[SessionLabel]/.cbrain/boutiques_invoke.json",
+        "jobscript": "[OSPREYOutputDirectoryName]/[SubjectDirectory]/ses-[SessionLabel]/.cbrain/job_script.sh",
+        "cbrain_params": "[OSPREYOutputDirectoryName]/[SubjectDirectory]/ses-[SessionLabel]/.cbrain/cbrain_params.json"
+      },
+      "BoutiquesBidsSubjectFileSelector": {
+        "SubjectDirectory": "all_to_keep"
+      },
+      "BoutiquesBidsSingleSubjectMaker": "SubjectDirectory"
+    }
+  }
+}

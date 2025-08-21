@@ -313,7 +313,10 @@
                                    "append_filename": false},
               "qsiprep_subject_dir":     {"dirname": "qsiprep_input", "append_filename": false, "physical_copy": true},
               "qsiprep_json":  {"dirname": "qsiprep_input", "filename": "dataset_description.json", "append_filename": false, "physical_copy": true}
-            }
+            },
+            "BoutiquesPostProcessingCleaner": [
+                ["[QSIPREP_DIR]", "[SUBJECT_DIR]", "[QSIRECON_OUTPUT_DIR]"]
+              ]
         }
     }
 }

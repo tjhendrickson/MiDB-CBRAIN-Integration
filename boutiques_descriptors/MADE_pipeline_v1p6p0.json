@@ -133,6 +133,9 @@
                 "jobscript":  "[MADEOutputDirectoryName]/[SubjectDirectory]/ses-[SessionLabel]/.cbrain/job_script.sh",
                 "cbrain_params": "[MADEOutputDirectoryName]/[SubjectDirectory]/ses-[SessionLabel]/.cbrain/cbrain_params.json"
             },
+            "BoutiquesPostProcessingCleaner": [
+                "[MADEOutputDirectoryName]", "[SubjectDirectory]"
+              ],
             "BoutiquesOutputFileTypeSetter": {
                 "OutputDirectory": "MADEOutput"
             },

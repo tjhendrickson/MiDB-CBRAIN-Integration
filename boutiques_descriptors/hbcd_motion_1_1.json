@@ -149,6 +149,9 @@
             "BoutiquesForcedOutputBrowsePath" : {
               "output_dir": "[DERIVATIVES_PREFIX]hbcd_motion"
             },
+            "BoutiquesPostProcessingCleaner": [
+                ["[POSTRPOC_OUTPUT_DIR]", "[SUBJECT_DIR]"]
+              ],
             "BoutiquesBidsSubjectFileSelector": { "subject_dir": "all_to_keep" },
             "BoutiquesBidsSingleSubjectMaker": "subject_dir"
         }

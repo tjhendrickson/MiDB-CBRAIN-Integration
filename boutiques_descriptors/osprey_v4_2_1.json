@@ -208,6 +208,9 @@
             "dirname": "precomputed",
             "append_filename": false
           },
+          "BoutiquesPostProcessingCleaner": [
+            ["[OSPREYOutputDirectoryName]", "[SubjectDirectory]", "[CabinetOutput]"]
+          ],
           "CabinetOutputJson": {
             "dirname": "precomputed",
             "filename": "dataset_description.json",

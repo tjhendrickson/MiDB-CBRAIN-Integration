@@ -124,6 +124,9 @@
       "BoutiquesBidsSubjectFileSelector": {
         "SubjectDirectory": "all_to_keep"
       },
+      "BoutiquesPostProcessingCleaner": [
+        "[OSPREYOutputDirectoryName]", "[SubjectDirectory]"
+      ],
       "BoutiquesBidsSingleSubjectMaker": "SubjectDirectory"
     }
   }

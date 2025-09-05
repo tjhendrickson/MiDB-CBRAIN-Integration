@@ -203,14 +203,14 @@
           "SubjectDirectory": "all_to_keep"
         },
         "BoutiquesBidsSingleSubjectMaker": "SubjectDirectory",
+        "BoutiquesPostProcessingCleaner": [
+          ["[OSPREYOutputDirectoryName]", "[SubjectDirectory]", "[CabinetOutput]"]
+        ],
         "BoutiquesInputSubdirMaker": {
           "CabinetOutput": {
             "dirname": "precomputed",
             "append_filename": false
           },
-          "BoutiquesPostProcessingCleaner": [
-            ["[OSPREYOutputDirectoryName]", "[SubjectDirectory]", "[CabinetOutput]"]
-          ],
           "CabinetOutputJson": {
             "dirname": "precomputed",
             "filename": "dataset_description.json",

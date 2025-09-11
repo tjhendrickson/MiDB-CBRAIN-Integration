@@ -127,6 +127,7 @@
       "BoutiquesPostProcessingCleaner": [
         "[OSPREYOutputDirectoryName]", "[SubjectDirectory]"
       ],
+      "BoutiquesOutputCacheCleaner": ["OutputDirectory"],
       "BoutiquesBidsSingleSubjectMaker": "SubjectDirectory"
     }
   }

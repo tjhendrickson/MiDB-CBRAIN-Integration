@@ -143,8 +143,7 @@
               "OutputDirectory": "[DERIVATIVES_PREFIX]made"
             },
             "BoutiquesBidsSubjectFileSelector": { "SubjectDirectory": "all_to_keep" },
-            "BoutiquesBidsSingleSubjectMaker": "SubjectDirectory",
-            "BoutiquesOutputCacheCleaner": ["OutputDirectory"]
+            "BoutiquesBidsSingleSubjectMaker": "SubjectDirectory"
         }
     }
 }

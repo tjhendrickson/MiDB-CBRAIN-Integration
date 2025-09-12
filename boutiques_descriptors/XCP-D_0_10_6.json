@@ -445,7 +445,6 @@
             "BoutiquesBidsSubjectFileSelector": { "subject_dir": "all_to_keep" },
             "BoutiquesBidsSingleSubjectMaker": "subject_dir",
             "BoutiquesPostProcessingCleaner": ["work", "[SUBJECT_DIR]", "[OUTPUT_DIR]"],
-            "BoutiquesOutputCacheCleaner": ["xcpd_output_dir"],
             "BoutiquesInputSubdirMaker": {
                 "preproc_fmri_dir":     {"dirname": "fmri", "append_filename": false, "physical_copy": true},
                 "preproc_output_json":  {"dirname": "fmri", "filename": "dataset_description.json", "append_filename": false, "physical_copy": true}

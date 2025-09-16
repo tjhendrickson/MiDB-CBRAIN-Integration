@@ -206,6 +206,7 @@
         "BoutiquesPostProcessingCleaner": [
           ["[OSPREYOutputDirectoryName]", "[SubjectDirectory]", "[CabinetOutput]"]
         ],
+        "BoutiquesOutputCacheCleaner": ["OutputDirectory"],
         "BoutiquesInputSubdirMaker": {
           "CabinetOutput": {
             "dirname": "precomputed",

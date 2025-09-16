@@ -150,6 +150,7 @@
               "output_dir": "[DERIVATIVES_PREFIX]hbcd_motion"
             },
             "BoutiquesBidsSubjectFileSelector": { "subject_dir": "all_to_keep" },
+            "BoutiquesOutputCacheCleaner": ["output_dir"],
             "BoutiquesBidsSingleSubjectMaker": "subject_dir"
         }
     }

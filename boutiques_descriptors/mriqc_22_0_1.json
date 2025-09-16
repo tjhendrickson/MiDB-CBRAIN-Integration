@@ -187,6 +187,7 @@
                 "cbrain_params": "[MRIQC_OUTPUT_DIR]/[SUBJECT_DIR]/ses-[SESSION_ID]/.cbrain/cbrain_params.json"
             },
             "BoutiquesBidsSubjectFileSelector": { "subject_dir": "all_to_keep" },
+            "BoutiquesOutputCacheCleaner": ["output_dir"],
             "BoutiquesBidsSingleSubjectMaker": "subject_dir"
         }
     }

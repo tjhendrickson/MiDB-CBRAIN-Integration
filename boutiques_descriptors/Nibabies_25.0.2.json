@@ -785,6 +785,7 @@
               "work",
               "[OUTPUT_DIR]"
             ],
+            "BoutiquesOutputCacheCleaner": ["freesurfer_output_dir", "mcribs_output_dir"],
             "BoutiquesInputSubdirMaker": {
               "cabinet_output":      {"dirname": "precomputed",                                         "append_filename": false, "physical_copy": true},
               "cabinet_output_json": {"dirname": "precomputed", "filename": "dataset_description.json", "append_filename": false, "physical_copy": true}

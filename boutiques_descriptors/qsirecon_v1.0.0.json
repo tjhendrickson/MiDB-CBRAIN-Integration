@@ -308,6 +308,14 @@
                 "jobscript":  "[QSIRECON_OUTPUT_DIR]/[SUBJECT_DIR]/.cbrain/job_script.sh",
                 "cbrain_params": "[QSIRECON_OUTPUT_DIR]/[SUBJECT_DIR]/.cbrain/cbrain_params.json"
             },
+            "BoutiquesPostProcessingCleaner": [
+              "work",
+              "[QSIRECON_OUTPUT_DIR]",
+              "[QSIPREP_DIR]"
+            ],
+            "BoutiquesOutputCacheCleaner": ["recon_dir", "recon_dir_dipydki", "recon_html_dipydki", "recon_dir_dsistudio",
+                                            "recon_dir_tortoise_mapmri", "recon_html_tortoise_mapmri", "recon_dir_tortoise_tensor",
+                                            "recon_html_tortoise_tensor"],
             "BoutiquesInputSubdirMaker": {
               "fs_subjects_dir": {"dirname": "freesurfer",
                                    "append_filename": false},

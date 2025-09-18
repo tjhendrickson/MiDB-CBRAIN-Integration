@@ -517,6 +517,10 @@
                 "jobscript":  "[QSIPREP_OUTPUT_DIR]/[SUBJECT_DIR]/ses-[SESSION_ID]/.cbrain/job_script.sh",
                 "cbrain_params": "[QSIPREP_OUTPUT_DIR]/[SUBJECT_DIR]/ses-[SESSION_ID]/.cbrain/cbrain_params.json"
             },
+            "BoutiquesPostProcessingCleaner": [
+              "work",
+              "[QSIPREP_OUTPUT_DIR]"
+            ],
             "BoutiquesInputSubdirMaker": {}
         }
     }

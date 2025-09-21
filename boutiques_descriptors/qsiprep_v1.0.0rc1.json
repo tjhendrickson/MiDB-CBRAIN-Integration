@@ -519,8 +519,8 @@
             },
             "BoutiquesInputSubdirMaker": {},
             "BoutiquesPostProcessingCleaner": [
-                ["[QSIPREP_OUTPUT_DIR]", "[SUBJECT_DIR]"]
-              ]
+                "[QSIPREP_OUTPUT_DIR]", "[SUBJECT_DIR]"
+            ]
         }
     }
 }

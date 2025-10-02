@@ -241,11 +241,15 @@
         },
         "BoutiquesFreesurferLicenseFinder": "fs_license_file",
         "BoutiquesOutputFileTypeSetter": {
-          "nibabies_output_dir": "NibabiesOutput_25_2_0rc2_0f306a2f",
-          "nibabies_html_report": "NibabiesOutputHtml_25_2_0rc2_0f306a2f",
-          "freesurfer_output_dir": "NibabiesFreesurferOutput_25_2_0rc2_0f306a2f",
-          "mcribs_output_dir": "McribsOutput_25_2_0rc2_0f306a2f"
+          "nibabies_output_dir": "NibabiesOutput",
+          "nibabies_html_report": "NibabiesOutputHtml",
+          "freesurfer_output_dir": "NibabiesFreesurferOutput",
+          "mcribs_output_dir": "McribsOutput"
         },
+        "BoutiquesOutputTagger" : {"nibabies_output_dir" : ["25.2.0rc2-0f306a2f"],
+                                   "nibabies_html_report": ["25.2.0rc2-0f306a2f"],
+                                   "freesurfer_output_dir":["25.2.0rc2-0f306a2f"],
+                                   "mcribs_output_dir":["25.2.0rc2-0f306a2f"]},
         "BoutiquesForcedOutputBrowsePath": {
           "nibabies_output_dir": "[DERIVATIVES_PREFIX]nibabies-25.2.0rc2-0f306a2f",
           "nibabies_html_report": "[DERIVATIVES_PREFIX]nibabies-25.2.0rc2-0f306a2f",

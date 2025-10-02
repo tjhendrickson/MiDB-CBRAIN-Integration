@@ -133,10 +133,13 @@
         "id":                "output_layout",
         "name":              "output_layout",
         "description":       "Organization of outputs.",
-        "type":              "Flag",
+        "type":              "String",
         "optional":          true,
         "command-line-flag": "--output-layout",
-        "value-key":         "[OUTPUT_LAYOUT]"
+        "value-key":         "[OUTPUT_LAYOUT]",
+        "value-choices":     [
+          "multiverse"
+        ]
       },
       {
         "id":                "multi_step_reg",

@@ -171,6 +171,9 @@
       "cbrain:no-run-id-for-outputs": [
         "OutputDirectory"
       ],
+      "cbrain:override-input-string-ruby-regex": {
+        "LocSearchTerm": ":basename-pattern:"
+      },
       "cbrain:integrator_modules":    {
         "BoutiquesFileTypeVerifier": {
           "SubjectDirectory": [

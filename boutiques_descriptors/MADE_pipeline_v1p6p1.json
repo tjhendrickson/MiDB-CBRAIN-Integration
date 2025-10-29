@@ -117,6 +117,9 @@
         "cbrain:author": "Erik Lee <leex6144@umn.edu>",
         "cbrain:allow_empty_strings": ["derivatives_prefix"],
         "cbrain:no-run-id-for-outputs": [ "OutputDirectory"],
+        "cbrain:override-input-string-ruby-regex": {
+           "derivatives_prefix": "\\A[\\w,\\.\\/\\:\\-\\+]*\\z"
+        },
         "cbrain:integrator_modules": {
             "BoutiquesFileTypeVerifier": {
                 "SubjectDirectory": [ "BidsSubject" ]

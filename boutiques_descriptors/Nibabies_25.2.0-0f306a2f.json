@@ -219,6 +219,9 @@
       "cbrain:allow_empty_strings":   [
         "derivatives_prefix"
       ],
+      "cbrain:override-string-input-ruby-regex": {
+        "derivatives_prefix": ":relative-path:"
+      },
       "cbrain:no-run-id-for-outputs": [
         "nibabies_output_dir",
         "nibabies_html_report",

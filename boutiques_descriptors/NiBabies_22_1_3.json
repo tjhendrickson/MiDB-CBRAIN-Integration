@@ -727,6 +727,9 @@
         "cbrain:readonly-input-files": true,
         "cbrain:author": "Erik Lee <leex6144@umn.edu>, Timothy Hendrickson <hendr522@umn.edu> and Natacha Beck <nbeck@mcin.ca>",
         "cbrain:allow_empty_strings": ["derivatives_prefix"],
+        "cbrain:override-string-input-ruby-regex": {
+            "derivatives_prefix": ":relative-path:"
+        },
         "cbrain:no-run-id-for-outputs": [ "nibabies_output_dir", "nibabies_html_report", "infant_freesurfer_output_dir"],
         "cbrain:integrator_modules": {
             "BoutiquesAllowedExitCodes": [ 0, 1 ],

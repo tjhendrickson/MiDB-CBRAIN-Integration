@@ -741,6 +741,9 @@
         "cbrain:readonly-input-files": true,
         "cbrain:author": "Erik Lee <leex6144@umn.edu>, Timothy Hendrickson <hendr522@umn.edu> and Natacha Beck <nbeck@mcin.ca>",
         "cbrain:allow_empty_strings": ["derivatives_prefix"],
+        "cbrain:override-string-input-ruby-regex": {
+            "derivatives_prefix": ":relative-path:"
+        },
         "cbrain:no-run-id-for-outputs": [ "output_dir", "qsiprep_html_report", "recon_dir", "qsirecon_html_report",
                                             "recon_dir_dipydki", "recon_dir_dsistudio", "recon_dir_noddi", "recon_dir_tortoise_mapmri",
                                             "recon_dir_tortoise_tensor"],

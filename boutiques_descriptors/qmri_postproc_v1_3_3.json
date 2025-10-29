@@ -118,6 +118,9 @@
         "cbrain:readonly-input-files": true,
         "cbrain:author": "Erik Lee <leex6144@umn.edu>",
         "cbrain:allow_empty_strings": ["derivatives_prefix"],
+        "cbrain:override-string-input-ruby-regex": {
+            "derivatives_prefix": ":relative-path:"
+        },
         "cbrain:no-run-id-for-outputs": [ "OutputDirectory"],
         "cbrain:integrator_modules": {
             "BoutiquesFileTypeVerifier": {

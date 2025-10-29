@@ -168,12 +168,13 @@
       "cbrain:allow_empty_strings":   [
         "derivatives_prefix"
       ],
+      "cbrain:override-string-input-ruby-regex": {
+        "derivatives_prefix": ":relative-path:",
+        "LocSearchTerm": ":basename-pattern:"
+      },
       "cbrain:no-run-id-for-outputs": [
         "OutputDirectory"
       ],
-      "cbrain:override-input-string-ruby-regex": {
-        "LocSearchTerm": ":basename-pattern:"
-      },
       "cbrain:integrator_modules":    {
         "BoutiquesFileTypeVerifier": {
           "SubjectDirectory": [
